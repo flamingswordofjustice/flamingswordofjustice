@@ -3,4 +3,6 @@ class Show < ActiveRecord::Base
 
   has_many :appearances
   has_many :guests, through: :appearances
+
+  default_value_for(:recorded_at) { Date.today }
 end

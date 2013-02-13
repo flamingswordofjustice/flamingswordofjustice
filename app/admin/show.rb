@@ -12,6 +12,7 @@ ActiveAdmin.register Show do
   form do |f|
     f.inputs "Show Details" do
       f.input :title
+      f.input :download_url
       f.input :blurb, as: :html_editor
       f.input :recorded_at
       f.input :guests

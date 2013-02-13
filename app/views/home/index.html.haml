@@ -1,1 +1,27 @@
-Hello World
+%div.row
+  %div.span12.todays-show
+    %div.row
+      %div.span4
+        = image_tag "sword.png", width: "100%", class: "big-brand"
+
+      %div.span8.show-blurb
+        %ul.nav.nav-header
+          = render 'shared/nav_links'
+
+        %h4.muted TODAY
+        - show = @shows.first
+        %div
+          %h3= show.title
+          %p
+            = raw show.blurb
+            = link_to show_path(show) do
+              More
+              %i.icon-angle-right
+        %div.play-now
+          %a(href="#")
+            %i.icon-play-circle
+            %h1 PLAY NOW
+
+%div.row.past-shows
+  %div.span12
+    %h1 PAST SHOWS

@@ -7,25 +7,14 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
 
-  %body
+  %body{id: controller.controller_name}
     %section.container
-      - if current_page?(root_path)
-        %div.row
-          %div.span4
-            = image_tag "sword.png", width: "100%"
-      - else
-        %header.navbar
-          %div.navbar-inner
-            = link_to "", refinery.root_path, class: "brand"
-
-            %ul.nav.pull-right
-              = page_link_to "Jobs"
-              = page_link_to "About"
+      = render 'shared/header'
 
     %section.container
       = yield
 
     %footer.container
       %div.row
-        %div.span12
+        %div.span
           &copy; 2013 The Flaming Sword of Justice

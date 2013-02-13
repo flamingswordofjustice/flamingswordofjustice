@@ -63,6 +63,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    default_value_for (2.0.1)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -74,6 +75,9 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fastercsv (1.5.5)
+    font-awesome-sass-rails (3.0.0.1)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     formtastic (2.2.1)
       actionpack (>= 3.0)
     friendly_id (4.0.9)
@@ -192,7 +196,9 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-wysihtml5-rails
   coffee-rails
+  default_value_for
   devise
+  font-awesome-sass-rails
   friendly_id (~> 4.0.9)
   haml-rails
   jquery-rails

@@ -14,11 +14,13 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'activeadmin'
 gem 'bootstrap-sass'
 gem 'bootstrap-wysihtml5-rails'
+gem 'font-awesome-sass-rails'
 gem 'devise'
 gem 'strong_parameters'
 gem 'rspec-rails'
-gem "friendly_id", "~> 4.0.9"
+gem 'friendly_id', '~> 4.0.9'
 gem 'active_admin_editor'
+gem 'default_value_for'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby

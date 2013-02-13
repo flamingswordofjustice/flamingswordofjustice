@@ -1,18 +1,28 @@
 $baseGrey: #292728;
-$lightGrey: lighten($baseGrey, 80%);
+$lightGrey: #999999;
+$veryLightGrey: lighten($baseGrey, 80%);
 $baseRed: #b0242f;
 
 $navbarHeight: 60px;
 $textColor: $baseGrey;
 
 @import "bootstrap";
+@import "font-awesome";
+
+header {
+  margin-top: 20px;
+}
+
+a {
+  color: $lightGrey;
+  &:hover { color: $baseRed; text-decoration: none; }
+}
 
 nav.navbar-inner {
   background: none;
   border: none;
   box-shadow: none;
   border-radius: 0;
-  border-bottom: 1px solid $lightGrey;
 
   a.brand {
     background: url(sword_flameless.png) 0 0 no-repeat;
@@ -32,21 +42,73 @@ nav.navbar-inner {
       background-color: #FF9100;
     }
   }
+}
 
-  .nav {
-    > li {
-      > a {
-        color: $baseGrey;
-        border-radius: 4px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+#home .nav.nav-header, .navbar > .navbar-inner > .nav {
+  padding: 0;
 
-        &:hover {
-          background-color: $lightGrey;
-        }
+  > li {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 16px;
+
+    > a {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 20px 15px 20px;
+      font-size: 16px;
+      color: $lightGrey;
+      &:hover { color: $baseRed; background: none; }
+    }
+  }
+}
+
+#home .nav.nav-header {
+  margin-top: -20px;
+  margin-right: 20px;
+}
+
+#home {
+  margin-top: 40px;
+  header { display: none; }
+
+  .nav.nav-header {
+    margin-left: 0;
+    padding-left: 0;
+    float: right;
+    text-transform: none;
+  }
+
+  .todays-show {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .play-now {
+    position: absolute;
+    bottom: 20px;
+    left: 320px;
+
+    a {
+      color: $baseRed;
+      float: left;
+      text-decoration: none;
+      &:hover { text-decoration: none; color: darken($baseRed, 10%); }
+      i { font-size: 100px; float: left; }
+      h1 {
+        float: left;
+        font-size: 50px;
+        line-height: 40px;
+        width: 250px;
+        display: block;
+        padding-left: 20px;
       }
     }
   }
+}
+
+footer {
+  border-top: 1px solid $veryLightGrey;
+  padding-top: 10px;
 }
