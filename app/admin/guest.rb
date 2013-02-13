@@ -1,11 +1,10 @@
 ActiveAdmin.register Guest do
-    # t.string   "name"
-    # t.integer  "organization_id"
-    # t.text     "bio"
-    # t.string   "website"
-    # t.string   "twitter"
-    # t.string   "linkedin"
-    # t.string   "photo_url"
+  index do
+    column :name
+    column :appearances
+    column :created_at
+    default_actions
+  end
 
   form do |f|
     f.inputs "Guest Details" do

@@ -17,10 +17,16 @@
             = link_to show_path(show) do
               More
               %i.icon-angle-right
-        %div.play-now
-          %a(href="#")
-            %i.icon-play-circle
-            %h1 PLAY NOW
+        %div.play-now.row
+          %span.span4
+            %a(href="#")
+              %i.icon-play-circle
+              %h1 PLAY NOW
+          %span.span4
+            %form(action="/signup" method="get" style="margin-top: 20px;")
+              %input(placeholder="Email" type="Email")
+              %br
+              %input(type="button" class="btn" value="Sign Up")
 
 %div.row.past-shows
   %div.span12

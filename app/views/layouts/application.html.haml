@@ -8,13 +8,18 @@
     = csrf_meta_tags
 
   %body{id: controller.controller_name}
-    %section.container
-      = render 'shared/header'
+    %div#wrap
+      %section.container
+        = render 'shared/header'
 
-    %section.container
-      = yield
+      %section.container
+        = yield
 
-    %footer.container
-      %div.row
-        %div.span
-          &copy; 2013 The Flaming Sword of Justice
+      %div#push
+
+    %footer#footer
+      %div.container
+        %div.row
+          %div.span12
+            %div.brand
+              The Flaming Sword of Justice

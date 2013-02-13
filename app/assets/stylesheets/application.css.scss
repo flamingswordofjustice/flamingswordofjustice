@@ -9,6 +9,21 @@ $textColor: $baseGrey;
 @import "bootstrap";
 @import "font-awesome";
 
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -80px;
+}
+
+#push, #footer {
+  height: 80px;
+}
+
 header {
   margin-top: 20px;
 }
@@ -69,7 +84,6 @@ nav.navbar-inner {
 }
 
 #home {
-  margin-top: 40px;
   header { display: none; }
 
   .nav.nav-header {
@@ -83,6 +97,7 @@ nav.navbar-inner {
     position: relative;
     padding-bottom: 10px;
     margin-bottom: 10px;
+    padding-top: 40px;
   }
 
   .play-now {
@@ -92,23 +107,26 @@ nav.navbar-inner {
 
     a {
       color: $baseRed;
-      float: left;
       text-decoration: none;
       &:hover { text-decoration: none; color: darken($baseRed, 10%); }
       i { font-size: 100px; float: left; }
       h1 {
-        float: left;
         font-size: 50px;
         line-height: 40px;
-        width: 250px;
-        display: block;
-        padding-left: 20px;
       }
     }
   }
 }
 
 footer {
-  border-top: 1px solid $veryLightGrey;
-  padding-top: 10px;
+  background-color: $baseGrey;
+  color: $veryLightGrey;
+
+  > .container {
+    padding-top: 10px;
+  }
+
+  .brand {
+    text-transform: uppercase;
+  }
 }
