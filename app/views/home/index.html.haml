@@ -2,7 +2,13 @@
   %div.span12.todays-show
     %div.row
       %div.span4
-        = image_tag "sword.png", width: "100%", class: "big-brand"
+        = link_to root_path do
+          = image_tag "sword.png", width: "100%", class: "big-brand"
+        = link_to "http://moveon.org", style: "text-align: center; display: block" do
+          %span(style="font-size: 10px;") powered by
+          = image_tag "moveon.png", width: "120"
+
+
 
       %div.span8.show-blurb
         %ul.nav.nav-header
@@ -14,7 +20,7 @@
           %h3= show.title
           %p
             = raw show.blurb
-            = link_to show_path(show) do
+            = link_to show_path(show.slug) do
               More
               %i.icon-angle-right
         %div.play-now.row

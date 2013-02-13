@@ -1,0 +1,8 @@
+%h1= @show.title
+%p= raw @show.blurb
+
+%h3 Featuring
+%ul.guests
+- @show.guests.each do |guest|
+  %li
+    %span.name= guest.name
