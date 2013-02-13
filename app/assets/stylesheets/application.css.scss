@@ -1,0 +1,52 @@
+$baseGrey: #292728;
+$lightGrey: lighten($baseGrey, 80%);
+$baseRed: #b0242f;
+
+$navbarHeight: 60px;
+$textColor: $baseGrey;
+
+@import "bootstrap";
+
+nav.navbar-inner {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: 1px solid $lightGrey;
+
+  a.brand {
+    background: url(sword_flameless.png) 0 0 no-repeat;
+    background-color: $baseRed;
+    background-size: 200px 40px;
+    width: 200px;
+    height: 40px;
+    padding: 0;
+    margin-top: 10px;
+    // @include transition(background-color 0.05s);
+    -webkit-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
+
+    &:hover {
+      -webkit-transition: background-color 0.5s linear;
+      transition: background-color 0.5s linear;
+      background-color: #FF9100;
+    }
+  }
+
+  .nav {
+    > li {
+      > a {
+        color: $baseGrey;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        &:hover {
+          background-color: $lightGrey;
+        }
+      }
+    }
+  }
+}
