@@ -9,7 +9,7 @@
           = image_tag "moveon.png", width: "120"
 
       %div.span8.episode-blurb
-        = render @latest
+        = render @latest unless @latest.nil?
 
 %section.share-everything
   %section.container

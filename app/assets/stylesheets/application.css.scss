@@ -2,8 +2,10 @@ $baseGrey: #292728;
 $lightGrey: #999999;
 $veryLightGrey: lighten($baseGrey, 80%);
 $baseRed: #b0242f;
+$headingsFontFamily: 'Roboto Condensed', sans-serif;
 
 $navbarHeight: 60px;
+$footerHeight: 120px;
 $textColor: $baseGrey;
 
 @import "bootstrap";
@@ -17,16 +19,14 @@ html, body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -80px;
+  margin: 0 auto 0 -$footerHeight;
 }
 
 #push, #footer {
-  height: 80px;
+  height: $footerHeight;
 }
 
 body > header {
-  // border-bottom: 1px solid $veryLightGrey;
-
   .navbar {
     margin-bottom: 0;
   }
@@ -63,6 +63,11 @@ nav.navbar-inner {
       transition: background-color 0.3s ease;
       background-color: #FF9100;
     }
+  }
+
+  li.share-button {
+    margin-left: 10px;
+    padding-top: 13px;
   }
 }
 
@@ -123,6 +128,7 @@ nav.navbar-inner {
 
   section.past-episodes {
     min-height: 400px;
+    margin-bottom: 20px;
   }
 
   header .brand {

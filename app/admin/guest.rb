@@ -3,19 +3,20 @@ ActiveAdmin.register Guest do
     column :name
     column :appearances
     column :created_at
+    column :organization
     default_actions
   end
 
-  form do |f|
+  form html: { multipart: true } do |f|
     f.inputs "Guest Details" do
       f.input :name
       f.input :organization
       f.input :website
       f.input :twitter
-      f.input :linkedin
-      f.input :bio, as: :html_editor
+      f.input :facebook
+      f.input :image, as: :file
+      f.input :description, as: :html_editor
     end
     f.actions
   end
-
 end

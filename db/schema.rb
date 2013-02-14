@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214020915) do
+ActiveRecord::Schema.define(:version => 20130214123837) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -40,12 +40,13 @@ ActiveRecord::Schema.define(:version => 20130214020915) do
   create_table "episodes", :force => true do |t|
     t.string   "title"
     t.string   "download_url"
-    t.text     "blurb"
+    t.text     "description"
     t.boolean  "published"
     t.date     "recorded_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "slug"
+    t.string   "image"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
@@ -53,22 +54,24 @@ ActiveRecord::Schema.define(:version => 20130214020915) do
   create_table "guests", :force => true do |t|
     t.string   "name"
     t.integer  "organization_id"
-    t.text     "bio"
+    t.text     "description"
     t.string   "website"
     t.string   "twitter"
-    t.string   "linkedin"
-    t.string   "photo_url"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "image"
+    t.string   "facebook"
   end
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
     t.string   "website"
     t.text     "description"
-    t.string   "logo_url"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "image"
+    t.string   "twitter"
+    t.string   "facebook"
   end
 
   create_table "pages", :force => true do |t|
@@ -93,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130214020915) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
+    t.string   "name",                   :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -104,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20130214020915) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "name"
+    t.string   "image"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

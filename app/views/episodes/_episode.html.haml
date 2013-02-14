@@ -5,7 +5,9 @@
     %p.muted
       %time(pubdate="pubdate")= episode.recorded_at.to_s(:date)
 
-  %p= raw episode.blurb
+  %section.body
+    = image_tag episode.image.url(:thumb), class: "pull-left"
+    = raw episode.description
 
   %div.actions
     = link_to episode_path(episode.slug), class: "read" do

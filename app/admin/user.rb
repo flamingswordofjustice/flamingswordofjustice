@@ -10,10 +10,11 @@ ActiveAdmin.register User do
 
   filter :email
 
-  form do |f|
+  form html: { multipart: true } do |f|
     f.inputs "User Details" do
       f.input :email
       f.input :name
+      f.input :image, as: :file
     end
     f.actions
   end

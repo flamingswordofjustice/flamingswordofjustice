@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   def index
     @episodes = Episode.order("recorded_at DESC").limit(11).all
     @latest = @episodes.shift
+    @guests = Guest.order("created_at DESC").limit(3).all
 
     @posts = Post.order(:created_at).limit(10).all
 
