@@ -24,7 +24,7 @@ html, body {
   height: 80px;
 }
 
-header {
+body > header {
   // border-bottom: 1px solid $veryLightGrey;
 
   .navbar {
@@ -35,6 +35,10 @@ header {
 a {
   color: $lightGrey;
   &:hover { color: $baseRed; text-decoration: none; }
+}
+
+h1 > a {
+  color: $baseRed;
 }
 
 nav.navbar-inner {
@@ -95,28 +99,19 @@ nav.navbar-inner {
   }
 
   .current-show {
-    position: relative;
     padding-bottom: 10px;
     margin-bottom: 10px;
     padding-top: 0;
   }
 
   .play-now {
-    position: absolute;
-    bottom: 20px;
-    left: 420px;
-
     a {
       color: $baseRed;
       text-decoration: none;
+      font-size: 50px;
+      h1 { display: inline-block; }
+      i { font-size: 40px; }
       &:hover { text-decoration: none; color: darken($baseRed, 10%); }
-      i { font-size: 100px; float: left; }
-      h1 {
-        float: left;
-        font-size: 50px;
-        line-height: 40px;
-        width: 140px;
-      }
     }
   }
 }
@@ -131,6 +126,12 @@ nav.navbar-inner {
   }
 
   header .brand {
+  }
+}
+
+article {
+  .actions {
+    font-size: 20px;
   }
 }
 

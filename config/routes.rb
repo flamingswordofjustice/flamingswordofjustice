@@ -6,6 +6,7 @@ Fsj::Application.routes.draw do
   root to: 'home#index'
 
   resources :shows
+  resources :posts
 
   match "/:page" => 'pages#show'
 end

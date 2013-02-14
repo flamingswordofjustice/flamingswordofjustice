@@ -1,0 +1,15 @@
+%article.post
+  %header
+    %h1
+      = link_to post.title, post_path(post)
+    %p.muted
+      %time(pubdate="pubdate")= post.created_at.to_s(:long)
+    %h4
+      = link_to post.author_name, "#"
+
+  %p= raw post.content
+
+  %div.actions
+    = link_to show_path(@latest.slug), class: "read" do
+      read
+      %i.icon-angle-right

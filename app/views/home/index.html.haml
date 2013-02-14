@@ -9,21 +9,7 @@
           = image_tag "moveon.png", width: "120"
 
       %div.span8.show-blurb
-        - show = @shows.first
-        / %h4.muted MOST RECENT
-        %h4.muted= show.recorded_at.strftime("%m/%d/%Y")
-        %div
-          %h3= show.title
-          %p
-            = raw show.blurb
-            = link_to show_path(show.slug) do
-              More
-              %i.icon-angle-right
-        %div.play-now.row
-          %span.span4
-            %a(href="#")
-              %h1 PLAY NOW
-              %i.icon-play
+        = render @latest
 
 %section.share-everything
   %section.container
@@ -42,5 +28,9 @@
 %section.past-shows
   %section.container
     %div.row
-      %div.span12
-        %h1 PAST SHOWS
+      %div.span9
+        %h2 More Justice
+        = render @content
+      %div.span3
+        %h2 More Guests
+
