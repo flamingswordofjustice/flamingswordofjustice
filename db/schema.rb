@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214003725) do
+ActiveRecord::Schema.define(:version => 20130214020915) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -32,10 +32,23 @@ ActiveRecord::Schema.define(:version => 20130214003725) do
     t.text     "description"
     t.integer  "guest_id"
     t.integer  "guest_type"
-    t.integer  "show_id"
+    t.integer  "episode_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "episodes", :force => true do |t|
+    t.string   "title"
+    t.string   "download_url"
+    t.text     "blurb"
+    t.boolean  "published"
+    t.date     "recorded_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "slug"
+  end
+
+  add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
 
   create_table "guests", :force => true do |t|
     t.string   "name"
@@ -77,19 +90,6 @@ ActiveRecord::Schema.define(:version => 20130214003725) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "shows", :force => true do |t|
-    t.string   "title"
-    t.string   "download_url"
-    t.text     "blurb"
-    t.boolean  "published"
-    t.date     "recorded_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "slug"
-  end
-
-  add_index "shows", ["slug"], :name => "index_shows_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

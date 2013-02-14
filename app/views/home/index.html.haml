@@ -1,4 +1,4 @@
-%section.current-show
+%section.current-episode
   %section.container
     %div.row
       %div.span4
@@ -8,7 +8,7 @@
           %span(style="font-size: 10px;") powered by
           = image_tag "moveon.png", width: "120"
 
-      %div.span8.show-blurb
+      %div.span8.episode-blurb
         = render @latest
 
 %section.share-everything
@@ -25,7 +25,7 @@
       %div.span4(style="text-align: center")
         %h4.muted Share
 
-%section.past-shows
+%section.past-episodes
   %section.container
     %div.row
       %div.span9

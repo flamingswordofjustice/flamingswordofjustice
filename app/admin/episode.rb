@@ -1,4 +1,4 @@
-ActiveAdmin.register Show do
+ActiveAdmin.register Episode do
   index do
     column :title
     column :recorded_at
@@ -10,7 +10,7 @@ ActiveAdmin.register Show do
   filter :recorded_at
 
   form do |f|
-    f.inputs "Show Details" do
+    f.inputs "Episode Details" do
       f.input :title
       f.input :download_url
       f.input :blurb, as: :html_editor

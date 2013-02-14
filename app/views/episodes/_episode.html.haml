@@ -1,0 +1,16 @@
+%article.episode
+  %header
+    %h1
+      = link_to episode.title, episode_path(episode)
+    %p.muted
+      %time(pubdate="pubdate")= episode.recorded_at.to_s(:date)
+
+  %p= raw episode.blurb
+
+  %div.actions
+    = link_to episode_path(episode.slug), class: "read" do
+      read
+      %i.icon-angle-right
+    = link_to "#", class: "hear" do
+      hear
+      %i.icon-caret-right

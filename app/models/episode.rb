@@ -1,4 +1,4 @@
-class Show < ActiveRecord::Base
+class Episode < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   extend FriendlyId
 

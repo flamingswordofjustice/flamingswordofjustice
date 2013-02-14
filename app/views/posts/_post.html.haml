@@ -10,6 +10,6 @@
   %p= raw post.content
 
   %div.actions
-    = link_to show_path(@latest.slug), class: "read" do
+    = link_to episode_path(@latest.slug), class: "read" do
       read
       %i.icon-angle-right
