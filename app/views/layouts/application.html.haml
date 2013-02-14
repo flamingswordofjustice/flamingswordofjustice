@@ -8,12 +8,15 @@
     = csrf_meta_tags
 
   %body{id: controller.controller_name}
+    = facebook_script
     %div#wrap
-      %section.container
-        = render 'shared/header'
+      = render 'shared/header'
 
-      %section.container
+      - if current_page?(root_path)
         = yield
+      - else
+        %section.container
+          = yield
 
       %div#push
 

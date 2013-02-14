@@ -25,7 +25,11 @@ html, body {
 }
 
 header {
-  margin-top: 20px;
+  // border-bottom: 1px solid $veryLightGrey;
+
+  .navbar {
+    margin-bottom: 0;
+  }
 }
 
 a {
@@ -42,18 +46,17 @@ nav.navbar-inner {
   a.brand {
     background: url(sword_flameless.png) 0 0 no-repeat;
     background-color: $baseRed;
-    background-size: 200px 40px;
-    width: 200px;
-    height: 40px;
+    background-size: 300px 60px;
+    width: 300px;
+    height: 60px;
     padding: 0;
     margin-top: 10px;
-    // @include transition(background-color 0.05s);
-    -webkit-transition: background-color 0.5s linear;
-    transition: background-color 0.5s linear;
+    -webkit-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      -webkit-transition: background-color 0.5s linear;
-      transition: background-color 0.5s linear;
+      -webkit-transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease;
       background-color: #FF9100;
     }
   }
@@ -84,8 +87,6 @@ nav.navbar-inner {
 }
 
 #home {
-  header { display: none; }
-
   .nav.nav-header {
     margin-left: 0;
     padding-left: 0;
@@ -93,17 +94,17 @@ nav.navbar-inner {
     text-transform: none;
   }
 
-  .todays-show {
+  .current-show {
     position: relative;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    padding-top: 40px;
+    padding-top: 0;
   }
 
   .play-now {
     position: absolute;
     bottom: 20px;
-    left: 320px;
+    left: 420px;
 
     a {
       color: $baseRed;
@@ -111,10 +112,25 @@ nav.navbar-inner {
       &:hover { text-decoration: none; color: darken($baseRed, 10%); }
       i { font-size: 100px; float: left; }
       h1 {
+        float: left;
         font-size: 50px;
         line-height: 40px;
+        width: 140px;
       }
     }
+  }
+}
+
+#home {
+  section.share-everything {
+    background-color: $veryLightGrey;
+  }
+
+  section.past-shows {
+    min-height: 400px;
+  }
+
+  header .brand {
   }
 }
 

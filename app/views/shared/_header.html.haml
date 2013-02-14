@@ -1,6 +1,19 @@
-%header.navbar
-  %nav.navbar-inner
-    = link_to "", root_path, class: "brand"
+%header#header
+  %section.container
+    %div.navbar
+      %nav.navbar-inner
+        = link_to "", root_path, class: "brand"
 
-    %ul.nav.pull-right
-      = render 'shared/nav_links'
+        %ul.nav
+          = render 'shared/nav_links'
+
+        %ul.nav.pull-right
+          %li
+            %div.navbar-text
+              %a.btn.btn-mini(href="#")
+                %i.icon-envelope
+                Subscribe
+          %li(style="margin-right: 10px; margin-top: -2px;")
+            %div.navbar-text= facebook_follow
+          %li
+            %div.navbar-text= twitter_follow
