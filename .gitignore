@@ -16,3 +16,6 @@
 
 # Image uploads
 /public/uploads
+
+# Bundler cache
+vendor/bundle
