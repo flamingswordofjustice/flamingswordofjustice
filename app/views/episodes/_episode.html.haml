@@ -1,18 +1,22 @@
-%article.episode
-  %header
+%article.media.episode
+  %a.pull-left{href: episode_path(episode.slug)}
+    = image_tag episode.image.url(:thumb), class: "media-object"
+
+  %section.media-body
     %h1
-      = link_to episode.title, episode_path(episode)
+      %a{href: episode_path(episode)}= episode.title
     %p.muted
+      = t(:tag)
+      |
       %time(pubdate="pubdate")= episode.recorded_at.to_s(:date)
 
-  %section.body
-    = image_tag episode.image.url(:thumb), class: "pull-left"
-    = raw episode.description
+    %section.body
+      = raw episode.description
 
   %div.actions
-    = link_to episode_path(episode.slug), class: "read" do
+    %a.read{href: episode_path(episode.slug)}
       read
       %i.icon-angle-right
-    = link_to "#", class: "hear" do
+    %a.hear{href: "#"}
       hear
       %i.icon-caret-right

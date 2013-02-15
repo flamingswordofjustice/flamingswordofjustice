@@ -2,10 +2,10 @@
   %section.container
     %div.row
       %div.span4
-        = link_to root_path do
+        %a{href: root_path}
           = image_tag "logo.png", width: "100%", class: "big-brand"
-        = link_to "http://moveon.org", style: "text-align: center; display: block" do
-          %span(style="font-size: 10px;") powered by
+        %a{href: "http://moveon.org", style: "text-align: center; display: block"}
+          %span(style="font-size: 10px;")= t(:powered_by)
           = image_tag "moveon.png", width: "120"
 
       %div.span8.episode-blurb
@@ -14,16 +14,28 @@
 %section.share-everything
   %section.container
     %div.row
-      %div.span4(style="text-align: center")
-        %h4.muted Subscribe
-      %div.span4(style="text-align: center")
-        %h4.muted Sign Up
-        %form(action="/signup" method="get" style="margin-top: 20px;")
-          %input(placeholder="Email" type="Email")
-          %br
-          %input(type="button" class="btn" value="Sign Up")
-      %div.span4(style="text-align: center")
-        %h4.muted Share
+      %div.subscribe.span4(style="text-align: center")
+        %section
+          %h4.muted Subscribe
+          %ul.nav{style: ""}
+            %li
+              %a{href: itunes_link}
+                %i.icon-music
+                iTunes
+            %li
+              %a{href: "#"}
+                %i.icon-rss
+                RSS
+      %div.sign-up.span4(style="text-align: center")
+        %section
+          %h4.muted Sign Up
+          %form(action="/signup" method="get" style="margin-top: 20px;")
+            %input(placeholder="Email" type="Email")
+            %br
+            %input(type="button" class="btn" value="Sign Up")
+      %div.share.span4(style="text-align: center")
+        %section
+          %h4.muted= t(:share)
 
 %section.past-episodes
   %section.container
@@ -33,4 +45,8 @@
         = render @content
       %div.span3
         %h2 More Guests
+        = render @guests
+        %a{href: guests_path}
+          Meet more of our guests
+          %i.icon.icon-angle-right
 

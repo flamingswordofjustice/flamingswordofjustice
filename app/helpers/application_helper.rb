@@ -29,4 +29,8 @@ module ApplicationHelper
       }(document, 'script', 'facebook-jssdk'));</script>
     HTML
   end
+
+  def itunes_link
+    "https://itunes.apple.com/us/podcast/flaming-sword-justice-ben/id497260543"
+  end
 end

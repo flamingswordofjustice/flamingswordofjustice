@@ -5,7 +5,7 @@ $baseRed: #b0242f;
 $headingsFontFamily: 'Roboto Condensed', sans-serif;
 
 $navbarHeight: 60px;
-$footerHeight: 120px;
+$footerHeight: 200px;
 $textColor: $baseGrey;
 
 @import "bootstrap";
@@ -119,21 +119,17 @@ nav.navbar-inner {
       &:hover { text-decoration: none; color: darken($baseRed, 10%); }
     }
   }
-}
-
-#home {
-  section.share-everything {
-    background-color: $veryLightGrey;
-  }
 
   section.past-episodes {
     min-height: 400px;
     margin-bottom: 20px;
   }
-
-  header .brand {
-  }
 }
+
+section.share-everything {
+  background-color: $veryLightGrey;
+}
+
 
 article {
   .actions {

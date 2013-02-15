@@ -3,13 +3,13 @@
     %h1
       = link_to post.title, post_path(post)
     %p.muted
-      %time(pubdate="pubdate")= post.created_at.to_s(:long)
-    %h4
       = link_to post.author_name, "#"
+      |
+      %time(pubdate="pubdate")= post.created_at.to_s(:long)
 
   %p= raw post.content
 
   %div.actions
-    = link_to episode_path(@latest.slug), class: "read" do
+    %a.read{href: episode_path(@latest.slug)}
       read
       %i.icon-angle-right
