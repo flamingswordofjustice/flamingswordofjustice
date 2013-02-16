@@ -8,7 +8,6 @@ class HomeController < ApplicationController
     @posts = Post.order(:created_at).limit(10).all
 
     @content = ( @posts + @episodes ).sort_by do |o|
-      puts (o.is_a?(Episode) ? o.published_at : o.created_at).inspect
       o.is_a?(Episode) ? o.published_at : o.created_at
     end
   end
