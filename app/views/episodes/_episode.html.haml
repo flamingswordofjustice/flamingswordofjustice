@@ -5,7 +5,7 @@
     %p.muted
       = t(:tag)
       |
-      %time(pubdate="pubdate")= episode.recorded_at.to_s(:date)
+      %time(pubdate="pubdate")= episode.published_at.to_s(:date)
 
     %section.body
       %a.pull-left{href: episode_path(episode.slug)}

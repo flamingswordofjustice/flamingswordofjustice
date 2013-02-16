@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215233720) do
+ActiveRecord::Schema.define(:version => 20130216183506) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -42,12 +42,14 @@ ActiveRecord::Schema.define(:version => 20130215233720) do
     t.string   "download_url"
     t.text     "description"
     t.boolean  "published"
-    t.date     "recorded_at"
+    t.datetime "published_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "slug"
     t.string   "image"
     t.string   "number"
+    t.string   "libsyn_id"
+    t.text     "notes"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true

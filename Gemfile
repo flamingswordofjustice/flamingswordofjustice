@@ -37,3 +37,7 @@ gem 'aws-sdk'
 
 gem 'friendly_id', '~> 4.0.9'
 gem 'default_value_for'
+
+# RSS Sync
+
+gem 'nokogiri'
