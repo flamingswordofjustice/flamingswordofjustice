@@ -18,16 +18,24 @@
         %section
           %a.itunes{href: itunes_link}
             %i.icon-music
-            %span Subscribe on iTunes
+            %span
+              Subscribe
+              %em for great justice.
       %div.sign-up.span4(style="text-align: center")
         %section
-          %form(action="/signup" method="get" style="margin-top: 20px;")
-            %input(placeholder="Email" type="Email")
+          %form(action="/signup" method="get")
+            %input(placeholder="your@email.here" type="email" name="email")
             %br
-            %input(type="button" class="btn" value="Sign Up")
+            %a.submit{href: "#"}
+              Get the newsletter
       %div.share.span4(style="text-align: center")
         %section
-          %h4.muted= t(:share)
+          %a.facebook{href: "#"}
+            %i.icon-facebook
+            Facebook
+          %a.twitter{href: "#"}
+            %i.icon-twitter
+            Twitter
 
 %section.past-episodes
   %section.container

@@ -8,6 +8,9 @@ $navbarHeight: 60px;
 $footerHeight: 200px;
 $textColor: $baseGrey;
 
+$facebookBlue: #4c66a4;
+$twitterTeal: #9AE4E8;
+
 @import "bootstrap";
 @import "font-awesome";
 
@@ -134,24 +137,98 @@ section.share-everything {
   }
 
   .subscribe {
-    > section {
+    a.itunes {
+      display: block;
+      height: 100px;
+      background: $baseRed image-url("white_circle.png") 130% 50% no-repeat;
+      color: white;
+      position: relative;
+      text-align: left;
+      &:hover { background-color: darken($baseRed, 5%); }
 
+      i {
+        font-size: 95px;
+        line-height: 95px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 0;
+      }
+
+      span {
+        padding-top: 15px;
+        padding-left: 10px;
+        display: block;
+        font-family: $headingsFontFamily;
+        color: white;
+        font-size: 48px;
+        line-height: 38px;
+
+        em { display: block; font-size: 24px; text-decoration: none; }
+      }
     }
   }
 
-  a.itunes {
-    display: block;
-    height: 100px;
-    background: #17218F image-url("white_circle.png") 50% 50% no-repeat;
-    color: white;
+  .sign-up {
+    > section { text-align: left; }
 
-    i {
-      font-size: 95px;
-      line-height: 95px;
+    form {
+      margin-top: 17px;
+      margin-bottom: 0;
+      &:hover {
+        input { border-color: $baseRed; }
+        .submit { background-color: $baseRed; }
+      }
     }
 
-    span {
-      display: none;
+    input, a {
+      font-size: 20px;
+      line-height: 24px;
+      font-family: $headingsFontFamily;
+    }
+
+    input[type=email] {
+      border-radius: 0;
+      margin-bottom: 0;
+      width: 286px;
+      height: 24px;
+      box-shadow: none;
+      border: 1px solid $lightGrey;
+      @include transition(none);
+    }
+
+    .submit {
+      display: block;
+      padding: 4px 7px;
+      height: 26px;
+      width: 286px;
+      border-radius: 0;
+      background-color: $lightGrey;
+      color: white;
+    }
+  }
+
+  .share {
+    a.facebook, a.twitter {
+      color: white;
+      display: block;
+      height: 50px;
+      position: relative;
+      font-size: 30px;
+      font-family: $headingsFontFamily;
+      line-height: 45px;
+
+      i { font-size: 50px; line-height: 50px; position: absolute; }
+    }
+
+    a.facebook {
+      background-color: $facebookBlue; i { left: 40px; }
+      &:hover { background-color: darken($facebookBlue, 10%); }
+    }
+
+    a.twitter {
+      background-color: $twitterTeal; i { right: 40px; }
+      &:hover { background-color: darken($twitterTeal, 10%); }
     }
   }
 }
@@ -162,7 +239,8 @@ article {
     color: $veryLightGrey;
     text-transform: uppercase;
     font-size: 12px;
-    padding: 2px;
+    padding: 3px;
+    margin-left: 2px;
 
     &:hover {
       background-color: $lightGrey;
