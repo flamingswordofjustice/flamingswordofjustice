@@ -16,19 +16,11 @@
     %div.row
       %div.subscribe.span4(style="text-align: center")
         %section
-          %h4.muted Subscribe
-          %ul.nav{style: ""}
-            %li
-              %a{href: itunes_link}
-                %i.icon-music
-                iTunes
-            %li
-              %a{href: "#"}
-                %i.icon-rss
-                RSS
+          %a.itunes{href: itunes_link}
+            %i.icon-music
+            %span Subscribe on iTunes
       %div.sign-up.span4(style="text-align: center")
         %section
-          %h4.muted Sign Up
           %form(action="/signup" method="get" style="margin-top: 20px;")
             %input(placeholder="Email" type="Email")
             %br

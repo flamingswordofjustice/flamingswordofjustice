@@ -1,7 +1,4 @@
-%article.media.episode
-  %a.pull-left{href: episode_path(episode.slug)}
-    = image_tag episode.image.url(:thumb), class: "media-object"
-
+%article.media.episode{id: episode.slug}
   %section.media-body
     %h1
       %a{href: episode_path(episode)}= episode.title
@@ -11,12 +8,13 @@
       %time(pubdate="pubdate")= episode.recorded_at.to_s(:date)
 
     %section.body
-      = raw episode.description
+      %a.pull-left{href: episode_path(episode.slug)}
+        = image_tag episode.image.url(:thumb), class: "media-object", style: "width: 100px"
+      = raw episode.description + link_to("more", episode_path(episode.slug), class: "action")
 
-  %div.actions
-    %a.read{href: episode_path(episode.slug)}
-      read
-      %i.icon-angle-right
-    %a.hear{href: "#"}
-      hear
-      %i.icon-caret-right
+    %div{"data-mp3-uri" => episode.download_url}
+    %a.jp-play{href: "#"}
+      %i.icon-play
+
+    %a.jp-pause
+      %i.icon-pause

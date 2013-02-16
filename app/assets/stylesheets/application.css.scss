@@ -128,12 +128,45 @@ nav.navbar-inner {
 
 section.share-everything {
   background-color: $veryLightGrey;
+
+  > .container {
+    height: 100px;
+  }
+
+  .subscribe {
+    > section {
+
+    }
+  }
+
+  a.itunes {
+    display: block;
+    height: 100px;
+    background: #17218F image-url("white_circle.png") 50% 50% no-repeat;
+    color: white;
+
+    i {
+      font-size: 95px;
+      line-height: 95px;
+    }
+
+    span {
+      display: none;
+    }
+  }
 }
 
-
 article {
-  .actions {
-    font-size: 20px;
+  a.action {
+    background-color: $baseRed;
+    color: $veryLightGrey;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 2px;
+
+    &:hover {
+      background-color: $lightGrey;
+    }
   }
 }
 

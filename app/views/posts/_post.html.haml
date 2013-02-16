@@ -7,9 +7,4 @@
       |
       %time(pubdate="pubdate")= post.created_at.to_s(:long)
 
-  %p= raw post.content
-
-  %div.actions
-    %a.read{href: episode_path(@latest.slug)}
-      read
-      %i.icon-angle-right
+  %p= raw post.content + link_to("more", post_path(post.slug), class: "action")
