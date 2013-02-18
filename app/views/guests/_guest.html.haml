@@ -4,4 +4,4 @@
   %div.media-body
     %a{href: guest_path(guest)}
       %h4.media-heading= guest.name
-    = raw guest.description
+    = raw truncate_html(guest.description)
