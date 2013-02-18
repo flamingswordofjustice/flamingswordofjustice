@@ -2,6 +2,7 @@ $baseGrey: #292728;
 $lightGrey: #999999;
 $veryLightGrey: lighten($baseGrey, 80%);
 $baseRed: #b0242f;
+$flameOrange: #FF9100;
 $headingsFontFamily: 'Roboto Condensed', sans-serif;
 
 $navbarHeight: 60px;
@@ -64,7 +65,7 @@ nav.navbar-inner {
     &:hover {
       -webkit-transition: background-color 0.3s ease;
       transition: background-color 0.3s ease;
-      background-color: #FF9100;
+      background-color: $flameOrange;
     }
   }
 
@@ -173,7 +174,6 @@ section.share-everything {
     > section { text-align: left; }
 
     form {
-      margin-top: 17px;
       margin-bottom: 0;
       &:hover {
         input { border-color: $baseRed; }
@@ -182,8 +182,8 @@ section.share-everything {
     }
 
     input, a {
-      font-size: 20px;
-      line-height: 24px;
+      font-size: 28px;
+      line-height: 40px;
       font-family: $headingsFontFamily;
     }
 
@@ -191,43 +191,51 @@ section.share-everything {
       border-radius: 0;
       margin-bottom: 0;
       width: 286px;
-      height: 24px;
+      height: 40px;
       box-shadow: none;
-      border: 1px solid $lightGrey;
+      border: 1px solid $flameOrange;
       @include transition(none);
     }
 
     .submit {
       display: block;
       padding: 4px 7px;
-      height: 26px;
+      height: 42px;
       width: 286px;
       border-radius: 0;
-      background-color: $lightGrey;
+      background-color: $flameOrange;
       color: white;
     }
   }
 
   .share {
-    a.facebook, a.twitter {
+    .facebook, .twitter {
       color: white;
       display: block;
       height: 50px;
       position: relative;
-      font-size: 30px;
+      font-size: 14px;
       font-family: $headingsFontFamily;
-      line-height: 45px;
+      clear: left;
 
-      i { font-size: 50px; line-height: 50px; position: absolute; }
+      i {
+        font-size: 50px;
+        line-height: 50px;
+        float: left;
+      }
+
+      > div { float: left; margin-top: 5px; }
     }
 
-    a.facebook {
-      background-color: $facebookBlue; i { left: 40px; }
+    .facebook {
+      background-color: $facebookBlue;
+      i { margin-left: 68px; margin-right: 22px; }
       &:hover { background-color: darken($facebookBlue, 10%); }
     }
 
-    a.twitter {
-      background-color: $twitterTeal; i { right: 40px; }
+    .twitter {
+      background-color: $twitterTeal;
+      i { margin-left: 47px; margin-right: 10px; }
       &:hover { background-color: darken($twitterTeal, 10%); }
     }
   }

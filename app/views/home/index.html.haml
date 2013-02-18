@@ -14,28 +14,34 @@
 %section.share-everything
   %section.container
     %div.row
-      %div.subscribe.span4(style="text-align: center")
+      %div.subscribe.span4
         %section
           %a.itunes{href: itunes_link}
             %i.icon-music
             %span
-              Subscribe
+              Listen
               %em for great justice.
-      %div.sign-up.span4(style="text-align: center")
+      %div.sign-up.span4
         %section
           %form(action="/signup" method="get")
-            %input(placeholder="your@email.here" type="email" name="email")
+            %input(placeholder="Email" type="email" name="email")
             %br
             %a.submit{href: "#"}
+              %i.icon-envelope
               Get the newsletter
-      %div.share.span4(style="text-align: center")
+      %div.share.span4
         %section
-          %a.facebook{href: "#"}
+          %div.facebook
             %i.icon-facebook
-            Facebook
-          %a.twitter{href: "#"}
+            %div
+              %div Follow us on Facebook
+              = facebook_follow
+
+          %div.twitter
             %i.icon-twitter
-            Twitter
+            %div
+              = twitter_follow
+              %div Follow us on Twitter
 
 %section.past-episodes
   %section.container

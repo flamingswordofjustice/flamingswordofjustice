@@ -11,6 +11,13 @@ module ApplicationHelper
     HTML
   end
 
+  def twitter_big_follow
+    raw <<-HTML
+      <a href="https://twitter.com/flamingjustice" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @flamingjustice</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    HTML
+  end
+
   def facebook_follow
     raw <<-HTML
       <div class="fb-follow" data-href="https://www.facebook.com/flamingswordofjustice" data-show-faces="false" data-layout="button_count"></div>
