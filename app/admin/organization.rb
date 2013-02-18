@@ -12,6 +12,7 @@ ActiveAdmin.register Organization do
       f.input :website
       f.input :twitter
       f.input :facebook
+      f.input :guests
       f.input :image, as: :file
       f.input :description, as: :html_editor
     end
