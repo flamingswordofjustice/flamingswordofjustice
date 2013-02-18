@@ -1,7 +1,0 @@
-%section.guest.media
-  %a.pull-left{href: guest_path(guest)}
-    = image_tag guest.image.icon, class: "media-object"
-  %div.media-body
-    %a{href: guest_path(guest)}
-      %h4.media-heading= guest.name
-    = raw truncate_html(guest.description)

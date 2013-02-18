@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216183506) do
+ActiveRecord::Schema.define(:version => 20130218201212) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -54,21 +54,6 @@ ActiveRecord::Schema.define(:version => 20130216183506) do
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
 
-  create_table "guests", :force => true do |t|
-    t.string   "name"
-    t.integer  "organization_id"
-    t.text     "description"
-    t.string   "website"
-    t.string   "twitter"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "image"
-    t.string   "facebook"
-    t.string   "slug"
-  end
-
-  add_index "guests", ["slug"], :name => "index_guests_on_slug", :unique => true
-
   create_table "organizations", :force => true do |t|
     t.string   "name"
     t.string   "website"
@@ -92,6 +77,21 @@ ActiveRecord::Schema.define(:version => 20130216183506) do
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.text     "description"
+    t.string   "website"
+    t.string   "twitter"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "image"
+    t.string   "facebook"
+    t.string   "slug"
+  end
+
+  add_index "people", ["slug"], :name => "index_guests_on_slug", :unique => true
 
   create_table "posts", :force => true do |t|
     t.string   "title"

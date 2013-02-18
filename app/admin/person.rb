@@ -1,4 +1,4 @@
-ActiveAdmin.register Guest do
+ActiveAdmin.register Person do
   index do
     column :name
     column :appearances

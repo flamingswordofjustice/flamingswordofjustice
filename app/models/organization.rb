@@ -2,8 +2,8 @@ class Organization < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   extend FriendlyId
 
-  has_many :guests
-  has_many :appearances, through: :guests
+  has_many :people
+  has_many :appearances, through: :people
 
   mount_uploader :image, ImageUploader
 
