@@ -25,9 +25,6 @@
       %section.body
         = raw @episode.description
 
-      %section.comments
-        = livefyre_comments
-
       %div{"data-mp3-uri" => @episode.download_url}
       %a.jp-play{href: "#"}
         %i.icon-play
@@ -39,6 +36,10 @@
         of
         %span.jp-duration
 
-    %h3 Featuring
-    %div.guests
-      = render @episode.guests
+    - if @episode.guests.any?
+      %h3 Featuring
+      %div.guests
+        = render @episode.guests
+
+    %section.comments
+      = livefyre_comments
