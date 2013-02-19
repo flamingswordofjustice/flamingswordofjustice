@@ -41,6 +41,7 @@ gem 'default_value_for'
 # ActionView support
 
 gem 'truncate_html'
+gem 'zclip-rails'
 
 # RSS Sync
 

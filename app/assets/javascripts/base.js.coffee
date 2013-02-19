@@ -10,3 +10,6 @@ jQuery ->
       swfPath: ""
       supplied: "mp3"
       cssSelectorAncestor: "#" + uniqueId
+
+  $(".share-link").each () ->
+    $(this).zclip copy: $(this).prev("input").val()

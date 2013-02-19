@@ -1,7 +1,41 @@
-= render @episode
+%div.row
+  %div.span4
+    = image_tag @episode.image.url
+    %div.share-this-episode
+      %h3 Share this episode
+      %label Copy link:
+      %div.copy-episode-url.input-append
+        %input.episode-url{type: "text", value: episode_url(@episode.slug), readonly: true}
+        %button.btn{type: "button", class: "share-link"}
+          %i.icon-copy
+      %div.share-buttons
+        = twitter_follow
+        = facebook_follow
 
-%h3 Featuring
-%ul.guests
-- @episode.guests.each do |guest|
-  %li
-    %span.name= guest.name
+  %div.span8
+    %article.episode{id: @episode.slug}
+      %header
+        %a{href: episode_path(@episode)}
+          %h1= @episode.title
+        %p.muted
+          = t(:tag)
+          |
+          %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
+
+      %section.body
+        = raw @episode.description
+
+      %div{"data-mp3-uri" => @episode.download_url}
+      %a.jp-play{href: "#"}
+        %i.icon-play
+
+      %a.jp-pause
+        %i.icon-pause
+      %span
+        %span.jp-current-time
+        of
+        %span.jp-duration
+
+    %h3 Featuring
+    %div.guests
+      = render @episode.guests

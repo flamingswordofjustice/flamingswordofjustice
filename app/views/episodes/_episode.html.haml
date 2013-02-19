@@ -1,7 +1,7 @@
 %article.media.episode{id: episode.slug}
   %section.media-body
-    %h1
-      %a{href: episode_path(episode)}= episode.title
+    %a{href: episode_path(episode)}
+      %h1= episode.title
     %p.muted
       = t(:tag)
       |

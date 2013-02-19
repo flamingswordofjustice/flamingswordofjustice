@@ -268,3 +268,24 @@ footer {
     text-transform: uppercase;
   }
 }
+
+#episodes {
+  .share-this-episode {
+    margin: 20px 0;
+    padding: 5px 10px 10px 10px;
+    background-color: $veryLightGrey;
+  }
+
+  label { display: inline-block; margin-bottom: -10px; }
+
+  .copy-episode-url {
+    display: inline-block;
+    margin-bottom: 10px;
+    line-height: 40px;
+    input.episode-url { background-color: white; cursor: text; width: 160px; }
+  }
+
+  .share-buttons {
+    text-align: center;
+  }
+}

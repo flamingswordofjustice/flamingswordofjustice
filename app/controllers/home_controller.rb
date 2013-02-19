@@ -9,7 +9,7 @@ class HomeController < ApplicationController
 
     @content = ( @posts + @episodes ).sort_by do |o|
       o.is_a?(Episode) ? o.published_at : o.created_at
-    end
+    end.reverse[0..9]
   end
 
 end

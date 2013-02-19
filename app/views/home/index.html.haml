@@ -40,19 +40,19 @@
           %div.twitter
             %i.icon-twitter
             %div
-              = twitter_follow
               %div Follow us on Twitter
+              = twitter_follow
 
 %section.past-episodes
   %section.container
     %div.row
-      %div.span9
+      %div.span8
         %h2 More Justice
         = render @content
-      %div.span3
+      %div.span4
         %h2 More Guests
         = render @guests
-        %a{href: people_path}
-          Meet more of our guests
-          %i.icon.icon-angle-right
+        / %a{href: people_path}
+        /   Meet more of our guests
+        /   %i.icon.icon-angle-right
 
