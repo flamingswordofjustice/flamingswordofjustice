@@ -8,6 +8,7 @@ Fsj::Application.routes.draw do
   resources :episodes
   resources :posts
   resources :people
+  resources :organizations
 
   match "/:page" => 'pages#show'
 end

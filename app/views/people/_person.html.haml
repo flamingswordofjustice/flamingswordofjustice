@@ -4,4 +4,7 @@
   %div.media-body
     %a{href: person_path(person)}
       %h4.media-heading= person.name
-    = raw truncate_html(person.description)
+    - if person.title.present?
+      = person.title
+    - else
+      = raw truncate_html(person.description)

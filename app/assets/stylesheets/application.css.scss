@@ -130,6 +130,13 @@ nav.navbar-inner {
   }
 }
 
+section.media.person {
+  padding: 10px;
+  background-color: $veryLightGrey;
+
+  img.media-object { width: 32px; }
+}
+
 section.share-everything {
   background-color: $veryLightGrey;
 

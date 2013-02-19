@@ -1,0 +1,10 @@
+%div.row
+  %div.span4
+    = image_tag @person.image.url
+  %div.span8
+    %article.person
+      %h1= @person.name
+      - unless @person.title.blank?
+        %p.muted @person.title
+      = raw @person.description
+      = render @person.organization

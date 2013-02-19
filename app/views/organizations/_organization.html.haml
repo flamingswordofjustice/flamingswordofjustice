@@ -1,0 +1,7 @@
+%section.person.media
+  %a.pull-left{href: organization_path(organization)}
+    = image_tag organization.image.icon, class: "media-object"
+  %div.media-body
+    %a{href: organization_path(organization)}
+      %h4.media-heading= organization.name
+    = raw truncate_html(organization.description)
