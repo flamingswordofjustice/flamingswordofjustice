@@ -25,6 +25,9 @@
       %section.body
         = raw @episode.description
 
+      %section.comments
+        = livefyre_comments
+
       %div{"data-mp3-uri" => @episode.download_url}
       %a.jp-play{href: "#"}
         %i.icon-play
