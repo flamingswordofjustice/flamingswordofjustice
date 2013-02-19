@@ -12,4 +12,10 @@ class HomeController < ApplicationController
     end.reverse[0..9]
   end
 
+  def subscribe
+    # Ok to fail validations.
+    Subscriber.create(params.require(:subscriber).permit(:email))
+    head :ok
+  end
+
 end

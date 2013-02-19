@@ -6,6 +6,7 @@ gem 'rails', '3.2.12'
 gem 'pg'
 gem 'unicorn'
 gem 'rspec-rails'
+gem 'strong_parameters'
 
 # Admin
 
@@ -28,7 +29,6 @@ gem 'coffee-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap-wysihtml5-rails'
 gem 'font-awesome-sass-rails'
-gem 'strong_parameters'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'aws-sdk'

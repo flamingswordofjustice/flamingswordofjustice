@@ -23,8 +23,8 @@
               %em for great justice.
       %div.sign-up.span4
         %section
-          %form(action="/signup" method="get")
-            %input(placeholder="Email" type="email" name="email")
+          %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
+            %input(placeholder="Email" type="email" name="subscriber[email]" required)
             %br
             %a.submit{href: "#"}
               %i.icon-envelope
