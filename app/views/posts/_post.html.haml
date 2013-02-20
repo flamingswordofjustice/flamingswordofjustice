@@ -1,7 +1,8 @@
 %article.post
   %header
+    %a{href: post_path(post)}
+      %h1= post.title
     %h1
-      = link_to post.title, post_path(post)
     %p.muted
       = link_to post.author_name, "#"
       |

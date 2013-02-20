@@ -41,7 +41,7 @@ a {
   &:hover { color: $baseRed; text-decoration: none; }
 }
 
-h1 > a {
+a > h1 {
   color: $baseRed;
 }
 
