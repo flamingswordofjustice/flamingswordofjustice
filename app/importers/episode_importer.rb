@@ -3,8 +3,8 @@ class EpisodeImporter
   class << self
     def import(io, &block)
       Nokogiri::XML(io).xpath('//item').map do |item|
-        self.new(item).to_model.tap do |model|
-          yield model if block_given?
+        self.new(item).attributes.tap do |attrs|
+          yield attrs if block_given?
         end
       end
     end
@@ -44,8 +44,8 @@ class EpisodeImporter
     @item.xpath('./description').first.content
   end
 
-  def to_model
-    Episode.new(
+  def attributes
+    {
       title: title,
       download_url: download_url,
       published_at: published_at,
@@ -53,7 +53,7 @@ class EpisodeImporter
       image: image,
       libsyn_id: libsyn_id,
       description: description
-    )
+    }
   end
 
 end
