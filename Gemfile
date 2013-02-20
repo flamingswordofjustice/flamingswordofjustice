@@ -46,3 +46,7 @@ gem 'zclip-rails'
 # RSS Sync
 
 gem 'nokogiri'
+
+# Stats
+
+gem "statsd-ruby", require: "statsd"
