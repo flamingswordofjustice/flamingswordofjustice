@@ -16,4 +16,4 @@ jQuery ->
 
   $("form.subscribe a.submit").on "click", () -> $(this).closest("form").submit()
 
-  $("form.subscribe").on "ajax:complete", () -> $(this).find("a.submit").text("Awesome! Check your email.")
+  $("form.subscribe").on "ajax:complete", () -> $(this).find("a.submit").text("Awesome job.")
