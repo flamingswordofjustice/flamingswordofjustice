@@ -4,10 +4,6 @@
   %section.body
     %a{href: person_path(person)}
       %h4= person.name
-    - if person.organization.present?
-      %div
-        %small
-          %a{href: organization_path(person.organization)}= person.organization.name
     %small
       - if person.title.present?
         = person.title

@@ -10,6 +10,6 @@
         Mail
   - if model.respond_to?(:website) && model.website.present?
     %li.link
-      %a.btn.btn-mini{href: model.website}
+      %a.btn.btn-mini{href: model.website, target: "_blank"}
         %i.icon-home
         Website

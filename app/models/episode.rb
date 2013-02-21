@@ -17,7 +17,7 @@ class Episode < ActiveRecord::Base
   has_many :guests, through: :appearances
 
   default_value_for(:published_at) { DateTime.now }
-  default_scope { order("published_at DESC) }
+  default_scope { order("published_at DESC") }
 
   friendly_id :title, use: :slugged
   validates :title, presence: true

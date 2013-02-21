@@ -5,6 +5,7 @@ $baseRed: #b0242f;
 $flameOrange: #FF9100;
 $headingsFontFamily: 'Roboto Condensed', sans-serif;
 $transitionDuration: 0.05s;
+$dropdownLinkBackgroundHover: $baseRed;
 
 $navbarHeight: 60px;
 $footerHeight: 200px;
@@ -94,7 +95,7 @@ nav.navbar-inner {
   }
 }
 
-#home .nav.nav-header, .navbar > .navbar-inner > .nav {
+.navbar > .navbar-inner > .nav {
   padding: 0;
 
   > li {
@@ -109,6 +110,23 @@ nav.navbar-inner {
       font-size: 16px;
       color: $lightGrey;
       &:hover { color: $baseRed; background: none; }
+    }
+
+    &.dropdown.open {
+      > .dropdown-toggle {
+        background: none;
+      }
+    }
+
+    ul.dropdown-menu {
+      top: 80%;
+      border-radius: 0;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+      > li a {
+        // background-color: $baseRed;
+        // &:hover { background-color: white; }
+      }
     }
   }
 }
@@ -151,16 +169,12 @@ nav.navbar-inner {
 
 article.media-badge {
   background: transparent url(badge_bg.png) top left repeat;
-  // background-color: $veryLightGrey;
   margin: 0 10px 20px 0;
   float: left;
-  width: 300px;
+  width: 298px;
+  // border: 1px solid $baseRed;
+  border: 1px solid $lightGrey;
 
-  // > header {
-  //   padding: 5px 5px 0 5px;
-  //   a { display: block; }
-  //   h4 { color: $baseRed; margin: 4px 0; }
-  // }
 
   > .avatar {
     vertical-align: top;
@@ -169,13 +183,12 @@ article.media-badge {
 
     > img { width: 100px; }
   }
-  // border: 1px solid $baseRed;
 
   > .body {
     padding: 5px 5px;
     display: inline-block;
     h4 { color: $baseRed; margin: 4px 0; }
-    width: 185px;
+    width: 184px;
     height: 85px;
     overflow: hidden;
 
@@ -184,18 +197,13 @@ article.media-badge {
     }
   }
 
-  &:hover {
-    > .social {
-      height: 33px;
-    }
-  }
-
   > .social {
     @include transition(height ease 0.5s);
-    height: 0;
+    height: 33px;
     overflow: hidden;
+    background-color: $lightGrey;
     // background-color: $baseRed;
-    background-color: rgba(176, 36, 47, 0.1);
+    // background-color: rgba(176, 36, 47, 0.4);
     padding: 0 5px 0 5px;
   }
 }
