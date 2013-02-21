@@ -1,10 +1,17 @@
-%section.person.media
-  %a.pull-left{href: person_path(person)}
-    = image_tag person.image.icon, class: "media-object"
-  %div.media-body
+%article.media-badge.person
+  %a.avatar{href: person_path(person)}
+    = image_tag person.image.thumb
+  %section.body
     %a{href: person_path(person)}
-      %h4.media-heading= person.name
-    - if person.title.present?
-      = person.title
-    - else
-      = raw truncate_html(person.description)
+      %h4= person.name
+    - if person.organization.present?
+      %div
+        %small
+          %a{href: organization_path(person.organization)}= person.organization.name
+    %small
+      - if person.title.present?
+        = person.title
+      - else
+        = raw truncate_html(person.description)
+  %section.social
+    = social_icons_for person

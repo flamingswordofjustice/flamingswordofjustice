@@ -1,7 +1,14 @@
-%section.person.media
-  %a.pull-left{href: organization_path(organization)}
-    = image_tag organization.image.icon, class: "media-object"
-  %div.media-body
+%article.media-badge.organization
+  %a.avatar{href: organization_path(organization)}
+    = image_tag organization.image.thumb
+  %section.body
     %a{href: organization_path(organization)}
-      %h4.media-heading= organization.name
-    = raw truncate_html(organization.description)
+      %h4= organization.name
+    - if organization.website.present?
+      %div
+        %small
+          %a{href: organization.website}= organization.website
+    %small
+      = raw truncate_html(organization.description)
+  %section.social
+    = social_icons_for organization

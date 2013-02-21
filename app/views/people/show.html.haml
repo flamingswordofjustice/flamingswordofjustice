@@ -5,6 +5,16 @@
       - unless @person.title.blank?
         %p.muted= @person.title
       = raw @person.description
-      = render @person.organization
+
+    - if @person.organization.present?
+      %section.organization.clearfix
+        %h3 Organization
+        = render @person.organization
+
+    - if @person.appearances.any?
+      %section.appearances.clearfix
+        %h3 Previous Appearances
+        = render @person.episodes
+
   %div.span4
     = image_tag @person.image.url

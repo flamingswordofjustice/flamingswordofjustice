@@ -4,6 +4,7 @@ $veryLightGrey: lighten($baseGrey, 80%);
 $baseRed: #b0242f;
 $flameOrange: #FF9100;
 $headingsFontFamily: 'Roboto Condensed', sans-serif;
+$transitionDuration: 0.05s;
 
 $navbarHeight: 60px;
 $footerHeight: 200px;
@@ -14,6 +15,10 @@ $twitterTeal: #9AE4E8;
 
 @import "bootstrap";
 @import "font-awesome";
+
+.twitter-follow-button {
+  margin-top: 3px;
+}
 
 html, body {
   height: 100%;
@@ -41,6 +46,22 @@ a {
 
 a > h1 {
   color: $baseRed;
+}
+
+ul.social-icons {
+  list-style-type: none;
+  float: left;
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: left;
+    padding: 0;
+    margin: 5px 5px 0 0;
+    &.facebook { padding-top: 3px; }
+    &.twitter { padding-top: 0; }
+    &.link { padding-top: 2px; }
+  }
 }
 
 nav.navbar-inner {
@@ -128,11 +149,55 @@ nav.navbar-inner {
   }
 }
 
-section.media.person {
-  padding: 10px;
-  background-color: $veryLightGrey;
+article.media-badge {
+  background: transparent url(badge_bg.png) top left repeat;
+  // background-color: $veryLightGrey;
+  margin: 0 10px 20px 0;
+  float: left;
+  width: 300px;
 
-  img.media-object { width: 32px; }
+  // > header {
+  //   padding: 5px 5px 0 5px;
+  //   a { display: block; }
+  //   h4 { color: $baseRed; margin: 4px 0; }
+  // }
+
+  > .avatar {
+    vertical-align: top;
+    display: inline-block;
+    background-color: white;
+
+    > img { width: 100px; }
+  }
+  // border: 1px solid $baseRed;
+
+  > .body {
+    padding: 5px 5px;
+    display: inline-block;
+    h4 { color: $baseRed; margin: 4px 0; }
+    width: 185px;
+    height: 85px;
+    overflow: hidden;
+
+    a.avatar {
+      background-color: white;
+    }
+  }
+
+  &:hover {
+    > .social {
+      height: 33px;
+    }
+  }
+
+  > .social {
+    @include transition(height ease 0.5s);
+    height: 0;
+    overflow: hidden;
+    // background-color: $baseRed;
+    background-color: rgba(176, 36, 47, 0.1);
+    padding: 0 5px 0 5px;
+  }
 }
 
 section.share-everything {
@@ -150,6 +215,8 @@ section.share-everything {
       color: white;
       position: relative;
       text-align: left;
+
+      @include transition(background-color linear $transitionDuration);
       &:hover { background-color: darken($baseRed, 5%); }
 
       i {
@@ -180,6 +247,10 @@ section.share-everything {
 
     form {
       margin-bottom: 0;
+
+      input { @include transition(border-color linear $transitionDuration); }
+      .submit { @include transition(background-color linear $transitionDuration); }
+
       &:hover {
         input { border-color: $baseRed; }
         .submit { background-color: $baseRed; }
@@ -199,7 +270,6 @@ section.share-everything {
       height: 40px;
       box-shadow: none;
       border: 1px solid $flameOrange;
-      @include transition(none);
     }
 
     .submit {
@@ -222,26 +292,35 @@ section.share-everything {
       font-size: 14px;
       font-family: $headingsFontFamily;
       clear: left;
+      @include transition(background-color linear $transitionDuration);
 
       i {
         font-size: 50px;
-        line-height: 50px;
+        line-height: 48px;
         float: left;
       }
 
-      > div { float: left; margin-top: 5px; }
+      > .follow {
+        float: left;
+        margin-top: 7px;
+        padding: 8px;
+        box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.2)
+      }
+
+      &:hover .follow { box-shadow: none; }
     }
 
     .facebook {
       background-color: $facebookBlue;
       i { margin-left: 68px; margin-right: 22px; }
-      &:hover { background-color: darken($facebookBlue, 10%); }
+      > .follow, &:hover { background-color: darken($facebookBlue, 20%); }
     }
 
     .twitter {
       background-color: $twitterTeal;
       i { margin-left: 47px; margin-right: 10px; }
-      &:hover { background-color: darken($twitterTeal, 10%); }
+      > .follow, &:hover { background-color: darken($twitterTeal, 20%); }
+      > .follow { padding-top: 4px; padding-bottom: 4px; }
     }
   }
 }

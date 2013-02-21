@@ -13,9 +13,9 @@
       = raw episode.description + link_to("more", episode_path(episode.slug), class: "action")
 
     %div{"data-mp3-uri" => episode.download_url}
+
     %a.jp-play{href: "#"}
       %i.icon-play
-
     %a.jp-pause
       %i.icon-pause
     %span

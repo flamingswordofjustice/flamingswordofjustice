@@ -56,4 +56,8 @@ module ApplicationHelper
   def itunes_link
     ENV['ITUNES_URI']
   end
+
+  def social_icons_for(model)
+    render partial: 'shared/social_icons', locals: { model: model }
+  end
 end
