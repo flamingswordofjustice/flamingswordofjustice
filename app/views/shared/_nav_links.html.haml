@@ -1,2 +1,13 @@
 %li= page_link_to "Jobs"
 %li= page_link_to "About"
+%li.dropdown
+  %a.dropdown-toggle{href: "#", data: { toggle: "dropdown" }}
+    Episodes
+    %i.icon-angle-down
+    %ul.dropdown-menu
+      %li
+        %a{href: episodes_path} All episodes
+      %li
+        %a{href: counted_episodes_path("date")} By date
+      %li
+        %a{href: counted_episodes_path("guest")} By guest

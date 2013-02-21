@@ -7,6 +7,8 @@ gem 'pg'
 gem 'unicorn'
 gem 'rspec-rails'
 gem 'strong_parameters'
+gem 'yajl-ruby'
+gem 'multi_json'
 
 # Admin
 
@@ -37,6 +39,7 @@ gem 'aws-sdk'
 
 gem 'friendly_id', '~> 4.0.9'
 gem 'default_value_for'
+gem 'tire'
 
 # ActionView support
 

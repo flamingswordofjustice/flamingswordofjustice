@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220222415) do
+ActiveRecord::Schema.define(:version => 20130221064619) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -84,16 +84,18 @@ ActiveRecord::Schema.define(:version => 20130220222415) do
     t.text     "description"
     t.string   "website"
     t.string   "twitter"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "image"
     t.string   "facebook"
     t.string   "slug"
     t.string   "title"
     t.string   "email"
     t.string   "public_email"
+    t.integer  "appearances_count", :default => 0
   end
 
+  add_index "people", ["appearances_count"], :name => "index_people_on_appearances_count"
   add_index "people", ["slug"], :name => "index_guests_on_slug", :unique => true
 
   create_table "posts", :force => true do |t|

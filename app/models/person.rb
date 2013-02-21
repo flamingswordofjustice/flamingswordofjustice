@@ -1,6 +1,16 @@
 class Person < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
   extend FriendlyId
+
+  mapping do
+    indexes :id,           :index    => :not_analyzed
+    indexes :name,         :analyzer => 'snowball', :boost => 100
+    indexes :title,        :analyzer => 'snowball'
+    indexes :description,  :analyzer => 'snowball'
+    indexes :created_at,   :type => 'date', :include_in_all => false
+  end
 
   has_many :appearances, foreign_key: "guest_id"
   has_many :episodes, through: :appearances

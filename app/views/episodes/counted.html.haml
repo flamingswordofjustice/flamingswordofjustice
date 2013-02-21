@@ -1,0 +1,3 @@
+- @search.each do |s|
+  %a{href: categorized_episodes_path(category: s.category, id: s.id)}
+    %h1= s.label + " (#{s.count})"
