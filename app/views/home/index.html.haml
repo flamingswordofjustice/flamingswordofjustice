@@ -1,7 +1,7 @@
 %section.current-episode
   %section.container
     %div.row
-      %div.span4
+      %div.span4.splash-logo
         %a{href: root_path}
           = image_tag "logo.png", width: "100%", class: "big-brand"
         %a{href: "http://moveon.org", style: "text-align: center; display: block"}
@@ -9,18 +9,17 @@
           = image_tag "moveon.png", width: "120"
 
       %div.span8.episode-blurb
-        = render @latest unless @latest.nil?
+        - unless @latest.nil?
+          = render partial: 'episodes/episode', object: @latest, locals: { play: true }
 
-%section.share-everything
-  %section.container
-    %div.row
+    %div.row.share-everything
       %div.subscribe.span4
         %section
           %a.itunes{href: itunes_link}
             %i.icon-music
             %span
               Podcast!
-              %em Subscribe & enjoy
+              %em Subscribe &amp; enjoy
       %div.sign-up.span4
         %section
           %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}

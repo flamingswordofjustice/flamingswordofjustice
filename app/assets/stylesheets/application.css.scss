@@ -148,22 +148,90 @@ nav.navbar-inner {
     padding-bottom: 10px;
     margin-bottom: 10px;
     padding-top: 0;
-  }
+    background: #111 url("fsj_splash.jpg") top right no-repeat;
+    color: $veryLightGrey;
 
-  .play-now {
-    a {
-      color: $baseRed;
-      text-decoration: none;
-      font-size: 50px;
-      h1 { display: inline-block; }
-      i { font-size: 40px; }
-      &:hover { text-decoration: none; color: darken($baseRed, 10%); }
+    .splash-logo {
+      padding-top: 20px;
+      // background-color: white;
+    }
+
+    .media.episode {
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 24px;
+      .media-object { display: none; }
+      a.action { display: none; }
     }
   }
 
   section.past-episodes {
     min-height: 400px;
     margin-bottom: 20px;
+  }
+}
+
+div.play-controls {
+  float: left;
+  clear: both;
+  width: 620px;
+  position: relative;
+
+  .jp-play, .jp-pause {
+    float: left;
+    display: block;
+    background-color: $baseGrey;
+    width: 43px;
+    height: 53px;
+    color: $baseRed;
+    font-size: 50px;
+    padding: 0 10px;
+  }
+
+  &.playing .bar {
+    width: 557px;
+    .jp-duration, .jp-current-time { display: block; width: auto; }
+  }
+
+  .bar {
+    width: 0;
+    @include transition(width ease 1s);
+    height: 53px;
+    float: left;
+    background-color: $baseGrey;
+    position: relative;
+    color: $veryLightGrey;
+
+    .jp-duration, .jp-current-time {
+      display: none;
+      position: absolute;
+      width: 0;
+      font-size: 56px;
+      line-height: 46px;
+      padding: 4px;
+      // color: lighten($baseRed, 20%);
+      color: rgba(255, 255, 255, 0.4);
+      z-index: 0;
+    }
+
+    .jp-current-time { bottom: 0; left: 0; }
+    .jp-duration { bottom: 0; right: 0; }
+
+    .jp-play-bar {
+      height: 100%;
+      background-color: $baseRed;
+      opacity: 0.5;
+    }
+
+    .jp-seek-bar {
+      height: 100%;
+      background-color: $lightGrey;
+      opacity: 0.5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
   }
 }
 
@@ -208,8 +276,9 @@ article.media-badge {
   }
 }
 
-section.share-everything {
-  background-color: $veryLightGrey;
+.share-everything {
+  // background-color: $veryLightGrey;
+  margin-top: 20px;
 
   > .container {
     height: 100px;

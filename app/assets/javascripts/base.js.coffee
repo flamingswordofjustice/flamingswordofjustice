@@ -7,6 +7,12 @@ jQuery ->
       ready: () ->
         $(this).jPlayer "setMedia", mp3: mp3Uri
 
+      play: () ->
+        $(this).closest(".play-controls").addClass("playing")
+
+      pause: () ->
+        $(this).closest(".play-controls").removeClass("playing")
+
       swfPath: ""
       supplied: "mp3"
       cssSelectorAncestor: "#" + uniqueId
