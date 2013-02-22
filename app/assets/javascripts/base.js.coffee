@@ -17,6 +17,8 @@ jQuery ->
       supplied: "mp3"
       cssSelectorAncestor: "#" + uniqueId
 
+  $.jPlayer.timeFormat.showHour = true
+
   $(".share-link").each () ->
     input = $(this).prev("input")
     $(this).zclip

@@ -4,6 +4,8 @@ $veryLightGrey: lighten($baseGrey, 80%);
 $baseRed: #b0242f;
 $flameOrange: #FF9100;
 $headingsFontFamily: 'Roboto Condensed', sans-serif;
+$baseFontSize: 16px;
+$baseLineHeight: 24px;
 $transitionDuration: 0.05s;
 $dropdownLinkBackgroundHover: $baseRed;
 
@@ -16,6 +18,11 @@ $twitterTeal: #9AE4E8;
 
 @import "bootstrap";
 @import "font-awesome";
+
+.btn.btn-mini {
+  font-size: 10.5px;
+  line-height: 18px;
+}
 
 .twitter-follow-button {
   margin-top: 3px;
@@ -55,10 +62,11 @@ ul.social-icons {
   margin: 0;
   padding: 0;
 
-  li {
+  > li {
     float: left;
     padding: 0;
     margin: 5px 5px 0 0;
+    line-height: 18px;
     &.facebook { padding-top: 3px; }
     &.twitter { padding-top: 0; }
     &.link { padding-top: 2px; }
@@ -180,7 +188,6 @@ div.play-controls {
   .jp-play, .jp-pause {
     float: left;
     display: block;
-    // background-color: $baseGrey;
     width: 43px;
     height: 53px;
     color: $baseRed;
@@ -190,7 +197,6 @@ div.play-controls {
 
   &.playing .bar {
     width: 557px;
-    .jp-duration, .jp-current-time { display: block; width: auto; }
   }
 
   .bar {
@@ -200,13 +206,14 @@ div.play-controls {
     float: left;
     position: relative;
     color: $veryLightGrey;
+    overflow: hidden;
 
     .jp-duration, .jp-current-time {
-      display: none;
+      @include transition(width ease 1s);
+      display: block;
       position: absolute;
-      width: 0;
-      font-size: 56px;
-      line-height: 46px;
+      font-size: 18px;
+      line-height: 24px;
       padding: 4px;
       color: $lightGrey;
       z-index: 0;
@@ -218,13 +225,13 @@ div.play-controls {
     .jp-play-bar {
       height: 100%;
       background-color: $baseRed;
-      opacity: 0.5;
+      opacity: 0.7;
     }
 
     .jp-seek-bar {
       height: 100%;
       background-color: $lightGrey;
-      opacity: 0.5;
+      opacity: 0.7;
       position: absolute;
       top: 0;
       left: 0;
@@ -251,11 +258,17 @@ article.media-badge {
   > .body {
     padding: 5px 5px;
     display: inline-block;
-    h4 { color: $baseRed; margin: 4px 0; }
     width: 182px;
     height: 85px;
     overflow: hidden;
+    font-size: 14px;
+    line-height: 18px;
 
+    h4 {
+      color: $baseRed;
+      margin: 4px 0;
+      font-size: 16px;
+    }
     a.avatar {
       background-color: white;
     }
