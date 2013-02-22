@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   def open_graph_tags(attrs={})
-    attrs[:image] ||= image_url("sword.png")
+    attrs[:image] ||= image_path("sword.png")
     attrs[:type]  ||= "website"
     attrs[:url]   ||= request.original_url
     attrs[:admin] ||= facebook_admin_id
