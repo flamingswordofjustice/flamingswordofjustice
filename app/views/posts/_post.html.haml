@@ -2,10 +2,10 @@
   %header
     %a{href: post_path(post)}
       %h1= post.title
-    %h1
-    %p.muted
+    %div.muted.attribution
       = link_to post.author_name, "#"
       |
       %time(pubdate="pubdate")= post.created_at.to_s(:long)
 
-  %p= raw post.content + link_to("more", post_path(post.slug), class: "action")
+  %section.body
+    %p= raw post.content + link_to("more", post_path(post.slug), class: "action")

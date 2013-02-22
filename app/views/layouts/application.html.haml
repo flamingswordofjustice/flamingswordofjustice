@@ -26,7 +26,6 @@
       %div.container
         %div.row
           %div.span12
+            = render 'shared/nav_links'
             %div.brand
-              The Flaming Sword of Justice is powered by
-              %a{href: "http://moveon.org"}
-                = image_tag "moveon.png", width: "120"
+              = render 'shared/powered_by'

@@ -6,9 +6,7 @@
       %div.span4.splash-logo
         %a{href: root_path}
           = image_tag "logo.png", width: "100%", class: "big-brand"
-        %a{href: "http://moveon.org", style: "text-align: center; display: block"}
-          %span(style="font-size: 10px;")= t(:powered_by)
-          = image_tag "moveon.png", width: "120"
+        = render 'shared/powered_by'
 
       %div.span8.episode-blurb
         - unless @latest.nil?
@@ -51,7 +49,3 @@
       %div.span4
         %h2 More Guests
         = render @guests
-        / %a{href: people_path}
-        /   Meet more of our guests
-        /   %i.icon.icon-angle-right
-

@@ -8,8 +8,9 @@ $baseFontSize: 16px;
 $baseLineHeight: 24px;
 $transitionDuration: 0.05s;
 $dropdownLinkBackgroundHover: $baseRed;
+$gridGutterWidth: 30px;
 
-$navbarHeight: 60px;
+$navbarHeight: 90px;
 $footerHeight: 200px;
 $textColor: $baseGrey;
 
@@ -56,6 +57,16 @@ a > h1 {
   color: $baseRed;
 }
 
+article.post, article.episode {
+  > header {
+    margin-bottom: 20px;
+  }
+
+  section.body {
+    clear: both;
+  }
+}
+
 ul.social-icons {
   list-style-type: none;
   float: left;
@@ -71,6 +82,11 @@ ul.social-icons {
     &.twitter { padding-top: 0; }
     &.link { padding-top: 2px; }
   }
+}
+
+p {
+  font-weight: 300;
+  line-height: 34px;
 }
 
 nav.navbar-inner {
@@ -99,12 +115,13 @@ nav.navbar-inner {
 
   li.share-button {
     margin-left: 10px;
-    padding-top: 13px;
+    padding-top: 5px;
   }
 }
 
 .navbar > .navbar-inner > .nav {
   padding: 0;
+  margin-left: 20px;
 
   > li {
     display: inline-block;
@@ -112,7 +129,7 @@ nav.navbar-inner {
     font-size: 16px;
 
     > a {
-      margin-top: 10px;
+      margin-top: 15px;
       margin-bottom: 0;
       padding: 20px 15px 20px;
       font-size: 16px;
@@ -130,11 +147,6 @@ nav.navbar-inner {
       top: 80%;
       border-radius: 0;
       box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-
-      > li a {
-        // background-color: $baseRed;
-        // &:hover { background-color: white; }
-      }
     }
   }
 }
@@ -153,23 +165,25 @@ nav.navbar-inner {
   }
 
   .current-episode {
-    padding-bottom: 10px;
+    padding: 30px 0;
     margin-bottom: 10px;
-    padding-top: 0;
-    background: #111 url("fsj_splash.jpg") top right no-repeat;
+    background: #111 url("fsj_splash.png") top right no-repeat;
     color: $veryLightGrey;
 
     .splash-logo {
-      padding-top: 20px;
-      // background-color: white;
+      padding-top: 30px;
     }
 
-    .media.episode {
-      margin-top: 10px;
+    article.episode {
       font-size: 18px;
       line-height: 24px;
       .media-object { display: none; }
       a.action { display: none; }
+      padding: 20px 30px 30px 0;
+
+      section.body {
+        text-shadow: 0 0 15px rgba(0,0,0, 0.4);
+      }
     }
   }
 
@@ -241,16 +255,16 @@ div.play-controls {
 }
 
 article.media-badge {
-  background: transparent url(badge_bg.png) top left repeat;
+  background-color: $veryLightGrey;
   margin: 0 10px 20px 0;
   float: left;
-  width: 300px;
+  width: 330px;
 
   > .avatar {
     vertical-align: top;
     display: inline-block;
     background-color: white;
-    margin: 2px;
+    margin: 1px 0 0 1px;
 
     > img { width: 100px; }
   }
@@ -258,7 +272,7 @@ article.media-badge {
   > .body {
     padding: 5px 5px;
     display: inline-block;
-    width: 182px;
+    width: 214px;
     height: 85px;
     overflow: hidden;
     font-size: 14px;
@@ -349,12 +363,12 @@ article.media-badge {
       font-size: 28px;
       line-height: 40px;
       font-family: $headingsFontFamily;
+      width: 316px;
     }
 
     input[type=email] {
       border-radius: 0;
       margin-bottom: 0;
-      width: 286px;
       height: 40px;
       box-shadow: none;
       border: 1px solid $flameOrange;
@@ -364,7 +378,6 @@ article.media-badge {
       display: block;
       padding: 4px 7px;
       height: 42px;
-      width: 286px;
       border-radius: 0;
       background-color: $flameOrange;
       color: white;
@@ -393,6 +406,7 @@ article.media-badge {
         margin-top: 7px;
         padding: 8px;
         box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+        line-height: 16px;
         @include border-radius(2px);
       }
 
@@ -430,7 +444,7 @@ article {
   }
 }
 
-footer {
+#footer {
   background-color: $baseGrey;
   color: $veryLightGrey;
 
@@ -438,8 +452,38 @@ footer {
     padding-top: 10px;
   }
 
+  ul.nav {
+    > li {
+      font-size: 14px;
+      line-height: 20px;
+      display: inline-block;
+      width: 120px;
+      border-bottom: 1px solid $lightGrey;
+      margin-right: 20px;
+      &:hover { a { background: none; } }
+      .dropdown-toggle { i { display: none; } }
+    }
+  }
+
+  ul.dropdown-menu {
+    position: auto;
+    display: block;
+    margin: 4px 0 0 0;
+    padding: 0;
+    box-shadow: none;
+    background: none;
+    border: none;
+    color: auto;
+
+    > li {
+      a { color: $lightGrey; padding: 0; }
+      &:hover { a { background: none; } }
+    }
+  }
+
   .brand {
-    text-transform: uppercase;
+    clear: both;
+    margin-top: 120px;
   }
 }
 
@@ -447,7 +491,6 @@ footer {
   margin: 20px 0;
   padding: 0 10px 10px 10px;
   background-color: $veryLightGrey;
-  border: 1px solid $lightGrey;
 
   label { display: inline-block; margin-bottom: -10px; }
 

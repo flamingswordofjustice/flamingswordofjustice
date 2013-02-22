@@ -6,7 +6,7 @@
       %header
         %a{href: episode_path(@post)}
           %h1= @post.title
-        %p.muted
+        %div.muted.attribution
           = t(:tag)
           |
           %time(pubdate="pubdate")= @post.created_at.strftime("%m/%d/%Y")

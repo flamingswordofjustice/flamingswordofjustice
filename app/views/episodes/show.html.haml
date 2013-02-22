@@ -10,10 +10,12 @@
       %header
         %a{href: episode_path(@episode)}
           %h1= @episode.title
-        %p.muted
+
+        %div.muted.attribution
           = t(:tag)
           |
           %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
+
         %ul.social-icons
           %li.facebook-like
             = facebook_like
