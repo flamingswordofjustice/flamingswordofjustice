@@ -34,6 +34,7 @@ gem 'font-awesome-sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'aws-sdk'
+gem 'asset_sync'
 
 # ActiveRecord support
 

@@ -47,7 +47,7 @@ module ApplicationHelper
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{ENV['FACEBOOK_APP_ID']}";
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{facebook_app_id}";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
     HTML
@@ -59,5 +59,24 @@ module ApplicationHelper
 
   def social_icons_for(model)
     render partial: 'shared/social_icons', locals: { model: model }
+  end
+
+  def open_graph_tags(attrs={})
+    attrs[:image] ||= image_url("sword.png")
+    attrs[:type]  ||= "website"
+    attrs[:url]   ||= request.original_url
+    attrs[:admin] ||= facebook_admin_id
+
+    content_for :head do
+      render partial: 'shared/open_graph', locals: attrs
+    end
+  end
+
+  def facebook_admin_id
+    ENV['FACEBOOK_ADMIN_ID']
+  end
+
+  def facebook_app_id
+    ENV['FACEBOOK_APP_ID']
   end
 end
