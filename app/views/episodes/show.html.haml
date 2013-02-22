@@ -13,16 +13,7 @@
       %section.body
         = raw @episode.description
 
-      %div{"data-mp3-uri" => @episode.download_url}
-      %a.jp-play{href: "#"}
-        %i.icon-play
-
-      %a.jp-pause
-        %i.icon-pause
-      %span
-        %span.jp-current-time
-        of
-        %span.jp-duration
+      = render partial: 'episodes/play_controls', locals: { url: @episode.download_url }
 
     - if @episode.guests.any?
       %h3 Featuring

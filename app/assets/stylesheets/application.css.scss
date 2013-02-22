@@ -174,18 +174,18 @@ nav.navbar-inner {
 div.play-controls {
   float: left;
   clear: both;
-  width: 620px;
+  width: 610px;
   position: relative;
 
   .jp-play, .jp-pause {
     float: left;
     display: block;
-    background-color: $baseGrey;
+    // background-color: $baseGrey;
     width: 43px;
     height: 53px;
     color: $baseRed;
     font-size: 50px;
-    padding: 0 10px;
+    padding: 0 10px 0 0;
   }
 
   &.playing .bar {
@@ -198,7 +198,7 @@ div.play-controls {
     @include transition(width ease 1s);
     height: 53px;
     float: left;
-    background-color: $baseGrey;
+    // background-color: $baseGrey;
     position: relative;
     color: $veryLightGrey;
 
@@ -210,7 +210,8 @@ div.play-controls {
       line-height: 46px;
       padding: 4px;
       // color: lighten($baseRed, 20%);
-      color: rgba(255, 255, 255, 0.4);
+      // color: rgba(0, 0, 0, 0.7);
+      color: $lightGrey;
       z-index: 0;
     }
 
@@ -285,6 +286,8 @@ article.media-badge {
   }
 
   .subscribe {
+    overflow: hidden;
+
     a.itunes {
       display: block;
       height: 100px;
