@@ -1,5 +1,10 @@
-%div.row
+= open_graph_tags title: "The Flaming Sword of Justice - #{@episode.title}",
+                  type: "article",
+                  description: @episode.description,
+                  image: @episode.image.url(:thumb),
+                  audio: @episode.download_url
 
+%div.row
   %div.span8
     %article.episode{id: @episode.slug}
       %header

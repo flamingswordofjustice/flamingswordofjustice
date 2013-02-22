@@ -389,14 +389,15 @@ article.media-badge {
     .facebook {
       background-color: $facebookBlue;
       i { margin-left: 68px; margin-right: 22px; }
-      > .follow, &:hover { background-color: darken($facebookBlue, 20%); }
+      > .follow { background-color: darken($facebookBlue, 20%); }
+      &:hover { background-color: darken($facebookBlue, 10%); }
     }
 
     .twitter {
       background-color: $twitterTeal;
       i { margin-left: 47px; margin-right: 10px; }
-      > .follow, &:hover { background-color: darken($twitterTeal, 20%); }
-      > .follow { padding-top: 4px; padding-bottom: 4px; }
+      > .follow { background-color: darken($twitterTeal, 20%); padding-top: 4px; padding-bottom: 4px; }
+      &:hover { background-color: darken($twitterTeal, 10%); }
     }
   }
 }

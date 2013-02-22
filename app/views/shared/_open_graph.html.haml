@@ -7,3 +7,5 @@
 %meta{property: "og:type",      content: type}
 - if defined?(description)
   %meta{property: "og:description", content: description}
+- if defined?(audio)
+  %meta{property: "og:audio", content: audio}
