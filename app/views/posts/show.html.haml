@@ -11,6 +11,13 @@
           |
           %time(pubdate="pubdate")= @post.created_at.strftime("%m/%d/%Y")
 
+        %ul.social-icons
+          %li.facebook-like
+            = facebook_like
+          %li.twitter
+            = twitter_share
+        %div.clearfix
+
       %section.body
         = raw @post.content
 
@@ -18,13 +25,4 @@
       = livefyre_comments
 
   %div.span4
-    %div.share-this-episode
-      %h3 Share this post
-      %label Copy link:
-      %div.copy-episode-url.input-append
-        %input.episode-url{type: "text", value: episode_url(@post.slug), readonly: true}
-        %button.btn{type: "button", class: "share-link"}
-          %i.icon-copy
-      %div.share-buttons
-        = twitter_follow
-        = facebook_follow
+    = share_this @post

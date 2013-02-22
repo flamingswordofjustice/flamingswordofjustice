@@ -18,7 +18,10 @@ jQuery ->
       cssSelectorAncestor: "#" + uniqueId
 
   $(".share-link").each () ->
-    $(this).zclip copy: $(this).prev("input").val()
+    input = $(this).prev("input")
+    $(this).zclip
+      copy: input.val()
+      afterCopy: () -> input.focus().select()
 
   $("form.subscribe a.submit").on "click", () -> $(this).closest("form").submit()
 

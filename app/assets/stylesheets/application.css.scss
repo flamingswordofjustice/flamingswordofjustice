@@ -237,7 +237,7 @@ article.media-badge {
   background: transparent url(badge_bg.png) top left repeat;
   margin: 0 10px 20px 0;
   float: left;
-  width: 296px;
+  width: 300px;
 
   > .avatar {
     vertical-align: top;
@@ -252,7 +252,7 @@ article.media-badge {
     padding: 5px 5px;
     display: inline-block;
     h4 { color: $baseRed; margin: 4px 0; }
-    width: 178px;
+    width: 182px;
     height: 85px;
     overflow: hidden;
 
@@ -430,20 +430,24 @@ footer {
   }
 }
 
-#episodes {
-  .share-this-episode {
-    margin: 20px 0;
-    padding: 5px 10px 10px 10px;
-    background-color: $veryLightGrey;
-  }
+.share-this {
+  margin: 20px 0;
+  padding: 0 10px 10px 10px;
+  background-color: $veryLightGrey;
+  border: 1px solid $lightGrey;
 
   label { display: inline-block; margin-bottom: -10px; }
 
-  .copy-episode-url {
+  .copy-shareable-url {
     display: inline-block;
-    margin-bottom: 10px;
     line-height: 40px;
-    input.episode-url { background-color: white; cursor: text; width: 160px; }
+
+    input.shareable-url {
+      background-color: white;
+      cursor: text;
+      width: 160px;
+      font-size: 12px;
+    }
   }
 
   .share-buttons {

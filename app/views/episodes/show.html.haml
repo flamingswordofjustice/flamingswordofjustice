@@ -14,6 +14,12 @@
           = t(:tag)
           |
           %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
+        %ul.social-icons
+          %li.facebook-like
+            = facebook_like
+          %li.twitter
+            = twitter_share
+        %div.clearfix
 
       %section.body
         = raw @episode.description
@@ -30,13 +36,4 @@
 
   %div.span4
     = image_tag @episode.image.url
-    %div.share-this-episode
-      %h3 Share this episode
-      %label Copy link:
-      %div.copy-episode-url.input-append
-        %input.episode-url{type: "text", value: episode_url(@episode.slug), readonly: true}
-        %button.btn{type: "button", class: "share-link"}
-          %i.icon-copy
-      %div.share-buttons
-        = twitter_follow
-        = facebook_follow
+    = share_this @episode

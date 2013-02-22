@@ -11,9 +11,22 @@ module ApplicationHelper
     HTML
   end
 
+  def twitter_share(account="fsjradio")
+    raw <<-HTML
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    HTML
+  end
+
   def facebook_follow(account="flamingswordofjustice")
     raw <<-HTML
       <div class="fb-follow" data-href="https://www.facebook.com/#{account}" data-show-faces="false" data-layout="button_count"></div>
+    HTML
+  end
+
+  def facebook_like
+    raw <<-HTML
+      <div class="fb-like" data-send="true" data-width="120" data-layout="button_count" data-show-faces="false"></div>
     HTML
   end
 
@@ -78,5 +91,9 @@ module ApplicationHelper
 
   def facebook_app_id
     ENV['FACEBOOK_APP_ID']
+  end
+
+  def share_this(model)
+    render partial: 'shared/share_this', object: model, locals: { type: model.class.model_name }
   end
 end
