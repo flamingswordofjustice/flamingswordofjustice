@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221064619) do
+ActiveRecord::Schema.define(:version => 20130225210910) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(:version => 20130221064619) do
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
+
+  create_table "navigation_links", :force => true do |t|
+    t.string  "title"
+    t.string  "location"
+    t.integer "parent_link_id"
+    t.integer "page_id"
+    t.integer "position"
+  end
 
   create_table "organizations", :force => true do |t|
     t.string   "name"

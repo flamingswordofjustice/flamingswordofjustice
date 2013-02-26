@@ -19,5 +19,5 @@ Fsj::Application.routes.draw do
   resources :people
   resources :organizations
 
-  match "/:page" => 'pages#show'
+  match "/:page" => 'pages#show', as: :page
 end

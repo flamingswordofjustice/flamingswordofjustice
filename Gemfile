@@ -41,6 +41,7 @@ gem 'asset_sync'
 gem 'friendly_id', '~> 4.0.9'
 gem 'default_value_for'
 gem 'tire'
+gem 'acts_as_list'
 
 # ActionView support
 
