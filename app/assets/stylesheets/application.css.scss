@@ -461,7 +461,7 @@ article {
       border-bottom: 1px solid $lightGrey;
       margin-right: 20px;
       &:hover { a { background: none; } }
-      .dropdown-toggle { i { display: none; } }
+      .dropdown-toggle { i { display: none; } &:hover { color: $lightGrey; cursor: default; } }
     }
   }
 
@@ -476,7 +476,7 @@ article {
     color: auto;
 
     > li {
-      a { color: $lightGrey; padding: 0; }
+      a { color: $lightGrey; padding: 0; &:hover { color: $baseRed; } }
       &:hover { a { background: none; } }
     }
   }
