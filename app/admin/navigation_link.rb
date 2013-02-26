@@ -30,10 +30,19 @@ ActiveAdmin.register NavigationLink do
 
     default_actions
     column :move_position do |link|
-      links = []
-      links << link_to(icon(:arrow_up), up_admin_navigation_link_path(link), method: :put) unless link.first?
-      links << link_to(icon(:arrow_down), down_admin_navigation_link_path(link), method: :put) unless link.last?
-      links.join.html_safe
+      up_link = if link.first?
+        link_to icon(:arrow_up, color: "#eee !important"), "#", disabled: true
+      else
+        link_to icon(:arrow_up), up_admin_navigation_link_path(link), method: :put
+      end
+
+      down_link = if link.last?
+        link_to icon(:arrow_down, color: "#eee !important"), "#", disabled: true
+      else
+        link_to icon(:arrow_down), down_admin_navigation_link_path(link), method: :put
+      end
+
+      safe_join [ up_link, down_link ]
     end
   end
 

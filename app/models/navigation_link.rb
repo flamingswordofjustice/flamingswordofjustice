@@ -12,9 +12,9 @@ class NavigationLink < ActiveRecord::Base
 
   scope :ordered_by_position,
     joins("LEFT OUTER JOIN navigation_links parent_links on parent_links.id = navigation_links.parent_link_id").
-    order("CASE WHEN navigation_links.parent_link_id IS NULL THEN navigation_links.position ELSE parent_links.position END, navigation_links.position")
+    order("CASE WHEN navigation_links.parent_link_id IS NULL THEN navigation_links.position ELSE parent_links.position END, CASE WHEN navigation_links.parent_link_id IS NULL THEN 0 ELSE 1 END, navigation_links.position")
 
-  acts_as_list scope: :parent_link
+  acts_as_list scope: :parent_link_id
 
   def potential_parents
     if new_record?
