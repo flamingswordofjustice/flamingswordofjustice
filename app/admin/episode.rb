@@ -14,7 +14,7 @@ ActiveAdmin.register Episode do
       f.input :title
       f.input :download_url
       f.input :description, as: :html_editor
-      f.input :published_at
+      f.input :published_at, as: :date_select
       f.input :image, as: :file
       f.input :guests
     end
