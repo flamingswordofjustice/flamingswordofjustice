@@ -13,13 +13,13 @@ ActiveAdmin.register NavigationLink do
 
   controller do
     def active_admin_collection
-      NavigationLink.ordered_by_position.page(params[:page]).per(10)
+      NavigationLink.ordered_by_position.page(params[:page]).per(100)
     end
   end
 
   index do
     column :title do |link|
-      if link.parent_link?
+      if link.root_link?
         link.title
       else
         link.parent_link.title + " > " + link.title
