@@ -17,4 +17,4 @@
         = render @person.episodes
 
   %div.span4
-    = image_tag @person.image.url
+    = image_tag @person.image.url unless @person.image.blank?

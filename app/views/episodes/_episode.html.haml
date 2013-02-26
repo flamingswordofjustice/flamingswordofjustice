@@ -6,6 +6,10 @@
       = t(:tag)
       |
       %time(pubdate="pubdate")= episode.published_at.strftime("%m/%d/%Y")
+    - if episode.topics.any?
+      %div.topics
+        Topics:
+        = comma_separated_list_of episode.topics
 
     %section.body
       %a.pull-left{href: episode_path(episode.slug)}

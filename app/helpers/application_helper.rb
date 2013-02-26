@@ -96,4 +96,12 @@ module ApplicationHelper
   def share_this(model)
     render partial: 'shared/share_this', object: model, locals: { type: model.class.model_name }
   end
+
+  def comma_separated_list_of(objects, label=:name)
+    links = objects.map do |o|
+      link_to o.send(label), url_for(o)
+    end
+
+    safe_join links, ", "
+  end
 end

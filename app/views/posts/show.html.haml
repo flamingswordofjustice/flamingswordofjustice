@@ -1,15 +1,21 @@
-= open_graph_tags title: "The Flaming Sword of Justice - #{@post.title}", type: "article", description: @post.content
+= open_graph_tags title: "The Flaming Sword of Justice - #{@post.title}",
+                  type: "article",
+                  description: @post.content
 
 %div.row
   %div.span8
     %article.episode{id: @post.slug}
       %header
-        %a{href: episode_path(@post)}
+        %a{href: post_path(@post)}
           %h1= @post.title
         %div.muted.attribution
           = t(:tag)
           |
           %time(pubdate="pubdate")= @post.created_at.strftime("%m/%d/%Y")
+        - if @post.topics.any?
+          %div.topics
+            Topics:
+            = comma_separated_list_of @post.topics
 
         %ul.social-icons
           %li.facebook-like

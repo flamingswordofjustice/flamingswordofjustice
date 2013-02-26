@@ -4,6 +4,7 @@ ActiveAdmin.register Episode do
     column :published_at
     column :guests
     column :description
+    column :topics
     default_actions
   end
 
@@ -15,6 +16,7 @@ ActiveAdmin.register Episode do
       f.input :download_url
       f.input :description, as: :html_editor
       f.input :published_at, as: :date_select
+      f.input :topics
       f.input :image, as: :file
       f.input :guests
     end

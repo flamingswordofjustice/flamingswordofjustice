@@ -13,11 +13,10 @@ Fsj::Application.routes.draw do
     end
   end
 
-  resources :posts do
-  end
-
-  resources :people
-  resources :organizations
+  resources :posts,         only: [:show, :index]
+  resources :people,        only: [:show, :index]
+  resources :organizations, only: [:show, :index]
+  resources :topics,        only: [:show, :index]
 
   match "/:page" => 'pages#show', as: :page
 end

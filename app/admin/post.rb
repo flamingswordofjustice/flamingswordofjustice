@@ -2,8 +2,8 @@ ActiveAdmin.register Post do
   index do
     column :title
     column :slug
-    column :tags
     column :author
+    column :topics
     default_actions
   end
 
@@ -11,8 +11,8 @@ ActiveAdmin.register Post do
     f.inputs "Show Details" do
       f.input :title
       f.input :author
+      f.input :topics
       f.input :slug, hint: "Optional - will be generated as needed"
-      f.input :tags, hint: "Comma-separated"
       f.input :content, as: :html_editor
     end
     f.actions

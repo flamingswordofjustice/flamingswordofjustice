@@ -15,6 +15,8 @@ class Episode < ActiveRecord::Base
 
   has_many :appearances
   has_many :guests, through: :appearances
+  has_many :topic_assignments, as: :assignable
+  has_many :topics, through: :topic_assignments
 
   default_value_for(:published_at) { DateTime.now }
   default_scope { order("published_at DESC") }

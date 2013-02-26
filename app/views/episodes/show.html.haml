@@ -16,6 +16,11 @@
           |
           %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
 
+        - if @episode.topics.any?
+          %div.topics
+            Topics:
+            = comma_separated_list_of @episode.topics
+
         %ul.social-icons
           %li.facebook-like
             = facebook_like
@@ -37,5 +42,5 @@
       = livefyre_comments
 
   %div.span4
-    = image_tag @episode.image.url
+    = image_tag @episode.image.url unless @episode.image.blank?
     = share_this @episode

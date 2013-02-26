@@ -15,10 +15,14 @@ class Post < ActiveRecord::Base
   end
 
   belongs_to :author, class_name: "User"
+  has_many :topic_assignments, as: :assignable
+  has_many :topics, through: :topic_assignments
+
   friendly_id :title, use: :slugged
 
   validates :title, :content, presence: true
   validates :author_id, presence: true
+
 
   def author_name
     author.name || author.email.split("@").first
