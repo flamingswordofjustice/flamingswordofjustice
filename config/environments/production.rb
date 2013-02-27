@@ -81,4 +81,9 @@ Fsj::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  # Load asset_sync settings.
+  config.asset_sync.aws_access_key = ENV['AWS_ACCESS_KEY_ID']
+  config.asset_sync.aws_access_secret = ENV['AWS_SECRET_ACCESS_KEY']
+  config.asset_sync.aws_bucket = ENV['FOG_DIRECTORY']
+  config.asset_sync.fog_provider = ENV['FOG_PROVIDER']
 end
