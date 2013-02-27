@@ -1,6 +1,9 @@
 %article.media-badge.organization
   %a.avatar{href: organization_path(organization)}
-    = image_tag organization.image.thumb
+    - if organization.image.present?
+      = image_tag organization.image.thumb
+    - else
+      %i.icon-leaf
   %section.body
     %a{href: organization_path(organization)}
       %h4= organization.name

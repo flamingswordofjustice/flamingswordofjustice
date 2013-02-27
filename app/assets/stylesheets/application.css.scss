@@ -266,7 +266,15 @@ article.media-badge {
     background-color: white;
     margin: 1px 0 0 1px;
 
+    &:hover { color: $lightGrey; }
+
     > img { width: 100px; }
+    > i   {
+      width: 100px;
+      text-align: center;
+      font-size: 90px;
+      line-height: 100px;
+    }
   }
 
   > .body {
