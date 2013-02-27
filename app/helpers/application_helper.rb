@@ -79,6 +79,7 @@ module ApplicationHelper
     attrs[:type]  ||= "website"
     attrs[:url]   ||= request.original_url
     attrs[:admin] ||= facebook_admin_id
+    attrs[:description] = strip_tags(attrs[:description] || "")
 
     content_for :head do
       render partial: 'shared/open_graph', locals: attrs
