@@ -9,9 +9,9 @@ ActiveAdmin.register Organization do
   form html: { multipart: true } do |f|
     f.inputs "Guest Details" do
       f.input :name
-      f.input :website
-      f.input :twitter
-      f.input :facebook
+      f.input :website, hint: "Full URL, including http://"
+      f.input :twitter, hint: "Just the username - no http, no @ symbol"
+      f.input :facebook, hint: "Just the username - no http"
       f.input :people
       f.input :image, as: :file
       f.input :description, as: :html_editor
