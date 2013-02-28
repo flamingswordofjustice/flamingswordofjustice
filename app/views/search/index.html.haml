@@ -1,1 +1,12 @@
-= render @results
+%div.row
+  %div.span8
+    %h1 Results
+    %p
+      Searching for
+      %strong= params[:q]
+
+    %ul.results.unstyled
+      - @results.each do |result|
+        %li.result{class: result.class.model_name.element, style: "border-top: 1px solid #eee"}
+          %span.label.label-info= result.class.model_name.element
+          = render partial: result.class.model_name.collection + "/result", object: result

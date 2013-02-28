@@ -6,10 +6,12 @@ class Episode < ActiveRecord::Base
 
   mapping do
     indexes :id,           :index    => :not_analyzed
+    indexes :slug,         :index    => :not_analyzed
     indexes :title,        :analyzer => 'snowball', :boost => 100
     indexes :description,  :analyzer => 'snowball'
     indexes :notes,        :analyzer => 'snowball'
     indexes :guests,       :analyzer => 'keyword', :as => lambda {|e| e.guests.map(&:name)}
+    indexes :topics,       :analyzer => 'keyword', :as => lambda {|e| e.topics.map(&:name)}
     indexes :published_at, :type => 'date', :include_in_all => false
   end
 

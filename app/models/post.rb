@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
 
   mapping do
     indexes :id,           :index    => :not_analyzed
+    indexes :slug,         :index    => :not_analyzed
     indexes :title,        :analyzer => 'snowball', :boost => 100
     indexes :content,      :analyzer => 'snowball'
     indexes :content_size, :as       => 'content.size'

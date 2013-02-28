@@ -6,6 +6,7 @@ class Person < ActiveRecord::Base
 
   mapping do
     indexes :id,           :index    => :not_analyzed
+    indexes :slug,         :index    => :not_analyzed
     indexes :name,         :analyzer => 'snowball', :boost => 100
     indexes :title,        :analyzer => 'snowball'
     indexes :description,  :analyzer => 'snowball'
