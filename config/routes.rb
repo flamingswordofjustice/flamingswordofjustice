@@ -5,6 +5,7 @@ Fsj::Application.routes.draw do
 
   root to: 'home#index'
   match "/subscribe" => "home#subscribe", via: :post, as: :subscribe
+  match "/search" => "search#index", via: :get, as: :search
 
   resources :episodes do
     collection do

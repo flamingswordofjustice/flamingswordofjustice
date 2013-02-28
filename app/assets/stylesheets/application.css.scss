@@ -117,6 +117,16 @@ nav.navbar-inner {
     margin-left: 10px;
     padding-top: 5px;
   }
+
+  form.navbar-search {
+    position: relative;
+    > i {
+      position: absolute;
+      right: 10px;
+      top: 30%;
+      color: $veryLightGrey;
+    }
+  }
 }
 
 .navbar > .navbar-inner > .nav {
