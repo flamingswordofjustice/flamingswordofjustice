@@ -1,5 +1,6 @@
 ActiveAdmin.register NavigationLink do
   config.filters = false
+  menu label: "Navbar"
 
   form do |f|
     f.inputs "Link details" do

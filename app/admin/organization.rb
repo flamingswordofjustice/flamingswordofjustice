@@ -1,4 +1,6 @@
 ActiveAdmin.register Organization do
+  menu label: "Orgs"
+
   index do
     column :name
     column :people

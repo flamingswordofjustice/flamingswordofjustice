@@ -10,9 +10,6 @@ jQuery ->
       play: () ->
         $(this).closest(".play-controls").addClass("playing")
 
-      pause: () ->
-        $(this).closest(".play-controls").removeClass("playing")
-
       swfPath: ""
       supplied: "mp3"
       cssSelectorAncestor: "#" + uniqueId

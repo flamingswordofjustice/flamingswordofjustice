@@ -1,3 +1,4 @@
 %a{href: post_path(result.slug)}
   %h3= result.title
+  %p= post_path(result.slug)
 %p= raw truncate_html(result.content, length: 300)

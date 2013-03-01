@@ -1,3 +1,4 @@
 %a{href: episode_path(result.slug)}
   %h3= result.title
+  %p= episode_path(result.slug)
 %p= raw truncate_html(result.description, length: 300)
