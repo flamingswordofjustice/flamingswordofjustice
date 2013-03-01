@@ -55,8 +55,10 @@ a {
   &:hover { color: $baseRed; text-decoration: none; }
 }
 
-a > h1 {
-  color: $baseRed;
+a {
+  > h1, > h2, > h3 {
+    color: $baseRed;
+  }
 }
 
 article.post, article.episode {
@@ -114,14 +116,19 @@ nav.navbar-inner {
     margin-left: 10px;
     padding-top: 5px;
   }
+}
 
-  form.navbar-search {
+form.navbar-search, form.search-form {
+  margin-bottom: 0;
+  .control-group {
+    display: inline-block;
     position: relative;
     > i {
       position: absolute;
       right: 10px;
-      top: 30%;
+      top: 10px;
       color: $veryLightGrey;
+      line-height: 14px;
     }
   }
 }
@@ -528,7 +535,11 @@ article {
 
 #search {
   ul.results {
-
+    li.result {
+      border-top: 1px solid #eee;
+      margin-bottom: 10px;
+      &:first-child { border-top: none; }
+      h3, p { margin: 0; }
+    }
   }
-
 }

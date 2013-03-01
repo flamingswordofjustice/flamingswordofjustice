@@ -1,4 +1,9 @@
 %a{href: person_path(result.slug)}
   %h3= result.name
-  %p= person_path(result.slug)
-%p= raw truncate_html(result.description, length: 400)
+%p.muted
+  %span.label.label-info Person
+  = person_url(result.slug)
+%p= raw truncate_html(result.description, length: 300)
+%a{href: person_path(result.slug)}
+  More
+  %i.icon-double-angle-right

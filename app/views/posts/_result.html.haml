@@ -1,4 +1,9 @@
 %a{href: post_path(result.slug)}
   %h3= result.title
-  %p= post_path(result.slug)
+%p.muted
+  %span.label.label-info Post
+  = post_url(result.slug)
 %p= raw truncate_html(result.content, length: 300)
+%a{href: post_path(result.slug)}
+  More
+  %i.icon-double-angle-right
