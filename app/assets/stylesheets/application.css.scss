@@ -25,10 +25,6 @@ $twitterTeal: #9AE4E8;
   line-height: 18px;
 }
 
-.twitter-follow-button {
-  margin-top: 3px;
-}
-
 .label {
   border-radius: 0;
   font-weight: 400;
@@ -74,19 +70,14 @@ article.post, article.episode {
 }
 
 ul.social-icons {
-  list-style-type: none;
   float: left;
-  margin: 0;
-  padding: 0;
 
   > li {
     float: left;
     padding: 0;
     margin: 5px 5px 0 0;
     line-height: 18px;
-    &.facebook { padding-top: 3px; }
-    &.twitter { padding-top: 0; }
-    &.link { padding-top: 2px; }
+    > a.btn { margin-top: -1px; }
   }
 }
 

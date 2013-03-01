@@ -17,11 +17,7 @@
             Topics:
             = comma_separated_list_of @post.topics
 
-        %ul.social-icons
-          %li.facebook-like
-            = facebook_like
-          %li.twitter
-            = twitter_share
+        = social_icons_for @post, type: "share"
         %div.clearfix
 
       %section.body

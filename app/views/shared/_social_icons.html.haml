@@ -1,8 +1,20 @@
-%ul.social-icons
-  - if model.respond_to?(:facebook) && model.facebook.present?
-    %li.facebook= facebook_follow model.facebook
-  - if model.respond_to?(:twitter) && model.twitter.present?
-    %li.twitter= twitter_follow model.twitter
+%ul.social-icons.unstyled
+  - if signed_in?
+    - route = "edit_admin_" + model.class.model_name.singular + "_path"
+    - if respond_to?(route) && path = self.send(route, model)
+      %li.link
+        %a.btn.btn-mini.btn-primary{href: path}
+          %i.icon-edit
+          Edit
+  - if defined?(type) && type == "follow"
+    - if model.respond_to?(:facebook) && model.facebook.present?
+      %li.facebook= facebook_follow model.facebook
+    - if model.respond_to?(:twitter) && model.twitter.present?
+      %li.twitter= twitter_follow model.twitter
+  - elsif defined?(type) && type == "share"
+    %li.facebook_like= facebook_like
+    %li.twitter= twitter_share
+
   - if model.respond_to?(:public_email) && model.public_email.present?
     %li.link
       %a.btn.btn-mini{href: "mailto:#{model.public_email}"}
@@ -13,3 +25,4 @@
       %a.btn.btn-mini{href: model.website, target: "_blank"}
         %i.icon-home
         Website
+

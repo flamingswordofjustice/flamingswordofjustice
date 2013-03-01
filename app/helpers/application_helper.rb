@@ -87,8 +87,9 @@ module ApplicationHelper
     ENV['ITUNES_URI']
   end
 
-  def social_icons_for(model)
-    render partial: 'shared/social_icons', locals: { model: model }
+  def social_icons_for(model, opts={})
+    opts[:type] ||= "follow"
+    render partial: 'shared/social_icons', locals: { model: model }.merge(opts)
   end
 
   def open_graph_tags(attrs={})
