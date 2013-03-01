@@ -55,3 +55,7 @@ gem 'nokogiri'
 # Stats
 
 gem "statsd-ruby", require: "statsd"
+
+group :development do
+  gem 'foreman'
+end
