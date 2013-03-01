@@ -4,9 +4,10 @@ module ApplicationHelper
     link_to title, path || "#", opts
   end
 
-  def twitter_follow(account="fsjradio")
+  def twitter_follow(account="fsjradio", opts={})
+    opts[:count] = false if opts[:count].nil?
     raw <<-HTML
-      <a href="https://twitter.com/#{account}" class="twitter-follow-button" data-show-count="false" data-size="small" data-show-screen-name="false">Follow @#{account}</a>
+      <a href="https://twitter.com/#{account}" class="twitter-follow-button" data-show-count="#{opts[:count]}" data-size="small" data-show-screen-name="false">Follow @#{account}</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     HTML
   end
