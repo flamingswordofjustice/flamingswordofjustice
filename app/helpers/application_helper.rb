@@ -24,9 +24,9 @@ module ApplicationHelper
     HTML
   end
 
-  def facebook_like
+  def facebook_like(url_to_like=nil)
     raw <<-HTML
-      <div class="fb-like" data-send="true" data-width="120" data-layout="button_count" data-show-faces="false"></div>
+      <div class="fb-like" data-href="#{url_to_like}" data-send="true" data-width="120" data-layout="button_count" data-show-faces="false"></div>
     HTML
   end
 
