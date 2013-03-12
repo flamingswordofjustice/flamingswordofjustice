@@ -19,7 +19,7 @@ ActiveAdmin.register Organization do
       f.input :twitter, hint: "Just the username - no http, no @ symbol"
       f.input :facebook, hint: "Just the username - no http"
       f.input :people
-      f.input :image, as: :file
+      f.input :image, as: :file, hint: image_tag(f.object.image.thumb.logo)
       f.input :description, as: :html_editor
     end
     f.actions
