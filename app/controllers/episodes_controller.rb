@@ -5,7 +5,8 @@ class EpisodesController < ApplicationController
   end
 
   def counted
-    @search = Episode.counted_by(params[:category])
+    @groups = Episode.counted_by(params[:category])
+    @category = params[:category].titleize
   end
 
   def index

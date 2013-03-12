@@ -39,18 +39,20 @@ class Episode < ActiveRecord::Base
     end
 
     def counted_by_date
-      search = Episode.tire.search { facet('timeline') { date :published_at, :interval => 'month' } }
-      times = search.facets["timeline"]["entries"]
-      times.map do |t|
-        date = Time.zone.at(t['time'] / 1000)
-        count = t['count']
-        OpenStruct.new(model: date, label: date.strftime("%B %Y"), id: date.strftime("%Y-%m"), category: 'date', count: count)
+      Episode.order("published_at DESC").group_by do |episode|
+        episode.published_at.strftime("%B %Y")
       end
     end
 
     def counted_by_guest
-      Person.where("appearances_count > 0").order("appearances_count DESC").map do |p|
-        OpenStruct.new(model: p, label: p.name, id: p.slug, category: 'guest', count: p.appearances_count)
+      Person.where("appearances_count > 0").order("name ASC").group_by do |person|
+        person.name.chars.first
+      end
+    end
+
+    def counted_by_organization
+      Organization.joins(:people).order("name ASC").group("organizations.id").having("sum(people.appearances_count) > 0").group_by do |organization|
+        organization.name.chars.first
       end
     end
   end

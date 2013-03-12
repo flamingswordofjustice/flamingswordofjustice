@@ -558,3 +558,9 @@ article {
     }
   }
 }
+
+#episodes {
+  ul.grouped {
+    > li { clear: both; > h3 { border-bottom: 1px solid $baseRed; } }
+  }
+}

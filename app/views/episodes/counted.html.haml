@@ -1,3 +1,9 @@
-- @search.each do |s|
-  %a{href: categorized_episodes_path(category: s.category, id: s.id)}
-    %h1= s.label + " (#{s.count})"
+%div.row
+  %div.span12
+    %h1 Episodes by #{@category}
+
+    %ul.unstyled.grouped
+      - @groups.each do |name, items|
+        %li
+          %h3= name
+          = render items
