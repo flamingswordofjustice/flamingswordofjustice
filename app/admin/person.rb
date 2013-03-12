@@ -16,8 +16,8 @@ ActiveAdmin.register Person do
   form html: { multipart: true } do |f|
     f.inputs "Guest Details" do
       f.input :name
-      f.input :email
-      f.input :title
+      f.input :email, hint: "Publicly displayed so users can email directly"
+      f.input :title, hint: "Include the organization name, e.g. 'CEO of JusticeCorp'"
       f.input :organization
       f.input :website, hint: "Full URL, including http://"
       f.input :twitter, hint: "Just the username - no http, no @ symbol"
