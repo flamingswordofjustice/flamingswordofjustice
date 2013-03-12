@@ -11,6 +11,10 @@ ActiveAdmin.register Episode do
 
   filter :published_at
 
+  show do
+    render partial: 'admin/shared/iframe', locals: { src: episode_url(episode) }
+  end
+
   form html: { multipart: true } do |f|
     f.inputs "Episode Details" do
       f.input :title, label: "Name"

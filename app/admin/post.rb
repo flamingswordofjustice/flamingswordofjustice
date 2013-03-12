@@ -7,6 +7,10 @@ ActiveAdmin.register Post do
     default_actions
   end
 
+  show do
+    render partial: 'admin/shared/iframe', locals: { src: post_url(post) }
+  end
+
   form do |f|
     f.inputs "Show Details" do
       f.input :title

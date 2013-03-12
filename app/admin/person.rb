@@ -9,6 +9,10 @@ ActiveAdmin.register Person do
     default_actions
   end
 
+  show do
+    render partial: 'admin/shared/iframe', locals: { src: person_url(person) }
+  end
+
   form html: { multipart: true } do |f|
     f.inputs "Guest Details" do
       f.input :name

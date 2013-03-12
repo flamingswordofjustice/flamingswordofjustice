@@ -8,6 +8,10 @@ ActiveAdmin.register Organization do
     default_actions
   end
 
+  show do
+    render partial: 'admin/shared/iframe', locals: { src: organization_url(organization) }
+  end
+
   form html: { multipart: true } do |f|
     f.inputs "Guest Details" do
       f.input :name

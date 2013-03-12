@@ -1,3 +1,4 @@
+desc 'Sync all episodes with Libsyn RSS feed.'
 task :episode_sync => :environment do
   require 'open-uri'
   podcasts = open(ENV["PODCAST_URI"])
