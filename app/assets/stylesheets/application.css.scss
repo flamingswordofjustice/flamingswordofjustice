@@ -279,15 +279,20 @@ article.media-badge {
     display: inline-block;
     background-color: white;
     margin: 1px 0 0 1px;
+    line-height: 100px;
+    height: 100px;
+    overflow: hidden;
+    width: 100px;
+    text-align: center;
 
     &:hover { color: $lightGrey; }
 
-    > img { width: 100px; }
-    > i   {
-      width: 100px;
-      text-align: center;
+    > i {
       font-size: 90px;
-      line-height: 100px;
+    }
+
+    > img {
+      vertical-align: middle;
     }
   }
 
