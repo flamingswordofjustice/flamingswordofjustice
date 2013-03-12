@@ -24,7 +24,8 @@ ActiveAdmin.register Episode do
       f.input :published_at, as: :date_select
       f.input :topics, hint: link_to("Add new topic", new_admin_topic_path, target: "_new")
       f.input :guests, hint: link_to("Add new guest", new_admin_person_path, target: "_new")
-      f.input :image, as: :file, hint: image_tag(f.object.image.thumb.url)
+      hint = f.object.image.present? ? image_tag(f.object.image.thumb.url) : nil
+      f.input :image, as: :file, hint: hint
     end
     f.actions
   end

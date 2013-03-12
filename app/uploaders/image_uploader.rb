@@ -6,7 +6,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   include Sprockets::Helpers::RailsHelper
-  # include Sprockets::Helpers::IsolatedHelper
+  include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
   if Rails.env.development? || Rails.env.test?
@@ -17,7 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded.
   def default_url
-    '/images/transparent.png'
+    image_path 'transparent.png'
   end
 
   # We won't need bigger, and this seems to be what Instagram/FB display.
