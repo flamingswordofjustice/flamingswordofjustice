@@ -12,5 +12,9 @@
         = person.title
       - else
         = raw truncate_html(person.description)
+    - if person.appearances_count > 0
+      %small{style: "display: block"}
+        %em
+          = link_to pluralize(person.appearances_count, "episode"), person_path(person, anchor: "appearances")
   %section.social
     = social_icons_for person
