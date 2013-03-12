@@ -17,7 +17,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded.
   def default_url
-    '/assets/transparent.png'
+    '/images/transparent.png'
   end
 
   # We won't need bigger, and this seems to be what Instagram/FB display.
