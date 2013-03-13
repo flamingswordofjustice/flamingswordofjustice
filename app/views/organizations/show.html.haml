@@ -8,8 +8,18 @@
             = @organization.website
 
       = raw @organization.description
+
     - if @organization.people.any?
-      %h3 People
-      = render @organization.people
+      %section.people.clearfix
+        %h3 People
+        = render @organization.people
+
+    - if @organization.appearances.any?
+      %section.appearances.clearfix
+        %a{name: "appearances"}
+        %h3 Episodes
+        = render @organization.episodes
+
   %div.span4
     = image_tag @organization.image.url
+

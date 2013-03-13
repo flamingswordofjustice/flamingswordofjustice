@@ -55,5 +55,11 @@ class Episode < ActiveRecord::Base
         organization.name.chars.first
       end
     end
+
+    def counted_by_topic
+      Topic.joins(:topic_assignments).order("name ASC").group("topics.id").where("topic_assignments.assignable_type = ?", Episode.name).having("count(topic_assignments.id) > 0").group_by do |topic|
+        topic.name.chars.first
+      end
+    end
   end
 end

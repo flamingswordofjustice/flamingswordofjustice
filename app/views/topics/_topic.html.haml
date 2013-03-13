@@ -5,7 +5,4 @@
     %a{href: topic_path(topic)}
       %h4= topic.name
     %small
-      - if topic.title.present?
-        = topic.title
-      - else
-        = raw truncate_html(topic.description)
+      = raw truncate_html(topic.description)
