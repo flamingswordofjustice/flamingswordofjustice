@@ -199,6 +199,20 @@ form.navbar-search, form.search-form {
         text-shadow: 0 0 15px rgba(0,0,0, 0.4);
       }
     }
+
+    .play-controls {
+      background-color: rgba(30, 30, 30, 0.8);
+      .share-episode {
+        background-color: $baseGrey;
+        color: $veryLightGrey;
+      }
+      .jp-duration, .jp-current-time {
+        color: white;
+      }
+      .jp-seek-bar {
+        background-color: #333;
+      }
+    }
   }
 
   section.past-episodes {
@@ -208,33 +222,76 @@ form.navbar-search, form.search-form {
 }
 
 div.play-controls {
-  float: left;
   clear: both;
-  width: 610px;
+  width: 690px;
   position: relative;
+  background-color: $veryLightGrey;
+  height: 90px;
 
-  .jp-play, .jp-pause {
-    float: left;
-    display: block;
-    width: 43px;
-    height: 53px;
-    color: $baseRed;
-    font-size: 50px;
-    padding: 0 10px 0 0;
+  a { cursor: pointer; }
+
+  .controls {
+    display: inline-block;
+    line-height: 70px;
+    text-align: center;
+    vertical-align: top;
+
+    .jp-play, .jp-pause {
+      width: 70px;
+      height: 70px;
+      background-color: $baseRed;
+      display: block;
+      padding: 10px;
+      color: white;
+      font-size: 50px;
+    }
   }
 
-  &.playing .bar {
-    width: 557px;
+  .play-episode {
+    vertical-align: top;
+    display: inline-block;
+
+    h2 {
+      line-height: 66px;
+    }
+  }
+
+  .share-episode {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 110px;
+    height: 70px;
+    padding: 10px 5px 10px 15px;
+    background-color: darken($veryLightGrey, 5%);
+
+    ul {
+      font-size: 12px;
+      line-height: 14px;
+      li { display: block; }
+    }
+  }
+
+
+  &.playing {
+    .play-episode {
+      display: none;
+    }
+
+    .bar {
+      width: 690px - 90px - 130px;
+    }
   }
 
   .bar {
     width: 0;
-    @include transition(width ease 1s);
-    height: 53px;
-    float: left;
+    display: inline-block;
     position: relative;
     color: $veryLightGrey;
     overflow: hidden;
+    height: 90px;
+    margin-left: -5px;
+    @include transition(width ease 1s);
 
     .jp-duration, .jp-current-time {
       @include transition(width ease 1s);
@@ -243,12 +300,12 @@ div.play-controls {
       font-size: 18px;
       line-height: 24px;
       padding: 4px;
-      color: $lightGrey;
+      color: black;
       z-index: 0;
     }
 
-    .jp-current-time { bottom: 0; left: 0; }
-    .jp-duration { bottom: 0; right: 0; }
+    .jp-current-time { bottom: 0; left: 10px; }
+    .jp-duration { bottom: 0; right: 10px; }
 
     .jp-play-bar {
       height: 100%;

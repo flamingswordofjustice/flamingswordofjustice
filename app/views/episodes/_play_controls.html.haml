@@ -1,9 +1,29 @@
 %div.play-controls
   %div{"data-mp3-uri" => url}
-  %a.jp-play
-    %i.icon-play
-  %a.jp-pause
-    %i.icon-pause
+  %div.controls
+    %a.jp-play
+      %i.icon-play
+    %a.jp-pause
+      %i.icon-pause
+
+  %div.play-episode
+    %a.jp-play
+      %h2{style: "padding-left: 20px;"} Play Episode
+
+  %div.share-episode
+    %ul.unstyled
+      %li
+        %a.download{href: url}
+          %i.icon-download
+          Download
+      %li
+        %a.rss{href: podcast_link}
+          %i.icon-rss
+          Subscribe
+      %li
+        %a.itunes{href: itunes_link}
+          %i.icon-music
+          iTunes
 
   %div.bar
     %span.jp-current-time

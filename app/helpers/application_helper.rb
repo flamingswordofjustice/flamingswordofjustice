@@ -88,6 +88,10 @@ module ApplicationHelper
     ENV['ITUNES_URI']
   end
 
+  def podcast_link
+    ENV['PODCAST_URI']
+  end
+
   def social_icons_for(model, opts={})
     opts[:type] ||= "follow"
     render partial: 'shared/social_icons', locals: { model: model }.merge(opts)
