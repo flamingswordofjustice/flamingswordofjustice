@@ -8,6 +8,8 @@
     = javascript_include_tag "application"
     = google_analytics_tracker
     = csrf_meta_tags
+    = favicon_link_tag
+    %meta(name="bitly-verification" content="100f7700b68b")
     = yield :head
 
   %body{id: controller.controller_name}
