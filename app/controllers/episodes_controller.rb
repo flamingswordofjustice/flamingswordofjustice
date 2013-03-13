@@ -1,7 +1,7 @@
 class EpisodesController < ApplicationController
 
   def show
-    @episode = Episode.find(params[:id])
+    @episode = Episode.unscoped.find(params[:id])
   end
 
   def counted

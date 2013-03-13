@@ -17,4 +17,4 @@
       = raw episode.description + link_to("more", episode_path(episode.slug), class: "action")
 
     - if defined?(play) && play
-      = render partial: 'episodes/play_controls', locals: { url: episode.download_url }
+      = render partial: 'episodes/play_controls', locals: { episode: episode }

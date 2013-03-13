@@ -13,16 +13,16 @@ task :episode_sync => :environment do
 
     if episode.new_record?
       if episode.save
-        puts "Imported #{model.title}"
+        puts "Imported #{episode.title}"
       else
-        puts "Failed #{episode.title}: #{model.errors.full_messages.join(';')}"
+        puts "Failed #{episode.title}: #{episode.errors.full_messages.join(';')}"
       end
     elsif should_overwrite
       episode.attributes = attributes
       if episode.save
         puts "Overwrote #{episode.title}"
       else
-        puts "Failed #{episode.title}: #{model.errors.full_messages.join(';')}"
+        puts "Failed #{episode.title}: #{episode.errors.full_messages.join(';')}"
       end
     else
       puts "Skipping #{episode.title}; already exists"

@@ -20,14 +20,41 @@ class Episode < ActiveRecord::Base
   has_many :topic_assignments, as: :assignable
   has_many :topics, through: :topic_assignments
 
+  scope :visible, where(state: [:published, :live])
+
   default_value_for(:published_at) { DateTime.now }
-  default_scope { order("published_at DESC") }
+  default_value_for(:state) { :unpublished }
+  default_scope { visible.order("published_at DESC") }
 
   friendly_id :title, use: :slugged
   validates :title, presence: true
   validates :libsyn_id, uniqueness: true
 
   mount_uploader :image, ImageUploader
+
+  POSSIBLE_STATES = [ :published, :unpublished, :live ]
+
+  POSSIBLE_STATES.each do |state|
+    define_method("#{state}?") { self.state.to_sym == state }
+  end
+
+  def possible_states
+    POSSIBLE_STATES
+  end
+
+  def default_state
+    :unpublished
+  end
+
+  def playable_url
+    if unpublished?
+      ""
+    elsif live?
+      ENV["LIVE_BROADCAST_URI"]
+    else
+      self.download_url
+    end
+  end
 
   class << self
     def counted_by(category)

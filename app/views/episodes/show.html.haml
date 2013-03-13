@@ -26,7 +26,7 @@
       %section.body
         = raw @episode.description
 
-      = render partial: 'episodes/play_controls', locals: { url: @episode.download_url }
+      = render partial: 'episodes/play_controls', locals: { episode: @episode }
 
     - if @episode.guests.any?
       %h3 Featuring

@@ -1,32 +1,37 @@
-%div.play-controls
-  %div{"data-mp3-uri" => url}
-  %div.controls
-    %a.jp-play
-      %i.icon-play
-    %a.jp-pause
-      %i.icon-pause
+- unless episode.unpublished?
+  %div.play-controls
+    %div{"data-mp3-uri" => episode.playable_url}
+    %div.controls
+      %a.jp-play
+        %i.icon-play
+      %a.jp-pause
+        %i.icon-pause
 
-  %div.play-episode
-    %a.jp-play
-      %h2{style: "padding-left: 20px;"} Play Episode
+    %div.play-episode
+      %a.jp-play
+        %h2{style: "padding-left: 20px;"}
+          - if episode.live?
+            Live Now!
+          - elsif episode.published?
+            Play Episode
 
-  %div.share-episode
-    %ul.unstyled
-      %li
-        %a.download{href: url}
-          %i.icon-download
-          Download
-      %li
-        %a.rss{href: podcast_link}
-          %i.icon-rss
-          Subscribe
-      %li
-        %a.itunes{href: itunes_link}
-          %i.icon-music
-          iTunes
+    %div.share-episode
+      %ul.unstyled
+        %li
+          %a.download{href: episode.playable_url}
+            %i.icon-download
+            Download
+        %li
+          %a.rss{href: podcast_link}
+            %i.icon-rss
+            Subscribe
+        %li
+          %a.itunes{href: itunes_link}
+            %i.icon-music
+            iTunes
 
-  %div.bar
-    %span.jp-current-time
-    %span.jp-duration
-    %div.jp-seek-bar
-      %div.jp-play-bar
+    %div.bar
+      %span.jp-current-time
+      %span.jp-duration
+      %div.jp-seek-bar
+        %div.jp-play-bar

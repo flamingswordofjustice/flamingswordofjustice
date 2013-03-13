@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   def password_required?
     new_record? ? false : super
   end
+
+  def managed_episodes
+    Episode.unscoped
+  end
 end
