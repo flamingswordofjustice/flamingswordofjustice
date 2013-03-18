@@ -28,7 +28,6 @@ class Episode < ActiveRecord::Base
 
   friendly_id :title, use: :slugged
   validates :title, presence: true
-  validates :libsyn_id, uniqueness: true
 
   mount_uploader :image, ImageUploader
 
