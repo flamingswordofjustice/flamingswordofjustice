@@ -1,7 +1,7 @@
 class EpisodesController < ApplicationController
 
   def show
-    @episode = Episode.unscoped.find(params[:id])
+    @episode = Episode.find(params[:id])
   end
 
   def counted
@@ -15,15 +15,15 @@ class EpisodesController < ApplicationController
       when "date"
         if params[:id] =~ /\d\d\d\d-\d\d/
           timestamp = "timestamp '#{params[:id]}-01 00:00:00'"
-          Episode.where("published_at between #{timestamp} and #{timestamp} + interval '1 month'")
+          Episode.visible.where("published_at between #{timestamp} and #{timestamp} + interval '1 month'")
         else
-          Episode.all
+          Episode.visible.all
         end
       when "guest"
         Person.where(slug: params[:id]).first.try(:episodes) || []
       end
     else
-      Episode.all
+      Episode.visible.all
     end
   end
 

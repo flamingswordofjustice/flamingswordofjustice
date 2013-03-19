@@ -1,7 +1,6 @@
 class Episode < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include Tire::Model::Search
-  include Tire::Model::Callbacks
   extend FriendlyId
 
   mapping do
@@ -15,6 +14,14 @@ class Episode < ActiveRecord::Base
     indexes :published_at, :type => 'date', :include_in_all => false
   end
 
+  after_save do
+    tire.update_index if published? || live?
+  end
+
+  after_destroy do
+    tire.update_index
+  end
+
   has_many :appearances
   has_many :guests, through: :appearances
   has_many :topic_assignments, as: :assignable
@@ -24,7 +31,7 @@ class Episode < ActiveRecord::Base
 
   default_value_for(:published_at) { DateTime.now }
   default_value_for(:state) { :unpublished }
-  default_scope { visible.order("published_at DESC") }
+  default_scope { order("published_at DESC") }
 
   friendly_id :title, use: :slugged
   validates :title, presence: true
@@ -65,7 +72,7 @@ class Episode < ActiveRecord::Base
     end
 
     def counted_by_date
-      Episode.order("published_at DESC").group_by do |episode|
+      Episode.visible.order("published_at DESC").group_by do |episode|
         episode.published_at.strftime("%B %Y")
       end
     end

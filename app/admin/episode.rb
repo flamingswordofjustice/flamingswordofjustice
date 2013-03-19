@@ -1,11 +1,11 @@
 ActiveAdmin.register Episode do
   config.sort_order = "published_at_desc"
-  scope_to :current_user, :association_method => :managed_episodes
 
   index do
     column "Name", :title
     column :headline
     column :published_at
+    column :state
     column(:guests) { |e| e.guests.map {|g| link_to g.name, edit_admin_person_path(g.slug) }.join(', ').html_safe }
     column(:topics) { |e| e.topics.map {|t| link_to t.name, edit_admin_topic_path(t.slug) }.join(', ').html_safe }
     column(:description, sortable: :description) { |e| strip_tags e.description }

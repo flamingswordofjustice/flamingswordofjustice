@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @episodes = Episode.order("published_at DESC").limit(11).all
+    @episodes = Episode.visible.limit(11).all
     @latest = @episodes.shift
     @guests = Appearance.order("created_at DESC").limit(3).all.map(&:guest).uniq
 
