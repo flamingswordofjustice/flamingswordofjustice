@@ -327,7 +327,11 @@ div.play-controls {
 
 article.media-badge {
   background-color: $veryLightGrey;
-  margin: 0 10px 20px 0;
+  // margin: 0 10px 20px 0;
+  margin: 0 30px 20px 0;
+
+  &:nth-child(even) { margin-right: 0; }
+
   float: left;
   width: 330px;
 
