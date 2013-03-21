@@ -1,7 +1,7 @@
 class EpisodesController < ApplicationController
 
   def show
-    @episode = Episode.find(params[:id])
+    @episode = Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
   end
 
   def counted

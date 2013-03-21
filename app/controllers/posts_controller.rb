@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
   end
 
 end
