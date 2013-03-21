@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Infrastructure
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 gem 'pg'
 gem 'unicorn'
 gem 'rspec-rails'
