@@ -23,11 +23,11 @@
       %div.sign-up.span4
         %section
           %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
-            %input(placeholder="Email" type="email" name="subscriber[email]" required)
+            %input(placeholder="you@example.com" type="email" name="subscriber[email]" required)
             %br
-            %a.submit{href: "#"}
+            %a.submit{href: "#", data: { message: "Check your inbox!" } }
               %i.icon-envelope
-              Updates you'll love
+              Join our newsletter
       %div.share.span4
         %section
           %div.facebook

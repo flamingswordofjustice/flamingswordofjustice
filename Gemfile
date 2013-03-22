@@ -48,6 +48,10 @@ gem 'acts_as_list'
 gem 'truncate_html'
 gem 'zclip-rails'
 
+# Email
+
+gem 'gibbon' # Mailchimp
+
 # RSS Sync
 
 gem 'nokogiri'

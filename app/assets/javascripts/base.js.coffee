@@ -22,6 +22,9 @@ jQuery ->
       copy: input.val()
       afterCopy: () -> input.focus().select()
 
-  $("form.subscribe a.submit").on "click", () -> $(this).closest("form").submit()
+  $("form.subscribe").each () ->
+    form = $(this)
+    submit = form.find("a.submit")
 
-  $("form.subscribe").on "ajax:complete", () -> $(this).find("a.submit").text("Awesome job.")
+    submit.on "click", () -> form.submit()
+    form.on "ajax:complete", () -> submit.text(submit.data("message"))
