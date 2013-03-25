@@ -15,7 +15,7 @@ class HomeController < ApplicationController
   def subscribe
     subscriber = params.require(:subscriber).permit(:email)
 
-    unless Rails.env.dev?
+    unless Rails.env.development?
       begin
         Gibbon.new(ENV["MAILCHIMP_API_KEY"]).list_subscribe(
           id: ENV["MAILCHIMP_LIST_ID"],
