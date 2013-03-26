@@ -13,7 +13,7 @@
     - if model.respond_to?(:twitter) && model.twitter.present?
       %li.twitter= twitter_follow model.twitter
   - elsif type == "share"
-    %li.facebook_like= facebook_like
+    %li.facebook_like= facebook_like request.original_url
     %li.twitter= twitter_share
 
   - if model.respond_to?(:public_email) && model.public_email.present?
