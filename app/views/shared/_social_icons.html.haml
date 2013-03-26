@@ -6,12 +6,13 @@
         %a.btn.btn-mini.btn-primary{href: path}
           %i.icon-edit
           Edit
-  - if defined?(type) && type == "follow"
+
+  - if type == "follow" || type == "like"
     - if model.respond_to?(:facebook) && model.facebook.present?
-      %li.facebook= facebook_follow model.facebook
+      %li.facebook= send "facebook_#{type}", model.facebook
     - if model.respond_to?(:twitter) && model.twitter.present?
       %li.twitter= twitter_follow model.twitter
-  - elsif defined?(type) && type == "share"
+  - elsif type == "share"
     %li.facebook_like= facebook_like
     %li.twitter= twitter_share
 

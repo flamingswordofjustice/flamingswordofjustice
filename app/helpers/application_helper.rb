@@ -25,7 +25,11 @@ module ApplicationHelper
     HTML
   end
 
-  def facebook_like(url_to_like=nil)
+  def facebook_like(url_to_like="flamingswordofjustice")
+    unless url_to_like =~ /http(s?):/
+      url_to_like = "https://www.facebook.com/#{url_to_like}"
+    end
+
     raw <<-HTML
       <div class="fb-like" data-href="#{url_to_like}" data-send="false" data-width="120" data-layout="button_count" data-show-faces="false"></div>
     HTML
