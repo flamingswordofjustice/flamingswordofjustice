@@ -10,6 +10,7 @@ jQuery ->
       play: () ->
         $(this).closest(".play-controls").addClass("playing")
 
+      preload: "none"
       swfPath: ""
       supplied: "mp3"
       cssSelectorAncestor: "#" + uniqueId
