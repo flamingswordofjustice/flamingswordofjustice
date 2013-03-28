@@ -1,4 +1,9 @@
 class RedirectsController < ApplicationController
+  def index
+    logger.info "No path given; redirecting to /"
+    redirect_to root_path
+  end
+
   def show
     redirect = Redirect.where(path: params[:id]).first
 

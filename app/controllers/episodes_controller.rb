@@ -4,6 +4,11 @@ class EpisodesController < ApplicationController
     @episode = Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
   end
 
+  def latest
+    @episode = Episode.visible.first
+    redirect_to episode_path(@episode)
+  end
+
   def counted
     @groups = Episode.counted_by(params[:category])
     @category = params[:category].titleize

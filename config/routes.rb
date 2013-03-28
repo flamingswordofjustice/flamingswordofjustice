@@ -11,10 +11,11 @@ Fsj::Application.routes.draw do
     collection do
       get 'by/:category' => 'episodes#counted', as: :counted
       get 'by/:category/:id' => 'episodes#index', as: :categorized
+      get 'latest'
     end
   end
 
-  resources :redirects,     only: [:show]
+  resources :redirects,     only: [:show, :index]
   resources :posts,         only: [:show, :index]
   resources :people,        only: [:show, :index]
   resources :organizations, only: [:show, :index]
