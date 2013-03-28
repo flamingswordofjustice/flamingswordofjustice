@@ -21,16 +21,25 @@ ActiveAdmin.register Episode do
   form html: { multipart: true } do |f|
     f.inputs "Episode Details" do
       f.input :title, label: "Name"
-      f.input :headline
       f.input :download_url
       f.input :description, as: :html_editor
+      f.input :show_notes, as: :html_editor
       f.input :state, as: :select, collection: f.object.possible_states, selected: f.object.state || f.object.default_state
       f.input :published_at, as: :date_select
+      f.input :image, as: :image_upload, preview: :thumb
+      f.input :image_caption
+    end
+
+    f.inputs "Social and Sharing" do
+      f.input :headline, label: "Catchy headline"
+      f.input :social_description, label: "Pithy description", input_html: { rows: 5 }
+    end
+
+    f.inputs "Topics and Guests" do
       f.input :topics, hint: link_to("Add new topic", new_admin_topic_path, target: "_new")
       f.input :guests, hint: link_to("Add new guest", new_admin_person_path, target: "_new")
-      hint = f.object.image.present? ? image_tag(f.object.image.thumb.url) : nil
-      f.input :image, as: :file, hint: hint
     end
+
     f.actions
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328174348) do
+ActiveRecord::Schema.define(:version => 20130328190620) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20130328174348) do
     t.text     "description"
     t.boolean  "published"
     t.datetime "published_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "slug"
     t.string   "image"
     t.string   "number"
@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(:version => 20130328174348) do
     t.text     "notes"
     t.string   "headline"
     t.string   "state"
+    t.text     "social_description"
+    t.text     "show_notes"
+    t.string   "image_caption"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true

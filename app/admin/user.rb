@@ -14,7 +14,7 @@ ActiveAdmin.register User do
     f.inputs "User Details" do
       f.input :email
       f.input :name
-      f.input :image, as: :file
+      f.input :image, as: :image_upload, preview: :thumb
     end
     f.actions
   end

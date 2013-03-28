@@ -6,8 +6,7 @@ ActiveAdmin.register Topic do
   form html: { multipart: true } do |f|
     f.inputs "Topic Details" do
       f.input :name
-      hint = f.object.image.present? ? image_tag(f.object.image.logo.url) : nil
-      f.input :image, as: :file, hint: hint
+      f.input :image, as: :image_upload, preview: :logo
       f.input :description, as: :html_editor
     end
     f.actions
