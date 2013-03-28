@@ -8,7 +8,7 @@ class RedirectsController < ApplicationController
     redirect = Redirect.where(path: params[:id]).first
 
     if redirect.present?
-      redirect.increment 'hits'
+      redirect.increment('hits').save
       Fsj.statsd.increment "redirects./#{params[:id]}"
 
       destination = redirect.destination
