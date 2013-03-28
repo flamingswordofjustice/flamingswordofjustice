@@ -5,8 +5,9 @@ ActiveSupport::Notifications.subscribe /process_action.action_controller/ do |*a
   format = event.payload[:format] || "all"
   format = "all" if format == "*/*"
   status = event.payload[:status]
-  key = "#{controller}.#{action}.#{format}.#{ENV["INSTRUMENTATION_HOSTNAME"]}"
-  ActiveSupport::Notifications.instrument :performance, :action => :timing, :measurement => "#{key}.total_duration", :value => event.duration
+  key = "#{controller}.#{action}.#{format}"
+
+  ActiveSupport::Notifications.instrument :performance, :action => :timing, :measurement => "#{key}.total_duration", :value => event.duration.to_i
   ActiveSupport::Notifications.instrument :performance, :action => :timing, :measurement => "#{key}.db_time", :value => event.payload[:db_runtime]
   ActiveSupport::Notifications.instrument :performance, :action => :timing, :measurement => "#{key}.view_time", :value => event.payload[:view_runtime]
   ActiveSupport::Notifications.instrument :performance, :measurement => "#{key}.status.#{status}"
