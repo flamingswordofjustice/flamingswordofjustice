@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
     @episodes = Episode.visible.limit(11).all
     @latest = @episodes.shift
-    @guests = Appearance.order("created_at DESC").limit(3).all.map(&:guest).uniq
+    @guests = Appearance.order("created_at DESC").limit(10).all.map(&:guest).uniq
 
     @posts = Post.order(:created_at).limit(10).all
 
