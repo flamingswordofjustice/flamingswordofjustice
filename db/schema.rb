@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130313184211) do
+ActiveRecord::Schema.define(:version => 20130328174348) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -117,6 +117,14 @@ ActiveRecord::Schema.define(:version => 20130313184211) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "redirects", :force => true do |t|
+    t.string  "path",                       :null => false
+    t.string  "destination",                :null => false
+    t.integer "hits",        :default => 0
+  end
+
+  add_index "redirects", ["path"], :name => "index_redirects_on_path", :unique => true
 
   create_table "subscribers", :force => true do |t|
     t.string   "email"

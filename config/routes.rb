@@ -14,6 +14,7 @@ Fsj::Application.routes.draw do
     end
   end
 
+  resources :redirects,     only: [:show]
   resources :posts,         only: [:show, :index]
   resources :people,        only: [:show, :index]
   resources :organizations, only: [:show, :index]
