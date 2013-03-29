@@ -1,4 +1,5 @@
 ActiveAdmin.register NavigationLink do
+  actions :all, except: [:show]
   config.filters = false
   menu label: "Navbar"
 

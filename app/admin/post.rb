@@ -11,6 +11,11 @@ ActiveAdmin.register Post do
     render partial: 'admin/shared/iframe', locals: { src: post_url(post) }
   end
 
+  action_item only: [:edit, :show] do
+    name = resource.class.model_name
+    link_to "View Live #{active_admin_config.resource_label}", send("#{name.singular}_path", resource), target: "_new"
+  end
+
   form do |f|
     f.inputs "Show Details" do
       f.input :title
