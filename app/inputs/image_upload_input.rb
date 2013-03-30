@@ -3,13 +3,11 @@ class ImageUploadInput < Formtastic::Inputs::FileInput
   include ActionView::Helpers::AssetTagHelper
 
   def to_html
-    # raise self.instance_variables.inspect
-    # raise self.template.inspect
     preview_type = self.options[:preview] || :thumb
     object = builder.object
 
-    preview_image = if object.image.present?
-      template.image_tag(object.image.send(preview_type).url)
+    preview_image = if object.send(method).present?
+      template.image_tag(object.send(method).send(preview_type).url)
     else nil end
 
     input_wrapping do
