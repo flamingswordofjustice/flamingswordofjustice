@@ -2,7 +2,6 @@
 
 %html
   %head
-    %title The Flaming Sword of Justice
     %link(href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|Source+Sans+Pro:300' rel='stylesheet' type='text/css')
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
@@ -28,7 +27,16 @@
     %footer#footer
       %div.container
         %div.row
-          %div.span12
+          %div.span2
+            %a{href: root_path}
+              = image_tag 'sword_light.png'
+          %div.span3
+            %a{href: root_path}
+              %h4 The Flaming Sword of Justice
+            %p{style: "font-size: 12px; line-height: 16px"}= t(:description)
+          %div.span7
             = render 'shared/nav_links'
+        %div.row
+          %div.span12
             %div.brand
               = render 'shared/powered_by'

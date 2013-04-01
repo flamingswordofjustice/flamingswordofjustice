@@ -101,12 +101,18 @@ module ApplicationHelper
     render partial: 'shared/social_icons', locals: { model: model }.merge(opts)
   end
 
-  def open_graph_tags(attrs={})
+  def open_graph_and_meta_tags(attrs={})
     attrs[:image] ||= image_path("sword.png")
     attrs[:type]  ||= "website"
     attrs[:url]   ||= request.original_url
     attrs[:admin] ||= facebook_admin_id
-    attrs[:description] = strip_tags(attrs[:description] || "")
+    attrs[:description] = strip_tags(attrs[:description] || t(:description))
+
+    if attrs[:title].blank?
+      attrs[:title] = attrs[:page_title] = t(:tag)
+    else
+      attrs[:page_title] = [ t(:tag), ( attrs[:page_title] || attrs[:title] ) ].compact.join(" - ")
+    end
 
     content_for :head do
       render partial: 'shared/open_graph', locals: attrs

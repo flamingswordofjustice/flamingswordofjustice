@@ -1,7 +1,8 @@
-= open_graph_tags type: "article",
-                  title: @episode.headline || @episode.title,
-                  description: @episode.social_description || @episode.description,
-                  image: @episode.image.url
+= open_graph_and_meta_tags type: "article",
+                           title: @episode.headline || @episode.title,
+                           page_title: @episode.title,
+                           description: @episode.social_description || @episode.description,
+                           image: @episode.image.url
 
 %div.row
   %div.span8
