@@ -141,8 +141,8 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
 
-  # config.register_javascript 'vendor/jquery.chosen.js'
-  # config.register_stylesheet 'vendor/chosen.css'
+  config.register_javascript 'vendor/jquery.chosen.js'
+  config.register_stylesheet 'vendor/chosen.css'
 
 
   # == CSV options
