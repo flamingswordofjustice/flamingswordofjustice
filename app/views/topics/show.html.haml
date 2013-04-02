@@ -1,15 +1,27 @@
 = open_graph_and_meta_tags title: @topic.name, description: @topic.description
 
 %div.row
+  %header.span12
+    = breadcrumbs :root, @topic
+    %h1= @topic.name
+
+= divider
+
+%div.row
   %div.span8
     %article.topic
-      %h1= @topic.name
       = raw @topic.description
 
-    - if @topic.assignables.any?
-      %section.appearances.clearfix
+  - unless @topic.image.blank?
+    %div.span4
+      %figure.thumbnail
+        = image_tag @topic.image.url
+
+- if @topic.assignables.any?
+  = divider
+
+  %div.row
+    %div.span8
+      %section.appearances
         %h3 Episodes and posts
         = render @topic.assignables
-
-  %div.span4
-    = image_tag @topic.image.url unless @topic.image.blank?

@@ -5,38 +5,69 @@
                            image: @episode.image.url
 
 %div.row
-  %div.span8
-    %article.episode{id: @episode.slug}
-      %header
-        %a{href: episode_path(@episode)}
-          %h1= @episode.title
+  %header.span12
+    %div.row
+      %span.span2
+        = image_tag 'logo.png'
+      %span.span10
+        = breadcrumbs :root, Episode, @episode
+        %h1= @episode.title
 
-        %div.muted.attribution
-          = t(:tag)
+        %p.muted.attribution
+          = @episode.headline.present? ? @episode.headline : t(:tag)
           |
           %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
 
-        - if @episode.topics.any?
-          %div.topics
-            Topics:
-            = comma_separated_list_of @episode.topics
+= divider
 
-        = social_icons_for @episode, type: "share"
-        %div.clearfix
-
+%div.row.episode-and-image
+  %div.span8
+    %article.episode{id: @episode.slug}
       %section.body
         = raw @episode.description
 
-      = render partial: 'episodes/play_controls', locals: { episode: @episode }
+      - if @episode.topics.any?
+        %section.topics
+          %strong Topics:
+          %p= comma_separated_list_of @episode.topics
 
-    - if @episode.guests.any?
-      %h3 Featuring
-      %div.guests
-        = render @episode.guests
+      - if @episode.guests.any?
+        %section.guests
+          %h3 Guests
+          %div
+            = render @episode.guests
 
+
+  - unless @episode.image.blank?
+    %div.span4
+      %figure.thumbnail
+        %img{src: image_path(@episode.image.url)}
+        - if @episode.image_caption.present?
+          %figcaption= @episode.image_caption
+
+%div.row.play-and-share
+  %div.span8
+    = render partial: 'episodes/play_controls', locals: { episode: @episode }
+  %div.span4
+    = share_this @episode
+
+= divider
+
+%div.row.other-episodes
+  %div.span12.border
+  %div.span6
+    - if @episode.prev.present?
+      %a.prev{href: episode_path(@episode.prev)}
+        %i.icon-chevron-left
+        = @episode.prev.title
+
+  %div.span6
+    - if @episode.next.present?
+      %a.next{href: episode_path(@episode.next)}
+        = @episode.next.title
+        %i.icon-chevron-right
+
+%div.row.comments
+  %div.span12
     %section.comments
       = livefyre_comments
-
-  %div.span4
-    = image_tag @episode.image.url unless @episode.image.blank?
-    = share_this @episode

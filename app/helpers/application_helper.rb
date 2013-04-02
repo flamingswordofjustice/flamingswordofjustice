@@ -142,4 +142,46 @@ module ApplicationHelper
 
     safe_join links, ", "
   end
+
+  def divider(columns=12)
+    render partial: 'shared/divider', locals: { cols: columns }
+  end
+
+  def breadcrumb_for(crumb)
+    if crumb.is_a?(Array)
+      crumb
+    elsif crumb == :root
+      ["Home", root_path]
+    elsif crumb.respond_to?(:model_name)
+      [crumb.model_name.pluralize, send(crumb.model_name.plural + "_path")]
+    elsif crumb.respond_to?(:name)
+      [crumb.name, send(crumb.class.model_name.singular + "_path", crumb)]
+    elsif crumb.respond_to?(:title)
+      [crumb.title, send(crumb.class.model_name.singular + "_path", crumb)]
+    else
+      raise "Can't construct breadcrumb from #{crumb}"
+    end
+  end
+
+  def breadcrumbs(*crumbs)
+    divider = content_tag :span, class: :divider do
+      content_tag(:i, "", class: "icon-double-angle-right")
+    end
+
+    content_tag :ul, class: "breadcrumb" do
+      crumbs.map.with_index do |crumb, i|
+        if i == crumbs.length - 1
+          content_tag :li, class: "active" do
+            title, url = breadcrumb_for(crumb)
+            title
+          end
+        else
+          content_tag :li do
+            title, url = breadcrumb_for(crumb)
+            link_to(title, url) + divider
+          end
+        end
+      end.join.html_safe
+    end
+  end
 end

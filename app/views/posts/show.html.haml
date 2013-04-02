@@ -3,28 +3,30 @@
                            description: @post.content
 
 %div.row
+  %header.span12
+    = breadcrumbs :root, @post
+    %h1= @post.title
+    %p.muted.attribution
+      = t(:tag)
+      |
+      %time(pubdate="pubdate")= @post.created_at.strftime("%m/%d/%Y")
+    = social_icons_for @post, type: "share"
+
+= divider
+
+%div.row
   %div.span8
     %article.episode{id: @post.slug}
-      %header
-        %a{href: post_path(@post)}
-          %h1= @post.title
-        %div.muted.attribution
-          = t(:tag)
-          |
-          %time(pubdate="pubdate")= @post.created_at.strftime("%m/%d/%Y")
-        - if @post.topics.any?
-          %div.topics
-            Topics:
-            = comma_separated_list_of @post.topics
-
-        = social_icons_for @post, type: "share"
-        %div.clearfix
-
       %section.body
         = raw @post.content
+      - if @post.topics.any?
+        %div.topics
+          Topics:
+          = comma_separated_list_of @post.topics
 
+= divider
+
+%div.row
+  %div.span8
     %section.comments
       = livefyre_comments
-
-  %div.span4
-    = share_this @post

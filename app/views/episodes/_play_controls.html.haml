@@ -1,5 +1,5 @@
 - unless episode.unpublished?
-  %div.play-controls
+  %div.play-controls{id: "play-#{episode.slug}"}
     %div{"data-mp3-uri" => episode.playable_url}
     %div.controls
       %a.jp-play

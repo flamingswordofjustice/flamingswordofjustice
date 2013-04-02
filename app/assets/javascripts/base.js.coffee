@@ -1,6 +1,6 @@
 jQuery ->
   $("[data-mp3-uri]").each () ->
-    uniqueId = $(this).closest(".episode").attr("id")
+    uniqueId = $(this).closest(".play-controls").attr("id")
     mp3Uri = $(this).data("mp3-uri")
 
     $(this).jPlayer

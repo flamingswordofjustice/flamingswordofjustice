@@ -3,23 +3,35 @@
                            description: @person.description
 
 %div.row
+  %header.span12
+    = breadcrumbs :root, @person
+    %h1= @person.name
+    - unless @person.title.blank?
+      %p.muted= @person.title
+    %section.social.clearfix
+      = social_icons_for @person
+
+= divider
+
+%div.row
   %div.span8
     %article.person
-      %h1= @person.name
-      - unless @person.title.blank?
-        %p.muted= @person.title
-      = raw @person.description
+      %p= raw @person.description
 
     - if @person.organization.present?
-      %section.organization.clearfix
-        %h3 Organization
+      %h3 Organization
+      %section.organization{style: "margin-top: 20px"}
         = render @person.organization
 
-    - if @person.appearances.any?
-      %section.appearances.clearfix
-        %a{name: "appearances"}
-        %h3 Episodes
-        = render @person.episodes
+  - unless @person.image.blank?
+    %div.span4
+      %figure.thumbnail
+        = image_tag @person.image.url
 
-  %div.span4
-    = image_tag @person.image.url unless @person.image.blank?
+= divider
+
+- if @person.appearances.any?
+  %div.row
+    %div.span8
+      %h3 Episodes
+      = render @person.episodes

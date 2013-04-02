@@ -62,6 +62,14 @@ class Episode < ActiveRecord::Base
     end
   end
 
+  def next
+    Episode.unscoped.visible.where("published_at > ?", self.published_at).order("published_at ASC").first
+  end
+
+  def prev
+    Episode.visible.where("published_at < ?", self.published_at).first
+  end
+
   class << self
     def counted_by(category)
       if respond_to?("counted_by_#{category}")

@@ -1,7 +1,12 @@
 = open_graph_and_meta_tags title: @page.title
 
 %div.row
-  %div.span8
+  %header.span12
+    = breadcrumbs :root, @page
     %h1= @page.title
 
+= divider
+
+%div.row
+  %span.span8
     = raw @page.content

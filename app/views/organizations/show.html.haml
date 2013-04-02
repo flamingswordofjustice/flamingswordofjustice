@@ -1,27 +1,42 @@
 = open_graph_and_meta_tags title: @organization.name, description: @organization.description, type: "company"
 
+
+%div.row
+  %header.span12
+    = breadcrumbs :root, @organization
+    %h1= @organization.name
+    - unless @organization.website.blank?
+      %a{href: @organization.website}
+        %p.muted
+          = @organization.website
+    %section.social.clearfix
+      = social_icons_for @organization
+
+
+= divider
+
 %div.row
   %div.span8
     %article.person
-      %h1= @organization.name
-      - if @organization.website.present?
-        %a{href: @organization.website}
-          %p.muted
-            = @organization.website
-
       = raw @organization.description
 
     - if @organization.people.any?
       %section.people.clearfix
         %h3 People
-        = render @organization.people
+        %div.people
+          = render @organization.people
 
+  - unless @organization.image.blank?
+    %div.span4
+      %figure.thumbnail
+        = image_tag @organization.image.url
+
+= divider
+%div.row
+  %spans.span8
     - if @organization.appearances.any?
       %section.appearances.clearfix
         %a{name: "appearances"}
         %h3 Episodes
-        = render @organization.episodes
-
-  %div.span4
-    = image_tag @organization.image.url
+        = render @organization.episodes.uniq
 

@@ -3,15 +3,15 @@
     %a{href: episode_path(episode)}
       %h1= episode.title
     %div.muted.attribution
-      = t(:tag)
+      = episode.headline.present? ? episode.headline : t(:tag)
       |
       %time(pubdate="pubdate")= episode.published_at.strftime("%m/%d/%Y")
-    - if episode.topics.any?
-      %div.topics
-        Topics:
-        = comma_separated_list_of episode.topics
 
     %section.body
+      - if episode.topics.any?
+        %small.topics
+          %strong Topics:
+          = comma_separated_list_of episode.topics
       %a.pull-left{href: episode_path(episode.slug)}
         = image_tag episode.image.url(:thumb), class: "media-object", style: "width: 100px"
       = raw episode.description + link_to("more", episode_path(episode.slug), class: "action")
