@@ -102,7 +102,7 @@ nav.navbar-inner {
   border-radius: 0;
 
   a.brand {
-    background: url(sword_flameless.png) 0 0 no-repeat;
+    background: image-url(sword_flameless.png) 0 0 no-repeat;
     background-color: $baseRed;
     background-size: 300px 60px;
     width: 300px;
@@ -187,7 +187,7 @@ form.navbar-search, form.search-form {
 
   .current-episode {
     padding: 30px 0;
-    background: #111 url("fsj_splash.png") top right no-repeat;
+    background: #111 image-url("fsj_splash.png") top right no-repeat;
     color: $veryLightGrey;
 
     .splash-logo {
