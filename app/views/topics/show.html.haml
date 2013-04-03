@@ -7,21 +7,24 @@
 
 = divider
 
-%div.row
-  %div.span8
-    %article.topic
-      = raw @topic.description
-
-  - unless @topic.image.blank?
-    %div.span4
-      %figure.thumbnail
-        = image_tag @topic.image.url
-
-- if @topic.assignables.any?
-  = divider
-
+- if @topic.description.present? && @topic.image.present?
   %div.row
     %div.span8
-      %section.appearances
-        %h3 Episodes and posts
+      %article.topic
+        = raw @topic.description
+
+    - unless @topic.image.blank?
+      %div.span4
+        %figure.thumbnail
+          = image_tag @topic.image.url
+
+  = divider
+
+%div.row
+  %div.span8
+    %section.appearances
+      %h3 Episodes and posts
+      - if @topic.assignables.any?
         = render @topic.assignables
+      - else
+        %p There are no episodes or posts for this topic.
