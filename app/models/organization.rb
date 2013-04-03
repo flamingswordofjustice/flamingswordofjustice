@@ -16,6 +16,8 @@ class Organization < ActiveRecord::Base
                         group("organizations.id").
                         having("sum(people.appearances_count) > 0")
 
+  default_scope { order("name ASC") }
+
   def groupable_by
     self.name.chars.first
   end

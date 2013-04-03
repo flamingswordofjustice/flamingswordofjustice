@@ -12,8 +12,9 @@ class Topic < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   friendly_id :name, use: :slugged
 
+  default_scope { order("name ASC") }
+
   scope :with_episodes, joins(:topic_assignments).
-                        order("name ASC").
                         group("topics.id").
                         where("topic_assignments.assignable_type = ?", Episode.name).
                         having("count(topic_assignments.id) > 0")

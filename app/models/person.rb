@@ -24,6 +24,8 @@ class Person < ActiveRecord::Base
 
   scope :with_episodes, where("appearances_count > 0").order("name ASC")
 
+  default_scope { order("name ASC") }
+
   def groupable_by
     self.name.chars.first
   end
