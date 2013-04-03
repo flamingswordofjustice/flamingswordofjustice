@@ -35,6 +35,11 @@ html, body {
   height: 100%;
 }
 
+body {
+  font-weight: 300;
+  line-height: 28px;
+}
+
 .container {
   padding-left: 30px;
 }
@@ -92,11 +97,6 @@ ul.social-icons {
     line-height: 18px;
     > a.btn { margin-top: -1px; }
   }
-}
-
-p {
-  font-weight: 300;
-  line-height: 28px;
 }
 
 nav.navbar-inner {
@@ -199,14 +199,13 @@ form.navbar-search, form.search-form {
     }
 
     article.episode {
-      font-size: 18px;
-      line-height: 24px;
-      .media-object { display: none; }
-      a.action { display: none; }
       padding: 20px 0 30px 0;
 
+      .media-object { display: none; }
+      a.action { display: none; }
+
       section.body {
-        text-shadow: 0 0 15px rgba(0,0,0, 0.4);
+        text-shadow: 1px 1px 3px rgba(0,0,0, 0.9);
       }
     }
 
