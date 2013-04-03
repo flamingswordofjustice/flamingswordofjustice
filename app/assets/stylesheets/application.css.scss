@@ -356,17 +356,19 @@ article.media-badge {
     display: inline-block;
     background-color: white;
     margin: 10px;
-    line-height: 100px;
     height: 100px;
     overflow: hidden;
     width: 100px;
     text-align: center;
     border: 1px solid #ddd;
+    line-height: 96px;
 
     &:hover { color: $lightGrey; }
 
     > i {
       font-size: 90px;
+      line-height: 100px;
+      width: 1.10em;
     }
 
     > img {
@@ -708,11 +710,49 @@ figure.thumbnail {
   }
 }
 
-#episodes {
-  ul.grouped {
-    > li { clear: both; > h3 { border-bottom: 1px solid $baseRed; } }
+#side-navbar {
+  width: 158px;
+
+  &.affix {
+    top: 20px;
   }
 
+  .nav {
+    li {
+      font-size: 24px;
+      line-height: 32px;
+      padding: 4px;
+
+      &.active a {
+        color: $baseRed;
+        background-color: $veryLightGrey;
+      }
+    }
+  }
+}
+
+ul.grouped {
+  $highlightColor: $veryLightGrey;
+
+  > li {
+    clear: both;
+    border: 1px solid $highlightColor;
+    margin-bottom: 20px;
+
+    > h3 {
+      background-color: $highlightColor;
+      padding-left: 20px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    > .items {
+      padding: 20px 20px 0 20px;
+    }
+  }
+}
+
+#episodes {
   .main-content {
     .episode-and-image {
       margin-bottom: 30px;

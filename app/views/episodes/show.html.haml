@@ -44,19 +44,18 @@
   %div.span4
     = share_this @episode
 
-- if @episode.guests.any?
-  %div.row.guests-and-orgs
-    %div.span8
-      %h3 Guests
-      %div
-        = render @episode.guests
-
 - unless @episode.show_notes.blank?
   %div.row.show-notes
     %div.span8
       %h3 Show Notes
       = raw @episode.show_notes
 
+- if @episode.guests.any?
+  %div.row.guests-and-orgs
+    %div.span8
+      %h3 Guests
+      %div
+        = render @episode.guests
 
 
 = divider

@@ -1,9 +1,8 @@
 = open_graph_and_meta_tags title: @organization.name, description: @organization.description, type: "company"
 
-
 %div.row
   %header.span12
-    = breadcrumbs :root, @organization
+    = breadcrumbs :root, Organization, @organization
     %h1= @organization.name
     - unless @organization.website.blank?
       %a{href: @organization.website}
@@ -11,7 +10,6 @@
           = @organization.website
     %section.social.clearfix
       = social_icons_for @organization
-
 
 = divider
 

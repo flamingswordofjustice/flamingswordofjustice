@@ -1,6 +1,9 @@
 %article.media-badge.person
   %a.avatar{href: topic_path(topic)}
-    = image_tag topic.image.thumb
+    - if topic.image.present?
+      = image_tag topic.image.thumb
+    - else
+      %i.icon-bullhorn
   %section.body
     %a{href: topic_path(topic)}
       %h4= topic.name

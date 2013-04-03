@@ -11,7 +11,7 @@
     %meta(name="bitly-verification" content="100f7700b68b")
     = yield :head
 
-  %body{id: controller.controller_name}
+  %body{id: controller.controller_name, data: { spy: "scroll", target: "#side-navbar" }}
     %div#wrap
       = facebook_script
       = render 'shared/header'

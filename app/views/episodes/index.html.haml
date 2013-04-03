@@ -1,1 +1,11 @@
-= render @episodes
+%div.row
+  %header.span12
+    = breadcrumbs :root, Episode
+    %h1 All Episodes
+    = render 'episodes/groups_nav'
+
+= divider
+
+%div.row
+  %div.span12
+    = render @episodes

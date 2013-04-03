@@ -2,6 +2,7 @@ class Episode < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include Tire::Model::Search
   extend FriendlyId
+  extend Groupable
 
   mapping do
     indexes :id,           :index    => :not_analyzed
@@ -70,37 +71,33 @@ class Episode < ActiveRecord::Base
     Episode.visible.where("published_at < ?", self.published_at).first
   end
 
+  def groupable_by
+    self.published_at.strftime("%B %Y")
+  end
+
   class << self
-    def counted_by(category)
-      if respond_to?("counted_by_#{category}")
-        send "counted_by_#{category}"
+    def grouped_by(category)
+      if respond_to?("grouped_by_#{category}")
+        send "grouped_by_#{category}"
       else
         raise ActiveRecord::RecordNotFound
       end
     end
 
-    def counted_by_date
-      Episode.visible.order("published_at DESC").group_by do |episode|
-        episode.published_at.strftime("%B %Y")
-      end
+    def grouped_by_date
+      Episode.visible.grouped
     end
 
-    def counted_by_guest
-      Person.where("appearances_count > 0").order("name ASC").group_by do |person|
-        person.name.chars.first
-      end
+    def grouped_by_guest
+      Person.with_episodes.grouped
     end
 
-    def counted_by_organization
-      Organization.joins(:people).order("name ASC").group("organizations.id").having("sum(people.appearances_count) > 0").group_by do |organization|
-        organization.name.chars.first
-      end
+    def grouped_by_organization
+      Organization.with_episodes.grouped
     end
 
-    def counted_by_topic
-      Topic.joins(:topic_assignments).order("name ASC").group("topics.id").where("topic_assignments.assignable_type = ?", Episode.name).having("count(topic_assignments.id) > 0").group_by do |topic|
-        topic.name.chars.first
-      end
+    def grouped_by_topic
+      Topic.with_episodes.grouped
     end
   end
 end

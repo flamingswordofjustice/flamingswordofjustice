@@ -1,0 +1,23 @@
+%div.row
+  %header.span12
+    = crumbs
+    %h1= title
+    = render 'episodes/groups_nav' if defined?(@category)
+
+= divider
+
+%div.row
+  %div.span2
+    %div#side-navbar(data-spy="affix" data-offset-top="240")
+      %ul.nav
+        - groups.each.with_index do |(name, _), idx|
+          %li{class: idx == 0 ? "active" : ""}
+            %a{href: "##{name.parameterize}"}= name
+
+  %div.span10
+    %ul.unstyled.grouped
+      - groups.each do |name, items|
+        %li{id: name.parameterize, data: { "offset-top" => "20" }}
+          %h3= name
+          %div.items.clearfix
+            = render items

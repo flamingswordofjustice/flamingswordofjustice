@@ -9,7 +9,7 @@ Fsj::Application.routes.draw do
 
   resources :episodes do
     collection do
-      get 'by/:category' => 'episodes#counted', as: :counted
+      get 'by/:category' => 'episodes#grouped', as: :grouped
       get 'by/:category/:id' => 'episodes#index', as: :categorized
       get 'latest'
     end

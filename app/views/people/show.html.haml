@@ -4,7 +4,7 @@
 
 %div.row
   %header.span12
-    = breadcrumbs :root, @person
+    = breadcrumbs :root, Person, @person
     %h1= @person.name
     - unless @person.title.blank?
       %p.muted= @person.title

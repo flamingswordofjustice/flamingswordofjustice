@@ -4,4 +4,8 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
   end
 
+  def index
+    @organizations = Organization.grouped
+  end
+
 end

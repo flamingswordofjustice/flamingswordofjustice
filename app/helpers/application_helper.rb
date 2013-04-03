@@ -153,11 +153,13 @@ module ApplicationHelper
     elsif crumb == :root
       ["Home", root_path]
     elsif crumb.respond_to?(:model_name)
-      [crumb.model_name.pluralize, send(crumb.model_name.plural + "_path")]
+      ["All #{crumb.model_name.pluralize}", send(crumb.model_name.plural + "_path")]
     elsif crumb.respond_to?(:name)
       [crumb.name, send(crumb.class.model_name.singular + "_path", crumb)]
     elsif crumb.respond_to?(:title)
       [crumb.title, send(crumb.class.model_name.singular + "_path", crumb)]
+    elsif crumb.to_s =~ /by_(\w+)/
+      ["By #{$1.titleize}", grouped_episodes_path($1)]
     else
       raise "Can't construct breadcrumb from #{crumb}"
     end
@@ -183,5 +185,9 @@ module ApplicationHelper
         end
       end.join.html_safe
     end
+  end
+
+  def grouped(title, groups, crumbs)
+    render partial: "shared/grouped", locals: { title: title, groups: groups, crumbs: breadcrumbs(*crumbs) }
   end
 end

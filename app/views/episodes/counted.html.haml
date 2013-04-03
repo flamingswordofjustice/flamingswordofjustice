@@ -1,9 +1,0 @@
-%div.row
-  %div.span12
-    %h1 Episodes by #{@category}
-
-    %ul.unstyled.grouped
-      - @groups.each do |name, items|
-        %li
-          %h3= name
-          = render items

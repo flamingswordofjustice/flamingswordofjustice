@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
   extend FriendlyId
+  extend Groupable
 
   mapping do
     indexes :id,           :index    => :not_analyzed
@@ -20,4 +21,10 @@ class Person < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   friendly_id :name, use: :slugged
+
+  scope :with_episodes, where("appearances_count > 0").order("name ASC")
+
+  def groupable_by
+    self.name.chars.first
+  end
 end
