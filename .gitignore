@@ -22,3 +22,5 @@
 
 # Env file
 /.env
+
+.DS_Store
