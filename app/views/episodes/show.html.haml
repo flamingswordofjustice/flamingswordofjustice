@@ -54,10 +54,10 @@
   %div.row.guests-and-orgs
     %div.span8
       %h3 Guests
-      %div
-        - @episode.guests.each do |guest|
+      - @episode.guests.each do |guest|
+        %div
           = render guest
-          = render guest.organization
+          = render guest.organization if guest.organization.present?
 
 
 = divider
