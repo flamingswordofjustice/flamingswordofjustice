@@ -5,7 +5,6 @@ class Organization < ActiveRecord::Base
 
   has_many :people
   has_many :appearances, through: :people
-  has_many :episodes,    through: :appearances
 
   mount_uploader :image, ImageUploader
 
@@ -20,5 +19,13 @@ class Organization < ActiveRecord::Base
 
   def groupable_by
     self.name.chars.first
+  end
+
+  def episodes
+    appearances.map(&:episode).uniq
+  end
+
+  def episodes_count
+    episodes.count
   end
 end

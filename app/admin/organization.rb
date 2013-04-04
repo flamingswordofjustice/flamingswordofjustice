@@ -3,7 +3,7 @@ ActiveAdmin.register Organization do
 
   index do
     column :name
-    column :people
+    column(:people) { |o| o.people.map {|p| link_to p.name, edit_admin_person_path(p.slug) }.join(', ').html_safe }
     column :created_at
     default_actions
   end
@@ -23,9 +23,10 @@ ActiveAdmin.register Organization do
       f.input :website, hint: "Full URL, including http://"
       f.input :twitter, hint: "Just the username - no http, no @ symbol"
       f.input :facebook, hint: "Just the username - no http"
-      f.input :people
-      f.input :image, as: :image_upload, preview: :logo
+      f.input :short_description, hint: "For use in organization boxes"
       f.input :description, as: :html_editor
+      f.input :image, as: :image_upload, preview: :logo
+      f.input :people
     end
     f.actions
   end
