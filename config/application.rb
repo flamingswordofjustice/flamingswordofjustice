@@ -65,6 +65,6 @@ module Fsj
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.precompile += ["vendor/chosen.css", "vendor/jquery.chosen.js"]
+    config.assets.precompile += ["vendor/chosen.css", "vendor/jquery.chosen.js", "vendor/chosen-sprite.png"]
   end
 end
