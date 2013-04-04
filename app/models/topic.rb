@@ -5,10 +5,6 @@ class Topic < ActiveRecord::Base
   has_many :topic_assignments
   validates :name, uniqueness: true
 
-  def assignables
-    topic_assignments.includes(:assignable).map &:assignable
-  end
-
   mount_uploader :image, ImageUploader
   friendly_id :name, use: :slugged
 
@@ -19,7 +15,15 @@ class Topic < ActiveRecord::Base
                         where("topic_assignments.assignable_type = ?", Episode.name).
                         having("count(topic_assignments.id) > 0")
 
+  def assignables
+    topic_assignments.includes(:assignable).map &:assignable
+  end
+
   def groupable_by
     self.name.chars.first
+  end
+
+  def episodes_count
+    topic_assignments.where("assignable_type = ?", Episode.name).count
   end
 end

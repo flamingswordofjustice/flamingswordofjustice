@@ -9,3 +9,8 @@
       %h4= topic.name
     %small
       = raw truncate_html(topic.description)
+    - if topic.episodes_count > 0
+      %small{style: "display: block"}
+        %em
+          = link_to pluralize(topic.episodes_count, "episode"), topic_path(topic, anchor: "appearances")
+
