@@ -32,9 +32,9 @@
 = divider
 %div.row
   %spans.span8
-    - if @organization.appearances.any?
+    - if @organization.episodes.any?
       %section.appearances.clearfix
         %a{name: "appearances"}
         %h3 Episodes
-        = render @organization.episodes.uniq
+        = render @organization.episodes
 

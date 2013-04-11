@@ -22,7 +22,7 @@ class Organization < ActiveRecord::Base
   end
 
   def episodes
-    appearances.map(&:episode).uniq
+    appearances.map(&:episode).compact.uniq
   end
 
   def episodes_count
