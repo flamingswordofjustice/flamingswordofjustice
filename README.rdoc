@@ -5,7 +5,7 @@ improve the world. Join host Ben Wikler every day at 3PM at We Act Radio 1480AM 
 online at http://www.flamingswordofjustice.com, and via podcast.
 
 This is the codebase we use to host the website. It's a fairly straightforward Rails app
-hosted on Heroku and using Postgres for hosting. Currently the app is pretty narrowly
+hosted on Heroku and Postgres. Currently the app is pretty narrowly
 tailored to our needs, but we'd like to expand and generalize it so that others can use
 it as a free and open source podcast hosting solution.
 
