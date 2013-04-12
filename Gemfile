@@ -16,6 +16,7 @@ gem 'activeadmin'
 gem 'active_admin_editor'
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'devise'
+gem 'rack-ssl-enforcer'
 
 # Image Upload
 

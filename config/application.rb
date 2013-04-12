@@ -66,5 +66,8 @@ module Fsj
     config.assets.version = '1.0'
 
     config.assets.precompile += ["vendor/chosen.css", "vendor/jquery.chosen.js", "vendor/chosen-sprite.png"]
+
+    # Enforce SSL in admin.
+    config.middleware.use Rack::SslEnforcer, :only => %r{^/admin} if Rails.env.production?
   end
 end
