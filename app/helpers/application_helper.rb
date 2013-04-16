@@ -4,6 +4,10 @@ module ApplicationHelper
     link_to title, path || "#", opts
   end
 
+  def syndication_link_tag
+    content_tag :link, "", rel: "alternate", type: "application/rss+xml", title: t(:tag), href: "http://example.com/rss"
+  end
+
   def twitter_follow(account="fsjradio", opts={})
     opts[:count] = false if opts[:count].nil?
     raw <<-HTML
