@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require zclip
+//= require util
 //= require_tree .

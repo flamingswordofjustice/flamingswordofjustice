@@ -210,4 +210,8 @@ module ApplicationHelper
   def grouped(title, groups, crumbs)
     render partial: "shared/grouped", locals: { title: title, groups: groups, crumbs: breadcrumbs(*crumbs) }
   end
+
+  def comments_enabled?
+    !Rails.env.development?
+  end
 end

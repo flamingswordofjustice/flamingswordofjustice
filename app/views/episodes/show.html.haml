@@ -4,25 +4,25 @@
                            description: @episode.social_description || @episode.description,
                            image: @episode.image.url
 
-%div.row
-  %header.span12
-    %div.row
-      %span.span2
-        = image_tag 'logo.png'
-      %span.span10
-        = breadcrumbs :root, Episode, @episode
-        %h1= @episode.title
+%article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds }}
+  %div.row
+    %header.span12
+      %div.row
+        %span.span2
+          = image_tag 'logo.png'
+        %span.span10
+          = breadcrumbs :root, Episode, @episode
+          %h1= @episode.title
 
-        %p.muted.attribution
-          = @episode.headline.present? ? @episode.headline : t(:tag)
-          |
-          %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
+          %p.muted.attribution
+            = @episode.headline.present? ? @episode.headline : t(:tag)
+            |
+            %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
 
-= divider
+  = divider
 
-%div.row.episode-and-image
-  %div.span8
-    %article.episode{id: @episode.slug}
+  %div.row.episode-and-image
+    %div.span8
       %section.body
         = raw @episode.description
 
@@ -31,52 +31,53 @@
           %strong Topics:
           %p= comma_separated_list_of @episode.topics
 
-  - unless @episode.image.blank?
+    - unless @episode.image.blank?
+      %div.span4
+        %figure.thumbnail
+          %img{src: image_path(@episode.image.url)}
+          - if @episode.image_caption.present?
+            %figcaption= @episode.image_caption
+
+  %div.row.play-and-share
+    %div.span8
+      = render partial: 'episodes/play_controls', locals: { episode: @episode }
     %div.span4
-      %figure.thumbnail
-        %img{src: image_path(@episode.image.url)}
-        - if @episode.image_caption.present?
-          %figcaption= @episode.image_caption
+      = share_this @episode
 
-%div.row.play-and-share
-  %div.span8
-    = render partial: 'episodes/play_controls', locals: { episode: @episode }
-  %div.span4
-    = share_this @episode
+  - unless @episode.show_notes.blank?
+    %div.row
+      %div.span8
+        %h3 Show Notes
+        %div.show-notes= raw @episode.show_notes
 
-- unless @episode.show_notes.blank?
-  %div.row.show-notes
-    %div.span8
-      %h3 Show Notes
-      = raw @episode.show_notes
-
-- if @episode.guests.any?
-  %div.row.guests-and-orgs
-    %div.span8
-      %h3 Guests
-      - @episode.guests.each do |guest|
-        %div
-          = render guest
-          = render guest.organization if guest.organization.present?
+  - if @episode.guests.any?
+    %div.row.guests-and-orgs
+      %div.span8
+        %h3 Guests
+        - @episode.guests.each do |guest|
+          %div
+            = render guest
+            = render guest.organization if guest.organization.present?
 
 
-= divider
+  = divider
 
-%div.row.other-episodes
-  %div.span12.border
-  %div.span6
-    - if @episode.prev.present?
-      %a.prev{href: episode_path(@episode.prev)}
-        %i.icon-chevron-left
-        = @episode.prev.title
+  %div.row.other-episodes
+    %div.span12.border
+    %div.span6
+      - if @episode.prev.present?
+        %a.prev{href: episode_path(@episode.prev)}
+          %i.icon-chevron-left
+          = @episode.prev.title
 
-  %div.span6
-    - if @episode.next.present?
-      %a.next{href: episode_path(@episode.next)}
-        = @episode.next.title
-        %i.icon-chevron-right
+    %div.span6
+      - if @episode.next.present?
+        %a.next{href: episode_path(@episode.next)}
+          = @episode.next.title
+          %i.icon-chevron-right
 
-%div.row.comments
-  %div.span12
-    %section.comments
-      = livefyre_comments
+  - if comments_enabled?
+    %div.row.comments
+      %div.span12
+        %section.comments
+          = livefyre_comments
