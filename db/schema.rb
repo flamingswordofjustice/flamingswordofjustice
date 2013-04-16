@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404155939) do
+ActiveRecord::Schema.define(:version => 20130416211121) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20130404155939) do
     t.string  "path",                       :null => false
     t.string  "destination",                :null => false
     t.integer "hits",        :default => 0
+    t.text    "notes"
   end
 
   add_index "redirects", ["path"], :name => "index_redirects_on_path", :unique => true
