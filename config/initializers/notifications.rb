@@ -17,7 +17,7 @@ ActiveSupport::Notifications.subscribe /performance/ do |name, start, finish, id
   action      = payload[:action] || :increment
   measurement = payload[:measurement]
   value       = payload[:value] || 1
-  key_name    = "#{name.downcase}.#{measurement}"
+  key_name    = "#{name}.#{measurement}"
 
   Fsj.statsd.__send__ action.to_s, key_name, value
 end

@@ -1,25 +1,14 @@
 jQuery ->
-
   $("[data-mp3-uri]").each () ->
-    controls = $(this).closest(".play-controls")
-    episodeId = controls.closest("article.episode").attr("id")
-    uniqueId = controls.attr("id")
+    uniqueId = $(this).closest(".play-controls").attr("id")
     mp3Uri = $(this).data("mp3-uri")
-    socket = null
 
     $(this).jPlayer
       ready: () ->
         $(this).jPlayer "setMedia", mp3: mp3Uri
 
       play: () ->
-        console.log 'play'
         $(this).closest(".play-controls").addClass("playing")
-        socket = io.connect("http://localhost:5000", reconnect: true)
-        socket.emit 'play', id: episodeId
-
-      pause: () ->
-        console.log 'pause'
-        socket.emit 'pause'
 
       preload: "none"
       swfPath: ""
