@@ -14,7 +14,7 @@ class RedirectsController < ApplicationController
       destination = redirect.destination
       destination += "?" + request.query_string unless request.query_string.blank?
 
-      redirect_to destination
+      redirect_to destination, status: 307
     else
       logger.error "Couldn't find a redirect for #{params[:id]}"
       redirect_to root_path
