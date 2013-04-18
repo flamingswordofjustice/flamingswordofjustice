@@ -4,7 +4,7 @@
                            description: @episode.social_description || @episode.description,
                            image: @episode.image.url
 
-%article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds }}
+%article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
   %div.row
     %header.span12
       %div.row

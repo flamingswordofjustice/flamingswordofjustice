@@ -1,7 +1,14 @@
 jQuery ->
   $("[data-mp3-uri]").each () ->
-    uniqueId = $(this).closest(".play-controls").attr("id")
-    mp3Uri = $(this).data("mp3-uri")
+    controls     = $(this).closest(".play-controls")
+    article      = controls.closest("article.episode")
+    episodeId    = article.attr("id")
+    episodeState = article.data("state")
+    controlsId   = controls.attr("id")
+    mp3Uri       = $(this).data("mp3-uri")
+    trackingUri  = $(this).data("tracking-uri")
+    shouldTrack  = trackingUri? and trackingUri isnt ""
+    socket       = null
 
     $(this).jPlayer
       ready: () ->
@@ -10,10 +17,20 @@ jQuery ->
       play: () ->
         $(this).closest(".play-controls").addClass("playing")
 
+        if shouldTrack
+          console.log "tracking play"
+          socket = io.connect(trackingUri, reconnect: true)
+          socket.emit 'play', id: episodeId, state: episodeState
+
+      pause: () ->
+        if shouldTrack and socket?
+          console.log "tracking pause"
+          socket.emit 'pause'
+
       preload: "none"
       swfPath: ""
       supplied: "mp3"
-      cssSelectorAncestor: "#" + uniqueId
+      cssSelectorAncestor: "#" + controlsId
 
   $.jPlayer.timeFormat.showHour = true
 

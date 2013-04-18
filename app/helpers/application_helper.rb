@@ -116,6 +116,10 @@ module ApplicationHelper
     ENV['PODCAST_URI']
   end
 
+  def listener_tracking_uri
+    ENV["LISTENER_TRACKING_URI"]
+  end
+
   def social_icons_for(model, opts={})
     opts[:type] ||= "follow"
     render partial: 'shared/social_icons', locals: { model: model }.merge(opts)
