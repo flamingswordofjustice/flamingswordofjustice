@@ -9,7 +9,7 @@ class RedirectsController < ApplicationController
 
     if redirect.present?
       redirect.increment('hits').save
-      Fsj.statsd.increment "redirects./#{params[:id]}"
+      Fsj.statsd.increment "redirects.#{params[:id]}"
 
       destination = redirect.destination
       destination += "?" + request.query_string unless request.query_string.blank?
