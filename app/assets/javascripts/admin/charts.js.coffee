@@ -2,15 +2,12 @@ $ ->
   updater = (label, target, from) ->
     () ->
       $.Deferred (def) ->
-        request = $.ajax "http://stats.fsj.fm/render",
+        request = $.ajax "/stats",
           method: "get"
-          dataType: "jsonp"
-          jsonp: "jsonp"
           timeout: 1000
           data:
             target: target
             from: from
-            format: "json"
 
         request.done (response) ->
           if response.length is 0
@@ -39,12 +36,6 @@ $ ->
 
     util.interval 10000, () ->
       updateAll(updaters).done (data...) ->
-        console.log "updating"
-        # plot.setData slide.points()
-        # plot.resize()
-        # plot.setupGrid()
-        # plot.draw()
-
         plot.setData data
         plot.setupGrid()
         plot.draw()

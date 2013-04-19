@@ -60,6 +60,7 @@ gem 'nokogiri'
 # Stats
 
 gem "statsd-ruby", require: "statsd"
+gem "rest-client"
 
 group :development do
   gem 'foreman'
