@@ -2,18 +2,18 @@
 
 %html
   %head
-    %link(href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300|Source+Sans+Pro:300' rel='stylesheet' type='text/css')
+    %link(href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300|Source+Sans+Pro:300' rel='stylesheet' type='text/css')
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
     = syndication_link_tag
     = google_analytics_tracker
-    = internet_defense_league
     = csrf_meta_tags
     = favicon_link_tag "/favicon.ico?v=2"
     %meta(name="bitly-verification" content="100f7700b68b")
     = yield :head
 
   %body{id: controller.controller_name, data: { spy: "scroll", target: "#side-navbar" }}
+    = internet_defense_league
     %div#wrap
       = facebook_script
       = render 'shared/header'
