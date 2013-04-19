@@ -18,14 +18,14 @@ jQuery ->
         $(this).closest(".play-controls").addClass("playing")
 
         if shouldTrack
-          console.log "tracking play"
           socket = io.connect(trackingUri, reconnect: true)
           socket.emit 'play', id: episodeId, state: episodeState
 
       pause: () ->
-        if shouldTrack and socket?
-          console.log "tracking pause"
-          socket.emit 'pause'
+        socket.emit 'pause' if shouldTrack and socket?
+
+      ended: () ->
+        socket.emit 'pause' if shouldTrack and socket?
 
       preload: "none"
       swfPath: ""
