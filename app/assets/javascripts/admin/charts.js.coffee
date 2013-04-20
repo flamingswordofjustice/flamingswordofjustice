@@ -62,10 +62,15 @@ $ ->
   $(".sparkline").each () ->
     root    = $(this)
     target  = $(this).text()
-    getData = data.updater(target, "stats.redirects.#{target}", "-24h")
+    getData = data.updater(target, target, "-24h")
 
-    getData().done (data) ->
+    def = getData()
+
+    def.done (data) ->
       yValues = data.data.map (p) -> p[1]
       numVals = yValues.length
       root.sparkline yValues[(numVals - 180)..numVals], width: "200px"
+
+    def.fail (error) ->
+      root.text("").append $("<span class='error' />").text(error)
 

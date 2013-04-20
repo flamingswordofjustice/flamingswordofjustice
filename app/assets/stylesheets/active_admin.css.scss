@@ -29,6 +29,10 @@
 // .other_namespace    applies to a custom namespace named other (eg: /other)
 
 .active_admin {
+  .error {
+    color: red;
+  }
+
   .panel_contents {
     .chart {
       table {
@@ -37,10 +41,6 @@
         width: inherit;
 
         td.legendLabel { color: $text-color; }
-      }
-
-      .error {
-        color: red;
       }
     }
   }

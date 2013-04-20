@@ -7,7 +7,7 @@ ActiveAdmin.register Redirect do
     end
     column :hits
     column "2-hour activity" do |redirect|
-      content_tag(:span, redirect.path, class: "sparkline")
+      content_tag(:span, "stats.redirects.#{redirect.path}", class: "sparkline")
     end
     column :notes
     default_actions
