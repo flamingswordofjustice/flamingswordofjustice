@@ -1,5 +1,5 @@
-$ ->
-  updater = (label, target, from) ->
+data =
+  updater: (label, target, from) ->
     () ->
       $.Deferred (def) ->
         request = $.ajax "/stats",
@@ -16,11 +16,12 @@ $ ->
             datapoints = response[0].datapoints.map (p) -> [ p[1] * 1000, p[0] ]
             def.resolve data: datapoints, label: label
 
-  updateAll = (updaters) ->
+  updateAll: (updaters) ->
     $.when.apply(null, updaters.map(-> this()))
 
-  timeChart = (root, format, updaters) ->
-    def = updateAll(updaters)
+charts =
+  timeChart: (root, format, updaters) ->
+    def = data.updateAll(updaters)
 
     def.done (data...) ->
       placeholder = $("<div class='placeholder' />").css height: "300px"
@@ -41,7 +42,7 @@ $ ->
           shadowSize: 0
 
       util.interval 10000, () ->
-        updateAll(updaters).done (data...) ->
+        data.updateAll(updaters).done (data...) ->
           plot.setData data
           plot.setupGrid()
           plot.draw()
@@ -49,10 +50,22 @@ $ ->
     def.fail (error) ->
       $(root).append $("<span class='error' />").text(error)
 
+$ ->
   $(".chart").each () ->
     lines = $(this).find("ul")
 
     updaters = $(lines).find("li").map () ->
-      updater $(this).text(), $(this).data("target"), lines.data("from")
+      data.updater $(this).text(), $(this).data("target"), lines.data("from")
 
-    timeChart this, lines.data("format"), updaters
+    charts.timeChart this, lines.data("format"), updaters
+
+  $(".sparkline").each () ->
+    root    = $(this)
+    target  = $(this).text()
+    getData = data.updater(target, "stats.redirects.#{target}", "-24h")
+
+    getData().done (data) ->
+      yValues = data.data.map (p) -> p[1]
+      numVals = yValues.length
+      root.sparkline yValues[(numVals - 180)..numVals], width: "200px"
+

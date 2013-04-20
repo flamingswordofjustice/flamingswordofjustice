@@ -6,6 +6,9 @@ ActiveAdmin.register Redirect do
       link_to("http://fsj.fm/" + redirect.path, redirect.path, style: "") + " &#8594; ".html_safe + link_to(redirect.destination, redirect.destination)
     end
     column :hits
+    column "2-hour activity" do |redirect|
+      content_tag(:span, redirect.path, class: "sparkline")
+    end
     column :notes
     default_actions
   end
