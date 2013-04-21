@@ -1,4 +1,4 @@
-data =
+stats =
   updater: (label, target, from) ->
     () ->
       $.Deferred (def) ->
@@ -21,7 +21,7 @@ data =
 
 charts =
   timeChart: (root, format, updaters) ->
-    def = data.updateAll(updaters)
+    def = stats.updateAll(updaters)
 
     def.done (data...) ->
       placeholder = $("<div class='placeholder' />").css height: "300px"
@@ -42,7 +42,7 @@ charts =
           shadowSize: 0
 
       util.interval 10000, () ->
-        data.updateAll(updaters).done (data...) ->
+        stats.updateAll(updaters).done (data...) ->
           plot.setData data
           plot.setupGrid()
           plot.draw()
@@ -55,14 +55,14 @@ $ ->
     lines = $(this).find("ul")
 
     updaters = $(lines).find("li").map () ->
-      data.updater $(this).text(), $(this).data("target"), lines.data("from")
+      stats.updater $(this).text(), $(this).data("target"), lines.data("from")
 
     charts.timeChart this, lines.data("format"), updaters
 
   $(".sparkline").each () ->
     root    = $(this)
     target  = $(this).text()
-    getData = data.updater(target, target, "-24h")
+    getData = stats.updater(target, target, "-24h")
 
     def = getData()
 
