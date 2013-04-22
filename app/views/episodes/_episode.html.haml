@@ -1,4 +1,4 @@
-%article.media.episode{id: episode.slug}
+%article.media.episode{id: episode.slug, data: { uri: episode_path(@episode, format: :json), state: @episode.state }}
   %section.media-body
     %a{href: episode_path(episode)}
       %h1= episode.title
