@@ -7,3 +7,4 @@
 //= require util
 //= require admin/charts
 //= require admin/chosen
+//= require admin/limit

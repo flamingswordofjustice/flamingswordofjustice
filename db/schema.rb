@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416211121) do
+ActiveRecord::Schema.define(:version => 20130423194830) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20130416211121) do
     t.text     "social_description"
     t.text     "show_notes"
     t.string   "image_caption"
+    t.string   "twitter_text"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
