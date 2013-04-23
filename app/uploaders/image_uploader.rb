@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
-  # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
@@ -21,14 +20,22 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # We won't need bigger, and this seems to be what Instagram/FB display.
-  process :resize_to_fit => [612,612]
+  process resize_to_fit: [612,612]
 
   version :thumb do
-    process :resize_to_fill => [200,200]
+    process resize_to_fill: [200,200]
   end
 
   version :logo do
-    process :resize_to_limit => [200,200]
+    process resize_to_limit: [200,200]
+  end
+
+  version :bw do
+    process :grayscale
+  end
+
+  def grayscale
+    manipulate! { |img| img.colorspace "gray" }
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
