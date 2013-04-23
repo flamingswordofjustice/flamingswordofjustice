@@ -63,6 +63,10 @@ class Episode < ActiveRecord::Base
     end
   end
 
+  def visible?
+    [:published, :live].include?(self.state.to_sym)
+  end
+
   def next
     Episode.unscoped.visible.where("published_at > ?", self.published_at).order("published_at ASC").first
   end

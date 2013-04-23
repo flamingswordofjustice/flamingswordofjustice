@@ -1,6 +1,6 @@
 jQuery ->
   $("[data-mp3-uri]").each () ->
-    controls     = $(this).closest(".play-controls")
+    controls     = $(this).closest(".play-controls, .full-play-controls")
     article      = controls.closest("article.episode")
     episodeId    = article.attr("id")
     episodeState = article.data("state")
@@ -15,7 +15,7 @@ jQuery ->
         $(this).jPlayer "setMedia", mp3: mp3Uri
 
       play: () ->
-        $(this).closest(".play-controls").addClass("playing")
+        controls.addClass("playing")
 
         if shouldTrack
           socket = io.connect(trackingUri, reconnect: true)
@@ -59,4 +59,8 @@ jQuery ->
           util.timeout pollInterval, updateShowNotes
 
     updateShowNotes()
+
+  $(".apply-affix").each () ->
+    pos = $(this).position()
+    $(this).css(left: pos.left).affix offset: { top: pos.top - 20, left: pos.left }
 

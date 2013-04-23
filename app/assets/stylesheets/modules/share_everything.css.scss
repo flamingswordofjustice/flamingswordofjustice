@@ -1,0 +1,136 @@
+.subscribe-join-social {
+  > div {
+    margin-top: 20px;
+  }
+
+  &.affix {
+    top: 20px;
+  }
+
+  &.span4 {
+    div:nth-child(1) {
+      margin-top: 0;
+    }
+  }
+
+  .subscribe {
+    overflow: hidden;
+
+    a.itunes {
+      display: block;
+      height: 100px;
+      background: $baseRed image-url("white_circle.png") 130% 50% no-repeat;
+      color: white;
+      position: relative;
+      text-align: left;
+
+      @include transition(background-color linear $transitionDuration);
+      &:hover { background-color: darken($baseRed, 5%); }
+
+      i {
+        font-size: 95px;
+        line-height: 95px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 0;
+      }
+
+      span {
+        padding-top: 15px;
+        padding-left: 10px;
+        display: block;
+        font-family: $headingsFontFamily;
+        color: white;
+        font-size: 48px;
+        line-height: 38px;
+
+        em { display: block; font-size: 24px; text-decoration: none; }
+      }
+    }
+  }
+
+  .sign-up {
+    > section { text-align: left; }
+
+    form {
+      margin-bottom: 0;
+
+      input { @include transition(border-color linear $transitionDuration); }
+      .submit { @include transition(background-color linear $transitionDuration); }
+
+      &:hover {
+        input { border-color: $baseRed; }
+        .submit { background-color: $baseRed; }
+      }
+    }
+
+    input, a {
+      font-size: 28px;
+      line-height: 40px;
+      font-family: $headingsFontFamily;
+      width: 316px;
+    }
+
+    input[type=email] {
+      border-radius: 0;
+      margin-bottom: 0;
+      height: 40px;
+      box-shadow: none;
+      border: 1px solid $flameOrange;
+    }
+
+    .submit {
+      display: block;
+      padding: 4px 7px;
+      height: 42px;
+      border-radius: 0;
+      background-color: $flameOrange;
+      color: white;
+    }
+  }
+
+  .share {
+    .facebook, .twitter {
+      color: white;
+      display: block;
+      height: 50px;
+      position: relative;
+      font-size: 14px;
+      font-family: $headingsFontFamily;
+      clear: left;
+      @include transition(background-color linear $transitionDuration);
+
+      i {
+        font-size: 50px;
+        line-height: 48px;
+        float: left;
+      }
+
+      > .follow {
+        float: left;
+        margin-top: 7px;
+        padding: 8px;
+        box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+        line-height: 16px;
+        @include border-radius(2px);
+      }
+
+      &:hover .follow { box-shadow: none; }
+    }
+
+    .facebook {
+      background-color: $facebookBlue;
+      i { margin-left: 68px; margin-right: 22px; }
+      > .follow { background-color: darken($facebookBlue, 20%); }
+      &:hover { background-color: darken($facebookBlue, 10%); }
+    }
+
+    .twitter {
+      background-color: $twitterTeal;
+      i { margin-left: 47px; margin-right: 10px; }
+      > .follow { background-color: darken($twitterTeal, 20%); padding-top: 4px; padding-bottom: 4px; }
+      &:hover { background-color: darken($twitterTeal, 10%); }
+    }
+  }
+}

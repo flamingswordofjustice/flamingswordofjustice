@@ -11,7 +11,7 @@
     - if model.respond_to?(:facebook) && model.facebook.present?
       %li.facebook= send "facebook_#{type}", model.facebook
     - if model.respond_to?(:twitter) && model.twitter.present?
-      %li.twitter= twitter_follow model.twitter
+      %li.twitter= twitter_follow account: model.twitter, count: false
   - elsif type == "share"
     %li.facebook_like= facebook_like request.original_url
     %li.twitter= twitter_share

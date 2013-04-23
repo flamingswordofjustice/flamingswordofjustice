@@ -21,6 +21,12 @@
 
   = divider
 
+  %div.row.play-and-share
+    %div.span8
+      = play_controls style: "full", episode: @episode
+    %div.subscribe-join-social.apply-affix.span4
+      = subscribe_join_social orientation: :vertical, share: @episode
+
   %div.row.episode-and-image
     %div.span8
       %section.body
@@ -31,19 +37,6 @@
           %strong Topics:
           %p= comma_separated_list_of @episode.topics
 
-    - unless @episode.image.blank?
-      %div.span4
-        %figure.thumbnail
-          %img{src: image_path(@episode.image.url)}
-          - if @episode.image_caption.present?
-            %figcaption= @episode.image_caption
-
-  %div.row.play-and-share
-    %div.span8
-      = render partial: 'episodes/play_controls', locals: { episode: @episode }
-    %div.span4
-      = share_this @episode
-
   - unless @episode.show_notes.blank?
     %div.row
       %div.span8
@@ -53,7 +46,7 @@
   - if @episode.guests.any?
     %div.row.guests-and-orgs
       %div.span8
-        %h3 Guests
+        %h3 Featuring
         - @episode.guests.each do |guest|
           %div
             = render guest

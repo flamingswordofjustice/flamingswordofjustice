@@ -14,7 +14,8 @@
           = comma_separated_list_of episode.topics
       %a.pull-left{href: episode_path(episode.slug)}
         = image_tag episode.image.url(:thumb), class: "media-object", style: "width: 100px; margin-top: 8px"
-      = raw episode.description + link_to("more", episode_path(episode.slug), class: "action")
+      %div.description
+        = raw episode.description
 
     - if defined?(play) && play
-      = render partial: 'episodes/play_controls', locals: { episode: episode }
+      = play_controls style: "full", episode: episode

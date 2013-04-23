@@ -1,0 +1,43 @@
+%div.full-play-controls{id: "play-#{episode.slug}"}
+  %div{"data-mp3-uri" => episode.playable_url, "data-tracking-uri" => listener_tracking_uri}
+
+  %div.share-episode
+    %ul.unstyled
+      %li
+        %a.download{href: episode.playable_url}
+          %i.icon-download
+          Download
+      %li
+        %a.itunes{href: itunes_link}
+          %i.icon-music
+          Subscribe
+      %li
+        %a.rss{href: podcast_link}
+          %i.icon-rss
+          RSS
+      %li{style: "margin-left: 10px"}
+        = facebook_like episode_path(episode)
+      %li{style: "line-height: 16px; margin-left: 10px"}
+        = twitter_share
+
+  %div.play-episode{style: "background-image: url(#{episode.image.url})"}
+    %p.small.caption= episode.image_caption
+    %a.jp-play
+      %i.icon-play
+
+  %div.jp-progress
+    %div.jp-seek-bar
+      %div.jp-play-bar
+
+  %div.status
+    %div.jp-controls
+      %a.jp-play
+        %i.icon-play
+      %a.jp-pause
+        %i.icon-pause
+    %div.jp-time-holder
+      %span.jp-current-time
+      \/
+      %span.jp-duration
+
+  %div.clearfix

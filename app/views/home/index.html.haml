@@ -1,44 +1,22 @@
 = open_graph_and_meta_tags
 
-%section.current-episode
-  %section.container
-    %div.row
-      %div.span4.splash-logo
-        %a{href: root_path}
-          = image_tag "logo.png", width: "100%", class: "big-brand"
-        = render 'shared/powered_by'
+%section.current-episode{style: "background-image: url(#{@latest.image.bw})"}
+  %section.overlay
+    %section.container
+      %div.row
+        %div.span4.splash-logo
+          %a{href: root_path}
+            = image_tag "logo.png", width: "100%", class: "big-brand"
+          = render 'shared/powered_by'
 
-      %div.span8.episode-blurb
-        - unless @latest.nil?
-          = render partial: 'episodes/episode', object: @latest, locals: { play: true }
+          %h3{style: "text-align: center"}= t(:description)
 
-    %div.row.share-everything
-      %div.subscribe.span4
-        %section
-          %a.itunes{href: itunes_link}
-            %i.icon-music
-            %span
-              Podcast!
-              %em Subscribe &amp; enjoy
-      %div.sign-up.span4
-        %section
-          %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
-            %input(placeholder="you@example.com" type="email" name="subscriber[email]" required)
-            %br
-            %a.submit{href: "#", data: { message: "Check your inbox!" } }
-              %i.icon-envelope
-              Join our newsletter
-      %div.share.span4
-        %section
-          %div.facebook
-            %i.icon-facebook
-            %div.follow
-              = facebook_like "http://www.facebook.com/flamingswordofjustice"
+        %div.span8.episode-blurb
+          - unless @latest.nil?
+            = render partial: 'episodes/episode', object: @latest, locals: { play: true }
 
-          %div.twitter
-            %i.icon-twitter
-            %div.follow
-              = twitter_follow "fsjradio", count: true
+      %div.row.subscribe-join-social
+        = subscribe_join_social orientation: :horizontal
 
 %section.past-episodes
   %section.container

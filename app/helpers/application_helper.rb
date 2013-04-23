@@ -8,28 +8,34 @@ module ApplicationHelper
     content_tag :link, "", rel: "alternate", type: "application/rss+xml", title: t(:tag), href: "http://example.com/rss"
   end
 
-  def twitter_follow(account="fsjradio", opts={})
-    opts[:count] = false if opts[:count].nil?
+  def twitter_follow(opts={})
+    account = opts[:account] || t(:twitter)
+    count   = opts[:count]   || false
+
     raw <<-HTML
-      <a href="https://twitter.com/#{account}" class="twitter-follow-button" data-show-count="#{opts[:count]}" data-size="small" data-show-screen-name="false">Follow @#{account}</a>
+      <a href="https://twitter.com/#{account}" class="twitter-follow-button" data-show-count="#{count}" data-size="small" data-show-screen-name="false">Follow @#{account}</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     HTML
   end
 
-  def twitter_share(account="fsjradio")
+  def twitter_share(opts={})
+    account = opts[:account] || t(:twitter)
+
     raw <<-HTML
-      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}">Tweet</a>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}" data-text="#{opts[:text]}">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     HTML
   end
 
-  def facebook_follow(account="flamingswordofjustice")
+  def facebook_follow(account=nil)
+    account ||= t(:facebook)
     raw <<-HTML
       <div class="fb-follow" data-href="https://www.facebook.com/#{account}" data-show-faces="false" data-layout="button_count"></div>
     HTML
   end
 
-  def facebook_like(url_to_like="flamingswordofjustice")
+  def facebook_like(url_to_like=nil)
+    url_to_like ||= "flamingswordofjustice"
     unless url_to_like =~ /http(s?):/
       url_to_like = "https://www.facebook.com/#{url_to_like}"
     end
@@ -217,5 +223,19 @@ module ApplicationHelper
 
   def comments_enabled?
     !Rails.env.development?
+  end
+
+  def subscribe_join_social(opts={})
+    opts[:orientation] ||= "vertical"
+
+    render partial: "shared/subscribe_join_social", locals: opts
+  end
+
+  def play_controls(opts={})
+    partial = opts[:style] == "full" ? "full_play_controls" : "play_controls"
+
+    if opts[:episode].present? && opts[:episode].visible?
+      render partial: "episodes/#{partial}", locals: opts
+    end
   end
 end
