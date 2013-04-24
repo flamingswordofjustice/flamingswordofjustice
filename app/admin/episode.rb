@@ -1,6 +1,16 @@
 ActiveAdmin.register Episode do
   config.sort_order = "published_at_desc"
 
+  breadcrumb do
+    if params[:id].present?
+      [
+        link_to("Admin", admin_root_path),
+        link_to("Episodes", admin_episodes_path),
+        link_to(resource.display_name, admin_episode_path(resource))
+      ]
+    end
+  end
+
   index do
     column "Name", :title
     column :headline
