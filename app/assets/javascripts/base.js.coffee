@@ -12,18 +12,18 @@ jQuery ->
 
     connect = () ->
       socket = io.connect(trackingUri, reconnect: true)
-      socket.on 'connect', play
+      socket.on 'connect', play(id: episodeId, state: episodeState, type: 'connect')
 
-    play = () ->
+    play = (evt) ->
       if shouldTrack
         if socket?
-          socket.emit 'play', id: episodeId, state: episodeState
+          socket.emit 'play', id: episodeId, state: episodeState, type: evt.type
         else
           connect()
 
-    pause = () ->
+    pause = (evt) ->
       if shouldTrack and socket?
-        socket.emit 'pause'
+        socket.emit 'pause', type: evt.type
 
     $(this).jPlayer
       preload: "none"
@@ -32,15 +32,16 @@ jQuery ->
       cssSelectorAncestor: "#" + controlsId
 
       ready: () -> $(this).jPlayer "setMedia", mp3: mp3Uri
-      play:  () -> controls.addClass("playing"); play()
+      play:  (evt) -> controls.addClass("playing"); play(evt)
+      seeked:  play
+      playing: play
       pause:   pause
       seeking: pause
-      seeked:  play
       ended:   pause
       error:   pause
       stalled: pause
       abort:   pause
-      empited: pause
+      emptied: pause
 
   $.jPlayer.timeFormat.showHour = true
 
@@ -73,4 +74,3 @@ jQuery ->
   $(".apply-affix").each () ->
     pos = $(this).position()
     $(this).css(left: pos.left).affix offset: { top: pos.top - 20, left: pos.left }
-
