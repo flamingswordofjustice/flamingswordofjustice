@@ -39,6 +39,8 @@ div.full-play-controls {
       font-size: 140px;
       line-height: 388px;
       text-align: center;
+      color: $baseRed;
+      &:hover { color: darken($baseRed, 10%); }
     }
   }
 

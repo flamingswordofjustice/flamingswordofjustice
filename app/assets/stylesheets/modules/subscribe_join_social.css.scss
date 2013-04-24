@@ -19,13 +19,13 @@
     a.itunes {
       display: block;
       height: 100px;
-      background: $baseRed image-url("white_circle.png") 130% 50% no-repeat;
+      background: lighten($baseRed, 20%) image-url("white_circle.png") 130% 50% no-repeat;
       color: white;
       position: relative;
       text-align: left;
 
       @include transition(background-color linear $transitionDuration);
-      &:hover { background-color: darken($baseRed, 5%); }
+      &:hover { background-color: lighten($baseRed, 10%); }
 
       i {
         font-size: 95px;
@@ -51,42 +51,40 @@
   }
 
   .sign-up {
-    > section { text-align: left; }
+    > section {
+      text-align: left;
+      background-color: $flameOrange;
+      padding: 8px;
+    }
 
     form {
-      margin-bottom: 0;
+      margin: 0;
 
       input { @include transition(border-color linear $transitionDuration); }
       .submit { @include transition(background-color linear $transitionDuration); }
-
-      &:hover {
-        input { border-color: $baseRed; }
-        .submit { background-color: $baseRed; }
-      }
     }
 
     input, a {
-      font-size: 28px;
-      line-height: 40px;
+      font-size: 24px;
       font-family: $headingsFontFamily;
-      width: 316px;
+      line-height: 28px;
     }
 
     input[type=email] {
       border-radius: 0;
-      margin-bottom: 0;
-      height: 40px;
-      box-shadow: none;
-      border: 1px solid $flameOrange;
+      margin: 0;
+      height: 28px;
+      border: none;
+      width: 100%;
+      background-color: lighten($flameOrange, 15%);
+      box-shadow: inset 1px 1px darken($flameOrange, 5%), inset -1px -1px lighten($flameOrange, 20%);
+      &:hover, &:focus { background-color: lighten($flameOrange, 24%); }
     }
 
     .submit {
       display: block;
-      padding: 4px 7px;
-      height: 42px;
-      border-radius: 0;
-      background-color: $flameOrange;
-      color: white;
+      margin: 10px 0 0 0;
+      @include buttonBackground($facebookBlue, darken($facebookBlue, 20%));
     }
   }
 

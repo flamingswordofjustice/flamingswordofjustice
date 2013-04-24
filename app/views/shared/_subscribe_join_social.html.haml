@@ -13,7 +13,7 @@
     %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
       %input(placeholder="you@example.com" type="email" name="subscriber[email]" required)
       %br
-      %a.submit{href: "#", data: { message: "Check your inbox!" } }
+      %a.submit.btn.btn-primary{href: "#", data: { message: "Check your inbox!" } }
         %i.icon-envelope
         Join our newsletter
 
@@ -22,7 +22,7 @@
     %div.facebook
       %i.icon-facebook
       %div.follow
-        = facebook_like request.original_url
+        = facebook_like
 
     %div.twitter
       %i.icon-twitter

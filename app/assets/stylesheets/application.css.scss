@@ -221,7 +221,7 @@ form.navbar-search, form.search-form {
     }
 
     .full-play-controls  {
-      .share-episode { background-color: $baseRed; a { color: white; } }
+      .share-episode { background-color: $baseGrey; a { color: $veryLightGrey; } }
     }
   }
 
@@ -285,56 +285,6 @@ article {
 
   .brand {
     margin-top: 10px;
-  }
-}
-
-.share-this {
-  height: 70px;
-  margin: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  height: 90px;
-
-  .social-icons-vertical {
-    float: left;
-    background-color: $baseRed;
-    width: 90px;
-    padding: 10px;
-    height: 70px;
-
-    > li {
-      line-height: 38px;
-    }
-  }
-
-  .copy {
-    width: 198px;
-    float: left;
-    padding: 10px;
-    height: 70px;
-
-    > label {
-      line-height: 5px;
-      margin-top: 15px;
-    }
-
-    .copy-shareable-url {
-      display: inline-block;
-
-      input.shareable-url {
-        background-color: white;
-        cursor: text;
-        width: 154px;
-        font-size: 11px;
-        height: 20px;
-      }
-
-      .btn {
-        padding: 4px 8px;
-        font-size: 12px;
-        line-height: 20px;
-      }
-    }
   }
 }
 
