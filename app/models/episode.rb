@@ -83,15 +83,13 @@ class Episode < ActiveRecord::Base
   def display_name; self.title; end
 
   def default_twitter_text
-    text = if self.twitter_text.present?
+    if self.twitter_text.present?
       self.twitter_text
     elsif self.headline.present?
       self.headline
     else
       self.title + " - " + I18n.t(:tag)
     end
-
-    text + " " + canonical_short_link
   end
 
   def canonical_short_link
@@ -100,8 +98,6 @@ class Episode < ActiveRecord::Base
     elsif redirect = Redirect.pointed_at(self).first
       update_attributes redirect: redirect
       redirect.full_url
-    else
-      Rails.application.routes.url_helpers.polymorphic_url(self)
     end
   end
 
