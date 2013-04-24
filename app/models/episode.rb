@@ -27,6 +27,7 @@ class Episode < ActiveRecord::Base
   has_many :guests, through: :appearances
   has_many :topic_assignments, as: :assignable
   has_many :topics, through: :topic_assignments
+  belongs_to :redirect
 
   scope :visible, where(state: [:published, :live])
 
@@ -79,7 +80,30 @@ class Episode < ActiveRecord::Base
     self.published_at.strftime("%B %Y")
   end
 
-  def display_name; self.name; end
+  def display_name; self.title; end
+
+  def default_twitter_text
+    text = if self.twitter_text.present?
+      self.twitter_text
+    elsif self.headline.present?
+      self.headline
+    else
+      self.title + " - " + I18n.t(:tag)
+    end
+
+    text + " " + canonical_short_link
+  end
+
+  def canonical_short_link
+    if self.redirect.present?
+      self.redirect.full_url
+    elsif redirect = Redirect.pointed_at(self).first
+      update_attributes redirect: redirect
+      redirect.full_url
+    else
+      Rails.application.routes.url_helpers.polymorphic_url(self)
+    end
+  end
 
   class << self
     def grouped_by(category)

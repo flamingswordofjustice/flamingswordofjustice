@@ -39,16 +39,31 @@ ActiveAdmin.register Episode do
       f.input :download_url
       f.input :description, as: :html_editor
       f.input :show_notes, as: :html_editor
-      f.input :state, as: :select, collection: f.object.possible_states, selected: f.object.state || f.object.default_state
+      f.input :state, as: :select,
+        collection: f.object.possible_states,
+        selected: f.object.state || f.object.default_state
       f.input :published_at, as: :date_select
       f.input :image, as: :image_upload, preview: :thumb
       f.input :image_caption
     end
 
     f.inputs "Social and Sharing" do
+      redirects = Redirect.pointed_at(f.object).order(:path)
+      f.input :redirect, label: "Canonical short link",
+        collection: redirects,
+        selected: f.object.redirect_id || redirects.first.try(:id),
+        hint: link_to("Add new redirect", new_admin_redirect_path, target: "_new")
+
       f.input :headline, label: "Catchy headline"
-      f.input :social_description, label: "Pithy Facebook description", hint: content_tag(:span, "", class: "charlimit"), input_html: { rows: 3, maxlength: 100 }
-      f.input :twitter_text, as: :text, label: "Viral Twitter text", hint: content_tag(:span, "", class: "charlimit") + t("admin.twitter_text").html_safe, input_html: { rows: 3, maxlength: 102 }
+
+      f.input :social_description, label: "Pithy Facebook description",
+        hint: content_tag(:span, "", class: "charlimit"),
+        input_html: { rows: 3, maxlength: 100 }
+
+      f.input :twitter_text, label: "Viral Twitter text",
+        as: :text,
+        hint: content_tag(:span, "", class: "charlimit") + t("admin.twitter_text").html_safe,
+        input_html: { rows: 3, maxlength: 102 }
     end
 
     f.inputs "Topics and Guests" do

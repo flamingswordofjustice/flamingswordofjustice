@@ -18,7 +18,7 @@
       %li{style: "line-height: 16px; margin-left: 10px"}
         = facebook_like episode_url(episode)
       %li{style: "line-height: 16px; margin-left: 10px"}
-        = twitter_share
+        = twitter_share text: episode.default_twitter_text
 
   %div.play-episode{style: "background-image: url(#{episode.image.url})"}
     %p.small.caption= episode.image_caption

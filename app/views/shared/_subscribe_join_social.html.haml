@@ -27,8 +27,4 @@
     %div.twitter
       %i.icon-twitter
       %div.follow
-        - if defined?(share)
-          - text = share.twitter_text if share.respond_to?(:twitter_text) && share.twitter_text.present?
-          = twitter_share text: text
-        - else
-          = twitter_follow count: true
+        = twitter_follow count: true
