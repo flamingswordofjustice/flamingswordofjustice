@@ -4,7 +4,7 @@ stats =
       $.Deferred (def) ->
         request = $.ajax "/stats",
           method: "get"
-          timeout: 1000
+          timeout: 5000
           data:
             target: target
             from: from
@@ -36,6 +36,9 @@ charts =
           timezone: "browser"
         legend:
           container: legend
+          labelFormatter: (label, series) ->
+            point = series.data[series.data.length - 2]
+            label + " (#{point[1]})"
         grid:
           color: "#bbb"
         series:
