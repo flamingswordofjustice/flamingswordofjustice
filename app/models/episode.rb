@@ -79,6 +79,8 @@ class Episode < ActiveRecord::Base
     self.published_at.strftime("%B %Y")
   end
 
+  def display_name; self.name; end
+
   class << self
     def grouped_by(category)
       if respond_to?("grouped_by_#{category}")
