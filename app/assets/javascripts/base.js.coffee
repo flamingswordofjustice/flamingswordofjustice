@@ -11,21 +11,18 @@ jQuery ->
     socket       = null
 
     connect = () ->
-      console.log 'connecting'
       socket = io.connect(trackingUri, reconnect: true)
       socket.on 'connect', play
 
     play = () ->
       if shouldTrack
         if socket?
-          console.log 'playing'
           socket.emit 'play', id: episodeId, state: episodeState
         else
           connect()
 
     pause = () ->
       if shouldTrack and socket?
-        console.log 'pausing'
         socket.emit 'pause'
 
     $(this).jPlayer
