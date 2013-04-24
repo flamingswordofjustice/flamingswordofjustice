@@ -37,8 +37,8 @@ ActiveAdmin.register Episode do
 
     f.inputs "Social and Sharing" do
       f.input :headline, label: "Catchy headline"
-      f.input :social_description, label: "Pithy Facebook description", hint: "Characters remaining:", input_html: { rows: 3, maxlength: 100 }
-      f.input :twitter_text, as: :text, label: "Viral Twitter text", hint: "Characters remaining:", input_html: { rows: 3, maxlength: 140 }
+      f.input :social_description, label: "Pithy Facebook description", hint: content_tag(:span, "", class: "charlimit"), input_html: { rows: 3, maxlength: 100 }
+      f.input :twitter_text, as: :text, label: "Viral Twitter text", hint: content_tag(:span, "", class: "charlimit") + t("admin.twitter_text").html_safe, input_html: { rows: 3, maxlength: 102 }
     end
 
     f.inputs "Topics and Guests" do
