@@ -10,27 +10,40 @@ jQuery ->
     shouldTrack  = trackingUri? and trackingUri isnt ""
     socket       = null
 
-    $(this).jPlayer
-      ready: () ->
-        $(this).jPlayer "setMedia", mp3: mp3Uri
+    connect = () ->
+      console.log 'connecting'
+      socket = io.connect(trackingUri, reconnect: true)
+      socket.on 'connect', play
 
-      play: () ->
-        controls.addClass("playing")
-
-        if shouldTrack
-          socket = io.connect(trackingUri, reconnect: true)
+    play = () ->
+      if shouldTrack
+        if socket?
+          console.log 'playing'
           socket.emit 'play', id: episodeId, state: episodeState
+        else
+          connect()
 
-      pause: () ->
-        socket.emit 'pause' if shouldTrack and socket?
+    pause = () ->
+      if shouldTrack and socket?
+        console.log 'pausing'
+        socket.emit 'pause'
 
-      ended: () ->
-        socket.emit 'pause' if shouldTrack and socket?
-
+    $(this).jPlayer
       preload: "none"
       swfPath: ""
       supplied: "mp3"
       cssSelectorAncestor: "#" + controlsId
+
+      ready: () -> $(this).jPlayer "setMedia", mp3: mp3Uri
+      play:  () -> controls.addClass("playing"); play()
+      pause:   pause
+      seeking: pause
+      seeked:  play
+      ended:   pause
+      error:   pause
+      stalled: pause
+      abort:   pause
+      empited: pause
 
   $.jPlayer.timeFormat.showHour = true
 
