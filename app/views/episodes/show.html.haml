@@ -53,17 +53,16 @@
             = render guest.organization if guest.organization.present?
 
 
-  = divider
+  = divider 8
 
   %div.row.other-episodes
-    %div.span12.border
-    %div.span6
+    %div.span4
       - if @episode.prev.present?
         %a.prev{href: episode_path(@episode.prev)}
           %i.icon-chevron-left
           = @episode.prev.title
 
-    %div.span6
+    %div.span4
       - if @episode.next.present?
         %a.next{href: episode_path(@episode.next)}
           = @episode.next.title
@@ -71,6 +70,6 @@
 
   - if comments_enabled?
     %div.row.comments
-      %div.span12
+      %div.span8
         %section.comments
           = livefyre_comments
