@@ -10,11 +10,12 @@ class Redirect < ActiveRecord::Base
   end
 
   scope :pointed_at, lambda {|destination|
-    unless destination.is_a?(String)
-      destination = Rails.application.routes.url_helpers.polymorphic_path(destination)
+    if destination.is_a?(String)
+      where(destination: destination)
+    else
+      path = Rails.application.routes.url_helpers.polymorphic_path(destination)
+      where("destination = ? OR (linkable_id = ? AND linkable_type = ?)", path, destination.id, destination.class.name)
     end
-
-    where(destination: destination)
   }
 
   def url
