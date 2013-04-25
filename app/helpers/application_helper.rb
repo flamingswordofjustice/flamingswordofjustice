@@ -21,9 +21,10 @@ module ApplicationHelper
   def twitter_share(opts={})
     account = opts[:account] || t(:twitter)
     url     = opts[:url] || url_for(:only_path => false)
+    text    = html_escape opts[:text]
 
     raw <<-HTML
-      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}" data-text="#{opts[:text]}" data-url="#{url}">Tweet</a>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}" data-text="#{text}" data-url="#{url}">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     HTML
   end
