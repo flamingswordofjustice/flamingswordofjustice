@@ -8,5 +8,5 @@ $ ->
     targetName = field.data 'target'
     target     = form.find("[name='#{targetName}']")
 
-    field bind 'change', (evt) ->
+    field.on 'change', (evt) ->
       target.val $(this).find(":selected").data('type')
