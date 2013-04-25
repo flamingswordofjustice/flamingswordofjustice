@@ -180,11 +180,11 @@ module ApplicationHelper
     elsif crumb == :root
       ["Home", root_path]
     elsif crumb.respond_to?(:model_name)
-      ["All #{crumb.model_name.pluralize}", send(crumb.model_name.plural + "_path")]
+      ["All #{crumb.model_name.pluralize}", url_for(crumb)]
     elsif crumb.respond_to?(:name)
-      [crumb.name, send(crumb.class.model_name.singular + "_path", crumb)]
+      [crumb.name, url_for(crumb)]
     elsif crumb.respond_to?(:title)
-      [crumb.title, send(crumb.class.model_name.singular + "_path", crumb)]
+      [crumb.title, url_for(crumb)]
     elsif crumb.to_s =~ /by_(\w+)/
       ["By #{$1.titleize}", grouped_episodes_path($1)]
     else

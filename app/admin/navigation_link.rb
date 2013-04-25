@@ -6,8 +6,20 @@ ActiveAdmin.register NavigationLink do
   form do |f|
     f.inputs "Link details" do
       f.input :title
-      f.input :location, hint: "Leave blank if you want this to be a parent link."
-      f.input :page, hint: "Leave blank if you want this to be a parent link."
+
+      f.input :linkable_id,
+        label: "Internal Location",
+        as: :polymorphic_select,
+        collection: f.object.linkables,
+        option_label: :linkable_title,
+        hint: "Use EITHER this OR External Location. Leave blank if you want this to be a parent link."
+
+      f.input :location,
+        label: "External Location",
+        hint: "Use EITHER this OR Internal Location. Leave blank if you want this to be a parent link."
+
+      f.input :linkable_type, as: :hidden
+
       f.input :parent_link, as: :select, collection: Hash[f.object.potential_parents.map {|nl| [nl.title, nl.id]}]
     end
     f.actions

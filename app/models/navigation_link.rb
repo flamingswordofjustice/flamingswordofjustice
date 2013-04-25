@@ -1,14 +1,13 @@
 class NavigationLink < ActiveRecord::Base
-  include Rails.application.routes.url_helpers
+  include Linkable::Link
 
   validates :title, presence: true, uniqueness: true
 
   belongs_to :parent_link, class_name: "NavigationLink"
   has_many :child_links, class_name: "NavigationLink", foreign_key: :parent_link_id, dependent: :destroy
-  belongs_to :page
 
   scope :root_links, where("parent_link_id IS NULL")
-  scope :parent_links, root_links.where("page_id IS NULL AND (location IS NULL OR LOCATION = '')")
+  scope :parent_links, root_links.where("linkable_id IS NULL AND (location IS NULL OR LOCATION = '')")
 
   scope :ordered_by_position,
     joins("LEFT OUTER JOIN navigation_links parent_links on parent_links.id = navigation_links.parent_link_id").
@@ -25,13 +24,7 @@ class NavigationLink < ActiveRecord::Base
   end
 
   def url
-    if location.present?
-      location
-    elsif page.present?
-      page_path(page)
-    else
-      "#"
-    end
+    linkable_path || ( location.present? && location ) || "#"
   end
 
   def root_link?

@@ -11,7 +11,7 @@ class RedirectsController < ApplicationController
       redirect.increment('hits').save
       Fsj.statsd.increment "redirects.#{params[:id]}"
 
-      destination = redirect.destination
+      destination = redirect.url
       destination += "?" + request.query_string unless request.query_string.blank?
 
       redirect_to destination, status: 307

@@ -29,6 +29,8 @@
 // .other_namespace    applies to a custom namespace named other (eg: /other)
 
 .active_admin {
+  .hidden { display: none; }
+
   .error {
     color: red;
   }

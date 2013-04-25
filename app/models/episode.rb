@@ -1,6 +1,7 @@
 class Episode < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include Tire::Model::Search
+  include Linkable::Subject
   extend FriendlyId
   extend Groupable
 
@@ -28,6 +29,9 @@ class Episode < ActiveRecord::Base
   has_many :topic_assignments, as: :assignable
   has_many :topics, through: :topic_assignments
   belongs_to :redirect
+
+  linkable_to :navigation_links
+  linkable_to :redirects
 
   scope :visible, where(state: [:published, :live])
 
@@ -94,10 +98,10 @@ class Episode < ActiveRecord::Base
 
   def canonical_short_link
     if self.redirect.present?
-      self.redirect.full_url
+      self.redirect.url
     elsif redirect = Redirect.pointed_at(self).first
       update_attributes redirect: redirect
-      redirect.full_url
+      redirect.url
     end
   end
 

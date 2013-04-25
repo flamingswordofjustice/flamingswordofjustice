@@ -67,7 +67,11 @@ ActiveRecord::Schema.define(:version => 20130424211511) do
     t.integer "parent_link_id"
     t.integer "page_id"
     t.integer "position"
+    t.integer "linkable_id"
+    t.string  "linkable_type"
   end
+
+  add_index "navigation_links", ["linkable_id", "linkable_type"], :name => "index_navigation_links_on_linkable_id_and_linkable_type"
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
@@ -124,12 +128,15 @@ ActiveRecord::Schema.define(:version => 20130424211511) do
   end
 
   create_table "redirects", :force => true do |t|
-    t.string  "path",                       :null => false
-    t.string  "destination",                :null => false
-    t.integer "hits",        :default => 0
+    t.string  "path",                         :null => false
+    t.string  "destination",                  :null => false
+    t.integer "hits",          :default => 0
     t.text    "notes"
+    t.integer "linkable_id"
+    t.string  "linkable_type"
   end
 
+  add_index "redirects", ["linkable_id", "linkable_type"], :name => "index_redirects_on_linkable_id_and_linkable_type"
   add_index "redirects", ["path"], :name => "index_redirects_on_path", :unique => true
 
   create_table "subscribers", :force => true do |t|

@@ -1,4 +1,7 @@
 class Redirect < ActiveRecord::Base
+  include Linkable::Link
+
+  belongs_to :linkable, polymorphic: true
 
   before_save :generate_path
 
@@ -14,8 +17,12 @@ class Redirect < ActiveRecord::Base
     where(destination: destination)
   }
 
-  def full_url
+  def url
     "http://fsj.fm/#{self.path}"
+  end
+
+  def desination_url
+    linkable_path || destination
   end
 
   private

@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
   end
 
   def load_nav_links
-    @nav_links = NavigationLink.root_links.order(:position).includes(:child_links, :page)
+    @nav_links = NavigationLink.root_links.order(:position).includes(:child_links, :linkable)
   end
 end
