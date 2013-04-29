@@ -21,6 +21,7 @@ Fsj::Application.routes.draw do
   resources :people,        only: [:show, :index]
   resources :organizations, only: [:show, :index]
   resources :topics,        only: [:show, :index]
+  resources :emails,        only: [:show]
 
   match "/:page" => 'pages#show', as: :page
 end

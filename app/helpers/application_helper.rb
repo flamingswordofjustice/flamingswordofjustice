@@ -37,7 +37,7 @@ module ApplicationHelper
   end
 
   def facebook_like(url_to_like=nil)
-    url_to_like ||= "flamingswordofjustice"
+    url_to_like ||= t(:facebook)
     unless url_to_like =~ /http(s?):/
       url_to_like = "https://www.facebook.com/#{url_to_like}"
     end
