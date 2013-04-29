@@ -42,7 +42,7 @@ class Episode < ActiveRecord::Base
   friendly_id :title, use: :slugged
   validates :title, presence: true
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, EpisodeImageUploader
 
   POSSIBLE_STATES = [ :published, :unpublished, :live ]
 
