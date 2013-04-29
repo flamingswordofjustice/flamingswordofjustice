@@ -1,0 +1,29 @@
+%p
+  This page allows you to confirm that the episode email is ready to send, and to send it. Your
+  name (#{current_user.name || current_user.email}) will be recorded so we can add you to our "mistakes" page later.
+
+%p
+  You can
+  %a{href: edit_admin_episode_path(@episode)} edit the episode
+  to fix any mistakes you see below.
+
+
+- if @episode.proofed?
+  %p.error
+    %strong WARNING:
+    This email has already been proofed and sent. <strong>Do not click the button</strong>
+    unless you're <strong>certain</strong> that the recipients need more justice.
+- else
+  %p
+    %strong WARNING:
+    After clicking the button below, email will be sent to <strong>all mailing list recipients.</strong>
+    Only do this if you are <strong>absolutely certain</strong> they are ready for their daily dose of justice.
+
+= render partial: 'admin/shared/iframe', locals: { src: email_episode_url(@episode) }
+
+= form_tag send_email_admin_episode_path(@episode.id) do |f|
+  = hidden_field_tag :proofed, "true"
+  = hidden_field_tag :recipient, "email-test@flamingswordofjustice.com"
+
+  %br
+  = submit_tag "Proof and Send Email"

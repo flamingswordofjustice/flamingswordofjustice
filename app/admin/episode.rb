@@ -21,6 +21,10 @@ ActiveAdmin.register Episode do
     if recipient.blank?
       redirect_to admin_episode_path(@episode), error: "No recipient given for email."
     else
+      if params[:proofed].present?
+        @episode.update_attributes email_proofed_by_id: current_user.id, email_proofed_at: Time.zone.now
+      end
+
       Mailgun().messages.send_email(
         to: recipient,
         subject: subject,
@@ -28,8 +32,12 @@ ActiveAdmin.register Episode do
         from: I18n.t(:email_sender)
       )
 
-      redirect_to admin_episode_path(@episode), notice: "Email successfully sent."
+      redirect_to admin_episode_path(@episode), notice: "Email successfully sent to #{recipient}."
     end
+  end
+
+  member_action :confirm_email, method: :get do
+    @episode = Episode.find(params[:id])
   end
 
   index do
@@ -91,6 +99,23 @@ ActiveAdmin.register Episode do
         as: :text,
         hint: content_tag(:span, "", class: "charlimit") + t("admin.twitter_text").html_safe,
         input_html: { rows: 3, maxlength: 102 }
+    end
+
+    f.inputs "Email" do
+      f.input :email_note,
+        label: "Additional email note",
+        hint: "Appears at the top of the email",
+        input_html: { rows: 3 }
+
+      f.input :email_proofed_at,
+        as: :string,
+        hint: "Read-only",
+        input_html: { readonly: true, disabled: true }
+
+      f.input :email_proofed_by,
+        as: :string,
+        hint: "Read-only",
+        input_html: { readonly: true, disabled: true, value: f.object.email_proofed_by.try(:name) }
     end
 
     f.inputs "Topics and Guests" do

@@ -30,6 +30,8 @@ class Episode < ActiveRecord::Base
   has_many :topics, through: :topic_assignments
   belongs_to :redirect
 
+  belongs_to :email_proofed_by, class_name: "User"
+
   linkable_to :navigation_links
   linkable_to :redirects
 
@@ -103,6 +105,14 @@ class Episode < ActiveRecord::Base
       update_attributes redirect: redirect
       redirect.url
     end
+  end
+
+  def proofed?
+    !email_proofed_at.blank?
+  end
+
+  def proof!(user)
+    update_attributes email_proofed_at: Time.zone.now, email_proofed_by: user
   end
 
   class << self

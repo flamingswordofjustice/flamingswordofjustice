@@ -54,6 +54,7 @@ a { color: #b0242f; text-decoration: none; }
 	width: 100%;
 	font-size: 130%;
 	padding: 20px 0;
+	margin-top: 10px;
 }
 
 .callout {
@@ -115,7 +116,7 @@ table.footer-wrap { width: 100%;	clear:both!important;
 }
 .footer-wrap .container td.content  p { border-top: 1px solid rgb(215,215,215); padding-top:15px;}
 .footer-wrap .container td.content p {
-	font-size:10px;
+	font-size:14px;
 	font-weight: bold;
 
 }
@@ -226,6 +227,12 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 .clear { display: block; clear: both; }
 
 
+.extra {
+	padding: 10px;
+	background-color: #F7DADA;
+}
+
+
 /* -------------------------------------------
 		PHONE
 		For clients that support media queries.
@@ -258,7 +265,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<table bgcolor="#F4F4F4">
 					<tr>
 						<td>
-							<%= link_to root_url do %>
+							<%= link_to episode_url(@episode) do %>
 								<%= image_tag 'logo_horizontal.png', width: "550px", alt: t('tag') %>
 							<% end %>
 						</td>
@@ -283,6 +290,11 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 				<tr>
 					<td>
 						<table>
+							<% if @episode.email_note.present? %>
+								<tr>
+									<td align="center" class="extra"><%= raw @episode.email_note %></td>
+								</tr>
+							<% end %>
 							<tr>
 								<td style="">
 									<h1>
@@ -296,7 +308,8 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 				<tr>
 					<td>
 						<p><%= link_to episode_url(@episode) do %>
-							<%= image_tag @episode.image.try(:playable) || @episode.image, width: 600 %>
+							<% image = @episode.image.playable.present? ? @episode.image.playable : @episode.image %>
+							<%= image_tag image, width: 600 %>
 						<% end %></p><!-- /hero -->
 
 						<p class="callout">
@@ -304,7 +317,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 							Host: <strong>Ben Wikler</strong><br/>
 							Guests: <strong><%= @episode.guests.map(&:name).join(", ") %></strong><br/>
 							Powered by <strong>MoveOn.org</strong><br/>
-							<%= link_to image_tag("sword_logo_small.png", width: '100%', style: 'margin-top: 10px'), root_url %>
+							<%= link_to image_tag("sword_logo_small.png", width: '100%', style: 'margin-top: 10px'), episode_url(@episode) %>
 						</p>
 
 						<%= @episode.description.html_safe %>
@@ -378,11 +391,18 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 						<p>
 							You're receiving this email because you subscribed to the Flaming Sword of Justice mailing list.
 						</p>
+						<% if @episode.email_proofed_at.blank? %>
+							<p>
+								This email has not yet been proofed. Visit the <%= link_to "confirmation page", confirm_email_admin_episode_url(@episode) %>
+								to validate this proof and send it.
+							</p>
+						<% end %>
 						<p>
 							<!-- <a href="#">Terms</a> | -->
 							<!-- <a href="#">Privacy</a> | -->
 							<%= link_to "View in Browser", email_episode_url(@episode.slug) %> |
-							<a href="%mailing_list_unsubscribe_url%."><unsubscribe>Unsubscribe</unsubscribe></a>
+							<!-- <a href="%mailing_list_unsubscribe_url%."><unsubscribe>Unsubscribe</unsubscribe></a> -->
+							<a href="mailto:show@flamingswordofjustice.com?subject=Unsubscribe"><unsubscribe>Unsubscribe</unsubscribe></a>
 						</p>
 					</td>
 				</tr>
