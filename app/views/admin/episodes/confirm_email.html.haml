@@ -23,7 +23,7 @@
 
 = form_tag send_email_admin_episode_path(@episode.id) do |f|
   = hidden_field_tag :proofed, "true"
-  = hidden_field_tag :recipient, "email-test@flamingswordofjustice.com"
+  = hidden_field_tag :recipient, ENV['EMAIL_LIVE_RECIPIENT']
 
   %br
   = submit_tag "Proof and Send Email"
