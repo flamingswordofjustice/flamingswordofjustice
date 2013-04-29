@@ -36,7 +36,7 @@ body {
 /* -------------------------------------
 		ELEMENTS
 ------------------------------------- */
-a { color: ##b0242f; }
+a { color: #b0242f; text-decoration: none; }
 
 .btn {
 	text-decoration:none;
@@ -50,10 +50,19 @@ a { color: ##b0242f; }
 	display: inline-block;
 }
 
-p.callout {
-	padding:15px;
-	background-color:#ECF8FF;
-	margin-bottom: 15px;
+.listen-btn {
+	width: 100%;
+	font-size: 130%;
+	padding: 20px 0;
+}
+
+.callout {
+	padding:10px;
+	background-color:#f4f4f4;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	float: left;
+	width: 40%;
 }
 .callout a {
 	font-weight:bold;
@@ -250,10 +259,9 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<tr>
 						<td>
 							<%= link_to root_url do %>
-								<%= image_tag 'sword_logo_small.png', width: "200px", height: "48px" %>
+								<%= image_tag 'logo_horizontal.png', width: "550px", alt: t('tag') %>
 							<% end %>
 						</td>
-						<td align="right"><h6 class="collapse"><%= t 'tag' %></h6></td>
 					</tr>
 				</table>
 				</div>
@@ -276,10 +284,10 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<td>
 						<table>
 							<tr>
-								<td width="100"><%= link_to episode_url(@episode) do %><%= image_tag 'logo.png' %><% end %></td>
-								<td style="padding-left: 10px">
-									<h1><%= @episode.title %></h1>
-									<p class="lead"><%= @episode.headline %></p>
+								<td style="">
+									<h1>
+										<%= link_to @episode.headline, episode_url(@episode) %>
+									</h1>
 								</td>
 							</tr>
 						</table>
@@ -287,22 +295,21 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 				</tr>
 				<tr>
 					<td>
-
-						<!-- A Real Hero (and a real human being) -->
 						<p><%= link_to episode_url(@episode) do %>
-							<%= image_tag @episode.image, width: '600' %>
+							<%= image_tag @episode.image.try(:playable) || @episode.image, width: 600 %>
 						<% end %></p><!-- /hero -->
 
-						<!-- Callout Panel -->
-						<% if @episode.image_caption.present? %>
-							<p class="callout"><%= @episode.image_caption %></p>
-						<% end %>
-						<!-- /Callout Panel -->
+						<p class="callout">
+							<strong><%= "Episode " + @episode.title %></strong><br/>
+							Host: <strong>Ben Wikler</strong><br/>
+							Guests: <strong><%= @episode.guests.map(&:name).join(", ") %></strong><br/>
+							Powered by <strong>MoveOn.org</strong><br/>
+							<%= link_to image_tag("sword_logo_small.png", width: '100%', style: 'margin-top: 10px'), root_url %>
+						</p>
 
-						<!-- <h3>Title Ipsum <small>This is a note.</small></h3> -->
 						<%= @episode.description.html_safe %>
 						<br/>
-						<%= link_to 'Listen now &raquo;'.html_safe, episode_url(@episode), class: "btn" %>
+						<%= link_to 'Listen now &raquo;'.html_safe, episode_url(@episode), class: "btn listen-btn" %>
 
 						<br/>
 						<br/>
