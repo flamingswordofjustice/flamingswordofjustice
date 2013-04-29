@@ -11,6 +11,26 @@ ActiveAdmin.register Episode do
     end
   end
 
+  member_action :send_email, method: :post do
+    @episode  = Episode.find(params[:id])
+    content   = render_to_string template: 'episode_mailer/published_email', layout: false
+    recipient = params[:recipient]
+    subject   = @episode.headline.present? ? @episode.headline : @episode.title
+
+    if recipient.blank?
+      redirect_to admin_episode_path(@episode), error: "No recipient given for email."
+    else
+      Mailgun().messages.send_email(
+        to: recipient,
+        subject: subject,
+        html: content,
+        from: "show@flamingswordofjustice.com"
+      )
+
+      redirect_to admin_episode_path(@episode), notice: "Email successfully sent."
+    end
+  end
+
   index do
     column "Name", :title
     column :headline
@@ -31,6 +51,12 @@ ActiveAdmin.register Episode do
   action_item only: [:edit, :show] do
     name = resource.class.model_name
     link_to "View Live #{active_admin_config.resource_label}", polymorphic_path(resource), target: "_new"
+  end
+
+  action_item only: [:edit, :show] do
+    form_tag send_email_admin_episode_path(resource.id), style: "display: inline-block" do
+      hidden_field_tag('recipient', ENV['EMAIL_TEST_RECIPIENT']) + submit_tag("Send Test Email")
+    end
   end
 
   form html: { multipart: true } do |f|

@@ -138,6 +138,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailgun (0.6)
+      multimap
+      rest-client
     meta_search (1.1.3)
       actionpack (~> 3.1)
       activerecord (~> 3.1)
@@ -148,6 +151,7 @@ GEM
       subexec (~> 0.0.4)
     multi_json (1.7.2)
     multi_xml (0.5.3)
+    multimap (1.1.2)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.5)
@@ -266,6 +270,7 @@ DEPENDENCIES
   gibbon
   haml-rails
   jquery-rails
+  mailgun
   meta_search (>= 1.1.0.pre)
   mini_magick
   multi_json

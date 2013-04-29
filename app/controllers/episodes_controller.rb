@@ -23,4 +23,9 @@ class EpisodesController < ApplicationController
     @episodes = Episode.visible.all
   end
 
+  def email
+    @episode = Episode.find(params[:id])
+    render template: 'episode_mailer/published_email', layout: false
+  end
+
 end

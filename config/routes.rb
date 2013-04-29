@@ -8,6 +8,10 @@ Fsj::Application.routes.draw do
   match "/search" => "search#index", via: :get, as: :search
 
   resources :episodes do
+    member do
+      get 'email' => 'episodes#email', as: :email
+    end
+
     collection do
       get 'by/:category' => 'episodes#grouped', as: :grouped
       get 'by/:category/:id' => 'episodes#index', as: :categorized
@@ -21,7 +25,6 @@ Fsj::Application.routes.draw do
   resources :people,        only: [:show, :index]
   resources :organizations, only: [:show, :index]
   resources :topics,        only: [:show, :index]
-  resources :emails,        only: [:show]
 
   match "/:page" => 'pages#show', as: :page
 end
