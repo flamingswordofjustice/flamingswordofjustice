@@ -53,6 +53,7 @@ gem 'zclip-rails'
 
 gem 'gibbon' # Mailchimp
 gem 'mailgun'
+gem 'premailer'
 
 # RSS Sync
 

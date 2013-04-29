@@ -12,10 +12,13 @@ ActiveAdmin.register Episode do
   end
 
   member_action :send_email, method: :post do
-    @episode  = Episode.find(params[:id])
-    content   = render_to_string template: 'episode_mailer/published_email', layout: false
-    recipient = params[:recipient]
-    subject   = @episode.headline.present? ? @episode.headline : @episode.title
+    @episode    = Episode.find(params[:id])
+    raw_content = render_to_string template: 'episode_mailer/published_email', layout: false
+    html        = Premailer.new(raw_content, with_html_string: true).to_inline_css
+    recipient   = params[:recipient]
+    subject     = @episode.headline.present? ? @episode.headline : @episode.title
+
+    # raise raw_content.inspect
 
     if recipient.blank?
       redirect_to admin_episode_path(@episode), error: "No recipient given for email."
@@ -23,8 +26,8 @@ ActiveAdmin.register Episode do
       Mailgun().messages.send_email(
         to: recipient,
         subject: subject,
-        html: content,
-        from: "show@flamingswordofjustice.com"
+        html: html,
+        from: I18n.t(:email_sender)
       )
 
       redirect_to admin_episode_path(@episode), notice: "Email successfully sent."
