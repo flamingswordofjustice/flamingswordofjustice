@@ -18,8 +18,6 @@ ActiveAdmin.register Episode do
     recipient   = params[:recipient]
     subject     = @episode.headline.present? ? @episode.headline : @episode.title
 
-    # raise raw_content.inspect
-
     if recipient.blank?
       redirect_to admin_episode_path(@episode), error: "No recipient given for email."
     else
