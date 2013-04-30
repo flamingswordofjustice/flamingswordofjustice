@@ -253,6 +253,8 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 </head>
 
+<% episode_final_url = episode_url(@episode, ref: "em") %>
+
 <body bgcolor="#FFFFFF">
 
 <!-- HEADER -->
@@ -265,7 +267,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<table bgcolor="#F4F4F4">
 					<tr>
 						<td>
-							<%= link_to episode_url(@episode) do %>
+							<%= link_to episode_final_url do %>
 								<%= image_tag 'logo_horizontal.png', width: "550px", alt: t('tag') %>
 							<% end %>
 						</td>
@@ -298,7 +300,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 							<tr>
 								<td style="">
 									<h1>
-										<%= link_to @episode.headline, episode_url(@episode) %>
+										<%= link_to @episode.headline, episode_final_url %>
 									</h1>
 								</td>
 							</tr>
@@ -307,7 +309,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 				</tr>
 				<tr>
 					<td>
-						<p><%= link_to episode_url(@episode) do %>
+						<p><%= link_to episode_final_url do %>
 							<% image = @episode.image.playable.present? ? @episode.image.playable : @episode.image %>
 							<%= image_tag image, width: 600 %>
 						<% end %></p><!-- /hero -->
@@ -317,12 +319,12 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 							Host: <strong>Ben Wikler</strong><br/>
 							Guests: <strong><%= @episode.guests.map(&:name).join(", ") %></strong><br/>
 							Powered by <strong>MoveOn.org</strong><br/>
-							<%= link_to image_tag("sword_logo_small.png", width: '100%', style: 'margin-top: 10px'), episode_url(@episode) %>
+							<%= link_to image_tag("sword_logo_small.png", width: '100%', style: 'margin-top: 10px'), episode_final_url %>
 						</p>
 
 						<%= @episode.description.html_safe %>
 						<br/>
-						<%= link_to 'Listen now &raquo;'.html_safe, episode_url(@episode), class: "btn listen-btn" %>
+						<%= link_to 'Listen now &raquo;'.html_safe, episode_final_url, class: "btn listen-btn" %>
 
 						<br/>
 						<br/>

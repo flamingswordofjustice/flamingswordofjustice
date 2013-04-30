@@ -3,6 +3,9 @@ class EpisodesController < ApplicationController
   def show
     @episode = Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
 
+    ref = (params[:ref].present? && params[:ref] =~ /^\w+$/) ? params[:ref] : "none"
+    Fsj.statsd.gauge "clicks.#{params[:id]}.#{ref}", "+1"
+
     respond_to do |f|
       f.html { }
       f.json { render json: @episode.to_json(only: [:title, :state, :show_notes, :description]) }

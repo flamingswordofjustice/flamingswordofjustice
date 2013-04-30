@@ -13,17 +13,19 @@ ActiveAdmin.register Episode do
 
   member_action :send_email, method: :post do
     @episode    = Episode.find(params[:id])
-    raw_content = render_to_string template: 'episode_mailer/published_email', layout: false
-    html        = Premailer.new(raw_content, with_html_string: true).to_inline_css
     recipient   = params[:recipient]
-    subject     = @episode.headline.present? ? @episode.headline : @episode.title
 
     if recipient.blank?
       redirect_to admin_episode_path(@episode), error: "No recipient given for email."
     else
       if params[:proofed].present?
-        @episode.update_attributes email_proofed_by_id: current_user.id, email_proofed_at: Time.zone.now
+        @episode.proof! current_user
       end
+
+      raw_content = render_to_string template: 'episode_mailer/published_email', layout: false
+      html        = Premailer.new(raw_content, with_html_string: true).to_inline_css
+      subject     = @episode.headline.present? ? @episode.headline : @episode.title
+      subject     = "[PROOF] #{subject}" unless @episode.proofed?
 
       Mailgun().messages.send_email(
         to: recipient,
