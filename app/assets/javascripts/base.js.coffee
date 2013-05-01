@@ -1,3 +1,4 @@
+
 jQuery ->
   $("[data-mp3-uri]").each () ->
     controls     = $(this).closest(".play-controls, .full-play-controls")
@@ -7,6 +8,7 @@ jQuery ->
     controlsId   = controls.attr("id")
     mp3Uri       = $(this).data("mp3-uri")
     trackingUri  = $(this).data("tracking-uri")
+    swfPath      = $(this).data("swf-path")
     shouldTrack  = trackingUri? and trackingUri isnt ""
     socket       = null
 
@@ -27,7 +29,7 @@ jQuery ->
 
     $(this).jPlayer
       preload: "none"
-      swfPath: ""
+      swfPath: swfPath
       supplied: "mp3"
       cssSelectorAncestor: "#" + controlsId
 

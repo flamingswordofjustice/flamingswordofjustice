@@ -31,4 +31,16 @@ class EpisodesController < ApplicationController
     render template: 'episode_mailer/published_email', layout: false
   end
 
+  def audio
+    @episode = Episode.find(params[:id])
+
+    if @episode.unpublished?
+      render text: "Episode is unpublished - no audio stream available", status: :not_found
+    elsif @episode.live?
+      redirect_to ENV["LIVE_BROADCAST_URI"]
+    else
+      redirect_to @episode.download_url
+    end
+  end
+
 end

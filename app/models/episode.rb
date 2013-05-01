@@ -60,16 +60,6 @@ class Episode < ActiveRecord::Base
     :unpublished
   end
 
-  def playable_url
-    if unpublished?
-      ""
-    elsif live?
-      ENV["LIVE_BROADCAST_URI"]
-    else
-      self.download_url
-    end
-  end
-
   def visible?
     [:published, :live].include?(self.state.to_sym)
   end

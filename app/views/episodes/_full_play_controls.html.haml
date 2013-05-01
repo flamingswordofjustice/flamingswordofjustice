@@ -1,10 +1,10 @@
 %div.full-play-controls{id: "play-#{episode.slug}"}
-  %div{"data-mp3-uri" => episode.playable_url, "data-tracking-uri" => listener_tracking_uri}
+  %div{"data-mp3-uri" => audio_episode_url(episode), "data-tracking-uri" => listener_tracking_uri, "data-swf-path" => asset_path("vendor/Jplayer.swf")}
 
   %div.share-episode
     %ul.unstyled
       %li
-        %a.download{href: episode.playable_url}
+        %a.download{href: audio_episode_url(episode)}
           %i.icon-download
           Download
       %li
