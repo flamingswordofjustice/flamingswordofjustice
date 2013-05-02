@@ -2,7 +2,8 @@
                            title: @episode.headline || @episode.title,
                            page_title: @episode.title,
                            description: @episode.social_description || @episode.description,
-                           image: @episode.image.url
+                           image: @episode.image.url,
+                           url: episode_url(@episode, ref: "em", protocol: "http")
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
   %div.row
