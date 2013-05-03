@@ -18,6 +18,7 @@ jQuery ->
 
     play = (evt) ->
       if shouldTrack
+        console.log "play", evt
         if socket?
           socket.emit 'play', id: episodeId, state: episodeState, type: evt.type
         else
@@ -25,6 +26,7 @@ jQuery ->
 
     pause = (evt) ->
       if shouldTrack and socket?
+        console.log "pause", evt
         socket.emit 'pause', type: evt.type
 
     $(this).jPlayer
