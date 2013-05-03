@@ -1,7 +1,18 @@
 class Organization < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
   extend FriendlyId
   extend Groupable
+
+  mapping do
+    indexes :id,                :index    => :not_analyzed
+    indexes :slug,              :index    => :not_analyzed
+    indexes :name,              :analyzer => 'snowball', :boost => 100
+    indexes :short_description, :analyzer => 'snowball'
+    indexes :description,       :analyzer => 'snowball'
+    indexes :created_at,        :type => 'date', :include_in_all => false
+  end
 
   has_many :people
   has_many :appearances, through: :people
