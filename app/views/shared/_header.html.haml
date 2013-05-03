@@ -2,10 +2,11 @@
   %section.container
     %div.navbar
       %nav.navbar-inner
-        = link_to "", root_path, class: "brand"
+        %a.brand{href: root_path}
+          %div.underlay
+          = image_tag "sword_flameless_logo.png"
 
         = render 'shared/nav_links'
-
 
         %ul.nav.pull-right
           %li

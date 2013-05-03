@@ -107,17 +107,18 @@ nav.navbar-inner {
   border: none;
   box-shadow: none;
   border-radius: 0;
+  padding-left: 5px;
 
   a.brand {
-    background: image-url("sword_flameless.png") 0 0 no-repeat;
     background-color: $baseRed;
-    background-size: 300px 60px;
-    width: 300px;
-    height: 60px;
     padding: 0;
-    margin-top: 10px;
+    margin: 10px 0 0 0;
     -webkit-transition: background-color 0.3s ease;
     transition: background-color 0.3s ease;
+
+    // This specific set of properties is meant to solve subpixel image border rendering
+    // issues on iPhones and similar devices.
+    img { margin-top: -2px; margin-left: -2px; max-width: 334px; width: 334px; height: 64px; }
 
     &:hover {
       -webkit-transition: background-color 0.3s ease;
@@ -149,7 +150,6 @@ form.navbar-search, form.search-form {
 
 .navbar > .navbar-inner > .nav {
   padding: 0;
-  margin-left: 20px;
 
   > li {
     display: inline-block;
