@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def syndication_link_tag
-    content_tag :link, "", rel: "alternate", type: "application/rss+xml", title: t(:tag), href: "http://example.com/rss"
+    content_tag :link, "", rel: "alternate", type: "application/rss+xml", title: t(:tag), href: ENV['PODCAST_URI']
   end
 
   def twitter_follow(opts={})
