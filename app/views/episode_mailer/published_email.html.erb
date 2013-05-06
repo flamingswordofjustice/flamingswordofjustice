@@ -311,7 +311,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<td>
 						<p><%= link_to episode_final_url do %>
 							<% image = @episode.image.playable.present? ? @episode.image.playable : @episode.image %>
-							<%= image_tag image, width: 600 %>
+							<%= image_tag image, width: 600, alt: "Click here to listen!" %>
 						<% end %></p><!-- /hero -->
 
 						<p class="callout">
@@ -319,7 +319,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 							Host: <strong>Ben Wikler</strong><br/>
 							Guests: <strong><%= @episode.guests.map(&:name).join(", ") %></strong><br/>
 							Powered by <strong>MoveOn.org</strong><br/>
-							<%= link_to image_tag("sword_logo_small.png", width: '100%', style: 'margin-top: 10px'), episode_final_url %>
+							<%= link_to image_tag("sword_logo_small.png", width: '100%', style: 'margin-top: 10px', alt: "Check it out!"), episode_final_url %>
 						</p>
 
 						<%= @episode.description.html_safe %>
