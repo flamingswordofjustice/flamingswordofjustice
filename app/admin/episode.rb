@@ -22,6 +22,7 @@ ActiveAdmin.register Episode do
         @episode.proof! current_user
       end
 
+      sender      = params[:sender] || I18n.t(:email_sender)
       raw_content = render_to_string template: 'episode_mailer/published_email', layout: false
       html        = Premailer.new(raw_content, with_html_string: true).to_inline_css
       subject     = @episode.headline.present? ? @episode.headline : @episode.title
@@ -31,7 +32,7 @@ ActiveAdmin.register Episode do
         to: recipient,
         subject: subject,
         html: html,
-        from: I18n.t(:email_sender)
+        from: sender
       )
 
       redirect_to admin_episode_path(@episode), notice: "Email successfully sent to #{recipient}."
@@ -66,7 +67,9 @@ ActiveAdmin.register Episode do
 
   action_item only: [:edit, :show] do
     form_tag send_email_admin_episode_path(resource.id), style: "display: inline-block" do
-      hidden_field_tag('recipient', ENV['EMAIL_TEST_RECIPIENT']) + submit_tag("Send Test Email")
+      hidden_field_tag('sender', ENV['EMAIL_TEST_RECIPIENT']) +
+      hidden_field_tag('recipient', ENV['EMAIL_TEST_RECIPIENT']) +
+      submit_tag("Send Test Email")
     end
   end
 
