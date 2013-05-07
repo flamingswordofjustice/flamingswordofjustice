@@ -7,6 +7,9 @@
       |
       %time(pubdate="pubdate")= episode.published_at.strftime("%m/%d/%Y")
 
+    - if defined?(play) && play
+      = play_controls style: "full", episode: episode
+
     %section.body
       - if episode.topics.any?
         %small.topics
@@ -17,5 +20,3 @@
       %div.description
         = raw episode.description
 
-    - if defined?(play) && play
-      = play_controls style: "full", episode: episode
