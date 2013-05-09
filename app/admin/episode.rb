@@ -57,7 +57,15 @@ ActiveAdmin.register Episode do
   filter :published_at
 
   show do
-    render partial: 'admin/shared/iframe', locals: { src: episode_url(episode) }
+    p = panel "Total listeners" do
+      div class: "chart", "data-height" => 200 do
+        ul "data-from" => episode.published_at.to_date.to_s(:number) do
+          li "Published episodes", "data-target" => "stats.gauges.listens.#{episode.slug}.published.total"
+        end
+      end
+    end
+
+    p + render(partial: 'admin/shared/iframe', locals: { src: episode_url(episode) })
   end
 
   action_item only: [:edit, :show] do

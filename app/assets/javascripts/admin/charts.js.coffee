@@ -22,9 +22,10 @@ stats =
 charts =
   timeChart: (root, format, updaters) ->
     def = stats.updateAll(updaters)
+    height = $(root).data("height") || 300
 
     def.done (data...) ->
-      placeholder = $("<div class='placeholder' />").css height: "300px"
+      placeholder = $("<div class='placeholder' />").css height: "#{height}px"
       legend = $("<div class='legend'/>")
       $(root).find("ul").remove()
       $(root).append(placeholder).append(legend)
