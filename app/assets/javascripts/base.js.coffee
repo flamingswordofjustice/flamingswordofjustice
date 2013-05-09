@@ -2,6 +2,8 @@
 jQuery ->
   $("[data-mp3-uri]").each () ->
     controls     = $(this).closest(".play-controls, .full-play-controls")
+    if controls.hasClass("unpublished") then return
+
     article      = controls.closest("article.episode")
     episodeId    = article.attr("id")
     episodeState = article.data("state")
@@ -59,8 +61,8 @@ jQuery ->
     form = $(this)
     submit = form.find("a.submit")
 
-    submit.on "click", () -> form.submit()
-    form.on "ajax:complete", () -> submit.text(submit.data("message"))
+    submit.on "click", (evt) -> form.submit(); evt.preventDefault();
+    form.on "ajax:complete", () -> submit.find("span").text(submit.data("message"))
 
   $(".episode.live").each () ->
     episode = $(this)

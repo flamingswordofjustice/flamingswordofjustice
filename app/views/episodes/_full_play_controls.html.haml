@@ -1,4 +1,4 @@
-%div.full-play-controls{id: "play-#{episode.slug}"}
+%div.full-play-controls{id: "play-#{episode.slug}", class: episode.state}
   %div{"data-mp3-uri" => audio_episode_url(episode), "data-tracking-uri" => listener_tracking_uri, "data-swf-path" => asset_path("vendor/Jplayer.swf")}
 
   %div.share-episode
@@ -21,9 +21,24 @@
         = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)
 
   %div.play-episode{style: "background-image: url(#{episode.image.url})"}
-    %p.small.caption= episode.image_caption
-    %a.jp-play
-      %i.icon-play
+    - if episode.visible?
+      %p.small.caption= episode.image_caption
+      %a.jp-play
+        %i.icon-play
+      %a.jp-pause
+        %i.icon-pause
+    - else
+      %div.cant-play
+        %h1 This episode isn't available yet.
+        %h2.muted
+          Join our mailing list and we'll let you know when it's ready.
+
+        %form.form-inline.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
+          %input(placeholder="you@example.com" type="email" name="subscriber[email]" required style="margin-right: 10px")
+          %a.submit.btn.btn-inverse{href: "#", data: { message: "Thanks for subscribing!" } }
+            %span Subscribe Now
+            = image_tag "fsj_icon.png", style: "margin-top: -5px;"
+
 
   %div.jp-progress
     %div.jp-seek-bar

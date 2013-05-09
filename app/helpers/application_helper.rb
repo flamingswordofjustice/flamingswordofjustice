@@ -263,7 +263,7 @@ module ApplicationHelper
   def play_controls(opts={})
     partial = opts[:style] == "full" ? "full_play_controls" : "play_controls"
 
-    if opts[:episode].present? && opts[:episode].visible?
+    if opts[:episode].present?
       render partial: "episodes/#{partial}", locals: opts
     end
   end
