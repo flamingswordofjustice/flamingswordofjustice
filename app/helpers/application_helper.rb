@@ -174,7 +174,7 @@ module ApplicationHelper
     if attrs[:title].blank?
       attrs[:title] = attrs[:page_title] = t(:tag)
     else
-      attrs[:page_title] = [ t(:tag), ( attrs[:page_title] || attrs[:title] ) ].compact.join(" - ")
+      attrs[:page_title] = [ ( attrs[:page_title] || attrs[:title] ), t(:tag) ].compact.join(" - ")
     end
 
     content_for :head do
