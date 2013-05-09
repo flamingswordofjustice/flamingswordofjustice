@@ -9,6 +9,7 @@
     = google_analytics_tracker
     = csrf_meta_tags
     = favicon_link_tag
+    = chartbeat_head_tracker
     %meta(name="viewport" content="width=device-width")
     %meta(name="bitly-verification" content="100f7700b68b")
     = yield :head
@@ -43,3 +44,5 @@
           %div.span12
             %div.brand
               = render 'shared/powered_by'
+
+  = chartbeat_tail_tracker
