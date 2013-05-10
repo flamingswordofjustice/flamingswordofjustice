@@ -23,10 +23,7 @@ div.full-play-controls {
       color: $veryLightGrey;
       text-shadow: 1px 1px rgba(0,0,0,0.7);
     }
-    .status {
-      .jp-time-holder { display: none; }
-      .jp-controls .jp-play { display: none; }
-    }
+    .status, .jp-progress { display: none; }
   }
 
   .play-episode {
