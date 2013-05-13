@@ -1,7 +1,8 @@
 article.media-badge {
   background-color: white;
-  margin: 0 30px 30px 0;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin-bottom: 30px;
 
   &:hover {
     box-shadow: 0 0 2px rgba(214, 28, 28, 0.8);
@@ -11,19 +12,16 @@ article.media-badge {
   &:nth-child(even) { margin-right: 0; }
 
   float: left;
-  width: 330px;
 
   > .avatar {
     vertical-align: top;
     display: inline-block;
     background-color: white;
     margin: 10px;
-    height: 100px;
     overflow: hidden;
-    width: 100px;
+    width: 24%;
     text-align: center;
     border: 1px solid #ddd;
-    line-height: 96px;
 
     &:hover { color: $lightGrey; }
 
@@ -40,9 +38,8 @@ article.media-badge {
 
   > .body {
     padding: 10px 10px 10px 0;
+    width: 60%;
     display: inline-block;
-    width: 193px;
-    height: 85px;
     overflow: hidden;
     font-size: 14px;
     line-height: 18px;

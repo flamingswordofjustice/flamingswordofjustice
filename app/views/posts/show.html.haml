@@ -2,7 +2,7 @@
                            type: "article",
                            description: @post.content
 
-%div.row
+%div.row-fluid
   %header.span12
     = breadcrumbs :root, @post
     %h1= @post.title
@@ -14,7 +14,7 @@
 
 = divider
 
-%div.row
+%div.row-fluid
   %div.span8
     %article.episode{id: @post.slug}
       %section.body
@@ -26,7 +26,7 @@
 
 = divider
 
-%div.row
+%div.row-fluid
   %div.span8
     %section.comments
       = livefyre_comments

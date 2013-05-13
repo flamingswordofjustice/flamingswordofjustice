@@ -111,7 +111,7 @@ module ApplicationHelper
   end
 
   def chartbeat_uid
-    ENV['CHARTBEAT_UID']
+    ENV['CHARTBEAT_UID'] || ""
   end
 
   def google_analytics_tracker

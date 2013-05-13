@@ -1,16 +1,18 @@
-%header#header
+%header#header.full-width
   %section.container
     %div.navbar
       %nav.navbar-inner
         %a.brand{href: root_path}
-          %div.underlay
-          = image_tag "sword_flameless_logo.png"
 
-        = render 'shared/nav_links'
+        %a.btn.btn-navbar(data-toggle="collapse" data-target=".nav-collapse")
+          %i.icon-reorder
 
-        %ul.nav.pull-right
-          %li
-            %form.navbar-search{action: search_path, method: :get}
-              %div.control-group
-                %i.icon-search
-                %input.search-query{type: "search", name: "q", placeholder: "Search", value: params[:q]}
+        %div.nav-collapse.collapse
+          = render 'shared/nav_links'
+
+          %ul.nav.pull-right
+            %li
+              %form.navbar-search{action: search_path, method: :get}
+                %div.control-group
+                  %i.icon-search
+                  %input.search-query{type: "search", name: "q", placeholder: "Search", value: params[:q]}

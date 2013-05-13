@@ -1,6 +1,6 @@
 = open_graph_and_meta_tags title: @organization.name, description: @organization.description, type: "company"
 
-%div.row
+%div.row-fluid
   %header.span12
     = breadcrumbs :root, Organization, @organization
     %h1= @organization.name
@@ -13,7 +13,7 @@
 
 = divider
 
-%div.row
+%div.row-fluid
   %div.span8
     %article.person
       = raw @organization.description
@@ -30,7 +30,7 @@
         = image_tag @organization.image.url
 
 = divider
-%div.row
+%div.row-fluid
   %spans.span8
     - if @organization.episodes.any?
       %section.appearances.clearfix

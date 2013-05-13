@@ -78,5 +78,14 @@ jQuery ->
     updateShowNotes()
 
   $(".apply-affix").each () ->
-    pos = $(this).position()
-    $(this).css(left: pos.left).affix offset: { top: pos.top - 20, left: pos.left }
+    console.log "boo"
+    affixable = $(this)
+    pos = affixable.position()
+    parent    = affixable.parent()
+    footer    = $("#footer")
+
+    affixable.affix offset: { top: pos.top + 60, bottom: 260 }
+
+    affixable.width parent.width()
+    $(window).resize () ->
+      affixable.width parent.width()

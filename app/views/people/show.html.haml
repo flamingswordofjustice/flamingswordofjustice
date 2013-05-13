@@ -2,7 +2,7 @@
                            title: @person.name + ", " + @person.title,
                            description: @person.description
 
-%div.row
+%div.row-fluid
   %header.span12
     = breadcrumbs :root, Person, @person
     %h1= @person.name
@@ -13,14 +13,14 @@
 
 = divider
 
-%div.row
+%div.row-fluid
   %div.span8
     %article.person
       %p= raw @person.description
 
     - if @person.organization.present?
       %h3 Organization
-      %section.organization{style: "margin-top: 20px"}
+      %section.organization.clearfix{style: "margin-top: 20px"}
         = render @person.organization
 
   - unless @person.image.blank?
@@ -31,7 +31,7 @@
 = divider
 
 - if @person.appearances.any?
-  %div.row
+  %div.row-fluid
     %div.span8
       %h3#appearances Episodes
       = render @person.episodes

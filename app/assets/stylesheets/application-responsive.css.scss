@@ -1,0 +1,42 @@
+@media (max-width: 767px) {
+  .full-width {
+    margin-left: -$gridGutterWidth;
+    margin-right: -$gridGutterWidth;
+    padding-left: $gridGutterWidth;
+    padding-right: $gridGutterWidth;
+
+    > .overlay {
+      margin-left: -$gridGutterWidth;
+      margin-right: -$gridGutterWidth;
+
+      > .container {
+        padding-left: $gridGutterWidth;
+        padding-right: $gridGutterWidth;
+      }
+    }
+  }
+
+  nav.navbar-inner {
+    a.brand {
+      width: 200px;
+      height: 40px;
+      margin-top: 20px;
+    }
+
+    a.btn-navbar {
+      margin-top: 25px;
+    }
+  }
+
+  .affix {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+  }
+
+  a.brand-logo {
+    background-image: image-url("logo_horizontal.png");
+    max-width: 767px;
+    min-height: 40px;
+  }
+}

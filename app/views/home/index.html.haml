@@ -1,9 +1,9 @@
 = open_graph_and_meta_tags
 
-%section.current-episode{style: "background-image: url(#{@latest.image.bw})"}
+%section.current-episode.full-width{style: "background-image: url(#{@latest.image.bw})"}
   %section.overlay
     %section.container
-      %div.row
+      %div.row-fluid
         %div.span4.splash-logo
           %a{href: root_path}
             = image_tag "logo.png", width: "100%", class: "big-brand"
@@ -15,12 +15,12 @@
           - unless @latest.nil?
             = render partial: 'episodes/episode', object: @latest, locals: { play: true }
 
-      %div.row.subscribe-join-social
+      %div.row-fluid.subscribe-join-social
         = subscribe_join_social orientation: :horizontal
 
 %section.past-episodes
   %section.container
-    %div.row
+    %div.row-fluid
       %div.span8
         %h2 More Justice
         = render @content

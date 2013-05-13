@@ -6,12 +6,13 @@
                            url: episode_url(@episode, ref: "fb", protocol: "http")
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
-  %div.row
+  %div.row-fluid
     %header.span12
-      %div.row
-        %span.span2
-          = image_tag 'logo.png'
-        %span.span10
+      %div.row-fluid
+        %div.span2
+          %a.brand-logo{href: root_path}
+            / = image_tag 'logo.png'
+        %div.span10
           = breadcrumbs :root, Episode, @episode
           %h1= @episode.title
 
@@ -22,13 +23,14 @@
 
   = divider
 
-  %div.row.play-and-share
+  %div.row-fluid.play-and-share
     %div.span8
       = play_controls style: "full", episode: @episode
-    %div.subscribe-join-social.apply-affix.span4
-      = subscribe_join_social orientation: :vertical, share: @episode
+    %div.span4
+      %div.subscribe-join-social.subscribe-vertical.apply-affix
+        = subscribe_join_social orientation: :vertical, share: @episode
 
-  %div.row.episode-and-image
+  %div.row-fluid.episode-and-image
     %div.span8
       %section.body
         = raw @episode.description
@@ -39,24 +41,24 @@
           %p= comma_separated_list_of @episode.topics
 
   - unless @episode.show_notes.blank?
-    %div.row
+    %div.row-fluid
       %div.span8
         %h3 Show Notes
         %div.show-notes= raw @episode.show_notes
 
   - if @episode.guests.any?
-    %div.row.guests-and-orgs
+    %div.row-fluid.guests-and-orgs
       %div.span8
         %h3 Featuring
-        - @episode.guests.each do |guest|
-          %div
-            = render guest
-            = render guest.organization if guest.organization.present?
+    - @episode.guests.each do |guest|
+      %div.row-fluid
+        %div.span4= render guest
+        %div.span4= render guest.organization if guest.organization.present?
 
 
   = divider 8
 
-  %div.row.other-episodes
+  %div.row-fluid.other-episodes
     %div.span4
       - if @episode.prev.present?
         %a.prev{href: episode_path(@episode.prev)}
@@ -70,7 +72,7 @@
           %i.icon-chevron-right
 
   - if comments_enabled?
-    %div.row.comments
+    %div.row-fluid.comments
       %div.span8
         %section.comments
           = livefyre_comments

@@ -1,6 +1,6 @@
 = open_graph_and_meta_tags title: @topic.name, description: @topic.description
 
-%div.row
+%div.row-fluid
   %header.span12
     = breadcrumbs :root, Topic, @topic
     %h1= @topic.name
@@ -8,7 +8,7 @@
 = divider
 
 - if @topic.description.present? && @topic.image.present?
-  %div.row
+  %div.row-fluid
     %div.span8
       %article.topic
         = raw @topic.description
@@ -20,7 +20,7 @@
 
   = divider
 
-%div.row
+%div.row-fluid
   %div.span8
     %section.appearances
       %h3 Episodes and posts
