@@ -16,18 +16,9 @@ class HomeController < ApplicationController
     subscriber = params.require(:subscriber).permit(:email)
 
     unless Rails.env.development?
-      begin
-        Gibbon.new(ENV["MAILCHIMP_API_KEY"]).list_subscribe(
-          id: ENV["MAILCHIMP_LIST_ID"],
-          email_address: subscriber["email"]
-        )
-      rescue => e
-        # Ok to fail validations.
-        logger.info e.message
-      end
+      Subscriber.subscribe subscriber[:email]
     end
 
-    Subscriber.create subscriber
     head :ok
   end
 

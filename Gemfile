@@ -52,7 +52,6 @@ gem 'zclip-rails'
 
 # Email
 
-gem 'gibbon' # Mailchimp
 gem 'mailgun'
 gem 'premailer'
 
