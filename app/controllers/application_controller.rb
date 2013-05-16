@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
   private
 
   def render_error(status, exception)
-    logger.error ([ exception.message ] + exception.backtrace).join("\n")
+    message = ([ exception.message ] + exception.backtrace).join("\n")
+    logger.error message
     respond_to do |format|
       format.html { render template: "errors/#{status}", layout: 'layouts/application', status: status }
       format.all { render nothing: true, status: status }
