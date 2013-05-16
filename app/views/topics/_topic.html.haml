@@ -7,7 +7,7 @@
   %section.body
     %a{href: topic_path(topic)}
       %h4= topic.name
-    %small
+    %small.description
       = raw truncate_html(topic.description)
     - if topic.episodes_count > 0
       %small{style: "display: block"}

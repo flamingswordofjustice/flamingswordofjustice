@@ -7,7 +7,7 @@
   %section.body
     %a{href: person_path(person)}
       %h4= person.name
-    %small
+    %small.description
       - if person.title.present?
         = person.title
       - else
