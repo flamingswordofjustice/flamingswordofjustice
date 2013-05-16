@@ -1,4 +1,5 @@
 .subscribe-join-social {
+  padding-bottom: 20px;
   > div {
     margin-top: 20px;
   }
@@ -15,7 +16,10 @@
     a.itunes {
       display: block;
       height: 100px;
-      background: lighten($baseRed, 20%) image-url("white_circle.png") 130% 50% no-repeat;
+      background-color: lighten($baseRed, 20%);
+      background-image: image-url("white_circle.png");
+      background-position: 130% 50%;
+      background-repeat: no-repeat;
       color: white;
       position: relative;
       text-align: left;

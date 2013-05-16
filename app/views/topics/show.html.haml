@@ -1,11 +1,18 @@
-= open_graph_and_meta_tags title: @topic.name, description: @topic.description
+= open_graph_and_meta_tags title: @topic.name,
+                           description: @topic.description
 
-%div.row-fluid
-  %header.span12
+
+%div.row-fluid.breadcrumbs
+  %div.span12
     = breadcrumbs :root, Topic, @topic
-    %h1= @topic.name
 
-= divider
+%div.row-fluid.page-header
+  %div.span2.logo
+    %a{href: root_path}
+      = image_tag "logo.png"
+
+  %div.span10.offset2.details
+    %h1= @topic.name
 
 - if @topic.description.present? && @topic.image.present?
   %div.row-fluid

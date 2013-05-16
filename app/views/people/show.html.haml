@@ -2,33 +2,43 @@
                            title: @person.name + ", " + @person.title,
                            description: @person.description
 
-%div.row-fluid
-  %header.span12
+%div.row-fluid.breadcrumbs
+  %div.span12
     = breadcrumbs :root, Person, @person
+
+%div.row-fluid.page-header
+  %div.span2.logo
+    %a{href: root_path}
+      = image_tag "logo.png"
+
+  %div.span10.offset2.details
     %h1= @person.name
     - unless @person.title.blank?
       %p.muted= @person.title
     %section.social.clearfix
       = social_icons_for @person
 
-= divider
-
 %div.row-fluid
   %div.span8
     %article.person
       %p= raw @person.description
 
-    - if @person.organization.present?
-      %h3 Organization
-      %section.organization.clearfix{style: "margin-top: 20px"}
-        = render @person.organization
-
   - unless @person.image.blank?
-    %div.span4
+    %div.span4.entity-image
       %figure.thumbnail
         = image_tag @person.image.url
 
-= divider
+
+- if @person.organization.present?
+  %div.row-fluid
+    %div.span8
+      %h3 Organization
+  %div.row-fluid
+    %div.span4
+      %section.organization.clearfix{style: "margin-top: 20px"}
+        = render @person.organization
+
+= divider 8
 
 - if @person.appearances.any?
   %div.row-fluid
