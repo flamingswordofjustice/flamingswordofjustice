@@ -98,12 +98,14 @@ jQuery ->
       affixable.width parent.width()
 
   $(".full-play-controls").each () ->
-    player = $(this).find ".play-episode .jp-play"
+    player = $(this).find ".play-episode"
+    controls = player.find(".jp-play, .jp-pause")
 
     resizer = () ->
       width = player.width()
       height = ( width / 16.0 ) * 9.0
-      player.css(height: height).find("i").css lineHeight: height + "px", fontSize: (height / 2) + "px"
+      player.css(height: height)
+      controls.find("i").css lineHeight: height + "px", fontSize: (height / 2) + "px"
 
     resizer()
     $(window).resize resizer
