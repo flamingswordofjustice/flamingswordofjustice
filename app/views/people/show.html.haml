@@ -2,24 +2,21 @@
                            title: @person.name + ", " + @person.title,
                            description: @person.description
 
-%div.row-fluid.breadcrumbs
-  %div.span12
-    = breadcrumbs :root, Person, @person
-
 %div.row-fluid.page-header
   %div.span2.logo
     %a{href: root_path}
       = image_tag "logo.png"
 
   %div.span10.offset2.details
+    = breadcrumbs :root, Person, @person
     %h1= @person.name
     - unless @person.title.blank?
-      %p.muted= @person.title
-    %section.social.clearfix
-      = social_icons_for @person
+      %div.muted= @person.title
 
 %div.row-fluid
   %div.span8
+    %section.social.clearfix
+      = social_icons_for @person
     %article.person
       %p= raw @person.description
 

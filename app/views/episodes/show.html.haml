@@ -6,16 +6,13 @@
                            url: episode_url(@episode, ref: "fb", protocol: "http")
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
-  %div.row-fluid.breadcrumbs
-    %div.span12
-      = breadcrumbs :root, Episode, @episode
-
   %div.row-fluid.page-header
     %div.span2.logo
       %a{href: root_path}
         = image_tag "logo.png"
 
     %div.span10.offset2.details
+      = breadcrumbs :root, Episode, @episode
       %h1= @episode.headline || @episode.title
 
       %span.muted.attribution
@@ -47,9 +44,10 @@
         %div.show-notes= raw @episode.show_notes
 
   - if @episode.guests.any?
-    %div.row-fluid.guests-and-orgs
+    %div.row-fluid
       %div.span8
         %h3 Featuring
+    %div.row-fluid.guests-and-orgs
     - @episode.guests.each do |guest|
       %div.row-fluid
         %div.span4= render guest

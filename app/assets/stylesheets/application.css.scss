@@ -45,6 +45,10 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
+.clearfix {
+  clear: both;
+}
+
 #wrap {
   min-height: 100%;
   height: auto !important;
@@ -78,10 +82,6 @@ a {
 article.post, article.episode {
   > header {
     margin-bottom: 20px;
-  }
-
-  section.body {
-    clear: both;
   }
 }
 
@@ -211,6 +211,10 @@ form.navbar-search, form.search-form {
         margin-bottom: 10px;
         p:last-child { margin: 0; }
       }
+
+      .attribution {
+        margin-bottom: 10px;
+      }
     }
 
     .full-play-controls  {
@@ -281,23 +285,16 @@ article {
   border-bottom: 1px solid $baseRed;
 }
 
-.breadcrumbs {
-  > [class*="span"] {
-    height: 24px;
-    min-height: 24px;
-  }
+ul.breadcrumb {
+  background-color: transparent;
+  margin-bottom: 0;
+  padding: 0;
+  a { color: $baseRed; }
 
-  .breadcrumb {
-    background-color: transparent;
-    margin-bottom: 0;
-    padding: 0;
-    a { color: $baseRed; }
-
-    .divider {
-      margin: 0;
-      height: auto;
-      border: none;
-    }
+  .divider {
+    margin: 0;
+    height: auto;
+    border: none;
   }
 }
 

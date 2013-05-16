@@ -1,13 +1,10 @@
-%div.row-fluid.breadcrumbs
-  %div.span12
-    = crumbs
-
 %div.row-fluid.page-header
   %div.span2.logo
     %a{href: root_path}
       = image_tag "logo.png"
 
   %div.span10.offset2.details
+    = crumbs
     %h1= title
     = render 'episodes/groups_nav' if defined?(@category)
 

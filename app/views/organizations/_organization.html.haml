@@ -1,22 +1,21 @@
 %article.media-badge.organization
-  %div
-    %a.avatar{href: organization_path(organization)}
-      - if organization.image.present?
-        = image_tag organization.image.logo || organization.image.thumb
+  %a.avatar{href: organization_path(organization)}
+    - if organization.image.present?
+      = image_tag organization.image.logo || organization.image.thumb
+    - else
+      %i.icon-group
+  %section.body
+    %a{href: organization_path(organization)}
+      %h4= organization.name
+    %small.description
+      - if organization.short_description.present?
+        = organization.short_description
       - else
-        %i.icon-group
-    %section.body
-      %a{href: organization_path(organization)}
-        %h4= organization.name
-      %small.description
-        - if organization.short_description.present?
-          = organization.short_description
-        - else
-          = raw truncate_html(organization.description)
-      - if organization.episodes_count > 0
-        %small{style: "display: block"}
-          %em
-            = link_to pluralize(organization.episodes_count, "episode"), organization_path(organization, anchor: "appearances")
+        = raw truncate_html(organization.description)
+    - if organization.episodes_count > 0
+      %small{style: "display: block"}
+        %em
+          = link_to pluralize(organization.episodes_count, "episode"), organization_path(organization, anchor: "appearances")
 
   %section.social
     = social_icons_for organization, type: "like"

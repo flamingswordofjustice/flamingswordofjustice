@@ -5,11 +5,11 @@
     %section.container
       %div.row-fluid
         %div.span4.splash-logo
-          %a{href: root_path}
+          %a.visible-desktop{href: root_path}
             = image_tag "logo.png", width: "100%", class: "big-brand"
           = render 'shared/powered_by'
 
-          %h3{style: "text-align: center"}= t(:description)
+          %h3{style: "text-align: center"}= raw t(:description)
 
         %div.span8.episode-blurb
           - unless @latest.nil?

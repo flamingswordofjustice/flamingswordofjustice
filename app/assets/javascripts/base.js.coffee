@@ -78,14 +78,33 @@ jQuery ->
     updateShowNotes()
 
   $(".apply-affix").each () ->
-    console.log "boo"
     affixable = $(this)
     pos = affixable.position()
     parent    = affixable.parent()
     footer    = $("#footer")
+    header    = $(".page-header")
+    navbar    = $(".navbar")
+    offset    = 50
 
-    affixable.affix offset: { top: pos.top + 60, bottom: 260 }
+    # TODO There must be a way to calculate the offset dynamically.
+
+    affixable.affix offset: {
+      top: () -> header.height() + navbar.height() + offset,
+      bottom: 260
+    }
 
     affixable.width parent.width()
     $(window).resize () ->
       affixable.width parent.width()
+
+  $(".full-play-controls").each () ->
+    player = $(this).find ".play-episode .jp-play"
+
+    resizer = () ->
+      width = player.width()
+      height = ( width / 16.0 ) * 9.0
+      player.css(height: height).find("i").css lineHeight: height + "px", fontSize: (height / 2) + "px"
+
+    resizer()
+    $(window).resize resizer
+

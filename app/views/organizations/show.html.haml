@@ -1,27 +1,23 @@
 = open_graph_and_meta_tags title: @organization.name, description: @organization.description, type: "company"
 
-%div.row-fluid.breadcrumbs
-  %div.span12
-    = breadcrumbs :root, Organization, @organization
-
 %div.row-fluid.page-header
   %div.span2.logo
     %a{href: root_path}
       = image_tag "logo.png"
 
   %div.span10.offset2.details
+    = breadcrumbs :root, Organization, @organization
     %h1= @organization.name
     - unless @organization.website.blank?
       %a{href: @organization.website}
-        %p.muted
+        %div.muted
           = @organization.website
-
-    %section.social.clearfix
-      = social_icons_for @organization
 
 %div.row-fluid
   %div.span8
-    %article.organization
+    %section.social
+      = social_icons_for @organization
+    %article.organization.clearfix
       = raw @organization.description
 
   - unless @organization.image.blank?
