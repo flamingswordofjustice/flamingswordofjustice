@@ -20,6 +20,7 @@ $twitterTeal: #9AE4E8;
 @import "bootstrap-responsive";
 @import "font-awesome";
 @import "modules/**/*";
+@import "vendor/magnific";
 
 html, body {
   height: 100%;
@@ -424,6 +425,11 @@ a.brand-logo {
     top: 0;
     left: 0;
   }
+}
+
+.image-gallery a {
+  display: inline-block;
+  margin-bottom: 4px;
 }
 
 @import "application-responsive";

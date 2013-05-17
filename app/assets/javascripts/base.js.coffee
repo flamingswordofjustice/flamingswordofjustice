@@ -110,3 +110,9 @@ jQuery ->
     resizer()
     $(window).resize resizer
 
+  $('.image-gallery').magnificPopup
+    delegate: 'a',
+    type: 'image',
+    mainClass: 'mfp-fade',
+    removalDelay: 300,
+    gallery: { enabled: true }

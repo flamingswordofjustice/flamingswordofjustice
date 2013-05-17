@@ -37,6 +37,12 @@
           %strong Topics:
           %p= comma_separated_list_of @episode.topics
 
+  - unless @episode.filepicker_images.blank?
+    %div.row-fluid.image-gallery
+      - @episode.filepicker_images.split(',').each do |i|
+        = link_to i do
+          = filepicker_image_tag i, w: 125, h: 125, fit: :crop
+
   - unless @episode.show_notes.blank?
     %div.row-fluid
       %div.span8
