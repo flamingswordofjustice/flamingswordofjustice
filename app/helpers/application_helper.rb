@@ -84,12 +84,16 @@ module ApplicationHelper
   end
 
   def chartbeat_head_tracker
+    return nil if chartbeat_uid.blank?
+
     raw <<-HTML
       <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
     HTML
   end
 
   def chartbeat_tail_tracker
+    return nil if chartbeat_uid.blank?
+
     raw <<-HTML
       <script type="text/javascript">
         var _sf_async_config = { uid: #{chartbeat_uid}, domain: 'flamingswordofjustice.com', useCanonical: true };
@@ -111,7 +115,7 @@ module ApplicationHelper
   end
 
   def chartbeat_uid
-    ENV['CHARTBEAT_UID'] || ""
+    ENV['CHARTBEAT_UID']
   end
 
   def google_analytics_tracker
@@ -147,6 +151,14 @@ module ApplicationHelper
     HTML
   end
 
+  def optimizely_tracker
+    return nil if optimizely_project_code.blank?
+
+    raw <<-HTML
+      <script src="//cdn.optimizely.com/js/#{optimizely_project_code}.js"></script>
+    HTML
+  end
+
   def itunes_link
     ENV['ITUNES_URI']
   end
@@ -157,6 +169,10 @@ module ApplicationHelper
 
   def listener_tracking_uri
     ENV["LISTENER_TRACKING_URI"]
+  end
+
+  def optimizely_project_code
+    ENV["OPTIMIZELY_PROJECT_CODE"]
   end
 
   def social_icons_for(model, opts={})
