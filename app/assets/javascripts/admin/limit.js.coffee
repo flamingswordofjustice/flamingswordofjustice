@@ -6,7 +6,6 @@ $ ->
 
     unless counter.length is 0
       input.bind 'input', () ->
-        console.log "foo"
         charsRemaining = maxlength - input.val().length
         counter.text "Characters remaining: #{charsRemaining}. "
 

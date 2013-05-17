@@ -141,8 +141,7 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
 
-  config.register_stylesheet 'vendor/chosen.css'
-
+  config.register_javascript 'https://api.filepicker.io/v1/filepicker.js'
 
   # == CSV options
   #

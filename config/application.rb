@@ -70,6 +70,8 @@ module Fsj
       "vendor/chosen-sprite.png"
     ]
 
+    config.filepicker_rails.api_key = ENV['FILEPICKER_API_KEY']
+
     # Enforce SSL in admin.
     config.middleware.use Rack::SslEnforcer, :only => %r{^/admin} if Rails.env.production?
   end

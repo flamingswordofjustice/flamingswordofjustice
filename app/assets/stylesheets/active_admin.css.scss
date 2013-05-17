@@ -10,6 +10,7 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+@import "vendor/chosen";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -35,6 +36,8 @@
     color: red;
   }
 
+  fieldset.inputs > ol > li { clear: both; }
+
   .panel_contents {
     .chart {
       table {
@@ -52,6 +55,50 @@
       width: 100%;
       height: 3000px; // Arbitrarily large!
       border: 1px solid #eee;
+    }
+  }
+
+  ul.thumbs {
+    margin: 0.5em 0 0 20%;
+    list-style-type: none;
+
+    > li {
+      float: left;
+      width: 125px;
+      height: 125px;
+      border: 1px solid #bbb;
+      padding: 5px;
+      background-color: white;
+      margin: 4px 4px 4px 0;
+      line-height: 125px;
+      position: relative;
+
+      img { vertical-align: middle; }
+
+      &.new {
+        background-color: #CFECFF;
+        border: 1px solid #ddd;
+      }
+
+      &.drop {
+        background-color: rgba(255,255,180,0.1);
+        border: 1px dashed #EDE58E;
+      }
+
+      &:hover {
+        .delete { display: block; }
+      }
+
+      .delete {
+        display: none;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: white;
+        font-size: 1.6em;
+        line-height: 0;
+        padding: 2px;
+      }
     }
   }
 }

@@ -24,6 +24,7 @@ gem 'newrelic_rpm'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
+gem 'filepicker-rails'
 
 # Assets
 

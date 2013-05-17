@@ -2,3 +2,8 @@ window.util =
   interval: (ms, fn) -> setInterval fn, ms
   timeout:  (ms, fn) -> setTimeout fn, ms
   doto: (o, fn) -> fn(o); o # K combinator
+
+Array.prototype.remove = (from, to) ->
+  rest = @slice (to || from) + 1 || this.length
+  @length = if from < 0 then this.length + from else from
+  @push.apply this, rest
