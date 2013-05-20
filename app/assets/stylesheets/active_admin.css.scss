@@ -101,4 +101,11 @@
       }
     }
   }
+
+  table.listeners {
+    tbody tr {
+      cursor: pointer;
+      &:hover, &.active { background-color: #eee; }
+    }
+  }
 }

@@ -3,9 +3,9 @@
 //= require vendor/jquery.flot.time
 //= require vendor/jquery.flot.resize
 //= require vendor/jquery.chosen
-//= require vendor/jquery.sparkline.js
+//= require vendor/jquery.sparkline
+//= require vendor/knockout
+//= require vendor/socket.io
+//= require vendor/strftime
 //= require util
-//= require admin/charts
-//= require admin/chosen
-//= require admin/limit
-//= require admin/filepicker
+//= require_tree ./admin
