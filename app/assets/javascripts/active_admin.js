@@ -5,6 +5,9 @@
 //= require vendor/jquery.chosen
 //= require vendor/jquery.sparkline
 //= require vendor/knockout
+//= require vendor/underscore
+//= require vendor/backbone
+//= require vendor/knockback
 //= require vendor/socket.io
 //= require vendor/strftime
 //= require util

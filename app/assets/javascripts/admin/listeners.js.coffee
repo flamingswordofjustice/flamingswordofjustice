@@ -1,42 +1,38 @@
 $ ->
-  Listener = (attrs) ->
-    for key, value of attrs
-      this[key] = ko.observable(value)
+  Listener = Backbone.Model.extend()
+
+  ListenerViewModel = (model) ->
+    for key, value of model.attributes
+      this[key] = kb.observable model, key
 
     @listenTimeFormatted = ko.computed () =>
-      strftime "%I:%M:%S", new Date(@totalListenTime()),
+      strftimeUTC "%H:%M:%S", new Date(@totalListenTime())
 
     @state = ko.computed () =>
       if @playing() then "playing" else "stopped"
 
-    @transition = ko.computed () =>
-      listens = @listens()
-
-      listens[listens.length - 1].type.replace /jPlayer_/, ''
-
     this
+
+  $("select.episode").chosen().change (evt) ->
+    console.log evt
 
   $("table.listeners").each () ->
     table = $(this)
-    activeListener = ko.observable()
-    listeners = ko.observableArray()
     trackingUri = table.data("tracking-uri")
 
-    update = () ->
-      req = $.ajax trackingUri + "/admin/episodes", type: 'get', crossDomain: true, dataType: 'jsonp'
+    listenerColl = new Backbone.Collection([], { model: Listener, url: trackingUri + "/admin/listeners" });
 
-      req.error () ->
-        console.log 'failure', arguments
-
-      req.success (resp) ->
-        list = ( new Listener(listener) for listener in resp )
-        listeners list
-
+    update = () -> listenerColl.fetch dataType: 'jsonp'
     update()
-
     setInterval update, 1000
 
-    selectListener = (listener) =>
-      activeListener listener
+    listeners = kb.collectionObservable listenerColl, view_model: ListenerViewModel
+    activeListener = ko.observable()
 
-    ko.applyBindings listeners: listeners, activeListener: activeListener, selectListener: selectListener
+    ko.applyBindings
+      listeners: listeners
+      activeListener: activeListener,
+      selectListener: (listener) ->
+        if listener is activeListener() then activeListener(null) else activeListener(listener)
+      isActive: (listener) ->
+        listener is activeListener()

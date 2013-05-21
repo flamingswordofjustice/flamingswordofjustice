@@ -23,14 +23,16 @@ $ ->
         console.log "play", evt
 
         if socket?
-          socket.emit 'play', id: episodeId, state: episodeState, type: evt.type, ref: ref
+          type = evt.type.replace(/jPlayer_/, '')
+          socket.emit 'play', id: episodeId, state: episodeState, type: type, ref: ref
         else
           connect()
 
     pause = (evt) ->
       if shouldTrack and socket?
         console.log "pause", evt
-        socket.emit 'pause', type: evt.type, ref: ref
+        type = evt.type.replace(/jPlayer_/, '')
+        socket.emit 'pause', type: type, ref: ref
 
     $(this).jPlayer
       preload: "none"
@@ -41,6 +43,7 @@ $ ->
       ready: () -> $(this).jPlayer "setMedia", mp3: mp3Uri
       play:    play
       seeked:  play
+      playing: play
       pause:   pause
       seeking: pause
       ended:   pause

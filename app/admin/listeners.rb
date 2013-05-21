@@ -14,7 +14,7 @@ ActiveAdmin.register_page "Listeners" do
       end
 
       tbody "data-bind" => "foreach: listeners" do
-        tr "data-bind" => "click: $parent.selectListener" do
+        tr "data-bind" => "click: $parent.selectListener, css: { active: $parent.isActive($data) }" do
           td "", "data-bind" => "text: startTime"
           td "", "data-bind" => "text: listenTimeFormatted"
           td "", "data-bind" => "text: episodeId"
@@ -27,7 +27,7 @@ ActiveAdmin.register_page "Listeners" do
   end
 
   sidebar "Filter" do
-    select do
+    select class: "episode" do
       option "All Episodes", value: ""
       Episode.all.each do |e|
         option e.title, value: e.slug
@@ -36,16 +36,20 @@ ActiveAdmin.register_page "Listeners" do
   end
 
   sidebar "More Details", class: "foo" do
-    table "data-bind" => "with: activeListener" do
-      tr { th "Session ID" }
-      tr { td "", "data-bind" => "text: sessionId" }
+    div "data-bind" => "with: activeListener" do
+      h1 "", style: "text-align: center", "data-bind" => "text: listenTimeFormatted"
 
-      tr { th "Plays" }
-      tr do
-        td do
-          dl "data-bind" => "foreach: listens" do
-            dt "", "data-bind" => "text: type"
-            dd "", "data-bind" => "text: timestamp"
+      table do
+        tr { th "Session ID" }
+        tr { td "", "data-bind" => "text: sessionId" }
+
+        tr { th "Plays" }
+        tr do
+          td do
+            dl "data-bind" => "foreach: listens" do
+              dt "", "data-bind" => "text: type"
+              dd "", "data-bind" => "text: timestamp"
+            end
           end
         end
       end
