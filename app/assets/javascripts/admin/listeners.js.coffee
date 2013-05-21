@@ -23,7 +23,11 @@ $ ->
     update()
     setInterval update, 1000
 
-    listeners = kb.collectionObservable listenerColl, view_model: ListenerViewModel
+    listeners = kb.collectionObservable listenerColl,
+      view_model: ListenerViewModel,
+      comparator: (listenerA, listenerB) ->
+        if listenerA.startTime() < listenerB.startTime() then 1 else -1
+
     activeListener = ko.observable()
 
     ko.applyBindings
