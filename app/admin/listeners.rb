@@ -47,7 +47,7 @@ ActiveAdmin.register_page "Listeners" do
         tr do
           td do
             dl "data-bind" => "foreach: listens" do
-              dt "", "data-bind" => "text: type"
+              dt "", "data-bind" => "text: event"
               dd "", "data-bind" => "text: timestamp"
             end
           end

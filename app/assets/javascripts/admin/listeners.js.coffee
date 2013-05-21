@@ -8,9 +8,6 @@ $ ->
     @listenTimeFormatted = ko.computed () =>
       strftimeUTC "%H:%M:%S", new Date(@totalListenTime())
 
-    @state = ko.computed () =>
-      if @playing() then "playing" else "stopped"
-
     this
 
   $("select.episode").chosen().change (evt) ->

@@ -16,6 +16,9 @@ $ ->
 
     connect = () ->
       socket = io.connect(trackingUri + "/listens", reconnect: true)
+
+      # TODO: If the connection to the server is lost, this will reconnect and treat
+      # that connect as another play even if the player isn't running. Fix.
       socket.on 'connect', () -> play(type: 'connect')
 
     play = (evt) ->
@@ -34,6 +37,12 @@ $ ->
         type = evt.type.replace(/jPlayer_/, '')
         socket.emit 'pause', type: type, ref: ref
 
+    close = (evt) ->
+      if shouldTrack and socket?
+        console.log "end", evt
+        type = evt.type.replace(/jPlayer_/, '')
+        socket.emit 'close', type: type, ref: ref
+
     $(this).jPlayer
       preload: "none"
       swfPath: swfPath
@@ -46,10 +55,10 @@ $ ->
       playing: play
       pause:   pause
       seeking: pause
-      ended:   pause
       error:   pause
       stalled: pause
       abort:   pause
       emptied: pause
+      ended:   close
 
   $.jPlayer.timeFormat.showHour = true
