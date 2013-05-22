@@ -13,7 +13,7 @@
 
     %div.span10.offset2.details
       = breadcrumbs :root, Episode, @episode
-      %h1= @episode.headline || @episode.title
+      %h1= @episode.headline.present? ? @episode.headline : @episode.title
 
       %span.muted.attribution
         = @episode.headline.present? ? @episode.title : t(:tag)
