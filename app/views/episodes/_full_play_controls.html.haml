@@ -4,7 +4,7 @@
   %div.share-episode
     %ul.unstyled
       %li
-        %a.download{href: audio_episode_url(episode), download: "flamingsword-#{episode.slug}.mp3"}
+        %a.download{href: audio_episode_url(episode), download: "flamingsword-#{episode.slug}.mp3", rel: "nofollow"}
           %i.icon-download
           Download
       %li
@@ -23,9 +23,9 @@
   %div.play-episode{style: "background-image: url(#{episode.image.url})"}
     - if episode.visible?
       %p.small.caption= episode.image_caption
-      %a.jp-play
+      %a.jp-play(rel="nofollow")
         %i.icon-play
-      %a.jp-pause
+      %a.jp-pause(rel="nofollow")
         %i.icon-pause
     - else
       %div.cant-play
@@ -35,7 +35,7 @@
 
         %form.form-inline.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
           %input(placeholder="you@example.com" type="email" name="subscriber[email]" required style="margin-right: 10px")
-          %a.submit.btn.btn-inverse{href: "#", data: { message: "Thanks for subscribing!" } }
+          %a.submit.btn.btn-inverse{href: "#", rel: "nofollow", data: { message: "Thanks for subscribing!" } }
             %span Subscribe Now
             = image_tag "fsj_icon.png", style: "margin-top: -5px;"
 
@@ -46,9 +46,9 @@
 
   %div.status
     %div.jp-controls
-      %a.jp-play
+      %a.jp-play(rel="nofollow")
         %i.icon-play
-      %a.jp-pause
+      %a.jp-pause(rel="nofollow")
         %i.icon-pause
     %div.jp-time-holder
       %span.jp-current-time
