@@ -3,8 +3,8 @@
 - if defined?(share) && share.respond_to?(:share_progress_code) && share.share_progress_code.present?
   %div.shareprogress{class: container_class}
     %section.hidden-tablet
-      %h1 SHARE
-      %h1 NOW
+      %div.heading SHARE
+      %div.heading NOW
     %div.arrow
     %section
       %div.sp_eft_horizontal_cnt{class: share.share_progress_code}
