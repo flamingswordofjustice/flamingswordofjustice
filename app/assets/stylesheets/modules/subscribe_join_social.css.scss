@@ -4,10 +4,8 @@
     margin-top: 20px;
   }
 
-  &.subscribe-vertical {
-    div:nth-child(1) {
-      margin-top: 0;
-    }
+  &.subscribe-vertical > div:nth-child(1) {
+    margin-top: 0;
   }
 
   .subscribe {
@@ -130,6 +128,38 @@
       i { margin-left: 7px; margin-right: 10px; }
       > .follow { background-color: darken($twitterTeal, 20%); padding-top: 5px; padding-bottom: 2px; padding-right: 0; }
       &:hover { background-color: darken($twitterTeal, 10%); }
+    }
+  }
+
+  .shareprogress {
+    line-height: 12px;
+    background-color: #cdcdcd;
+    position: relative;
+    height: 104px;
+    color: white;
+    padding-left: 10px;
+    overflow: hidden;
+
+    h1 {
+      font-size: 28px;
+      margin: 0;
+      line-height: 38px;
+      margin-bottom: 30px;
+    }
+
+    div[class^="sp"] {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .arrow {
+      background: transparent image-url('share-arrow.png') top right no-repeat;
+      height: 104px;
+      position: absolute;
+      right: 200px;
+      top: 0;
+      width: 100%;
     }
   }
 }

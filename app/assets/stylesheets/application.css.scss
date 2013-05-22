@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
+i[class^="icon"] {
+  font-style: normal;
+}
+
 .btn.btn-mini {
   font-size: 10.5px;
   line-height: 18px;

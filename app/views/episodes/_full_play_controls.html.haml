@@ -15,10 +15,11 @@
         %a.rss{href: podcast_link}
           %i.icon-rss
           RSS
-      %li{style: "line-height: 16px; margin-left: 10px"}
-        = facebook_like episode_url(episode)
-      %li{style: "line-height: 16px; margin-left: 10px"}
-        = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)
+      - if episode.share_progress_code.blank?
+        %li{style: "line-height: 16px; margin-left: 10px"}
+          = facebook_like episode_url(episode)
+        %li{style: "line-height: 16px; margin-left: 10px"}
+          = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)
 
   %div.play-episode{style: "background-image: url(#{episode.image.url})"}
     - if episode.visible?

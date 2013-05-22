@@ -1,5 +1,27 @@
 - container_class = orientation == :horizontal ? "span4" : ""
 
+- if defined?(share) && share.respond_to?(:share_progress_code) && share.share_progress_code.present?
+  %div.shareprogress{class: container_class}
+    %section.hidden-tablet
+      %h1 SHARE
+      %h1 NOW
+    %div.arrow
+    %section
+      %div.sp_eft_horizontal_cnt{class: share.share_progress_code}
+
+- else
+  %div.share{class: container_class}
+    %section
+      %div.facebook
+        %i.icon-facebook
+        %div.follow
+          = facebook_like
+
+      %div.twitter
+        %i.icon-twitter
+        %div.follow
+          = twitter_follow count: true
+
 %div.subscribe{class: container_class}
   %section
     %a.itunes{href: itunes_link}
@@ -16,15 +38,3 @@
       %a.submit.btn.btn-primary{href: "#", data: { message: "Thanks for subscribing!" } }
         %i.icon-envelope
         %span Join our newsletter
-
-%div.share{class: container_class}
-  %section
-    %div.facebook
-      %i.icon-facebook
-      %div.follow
-        = facebook_like
-
-    %div.twitter
-      %i.icon-twitter
-      %div.follow
-        = twitter_follow count: true
