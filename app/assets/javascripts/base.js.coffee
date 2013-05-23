@@ -16,10 +16,12 @@ $ ->
     episode = $(this)
     uri = episode.data("uri")
     pollInterval = parseInt(episode.data("poll"), 10) * 1000
+    showNotes = episode.find(".show-notes")
 
     updateShowNotes = () ->
       $.get uri, (response) ->
-        episode.find(".show-notes").html response.show_notes
+        if showNotes.html() != response.show_notes
+          showNotes.html response.show_notes
         if response.state is "live"
           util.timeout pollInterval, updateShowNotes
 
