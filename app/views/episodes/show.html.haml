@@ -7,9 +7,6 @@
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
   %div.row-fluid.page-header
-    %div.span2.logo
-      %a{href: root_path}
-        = image_tag "logo.png"
 
     %div.span10.offset2.details
       = breadcrumbs :root, Episode, @episode
@@ -19,6 +16,10 @@
         = @episode.headline.present? ? @episode.title : t(:tag)
         |
         %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
+
+    %div.span2.logo
+      %a{href: root_path}
+        = image_tag "logo.png"
 
   %div.row-fluid.play-and-share
     %div.span8

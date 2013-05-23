@@ -415,14 +415,17 @@ a.brand-logo {
 
 .page-header {
   border-bottom: 1px solid $baseRed;
+  margin-top: 0;
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
 
-  .details {
+  .logo {
+    display: block;
     position: absolute;
     bottom: 20px;
-    left: -20px;
+    left: 0;
+    margin-left: 0;
   }
 }
 
