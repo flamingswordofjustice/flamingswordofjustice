@@ -44,7 +44,7 @@
 
   .page-header {
     .logo { display: none; }
-    .details { position: static; margin-left: 0; }
+    .details.offset2 { position: static; margin-left: 0; }
   }
 
   nav.navbar-inner a.brand {
@@ -77,7 +77,7 @@
   .page-header {
     margin-top: 0;
     .logo { display: none; }
-    .details { position: static; margin-left: 0; }
+    .details.offset2 { margin-left: 0; }
   }
 
   .subscribe-join-social {
