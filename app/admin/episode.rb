@@ -12,30 +12,19 @@ ActiveAdmin.register Episode do
   end
 
   member_action :send_email, method: :post do
-    @episode    = Episode.find(params[:id])
-    recipient   = params[:recipient]
+    email = EpisodeEmail.new(
+      id:        params[:id],
+      recipient: params[:recipient],
+      proofed:   params[:proofed].present?,
+      sender:    params[:sender] || I18n.t(:email_sender),
+      renderer:  self
+    )
 
-    if recipient.blank?
+    if email.recipient.blank?
       redirect_to admin_episode_path(@episode), error: "No recipient given for email."
     else
-      if params[:proofed].present?
-        @episode.proof! current_user
-      end
-
-      sender      = params[:sender] || I18n.t(:email_sender)
-      raw_content = render_to_string template: 'episode_mailer/published_email', layout: false
-      html        = Premailer.new(raw_content, with_html_string: true).to_inline_css
-      subject     = @episode.headline.present? ? @episode.headline : @episode.title
-      subject     = "[PROOF] #{subject}" unless @episode.proofed?
-
-      Mailgun().messages.send_email(
-        to: recipient,
-        subject: subject,
-        html: html,
-        from: sender
-      )
-
-      redirect_to admin_episode_path(@episode), notice: "Email successfully sent to #{recipient}."
+      email.send!
+      redirect_to admin_episode_path(@episode), notice: "Email successfully sent to #{email.recipient}."
     end
   end
 
@@ -73,7 +62,7 @@ ActiveAdmin.register Episode do
   end
 
   action_item only: [:edit, :show] do
-    form_tag send_email_admin_episode_path(resource.id), style: "display: inline-block" do
+    form_tag send_email_admin_episode_path(resource.slug), style: "display: inline-block" do
       hidden_field_tag('sender', ENV['EMAIL_TEST_RECIPIENT']) +
       hidden_field_tag('recipient', ENV['EMAIL_TEST_RECIPIENT']) +
       submit_tag("Send Test Email")

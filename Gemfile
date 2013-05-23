@@ -9,6 +9,7 @@ gem 'rspec-rails'
 gem 'strong_parameters'
 gem 'yajl-ruby'
 gem 'multi_json'
+gem 'nokogiri'
 
 # Admin
 
@@ -54,11 +55,10 @@ gem 'zclip-rails'
 # Email
 
 gem 'mailgun'
-gem 'premailer'
+gem 'active_attr'
+# We specifically need this version for UTF-8 encoding support.
+gem 'premailer', git: "https://github.com/alexdunae/premailer"
 
-# RSS Sync
-
-gem 'nokogiri'
 
 # Stats
 

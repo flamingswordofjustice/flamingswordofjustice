@@ -21,7 +21,7 @@
 
 = render partial: 'admin/shared/iframe', locals: { src: email_episode_url(@episode) }
 
-= form_tag send_email_admin_episode_path(@episode.id) do |f|
+= form_tag send_email_admin_episode_path(@episode.slug) do |f|
   = hidden_field_tag :proofed, "true"
   = hidden_field_tag :recipient, ENV['DEFAULT_MAILING_LIST']
 

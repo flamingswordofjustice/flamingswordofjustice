@@ -27,11 +27,8 @@ class EpisodesController < ApplicationController
   end
 
   def email
-    @episode = Episode.find(params[:id])
-    raw_content = render_to_string template: 'episode_mailer/published_email', layout: false
-    html        = Premailer.new(raw_content, with_html_string: true).to_inline_css
-
-    render text: html, content_type: "text/html"
+    email = EpisodeEmail.new(renderer: self, id: params[:id])
+    render text: email.html, content_type: "text/html"
   end
 
   def audio
