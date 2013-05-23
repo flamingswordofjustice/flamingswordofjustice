@@ -69,7 +69,7 @@ ActiveAdmin.register Episode do
 
   action_item only: [:edit, :show] do
     name = resource.class.model_name
-    link_to "View Live #{active_admin_config.resource_label}", polymorphic_path(resource), target: "_new"
+    link_to "View Live #{active_admin_config.resource_label}", polymorphic_url(resource, protocol: "http"), target: "_new"
   end
 
   action_item only: [:edit, :show] do
