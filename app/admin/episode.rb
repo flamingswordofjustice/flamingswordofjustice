@@ -112,9 +112,9 @@ ActiveAdmin.register Episode do
 
     f.inputs "Email" do
       f.input :email_note,
+        as: :html_editor,
         label: "Additional email note",
-        hint: "Appears at the top of the email",
-        input_html: { rows: 3 }
+        hint: "Appears at the top of the email"
 
       f.input :email_proofed_at,
         as: :string,
