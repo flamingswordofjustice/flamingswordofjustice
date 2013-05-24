@@ -13,11 +13,12 @@ ActiveAdmin.register Episode do
 
   member_action :send_email, method: :post do
     email = EpisodeEmail.new(
-      id:        params[:id],
-      recipient: params[:recipient],
-      proofed:   params[:proofed].present?,
-      sender:    params[:sender] || I18n.t(:email_sender),
-      renderer:  self
+      id:         params[:id],
+      recipient:  params[:recipient],
+      proofed:    params[:proofed].present?,
+      sender:     params[:sender] || I18n.t(:email_sender),
+      admin_user: current_user,
+      renderer:   self
     )
 
     if email.recipient.blank?

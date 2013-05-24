@@ -7,6 +7,7 @@ class EpisodeEmail
   attribute :proofed,    type: Boolean
   attribute :admin_user
   attribute :renderer
+  attribute :stub_mailer
 
   EMAIL_TEMPLATE = 'episode_mailer/published_email'
 
@@ -18,19 +19,20 @@ class EpisodeEmail
 
   def send!
     if self.proofed?
+      raise "No user provided" if self.admin_user.blank?
       episode.proof! admin_user
     end
 
-    if RECIPIENT_BLACKLIST.include?(self.recipient) && Rails.env.development?
-      # Don't send!
-    else
-      Mailgun().messages.send_email(
-        to:      self.recipient,
-        subject: self.subject,
-        html:    self.html,
-        from:    self.sender
-      )
+    if RECIPIENT_BLACKLIST.include?(self.recipient)
+      raise "Not sent" if Rails.env.development? || !episode.proofed?
     end
+
+    mailer.send_email(
+      to:      self.recipient,
+      subject: self.subject,
+      html:    self.html,
+      from:    self.sender
+    )
   end
 
   def html
@@ -40,16 +42,10 @@ class EpisodeEmail
     ).to_inline_css
   end
 
-  protected
-
   def subject
     subject = episode.headline.present? ? episode.headline : episode.title
     subject = "[PROOF] #{subject}" unless episode.proofed?
     subject
-  end
-
-  def proofed?
-    episode.proofed?
   end
 
   def episode
@@ -59,5 +55,9 @@ class EpisodeEmail
   def raw_content
     renderer.send :instance_variable_set, "@episode", self.episode
     renderer.render_to_string template: EMAIL_TEMPLATE, layout: false
+  end
+
+  def mailer
+    self.stub_mailer || Mailgun().messages
   end
 end

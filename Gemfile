@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'pg'
 gem 'unicorn'
-gem 'rspec-rails'
 gem 'strong_parameters'
 gem 'yajl-ruby'
 gem 'multi_json'
@@ -56,14 +55,18 @@ gem 'zclip-rails'
 
 gem 'mailgun'
 gem 'active_attr'
-# We specifically need this version for UTF-8 encoding support.
+# We specifically need HEAD for UTF-8 encoding support. For some reason.
 gem 'premailer', git: "https://github.com/alexdunae/premailer"
-
 
 # Stats
 
 gem "statsd-ruby", require: "statsd"
 gem "rest-client"
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl'
+end
 
 group :development do
   gem 'foreman'

@@ -42,7 +42,7 @@ class Episode < ActiveRecord::Base
   default_scope { order("published_at DESC") }
 
   friendly_id :title, use: :slugged
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
 
   mount_uploader :image, EpisodeImageUploader
 
