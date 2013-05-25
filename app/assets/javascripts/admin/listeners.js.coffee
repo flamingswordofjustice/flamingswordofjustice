@@ -8,6 +8,14 @@ $ ->
     @listenTimeFormatted = ko.computed () =>
       strftimeUTC "%H:%M:%S", new Date(@totalListenTime())
 
+    @startTimeFormatted = ko.computed () =>
+      strftime "%F %T", new Date(@startTime())
+
+    @isVisible = ko.observable false
+
+    @toggle = (vm, evt) =>
+      @isVisible !@isVisible()
+
     this
 
   $("select.episode").chosen().change (evt) ->

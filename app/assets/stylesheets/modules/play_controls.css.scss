@@ -27,6 +27,7 @@ div.full-play-controls {
   .play-episode {
     background-size: cover;
     position: relative;
+    overflow: hidden;
 
     .caption {
       position: absolute;

@@ -1,5 +1,5 @@
 %div.full-play-controls{id: "play-#{episode.slug}", class: episode.state}
-  %div{"data-mp3-uri" => audio_episode_url(episode), "data-tracking-uri" => listener_tracking_uri, "data-swf-path" => asset_path("vendor/Jplayer.swf")}
+  %div{data: player_data_for(episode)}
 
   %div.share-episode
     %ul.unstyled

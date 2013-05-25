@@ -1,4 +1,5 @@
 class EpisodesController < ApplicationController
+  before_filter :touch_session, only: :show
 
   def show
     @episode = Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound

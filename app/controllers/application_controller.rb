@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
   def load_nav_links
     @nav_links = NavigationLink.root_links.order(:position).includes(:child_links, :linkable)
   end
+
+  def touch_session
+    session[:noop]; true # Read to force a session init.
+  end
 end
