@@ -1,64 +1,62 @@
 $ ->
   $("[data-mp3-uri]").each () ->
-    controls     = $(this).closest(".play-controls, .full-play-controls")
+    root         = $(this)
+    controls     = root.closest(".play-controls, .full-play-controls")
     if controls.hasClass("unpublished") then return
 
     article      = controls.closest("article.episode")
     episodeId    = article.attr("id")
     episodeState = article.data("state")
     controlsId   = controls.attr("id")
-    mp3Uri       = $(this).data("mp3-uri")
-    trackingUri  = $(this).data("tracking-uri")
-    swfPath      = $(this).data("swf-path")
+    mp3Uri       = root.data("mp3-uri")
+    trackingUri  = root.data("tracking-uri")
+    swfPath      = root.data("swf-path")
+    sessionId    = root.data("play-session")
+    userId       = root.data("user-session")
+
     shouldTrack  = trackingUri? and trackingUri isnt ""
-    socket       = null
     ref          = $.url().param('ref')
+    playing      = false
+    heartbeat    = null
 
-    connect = () ->
-      socket = io.connect(trackingUri + "/listens", reconnect: true)
+    notify = (evt) ->
+      return unless shouldTrack
 
-      # TODO: If the connection to the server is lost, this will reconnect and treat
-      # that connect as another play even if the player isn't running. Fix.
-      socket.on 'connect', () -> play(type: 'connect')
+      unless heartbeat?
+        heartbeat = setInterval (-> notify(type: "heartbeat")), 10000
 
-    play = (evt) ->
-      if shouldTrack
-        console.log "play", evt
+      type    = evt.type.replace(/jPlayer_/, '')
+      playing = ["play", "seeked", "playing"].indexOf(type) >= 0
 
-        if socket?
-          type = evt.type.replace(/jPlayer_/, '')
-          socket.emit 'play', id: episodeId, state: episodeState, type: type, ref: ref
-        else
-          connect()
+      params =
+        userId:       userId
+        sessionId:    sessionId
+        episodeId:    episodeId
+        episodeState: episodeState
+        type:         type
+        ref:          ref
+        timestamp:    new Date()
 
-    pause = (evt) ->
-      if shouldTrack and socket?
-        console.log "pause", evt
-        type = evt.type.replace(/jPlayer_/, '')
-        socket.emit 'pause', type: type, ref: ref
+      console.log type, params
 
-    close = (evt) ->
-      if shouldTrack and socket?
-        console.log "end", evt
-        type = evt.type.replace(/jPlayer_/, '')
-        socket.emit 'close', type: type, ref: ref
+      $.ajax trackingUri + "/events", type: "post", data: params
 
-    $(this).jPlayer
+    root.jPlayer
       preload: "none"
       swfPath: swfPath
       supplied: "mp3"
       cssSelectorAncestor: "#" + controlsId
 
-      ready: () -> $(this).jPlayer "setMedia", mp3: mp3Uri
-      play:    play
-      seeked:  play
-      playing: play
-      pause:   pause
-      seeking: pause
-      error:   pause
-      stalled: pause
-      abort:   pause
-      emptied: pause
-      ended:   close
+      ready: () -> root.jPlayer "setMedia", mp3: mp3Uri
+      play:    notify
+      seeked:  notify
+      playing: notify
+      pause:   notify
+      seeking: notify
+      error:   notify
+      stalled: notify
+      abort:   notify
+      emptied: notify
+      ended:   notify
 
   $.jPlayer.timeFormat.showHour = true

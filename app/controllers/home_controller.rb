@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :touch_session, only: :index
 
   def index
     @episodes = Episode.visible.limit(11).all

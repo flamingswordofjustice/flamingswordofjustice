@@ -14,13 +14,37 @@ ActiveAdmin.register_page "Listeners" do
       end
 
       tbody "data-bind" => "foreach: listeners" do
-        tr "data-bind" => "click: $parent.selectListener, css: { active: $parent.isActive($data) }" do
-          td "", "data-bind" => "text: startTime"
-          td "", "data-bind" => "text: listenTimeFormatted"
-          td "", "data-bind" => "text: episodeId"
-          td "", "data-bind" => "text: ref"
-          td "", "data-bind" => "text: state"
-          td "", "data-bind" => "text: episodeState"
+        tr "class" => "summary", "data-bind" => "click: toggle, css: { active: isVisible }" do
+          td "", "data-bind" => "text: startTimeFormatted", style: "border-bottom: 0"
+          td "", "data-bind" => "text: listenTimeFormatted", style: "border-bottom: 0"
+          td "", "data-bind" => "text: episodeId", style: "border-bottom: 0"
+          td "", "data-bind" => "text: ref", style: "border-bottom: 0"
+          td "", "data-bind" => "text: state", style: "border-bottom: 0"
+          td "", "data-bind" => "text: episodeState", style: "border-bottom: 0"
+        end
+        tr "class" => "details", "data-bind" => "click: toggle, visible: isVisible, css: { active: isVisible }" do
+          td colspan: 6 do
+            table do
+              thead do
+                tr do
+                  td "Event"
+                  td "General type"
+                  td "Timestamp"
+                  td "Time elapsed"
+                  td "Time played"
+                end
+              end
+              tbody "data-bind" => "foreach: listens" do
+                tr do
+                  td "", "data-bind" => "text: event"
+                  td "", "data-bind" => "text: type"
+                  td "", "data-bind" => "text: strftime('%T', new Date(timestamp))"
+                  td "", "data-bind" => "text: strftimeUTC('%T', new Date(elapsed))"
+                  td "", "data-bind" => "text: strftimeUTC('%T', new Date(played))"
+                end
+              end
+            end
+          end
         end
       end
     end
@@ -35,25 +59,25 @@ ActiveAdmin.register_page "Listeners" do
     end
   end
 
-  sidebar "More Details", class: "foo" do
-    div "data-bind" => "with: activeListener" do
-      h1 "", style: "text-align: center", "data-bind" => "text: listenTimeFormatted"
+  # sidebar "More Details", class: "foo" do
+  #   div "data-bind" => "with: activeListener" do
+  #     h1 "", style: "text-align: center", "data-bind" => "text: listenTimeFormatted"
 
-      table do
-        tr { th "Session ID" }
-        tr { td "", "data-bind" => "text: sessionId" }
+  #     table do
+  #       tr { th "Session ID" }
+  #       tr { td "", "data-bind" => "text: sessionId" }
 
-        tr { th "Plays" }
-        tr do
-          td do
-            dl "data-bind" => "foreach: listens" do
-              dt "", "data-bind" => "text: event"
-              dd "", "data-bind" => "text: timestamp"
-            end
-          end
-        end
-      end
-    end
-  end
+  #       tr { th "Plays" }
+  #       tr do
+  #         td do
+  #           dl "data-bind" => "foreach: listens" do
+  #             dt "", "data-bind" => "text: event"
+  #             dd "", "data-bind" => "text: timestamp"
+  #           end
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
 
 end
