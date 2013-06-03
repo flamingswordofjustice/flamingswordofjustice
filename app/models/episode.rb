@@ -27,10 +27,34 @@ class Episode < ActiveRecord::Base
   end
 
   has_many :appearances
-  has_many :guests, through: :appearances
   has_many :topic_assignments, as: :assignable
   has_many :topics, through: :topic_assignments
   belongs_to :redirect
+
+  def guests
+    appearances.map &:guest
+  end
+
+  def guests_attributes
+    polymorphic_select_list_of self.guests
+  end
+
+  def guests_attributes=(guests)
+    new_appearances = guests.select(&:present?).map do |g|
+      ar_class, id = g.split(':')
+      self.appearances.where(guest_type: ar_class, guest_id: id.to_i).first_or_initialize
+    end
+
+    self.appearances = new_appearances
+  end
+
+  def possible_guests
+    polymorphic_select_list_of ( Person.all + Organization.all ).sort_by(&:name)
+  end
+
+  def polymorphic_select_list_of(stuff)
+    stuff.map {|o| ["#{o.class.name}: #{o.name}", "#{o.class.name}:#{o.id}"]}
+  end
 
   belongs_to :email_proofed_by, class_name: "User"
 

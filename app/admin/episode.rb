@@ -130,7 +130,11 @@ ActiveAdmin.register Episode do
 
     f.inputs "Topics and Guests" do
       f.input :topics, hint: link_to("Add new topic", new_admin_topic_path, target: "_new")
-      f.input :guests, hint: link_to("Add new guest", new_admin_person_path, target: "_new")
+      f.input :guests_attributes,
+        input_html: { multiple: true },
+        collection: f.object.possible_guests,
+        selected: f.object.guests_attributes.map(&:last),
+        hint: link_to("Add new guest", new_admin_person_path, target: "_new")
     end
 
     f.actions

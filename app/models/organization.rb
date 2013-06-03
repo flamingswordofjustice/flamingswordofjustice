@@ -15,7 +15,7 @@ class Organization < ActiveRecord::Base
   end
 
   has_many :people
-  has_many :appearances, through: :people
+  has_many :appearances, as: :guest
 
   mount_uploader :image, ImageUploader
 
