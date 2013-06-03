@@ -23,7 +23,7 @@
 
   %div.play-episode{style: "background-image: url(#{episode.image.url})"}
     - if episode.visible?
-      %p.small.caption= episode.image_caption
+      %p.small.caption= sanitize episode.image_caption
       %a.jp-play(rel="nofollow")
         %i.icon-play
       %a.jp-pause(rel="nofollow")
