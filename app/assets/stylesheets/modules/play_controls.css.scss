@@ -16,10 +16,12 @@ div.full-play-controls {
   &.unpublished  {
     .share-episode a.download { display: none; }
     .play-episode .cant-play {
-      padding: 80px 40px 0 40px;
+      padding: 0 40px 0 40px;
       background-color: rgba(0,0,0,0.7);
       color: $veryLightGrey;
       text-shadow: 1px 1px rgba(0,0,0,0.7);
+      height: 100%;
+      > h1 { padding-top: 13%; margin-top: 0; }
     }
     .status, .jp-progress { display: none; }
   }
