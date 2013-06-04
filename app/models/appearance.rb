@@ -6,4 +6,6 @@ class Appearance < ActiveRecord::Base
 
   validates :guest_id, presence: true
   validates :episode_id, presence: true
+
+  validates_uniqueness_of :guest_id, scope: [:episode_id, :guest_type]
 end
