@@ -16,17 +16,16 @@ $ ->
 
     shouldTrack  = trackingUri? and trackingUri isnt ""
     ref          = $.url().param('ref')
-    playing      = false
+    started      = false
     heartbeat    = null
 
     notify = (evt) ->
-      return unless shouldTrack
-
-      unless heartbeat?
-        heartbeat = setInterval (-> notify(type: "heartbeat")), 10000
-
       type    = evt.type.replace(/jPlayer_/, '')
       playing = ["play", "seeked", "playing"].indexOf(type) >= 0
+      started = started || playing
+      clearInterval(heartbeat) if heartbeat?
+
+      return unless started and shouldTrack
 
       params =
         userId:       userId
@@ -35,11 +34,16 @@ $ ->
         episodeState: episodeState
         type:         type
         ref:          ref
-        timestamp:    new Date()
+        progressed:   Math.round(evt.jPlayer.status.currentTime * 1000)
 
-      console.log type, params
+      console.log params
 
-      $.ajax trackingUri + "/events", type: "post", data: params
+      ping = () ->
+        params.timestamp = new Date()
+        $.ajax trackingUri + "/events", type: "post", data: params
+
+      ping()
+      heartbeat = setInterval ping, 10000
 
     root.jPlayer
       preload: "none"

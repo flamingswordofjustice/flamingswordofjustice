@@ -15,12 +15,12 @@ ActiveAdmin.register_page "Listeners" do
 
       tbody "data-bind" => "foreach: listeners" do
         tr "class" => "summary", "data-bind" => "click: toggle, css: { active: isVisible }" do
-          td "", "data-bind" => "text: startTimeFormatted", style: "border-bottom: 0"
-          td "", "data-bind" => "text: listenTimeFormatted", style: "border-bottom: 0"
-          td "", "data-bind" => "text: episodeId", style: "border-bottom: 0"
-          td "", "data-bind" => "text: ref", style: "border-bottom: 0"
-          td "", "data-bind" => "text: state", style: "border-bottom: 0"
-          td "", "data-bind" => "text: episodeState", style: "border-bottom: 0"
+          td "", "data-bind" => "text: startTimeFormatted",   style: "border-bottom: 0"
+          td "", "data-bind" => "text: listenTimeFormatted",  style: "border-bottom: 0"
+          td "", "data-bind" => "text: episodeId",            style: "border-bottom: 0"
+          td "", "data-bind" => "text: ref",                  style: "border-bottom: 0"
+          td "", "data-bind" => "text: state",                style: "border-bottom: 0"
+          td "", "data-bind" => "text: episodeState",         style: "border-bottom: 0"
         end
         tr "class" => "details", "data-bind" => "click: toggle, visible: isVisible, css: { active: isVisible }" do
           td colspan: 6 do
@@ -32,6 +32,7 @@ ActiveAdmin.register_page "Listeners" do
                   td "Timestamp"
                   td "Time elapsed"
                   td "Time played"
+                  td "Time progressed"
                 end
               end
               tbody "data-bind" => "foreach: listens" do
@@ -41,6 +42,7 @@ ActiveAdmin.register_page "Listeners" do
                   td "", "data-bind" => "text: strftime('%T', new Date(timestamp))"
                   td "", "data-bind" => "text: strftimeUTC('%T', new Date(elapsed))"
                   td "", "data-bind" => "text: strftimeUTC('%T', new Date(played))"
+                  td "", "data-bind" => "text: strftimeUTC('%T', new Date(progressed))"
                 end
               end
             end

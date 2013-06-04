@@ -6,7 +6,7 @@ $ ->
       this[key] = kb.observable model, key
 
     @listenTimeFormatted = ko.computed () =>
-      strftimeUTC "%H:%M:%S", new Date(@totalListenTime())
+      strftimeUTC "%T", new Date(@totalListenTime())
 
     @startTimeFormatted = ko.computed () =>
       strftime "%F %T", new Date(@startTime())
