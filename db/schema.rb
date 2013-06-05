@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130604133349) do
+ActiveRecord::Schema.define(:version => 20130605185437) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20130604133349) do
     t.text     "email_note"
     t.text     "filepicker_images"
     t.string   "share_progress_code"
+    t.integer  "host_id"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true

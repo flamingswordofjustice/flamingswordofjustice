@@ -16,6 +16,7 @@ class Person < ActiveRecord::Base
 
   has_many :appearances, foreign_key: "guest_id"
   has_many :episodes, through: :appearances
+  has_many :hosted_episodes, class_name: "Episode", foreign_key: :host_id
   belongs_to :organization
 
   mount_uploader :image, ImageUploader

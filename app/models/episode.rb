@@ -30,6 +30,7 @@ class Episode < ActiveRecord::Base
   has_many :topic_assignments, as: :assignable
   has_many :topics, through: :topic_assignments
   belongs_to :redirect
+  belongs_to :host, class_name: "Person"
 
   def guests
     appearances.map &:guest
@@ -91,7 +92,9 @@ class Episode < ActiveRecord::Base
   end
 
   def next
-    Episode.unscoped.visible.where("published_at > ?", self.published_at).order("published_at ASC").first
+    Episode.unscoped.visible
+      .where("published_at > ?", self.published_at)
+      .order("published_at ASC").first
   end
 
   def prev
@@ -154,6 +157,10 @@ class Episode < ActiveRecord::Base
 
     def grouped_by_topic
       Topic.with_episodes.grouped
+    end
+
+    def default_host
+      @default_host ||= Person.where(name: ENV["DEFAULT_HOST"]).first
     end
   end
 end

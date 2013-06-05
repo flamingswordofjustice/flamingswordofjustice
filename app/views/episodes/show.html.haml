@@ -51,6 +51,7 @@
         %h3 Show Notes
         %div.show-notes= raw @episode.show_notes
 
+
   - if @episode.guests.any?
     %div.row-fluid
       %div.span8
@@ -61,6 +62,11 @@
         %div.span4= render group[0]
         %div.span4= render group[1] unless group[1].nil?
 
+  - unless @episode.host.blank?
+    %div.row-fluid
+      %div.span4
+        %h3 Host
+        = render @episode.host
 
   = divider 8
 

@@ -71,9 +71,12 @@ ActiveAdmin.register Episode do
   end
 
   form html: { multipart: true } do |f|
+    f.object.host = Episode.default_host if f.object.new_record?
+
     f.inputs "Episode Details" do
       f.input :title, label: "Name"
       f.input :download_url
+      f.input :host
       f.input :description, as: :html_editor
       f.input :show_notes, as: :html_editor
       f.input :state, as: :select,
