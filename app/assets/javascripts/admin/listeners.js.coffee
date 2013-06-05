@@ -18,16 +18,28 @@ $ ->
 
     this
 
-  $("select.episode").chosen().change (evt) ->
-    console.log evt
+  Query = () ->
+    params = ['episodeId', 'state']
+
+    this[p] = ko.observable() for p in params
+
+    @toJSON = () ->
+      o = {}
+      o[p] = this[p]() for p in params
+      o
+
+    this
+
+  $("select").chosen()
 
   $("table.listeners").each () ->
     table = $(this)
     trackingUri = table.data("tracking-uri")
 
+    query = new Query()
     listenerColl = new Backbone.Collection([], { model: Listener, url: trackingUri + "/admin/listeners" });
 
-    update = () -> listenerColl.fetch dataType: 'jsonp'
+    update = () -> listenerColl.fetch data: query.toJSON(), dataType: 'jsonp'
     update()
     setInterval update, 1000
 
@@ -40,7 +52,8 @@ $ ->
 
     ko.applyBindings
       listeners: listeners
-      activeListener: activeListener,
+      activeListener: activeListener
+      query: query
       selectListener: (listener) ->
         if listener is activeListener() then activeListener(null) else activeListener(listener)
       isActive: (listener) ->

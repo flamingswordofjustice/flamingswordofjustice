@@ -53,11 +53,20 @@ ActiveAdmin.register_page "Listeners" do
   end
 
   sidebar "Filter" do
-    select class: "episode" do
+    label "Episode"
+    select class: "episode", "data-bind" => "value: query.episodeId" do
       option "All Episodes", value: ""
       Episode.all.each do |e|
         option e.title, value: e.slug
       end
+    end
+
+    label "State"
+    select class: "state", "data-bind" => "value: query.state" do
+      option "All States", value: ""
+      option "Playing", value: "playing"
+      option "Ended", value: "closed"
+      option "Paused", value: "paused"
     end
   end
 
