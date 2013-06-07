@@ -63,10 +63,11 @@
         %div.span4= render group[1] unless group[1].nil?
 
   - unless @episode.host.blank?
+    %h3 Host
     %div.row-fluid
-      %div.span4
-        %h3 Host
-        = render @episode.host
+      %div.span4= render @episode.host
+      - org = Organization.where(name: "MoveOn.org").first
+      %div.span4= render org if org.present?
 
   = divider 8
 
