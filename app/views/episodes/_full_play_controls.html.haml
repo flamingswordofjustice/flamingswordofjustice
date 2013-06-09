@@ -4,15 +4,15 @@
   %div.share-episode
     %ul.unstyled
       %li
-        %a.download{href: audio_episode_url(episode), download: "flamingsword-#{episode.slug}.mp3", rel: "nofollow"}
+        %a.download{href: audio_episode_url(episode), download: "flamingsword-#{episode.slug}.mp3", rel: "nofollow", data: { track: true }}
           %i.icon-download
           Download
       %li
-        %a.itunes{href: itunes_link}
+        %a.itunes{href: itunes_link, data: { track: true }}
           %i.icon-music
           Subscribe
       %li
-        %a.rss{href: podcast_link}
+        %a.rss{href: podcast_link, data: { track: true }}
           %i.icon-rss
           RSS
       - if episode.share_progress_code.blank?
@@ -34,7 +34,7 @@
         %h2.muted
           Join our mailing list and we'll let you know when it's ready.
 
-        %form.form-inline.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
+        %form.form-inline.subscribe{action: subscribe_path, method: :post, title: "Episode Unavailable - Subscribe", data: { remote: true, track: true }}
           %input(placeholder="you@example.com" type="email" name="subscriber[email]" required style="margin-right: 10px")
           %a.submit.btn.btn-inverse{href: "#", rel: "nofollow", data: { message: "Thanks for subscribing!" } }
             %span Subscribe Now

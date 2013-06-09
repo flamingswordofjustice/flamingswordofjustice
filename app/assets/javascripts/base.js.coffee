@@ -66,3 +66,24 @@ $ ->
     mainClass: 'mfp-fade',
     removalDelay: 300,
     gallery: { enabled: true }
+
+  $("meta[name='user-id']").each () ->
+    mixpanel.identify $(this).attr("content")
+    mixpanel.register_once 'Initial Referrer': document.referrer
+
+  titleAndAttrsFor = (elt) ->
+    title = $(elt).attr("title") || $(elt).text()
+    track = $(elt).data("track")
+    attrs = if track isnt "" then JSON.parse("{ #{track} }") else {}
+    attrs['Page Name'] = document.title
+    [ title, attrs ]
+
+  $("a[data-track], button[data-track]").click (evt) ->
+    [ title, attrs ] = titleAndAttrsFor this
+    mixpanel.track_links this, "Clicked #{title}", attrs
+    evt.preventDefault()
+
+  $("form[data-track]").submit (evt) ->
+    [ title, attrs ] = titleAndAttrsFor this
+    mixpanel.track_forms this, "Submitted #{title}", attrs
+

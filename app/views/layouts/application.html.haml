@@ -12,8 +12,10 @@
     = chartbeat_head_tracker
     = optimizely_tracker
     = shareprogress_tracker
+    = mixpanel_tracker
     %meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
     %meta(name="bitly-verification" content="100f7700b68b")
+    %meta{name: "user-id", content: session[:session_id]}
     = yield :head
 
   %body{id: controller.controller_name, data: { spy: "scroll", target: "#side-navbar" }}

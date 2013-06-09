@@ -77,13 +77,13 @@
   %div.row-fluid.other-episodes
     %div.span4
       - if @episode.prev.present?
-        %a.prev{href: episode_path(@episode.prev)}
+        %a.prev{href: episode_path(@episode.prev), title: "Previous Episode", data: { track: %{"Episode" : "#{@episode.prev.slug}"} }}
           %i.icon-chevron-left
           = @episode.prev.title
 
     %div.span4
       - if @episode.next.present?
-        %a.next{href: episode_path(@episode.next)}
+        %a.next{href: episode_path(@episode.next), title: "Next Episode", data: { track: %{"Episode" : "#{@episode.next.slug}"} }}
           = @episode.next.title
           %i.icon-chevron-right
 

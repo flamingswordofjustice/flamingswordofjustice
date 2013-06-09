@@ -24,7 +24,7 @@
 
 %div.subscribe{class: container_class}
   %section
-    %a.itunes{href: itunes_link}
+    %a.itunes{href: itunes_link, title: "iTunes", data: { track: true }}
       %i.icon-music
       %span
         Podcast!
@@ -32,7 +32,7 @@
 
 %div.sign-up{class: container_class}
   %section
-    %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
+    %form.subscribe{action: subscribe_path, method: :post, title: "Subscribe", data: { remote: true, track: true }}
       %input(placeholder="you@example.com" type="email" name="subscriber[email]" required)
       %br
       %a.submit.btn.btn-primary{href: "#", data: { message: "Thanks for subscribing!" } }

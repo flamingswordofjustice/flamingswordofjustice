@@ -22,7 +22,11 @@ $ ->
     notify = (evt) ->
       type    = evt.type.replace(/jPlayer_/, '')
       playing = ["play", "seeked", "playing"].indexOf(type) >= 0
-      started = started || playing
+
+      if !started and playing
+        started = true
+        mixpanel.track "Episode played", "Episode": episodeId, "Referrer": ref
+
       clearInterval(heartbeat) if heartbeat?
 
       return unless started and shouldTrack
