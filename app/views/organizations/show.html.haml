@@ -37,11 +37,9 @@
 
 = divider 8
 
-%div.row-fluid
-  %spans.span8
-    - if @organization.episodes.any?
-      %section.appearances.clearfix
-        %a{name: "appearances"}
-        %h3 Episodes
-        = render @organization.episodes
+- if @organization.appearances.any?
+  %div.row-fluid
+    %div.span8
+      %h3#appearances Episodes
+      = render @organization.episodes
 
