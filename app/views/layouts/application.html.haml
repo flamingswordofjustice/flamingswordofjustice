@@ -49,10 +49,10 @@
                 %ul.nav
                   - link.child_links.order("position").each do |child|
                     %li
-                      %a{href: child.url}= child.title
+                      %a{href: child.url, data: { track: '"Type" : "Nav link"'}}= child.title
               - else
                 %li
-                  %a{href: link.url}= link.title
+                  %a{href: link.url, data: { track: '"Type" : "Nav link"'}}= link.title
 
         %div.row-fluid
           %div.span12

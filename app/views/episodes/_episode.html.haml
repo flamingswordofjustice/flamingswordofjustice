@@ -1,6 +1,6 @@
 %article.media.episode{id: episode.slug, data: { uri: episode_path(episode, format: :json), state: episode.state }}
   %section.media-body
-    %a{href: episode_path(episode)}
+    %a{href: episode_path(episode), data: { track: '"Type" : "Episode"'}}
       %h1= episode.title
     %div.muted.attribution
       = episode.headline.present? ? episode.headline : t(:tag)
@@ -15,7 +15,7 @@
         %small.topics
           %strong Topics:
           = comma_separated_list_of episode.topics
-      %a.pull-left{href: episode_path(episode.slug)}
+      %a.pull-left{href: episode_path(episode.slug), data: { track: '"Type" : "Episode"'}}
         = image_tag episode.image.url(:thumb), class: "media-object", style: "width: 100px; margin-top: 8px"
       %div.description
         = raw episode.description

@@ -1,11 +1,11 @@
 %article.media-badge.person
-  %a.avatar{href: person_path(person)}
+  %a.avatar{href: person_path(person), title: "Badge: #{person.name}", data: { track: '"Type" : "Person"' }}
     - if person.image.present?
       = image_tag person.image.thumb
     - else
       %i.icon-user
   %section.body
-    %a{href: person_path(person)}
+    %a{href: person_path(person), title: "Badge: #{person.name}", data: { track: '"Type" : "Person"' }}
       %h4= person.name
     %small.description
       - if person.title.present?

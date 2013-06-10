@@ -1,11 +1,11 @@
 %article.media-badge.organization
-  %a.avatar{href: organization_path(organization)}
+  %a.avatar{href: organization_path(organization), title: "Badge: #{organization.name}", data: { track: '"Type" : "Organization"' }}
     - if organization.image.present?
       = image_tag organization.image.logo || organization.image.thumb
     - else
       %i.icon-group
   %section.body
-    %a{href: organization_path(organization)}
+    %a{href: organization_path(organization), title: "Badge: #{organization.name}", data: { track: '"Type" : "Organization"' }}
       %h4= organization.name
     %small.description
       - if organization.short_description.present?

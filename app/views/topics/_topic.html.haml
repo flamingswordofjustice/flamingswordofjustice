@@ -1,11 +1,11 @@
 %article.media-badge.topic
-  %a.avatar{href: topic_path(topic)}
+  %a.avatar{href: topic_path(topic), title: "Badge: #{topic.name}", data: { track: '"Type" : "Topic"' }}
     - if topic.image.present?
       = image_tag topic.image.thumb
     - else
       %i.icon-bullhorn
   %section.body
-    %a{href: topic_path(topic)}
+    %a{href: topic_path(topic), title: "Badge: #{topic.name}", data: { track: '"Type" : "Topic"' }}
       %h4= topic.name
     %small.description
       = raw truncate_html(topic.description)

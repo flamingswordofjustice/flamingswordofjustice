@@ -129,6 +129,19 @@ module ApplicationHelper
     HTML
   end
 
+  def mixpanel_tracker_debug
+    raw <<-HTML
+      <script type="text/javascript">
+        window.mixpanel = {
+          init:          function(uid) { console.log("initted", uid); },
+          identify:      function(uid) { console.log("indentified", uid); },
+          register_once: function(uid) { console.log("registered", uid); },
+          track:         function(what, attrs, done) { console.log("tracked", what, attrs); }
+        };
+      </script>
+    HTML
+  end
+
   def mixpanel_uid
     ENV['MIXPANEL_UID']
   end
@@ -276,7 +289,7 @@ module ApplicationHelper
         else
           content_tag :li do
             title, url = breadcrumb_for(crumb)
-            link_to(title, url) + divider
+            link_to(title, url, title: "Crumb: #{title}", data: { track: "" }) + divider
           end
         end
       end.join.html_safe

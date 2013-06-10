@@ -1,5 +1,5 @@
 = open_graph_and_meta_tags type: "article",
-                           title: @episode.headline || @episode.title,
+                           title: @episode.headline.blank? ? @episode.title : @episode.headline,
                            page_title: @episode.title,
                            description: @episode.social_description || @episode.description,
                            image: @episode.image.url,
