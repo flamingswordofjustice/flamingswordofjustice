@@ -13,7 +13,7 @@
 
         %div.span8.episode-blurb
           - unless @latest.nil?
-            = render partial: 'episodes/episode', object: @latest, locals: { play: true }
+            = render partial: 'episodes/episode', object: @latest, locals: { play: true, featured: true }
 
       %div.row-fluid.subscribe-join-social
         = subscribe_join_social orientation: :horizontal

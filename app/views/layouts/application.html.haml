@@ -18,7 +18,7 @@
     %meta{name: "user-id", content: session[:session_id]}
     = yield :head
 
-  %body{id: controller.controller_name, data: { spy: "scroll", target: "#side-navbar" }}
+  %body{id: controller.controller_name, class: controller.action_name, data: { spy: "scroll", target: "#side-navbar" }}
     = internet_defense_league
     %div#wrap
       = facebook_script

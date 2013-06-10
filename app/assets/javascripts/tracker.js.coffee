@@ -24,3 +24,14 @@ $ ->
     from = $(this)
     evt.preventDefault()
     track "Submitted", this, () -> form.submit()
+
+  $("body#episodes.show").each () ->
+    refCode  = $.url().param('ref')
+    referrer = document.referrer
+    episodeId = $(this).find("article.episode").attr("id")
+    mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer
+
+  $("body#home.index").each () ->
+    refCode  = $.url().param('ref')
+    referrer = document.referrer
+    mixpanel.track "Homepage Viewed", "Ref code" : refCode, "Referrer" : referrer
