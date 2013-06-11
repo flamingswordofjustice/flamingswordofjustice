@@ -33,6 +33,8 @@ ActiveAdmin.register Episode do
     @episode = Episode.find(params[:id])
   end
 
+  show { render "show" }
+
   index do
     column "Name", :title
     column :headline
@@ -44,18 +46,6 @@ ActiveAdmin.register Episode do
   end
 
   filter :published_at
-
-  show do
-    p = panel "Total listeners" do
-      div class: "chart", "data-height" => 200 do
-        ul "data-from" => episode.published_at.to_date.to_s(:number) do
-          li "Published episodes", "data-target" => "stats.gauges.listens.#{episode.slug}.published.total"
-        end
-      end
-    end
-
-    p + render(partial: 'admin/shared/iframe', locals: { src: episode_url(episode) })
-  end
 
   action_item only: [:edit, :show] do
     name = resource.class.model_name

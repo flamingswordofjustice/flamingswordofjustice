@@ -1,0 +1,18 @@
+%div#episode-info.panel{data: {id: @episode.slug, "tracking-uri" => listener_tracking_uri}}
+  %h3 Listener dropoff
+  %div.panel_contents
+    %table
+      %thead
+        %tr
+          %th Total listens
+          %th Total listen time
+          %th Average listen time
+      %tbody
+        %tr
+          %td.total_listens
+          %td.total_listen_time
+          %td.avg_listen_time
+
+    %div.custom-chart{data: {height: 200}}
+
+= render(partial: 'admin/shared/iframe', locals: { src: episode_url(@episode) })
