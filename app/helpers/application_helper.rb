@@ -29,6 +29,10 @@ module ApplicationHelper
     HTML
   end
 
+  def twitter_widgets
+    raw %{<script async src="//platform.twitter.com/widgets.js" charset="utf-8">}
+  end
+
   def facebook_follow(account=nil)
     account ||= t(:facebook)
     raw <<-HTML
