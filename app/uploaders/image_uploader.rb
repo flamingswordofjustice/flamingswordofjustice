@@ -20,7 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # We won't need bigger, and this seems to be what Instagram/FB display.
-  process resize_to_fit: [612,612]
+  process resize_to_fit: [770,770]
 
   version :thumb do
     process resize_to_fill: [200,200]

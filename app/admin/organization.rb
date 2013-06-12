@@ -23,7 +23,9 @@ ActiveAdmin.register Organization do
       f.input :website, hint: "Full URL, including http://"
       f.input :twitter, hint: "Just the username - no http, no @ symbol"
       f.input :facebook, hint: "Just the username - no http"
-      f.input :short_description, hint: "For use in organization boxes"
+      f.input :short_description,
+        hint: content_tag(:span, "", class: "charlimit") + "For display in the organizaton badge.",
+        input_html: { maxlength: 100 }
       f.input :description, as: :html_editor
       f.input :image, as: :image_upload, preview: :logo
       f.input :people

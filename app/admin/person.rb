@@ -22,7 +22,10 @@ ActiveAdmin.register Person do
     f.inputs "Guest Details" do
       f.input :name
       f.input :email, hint: "Publicly displayed so users can email directly"
-      f.input :title, hint: "Include the organization name, e.g. 'CEO of JusticeCorp'"
+      f.input :title,
+        hint: content_tag(:span, "", class: "charlimit") + "Include the organization name, e.g. 'CEO of JusticeCorp'",
+        input_html: { maxlength: 100 }
+
       f.input :organization
       f.input :website, hint: "Full URL, including http://"
       f.input :twitter, hint: "Just the username - no http, no @ symbol"
