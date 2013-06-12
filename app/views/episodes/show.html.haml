@@ -56,7 +56,6 @@
     %div.row-fluid
       %div.span8
         %h3 Featuring
-    %div.row-fluid.guests-and-orgs
     - @episode.guests.in_groups_of 2 do |group|
       %div.row-fluid
         %div.span4= render group[0]
