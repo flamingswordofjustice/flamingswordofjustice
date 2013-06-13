@@ -4,22 +4,21 @@
   %div.share-episode
     %ul.unstyled
       %li
-        %a.download{href: audio_episode_url(episode), download: "flamingsword-#{episode.slug}.mp3", rel: "nofollow", data: { track: true }}
-          %i.icon-download
-          Download
-      %li
-        %a.itunes{href: itunes_link, data: { track: true }}
+        %a.btn.btn-mini.btn-primary.itunes{href: itunes_link, data: { track: true }}
           %i.icon-music
           Subscribe
       %li
-        %a.rss{href: podcast_link, data: { track: true }}
+        %a.btn.btn-mini.visible-desktop.download{href: audio_episode_url(episode), download: "flamingsword-#{episode.slug}.mp3", rel: "nofollow", data: { track: true }}
+          %i.icon-download
+          Download
+      %li
+        %a.btn.btn-mini.visible-desktop.rss{href: podcast_link, data: { track: true }}
           %i.icon-rss
           RSS
-      - if episode.share_progress_code.blank?
-        %li{style: "line-height: 16px; margin-left: 10px"}
-          = facebook_like episode_url(episode)
-        %li{style: "line-height: 16px; margin-left: 10px"}
-          = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)
+      %li.fb
+        = facebook_like episode_url(episode)
+      %li.tw
+        = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)
 
   %div.play-episode{style: "background-image: url(#{episode.image.url})"}
     - if episode.visible?
