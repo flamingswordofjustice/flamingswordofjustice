@@ -24,7 +24,7 @@ module ApplicationHelper
     text    = html_escape opts[:text]
 
     raw <<-HTML
-      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}" data-text="#{text}" data-url="#{url}" data-counturl="#{url}">Tweet</a>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}" data-text="#{text}" data-url="#{url}">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     HTML
   end
@@ -51,30 +51,6 @@ module ApplicationHelper
     HTML
   end
 
-  def facebook_init
-    raw <<-HTML
-      <div id="fb-root"></div>
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '#{facebook_app_id}',
-            channelUrl : '//#{request.host_with_port}/channel.html',
-            status     : true,
-            xfbml      : true
-          });
-        };
-
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "//connect.facebook.net/en_US/all.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
-    HTML
-  end
-
   def livefyre_comments
     raw <<-HTML
     <div id="livefyre-comments"></div>
@@ -95,6 +71,19 @@ module ApplicationHelper
           }], function() {});
       }());
       </script>
+    HTML
+  end
+
+  def facebook_script
+    raw <<-HTML
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{facebook_app_id}";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
     HTML
   end
 
@@ -257,10 +246,6 @@ module ApplicationHelper
 
   def facebook_app_id
     ENV['FACEBOOK_APP_ID']
-  end
-
-  def facebook_app_secret
-    ENV['FACEBOOK_APP_SECRET']
   end
 
   def comma_separated_list_of(objects, label=:name)
