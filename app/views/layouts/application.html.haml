@@ -14,6 +14,7 @@
     = optimizely_tracker
     = shareprogress_tracker
     = mixpanel_tracker
+
     %meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
     %meta(name="bitly-verification" content="100f7700b68b")
     %meta{name: "user-id", content: session[:session_id]}
@@ -21,8 +22,8 @@
 
   %body{id: controller.controller_name, class: controller.action_name, data: { spy: "scroll", target: "#side-navbar" }}
     = internet_defense_league
+    = facebook_init
     %div#wrap
-      = facebook_script
       = render 'shared/header'
 
       - if current_page?(root_path)

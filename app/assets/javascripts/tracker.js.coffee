@@ -1,4 +1,7 @@
 $ ->
+  refCode  = $.url().param('ref')
+  referrer = document.referrer
+
   $("meta[name='user-id']").each () ->
     mixpanel.identify $(this).attr("content")
     mixpanel.register_once 'Initial Referrer': document.referrer
@@ -26,12 +29,11 @@ $ ->
     track "Submitted", this, () -> form.submit()
 
   $("body#episodes.show").each () ->
-    refCode  = $.url().param('ref')
-    referrer = document.referrer
     episodeId = $(this).find("article.episode").attr("id")
     mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer
 
   $("body#home.index").each () ->
-    refCode  = $.url().param('ref')
-    referrer = document.referrer
     mixpanel.track "Homepage Viewed", "Ref code" : refCode, "Referrer" : referrer
+
+  FB?.Event?.subscribe? 'edge.create', (url) ->
+    mixpanel.track "Facebook Like", "URL": url, "Ref code": refCode
