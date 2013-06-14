@@ -5,6 +5,8 @@
 }
 
 @media (max-width: 767px) {
+  ol, ul { margin-left: 0; }
+
   .full-width {
     margin-left: -$gridGutterWidth;
     margin-right: -$gridGutterWidth;
