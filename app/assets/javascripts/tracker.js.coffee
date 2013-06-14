@@ -45,7 +45,6 @@ $ ->
       protocol = if 'https:' is document.location.protocol then 'https://' else 'http://'
       FB.init
         appId: util.meta("facebook-app-id")
-        channelUrl: "#{protocol}#{document.location.host}/channel.html"
         status: true
         xfbml: true
 
