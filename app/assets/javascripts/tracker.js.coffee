@@ -1,7 +1,9 @@
 $ ->
-  $("meta[name='user-id']").each () ->
-    mixpanel.identify $(this).attr("content")
-    mixpanel.register_once 'Initial Referrer': document.referrer
+  refCode  = $.url().param('ref')
+  referrer = document.referrer
+
+  mixpanel.identify util.meta("user-id")
+  mixpanel.register_once 'Initial Referrer': document.referrer
 
   titleAndAttrsFor = (elt) ->
     title = $.trim( $(elt).attr("title") || $(elt).text() )
@@ -21,17 +23,45 @@ $ ->
     track "Clicked", this, () -> window.location = a.attr("href")
 
   $("form[data-track]").submit (evt) ->
-    from = $(this)
+    form = $(this)
     evt.preventDefault()
     track "Submitted", this, () -> form.submit()
 
   $("body#episodes.show").each () ->
-    refCode  = $.url().param('ref')
-    referrer = document.referrer
     episodeId = $(this).find("article.episode").attr("id")
     mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer
 
   $("body#home.index").each () ->
-    refCode  = $.url().param('ref')
-    referrer = document.referrer
     mixpanel.track "Homepage Viewed", "Ref code" : refCode, "Referrer" : referrer
+
+  $.ajaxSetup cache: true
+
+  episodeFor = (elt) ->
+    $(elt).closest("article.episode").attr("id")
+
+  $.getScript '//connect.facebook.net/en_UK/all.js', () ->
+    console.log "channel", "//#{document.location.host}/channel.html"
+    window.fbAsyncInit = () ->
+      protocol = if 'https:' is document.location.protocol then 'https://' else 'http://'
+      FB.init
+        appId: util.meta("facebook-app-id")
+        channelUrl: "#{protocol}#{document.location.host}/channel.html"
+        status: true
+        xfbml: true
+
+      FB.Event.subscribe 'edge.create', (url, evt) ->
+        mixpanel.track "Facebook like", "URL": url, "Ref code": refCode, "Episode": episodeFor(evt.dom)
+
+      FB.Event.subscribe 'edge.remove', (url, evt) ->
+        mixpanel.track "Facebook unlike", "URL": url, "Ref code": refCode, "Episode": episodeFor(evt.dom)
+
+  $.getScript '//platform.twitter.com/widgets.js', (t) ->
+    window.twttr.ready (t) ->
+      t.events.bind 'click', (evt) ->
+        mixpanel.track "Twitter click", "Click type": evt.region, "Ref code": refCode, "Episode" : episodeFor(evt.target)
+
+      t.events.bind 'tweet', (evt) ->
+        mixpanel.track "Twitter tweet", "Ref code": refCode, "Episode" : episodeFor(evt.target)
+
+      t.events.bind 'follow', (evt) ->
+        mixpanel.track "Twitter follow", "Ref code": refCode, "Screen name" : evt.data.screen_name

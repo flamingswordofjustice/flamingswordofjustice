@@ -24,13 +24,9 @@ module ApplicationHelper
     text    = html_escape opts[:text]
 
     raw <<-HTML
-      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}" data-text="#{text}" data-url="#{url}">Tweet</a>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="#{account}" data-text="#{text}" data-url="#{url}" data-counturl="#{url}">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     HTML
-  end
-
-  def twitter_widgets
-    raw %{<script async src="//platform.twitter.com/widgets.js" charset="utf-8">}
   end
 
   def facebook_follow(account=nil)
@@ -54,7 +50,7 @@ module ApplicationHelper
   def livefyre_comments
     raw <<-HTML
     <div id="livefyre-comments"></div>
-      <script type="text/javascript" src="http://zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>
+      <script type="text/javascript" src="//zor.livefyre.com/wjs/v3.0/javascripts/livefyre.js"></script>
       <script type="text/javascript">
       (function () {
           var articleId = fyre.conv.load.makeArticleId(null);
@@ -71,19 +67,6 @@ module ApplicationHelper
           }], function() {});
       }());
       </script>
-    HTML
-  end
-
-  def facebook_script
-    raw <<-HTML
-      <div id="fb-root"></div>
-      <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{facebook_app_id}";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
     HTML
   end
 
@@ -123,14 +106,24 @@ module ApplicationHelper
   end
 
   def mixpanel_tracker
-    disable = Rails.env.dev? ? "mixpanel.disable();" : ""
-    raw <<-HTML
-      <script type="text/javascript">
-        (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
-        mixpanel.init("#{mixpanel_uid}");
-        #{disable}
-      </script>
-    HTML
+    if Rails.env.development?
+      raw <<-HTML
+        <script type="text/javascript">
+          window.mixpanel = {
+            track:         function(what, o, done) { console.log("mixpanel track", what, o); typeof(done) == "function" ? done() : null; },
+            identify:      function(who)           { console.log("mixpanel identify", who); },
+            register_once: function(what)          { console.log("mixpanel r_o", what); }
+          };
+        </script>
+      HTML
+    else
+      raw <<-HTML
+        <script type="text/javascript">
+          (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+          mixpanel.init("#{mixpanel_uid}");
+        </script>
+      HTML
+    end
   end
 
   def mixpanel_tracker_debug
@@ -185,7 +178,7 @@ module ApplicationHelper
 
   def shareprogress_tracker
     raw <<-HTML
-      <script src="http://c.shpg.org/13/sp.js"></script>
+      <script src="//c.shpg.org/13/sp.js"></script>
     HTML
   end
 
@@ -246,6 +239,10 @@ module ApplicationHelper
 
   def facebook_app_id
     ENV['FACEBOOK_APP_ID']
+  end
+
+  def facebook_app_secret
+    ENV['FACEBOOK_APP_SECRET']
   end
 
   def comma_separated_list_of(objects, label=:name)

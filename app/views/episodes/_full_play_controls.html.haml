@@ -16,7 +16,7 @@
           %i.icon-rss
           RSS
       %li.fb
-        = facebook_like episode_url(episode)
+        = facebook_like episode_url(episode, protocol: "http")
       %li.tw
         = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)
 
