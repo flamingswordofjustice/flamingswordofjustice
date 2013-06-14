@@ -66,3 +66,8 @@ $ ->
     mainClass: 'mfp-fade',
     removalDelay: 300,
     gallery: { enabled: true }
+
+  $('.page-header h1').each () ->
+    chars = $(this).text().length
+    factor = chars / 45.0 # magic number
+    $(this).fitText factor, maxFontSize: 60

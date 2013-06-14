@@ -24,17 +24,11 @@
     = internet_defense_league
     %div#wrap
       = render 'shared/header'
-
-      - if current_page?(root_path)
-        = yield
-      - else
-        %section.container.main-content
-          = yield
-
+      = yield
       %div#push
 
     %footer#footer.full-width
-      %div.container
+      %div.container-fluid
         %div.row-fluid
           %div.span2
             %a.brand{href: root_path}

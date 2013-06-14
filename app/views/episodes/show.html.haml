@@ -6,88 +6,85 @@
                            url: episode_url(@episode, ref: "fb", protocol: "http")
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
-  %div.row-fluid.page-header
+  %section.header-content.full-width
+    %section.container-fluid
+      %div.row-fluid.page-header
+        %div.span12
+          %a.page-header-logo.hidden-phone.hidden-tablet{href: root_path}
+            = image_tag "logo.png"
+          %div.page-header-title
+            = breadcrumbs :root, Episode, @episode
+            %h1= @episode.headline.present? ? @episode.headline : @episode.title
 
-    %div.span10.offset2.details
-      = breadcrumbs :root, Episode, @episode
-      %h1= @episode.headline.present? ? @episode.headline : @episode.title
+            %span.muted.attribution
+              = @episode.headline.present? ? @episode.title : t(:tag)
+              |
+              %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
 
-      %span.muted.attribution
-        = @episode.headline.present? ? @episode.title : t(:tag)
-        |
-        %time(pubdate="pubdate")= @episode.published_at.strftime("%m/%d/%Y")
+  %section.main-content
+    %section.container-fluid
+      %div.row-fluid.play-and-share
+        %div.span8
+          = play_controls style: "full", episode: @episode
 
-    %div.span2.logo
-      %a{href: root_path}
-        = image_tag "logo.png"
+          %div.row-fluid.play-and-share
+            %div.span10.offset1
 
-  %div.row-fluid.play-and-share
-    %div.span8
-      = play_controls style: "full", episode: @episode
-    %div.span4
-      %div.subscribe-join-social.subscribe-vertical.apply-affix
-        = subscribe_join_social orientation: :vertical, share: @episode
+              %section.body
+                = raw @episode.description
 
-  %div.row-fluid.episode-and-image
-    %div.span8
-      %section.body
-        = raw @episode.description
+              - if @episode.topics.any?
+                %section.topics
+                  %strong Topics:
+                  %p= comma_separated_list_of @episode.topics
 
-      - if @episode.topics.any?
-        %section.topics
-          %strong Topics:
-          %p= comma_separated_list_of @episode.topics
+              - unless @episode.filepicker_images.blank?
+                - @episode.filepicker_images.split(',').each do |i|
+                  = link_to i do
+                    = filepicker_image_tag i, w: 125, h: 125, fit: :crop
 
-  - unless @episode.filepicker_images.blank?
-    %div.row-fluid.image-gallery
-      %div.span8
-        - @episode.filepicker_images.split(',').each do |i|
-          = link_to i do
-            = filepicker_image_tag i, w: 125, h: 125, fit: :crop
+              - unless @episode.show_notes.blank?
+                %h3 Show Notes
+                %div.show-notes= raw @episode.show_notes
 
-  - unless @episode.show_notes.blank?
-    %div.row-fluid
-      %div.span8
-        %h3 Show Notes
-        %div.show-notes= raw @episode.show_notes
+              - if @episode.guests.any?
+                %h3 Featuring
+                - @episode.guests.in_groups_of 2 do |group|
+                  %div.row-fluid
+                    %div.span6= render group[0]
+                    %div.span6= render group[1] unless group[1].nil?
 
+              - unless @episode.host.blank?
+                %div.row-fluid
+                  %div.span6
+                    %h3 Host
+                    = render @episode.host
+                  - if ( org = Organization.where(name: "MoveOn.org").first ).present?
+                    %div.span6
+                      %h3 Powered By
+                      = render org
 
-  - if @episode.guests.any?
-    %div.row-fluid
-      %div.span8
-        %h3 Featuring
-    - @episode.guests.in_groups_of 2 do |group|
-      %div.row-fluid
-        %div.span4= render group[0]
-        %div.span4= render group[1] unless group[1].nil?
-
-  - unless @episode.host.blank?
-    %div.row-fluid
-      %div.span4
-        %h3 Host
-        = render @episode.host
-      - if ( org = Organization.where(name: "MoveOn.org").first ).present?
         %div.span4
-          %h3 Powered By
-          = render org
+          %div.subscribe-join-social.subscribe-vertical.apply-affix
+            = subscribe_join_social orientation: :vertical, share: @episode
 
-  = divider 8
+      = divider 8
 
-  %div.row-fluid.other-episodes
-    %div.span4
-      - if @episode.prev.present?
-        %a.prev{href: episode_path(@episode.prev), title: "Previous Episode", data: { track: %{"Episode" : "#{@episode.prev.slug}"} }}
-          %i.icon-chevron-left
-          = @episode.prev.title
+      %div.row-fluid.other-episodes{style: "margin-bottom: 20px"}
+        %div.span4
+          - if @episode.prev.present?
+            %a.prev{href: episode_path(@episode.prev), title: "Previous Episode", data: { track: %{"Episode" : "#{@episode.prev.slug}"} }}
+              %i.icon-chevron-left
+              = @episode.prev.title
 
-    %div.span4
-      - if @episode.next.present?
-        %a.next{href: episode_path(@episode.next), title: "Next Episode", data: { track: %{"Episode" : "#{@episode.next.slug}"} }}
-          = @episode.next.title
-          %i.icon-chevron-right
+        %div.span4
+          - if @episode.next.present?
+            %a.next{href: episode_path(@episode.next), title: "Next Episode", data: { track: %{"Episode" : "#{@episode.next.slug}"} }}
+              = @episode.next.title
+              %i.icon-chevron-right
 
-  - if comments_enabled?
-    %div.row-fluid.comments
-      %div.span8
-        %section.comments
-          = livefyre_comments
+      - if comments_enabled?
+        %div.row-fluid.comments
+          %div.span8
+            %section.comments
+              = livefyre_comments

@@ -14,13 +14,8 @@
     padding-right: $gridGutterWidth;
 
     > .overlay {
-      margin-left: -$gridGutterWidth;
-      margin-right: -$gridGutterWidth;
-
-      > .container {
-        padding-left: $gridGutterWidth;
-        padding-right: $gridGutterWidth;
-      }
+      margin-left: -$gridGutterWidth; margin-right: -$gridGutterWidth;
+      > .container-fluid { padding-left: $gridGutterWidth; padding-right: $gridGutterWidth; }
     }
   }
 
@@ -37,7 +32,6 @@
   }
 
   ul.breadcrumb { display: none; }
-  .main-content { padding-top: 0; }
 
   h1 { font-size: 30px; line-height: 34px; }
   h2 { font-size: 24px; line-height: 28px; }
@@ -56,41 +50,26 @@
 
   #home .current-episode .overlay, #home .splash-logo { padding-top: 0; }
 
-  .page-header {
-    .logo { display: none; }
-    .details.offset2 { position: static; margin-left: 0; }
-  }
-
-  nav.navbar-inner a.brand {
-    background-image: image-url("flamingswordmed.png");
-    background-color: transparent;
-    &:hover { background-color: transparent; }
-  }
-
   .entity-image > .thumbnail {
     position: static;
   }
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
-  nav.navbar-inner a.brand {
-    background-image: image-url("flamingswordmed.png");
-    background-color: transparent;
-    &:hover { background-color: transparent; }
-  }
-
   h1 { font-size: 36px; line-height: 40px; }
   h2 { font-size: 30px; line-height: 34px; }
-
-  .page-header {
-    margin-top: 0;
-    .logo { display: none; }
-    .details.offset2 { margin-left: 0; }
-  }
 
   .subscribe-join-social {
     .subscribe { a.itunes { background-position: 225% 50%; i { right: -20px; } } }
     .sign-up a.submit { font-size: 20px; }
     .share .twitter .follow { margin-left: -20px; }
+  }
+}
+
+@media (max-width: 979px) {
+  nav.navbar-inner a.brand {
+    background-image: image-url("flamingswordmed.png");
+    background-color: transparent;
+    &:hover { background-color: transparent; }
   }
 }
