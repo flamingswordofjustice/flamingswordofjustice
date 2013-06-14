@@ -6,7 +6,9 @@ $ ->
   mixpanel.register_once 'Initial Referrer': document.referrer
 
   titleAndAttrsFor = (elt) ->
-    title = $.trim( $(elt).attr("title") || $(elt).text() )
+    title = $(elt).data("event") || $(elt).attr("title") || $(elt).text()
+    title = $.trim title
+
     track = $(elt).data("track")
     attrs = if track isnt "" then JSON.parse("{ #{track} }") else {}
     attrs['Page Name'] = document.title
