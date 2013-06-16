@@ -5,8 +5,6 @@
 }
 
 @media (max-width: 767px) {
-  ol, ul { margin-left: 0; }
-
   .full-width {
     margin-left: -$gridGutterWidth;
     margin-right: -$gridGutterWidth;
@@ -71,5 +69,9 @@
     background-image: image-url("flamingswordmed.png");
     background-color: transparent;
     &:hover { background-color: transparent; }
+  }
+
+  .page-header .page-header-title > ul.breadcrumb {
+    position: static;
   }
 }

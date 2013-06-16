@@ -24,7 +24,7 @@
   %section.main-content
     %section.container-fluid
       %div.row-fluid.play-and-share
-        %div.span8
+        %div.span8{style: "border-right: 1px solid #ddd; padding-right: 2.5641%; padding-top: 30px"}
           = play_controls style: "full", episode: @episode
 
           %div.row-fluid.play-and-share
@@ -47,6 +47,8 @@
                 %h3 Show Notes
                 %div.show-notes= raw @episode.show_notes
 
+          %div.row-fluid.guests-and-host
+            %div.span12
               - if @episode.guests.any?
                 %h3 Featuring
                 - @episode.guests.in_groups_of 2 do |group|
@@ -64,27 +66,25 @@
                       %h3 Powered By
                       = render org
 
+          %div.row-fluid.other-episodes
+            %div.span6
+              - if @episode.prev.present?
+                %a.prev{href: episode_path(@episode.prev), title: "Previous Episode", data: { track: %{"Episode" : "#{@episode.prev.slug}"} }}
+                  %i.icon-chevron-left
+                  = @episode.prev.title
+
+            %div.span6
+              - if @episode.next.present?
+                %a.next{href: episode_path(@episode.next), title: "Next Episode", data: { track: %{"Episode" : "#{@episode.next.slug}"} }}
+                  = @episode.next.title
+                  %i.icon-chevron-right
+
+          - if comments_enabled?
+            %div.row-fluid.comments
+              %div.span12
+                %section.comments
+                  = livefyre_comments
+
         %div.span4
           %div.subscribe-join-social.subscribe-vertical.apply-affix
             = subscribe_join_social orientation: :vertical, share: @episode
-
-      = divider 8
-
-      %div.row-fluid.other-episodes{style: "margin-bottom: 20px"}
-        %div.span4
-          - if @episode.prev.present?
-            %a.prev{href: episode_path(@episode.prev), title: "Previous Episode", data: { track: %{"Episode" : "#{@episode.prev.slug}"} }}
-              %i.icon-chevron-left
-              = @episode.prev.title
-
-        %div.span4
-          - if @episode.next.present?
-            %a.next{href: episode_path(@episode.next), title: "Next Episode", data: { track: %{"Episode" : "#{@episode.next.slug}"} }}
-              = @episode.next.title
-              %i.icon-chevron-right
-
-      - if comments_enabled?
-        %div.row-fluid.comments
-          %div.span8
-            %section.comments
-              = livefyre_comments

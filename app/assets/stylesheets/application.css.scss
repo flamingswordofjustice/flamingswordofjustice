@@ -40,6 +40,8 @@ i[class^="icon"] {
   font-style: normal;
 }
 
+ol, ul { margin-left: 0; }
+
 .btn.btn-mini {
   font-size: 10.5px;
   line-height: 18px;
@@ -93,6 +95,12 @@ article.post, article.episode {
   > header {
     margin-bottom: 20px;
   }
+}
+
+.container-fluid {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 ul.social-icons {
@@ -309,7 +317,6 @@ ul.breadcrumb {
 }
 
 .main-content {
-  padding-top: 20px;
   background-color: white;
   position: relative;
 
@@ -394,6 +401,11 @@ ul.grouped {
   }
 
   .other-episodes {
+    margin-bottom: 30px;
+    padding-top: 30px;
+
+    border-top: 1px solid $baseRed;
+
     a {
       padding: 30px;
       display: block;
@@ -420,7 +432,7 @@ a.brand-logo {
   background: image-url('flame_bg.jpg') bottom left no-repeat;
   background-size: cover;
 
-  padding: 20px 0;
+  padding: 30px 0;
 
   .page-header {
     display: table;
