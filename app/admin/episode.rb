@@ -29,6 +29,43 @@ ActiveAdmin.register Episode do
     end
   end
 
+  member_action :mixpanel_stats, method: :get do
+    client = Mixpanel::Client.new(
+      api_key: ENV['MIXPANEL_API_KEY'],
+      api_secret: ENV['MIXPANEL_API_SECRET'],
+      parallel: true
+    )
+
+    all_funnels_req = client.request "funnels/list", {}
+    client.run_parallel_requests
+    funnels = all_funnels_req.response.handled_response
+
+    episode = Episode.where(slug: params[:id]).first
+    base_props = {
+      where: %{properties["Episode"]=="#{episode.slug}"},
+      on:    %{properties["Ref code"]},
+      from_date: 29.days.ago.to_date.to_s(:db),
+      to_date: Date.today.to_s(:db),
+      interval: 30
+    }
+
+    funnel_id = lambda {|name| funnels.find {|f| f["name"] == name}.try(:[], "funnel_id")}
+
+    likes      = client.request "funnels", base_props.merge(funnel_id: funnel_id.call("Viewed Played Liked"))
+    subscribes = client.request "funnels", base_props.merge(funnel_id: funnel_id.call("Viewed Played Subscribed"))
+
+    client.run_parallel_requests
+
+    overall_data = lambda {|req| req.response.handled_response["data"].values.first["$overall"]}
+
+    resp = {
+      "Liked" => overall_data.call(likes),
+      "Subscribed" => overall_data.call(subscribes)
+    }
+
+    render json: resp
+  end
+
   member_action :confirm_email, method: :get do
     @episode = Episode.find(params[:id])
   end

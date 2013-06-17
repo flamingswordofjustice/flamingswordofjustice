@@ -62,6 +62,8 @@ gem 'premailer', git: "https://github.com/alexdunae/premailer"
 
 gem "statsd-ruby", require: "statsd"
 gem "rest-client"
+gem "mixpanel_client"
+gem "typhoeus"
 
 group :test do
   gem 'rspec-rails'

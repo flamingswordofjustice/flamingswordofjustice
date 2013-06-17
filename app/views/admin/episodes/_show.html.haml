@@ -1,17 +1,30 @@
-%div#episode-info.panel{data: {id: @episode.slug, "tracking-uri" => listener_tracking_uri}}
+%div#episode-info.panel{data: {id: @episode.slug, "tracking-uri" => listener_tracking_uri, "mixpanel-uri" => mixpanel_stats_admin_episode_path(@episode.slug)}}
   %h3 Listener dropoff
   %div.panel_contents
     %table
       %thead
         %tr
-          %th Total listens
-          %th Total listen time
-          %th Average listen time
+          %th Listens
+          %th Listen time
+          %th Visits
+          %th Listens per visit
+          %th Likes per listen
+          %th Subscribes per listen
       %tbody
-        %tr
+        %tr.total
           %td.total_listens
           %td.total_listen_time
-          %td.avg_listen_time
+          %td.total_visits
+          %td.listens_per_visit
+          %td.likes_per_listen
+          %td.subscribes_per_listen
+        %tr.aggregate
+          %td.total_listens
+          %td.total_listen_time
+          %td.total_visits
+          %td.listens_per_visit
+          %td.likes_per_listen
+          %td.subscribes_per_listen
 
     %div.custom-chart{data: {height: 200}}
 
