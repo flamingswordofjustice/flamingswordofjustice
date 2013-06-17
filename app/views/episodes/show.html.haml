@@ -28,20 +28,22 @@
           = play_controls style: "full", episode: @episode
 
           %div.row-fluid.play-and-share
-            %div.span10.offset1
+            %div.span12
 
               %section.body
+                - unless @episode.filepicker_images.blank?
+                  %ul.image-gallery.unstyled.pull-left.span3
+                    - @episode.filepicker_images.split(',').each do |i|
+                      %li
+                        = link_to i do
+                          = filepicker_image_tag i, w: 125, h: 125, fit: :crop
                 = raw @episode.description
+
 
               - if @episode.topics.any?
                 %section.topics
                   %strong Topics:
                   %p= comma_separated_list_of @episode.topics
-
-              - unless @episode.filepicker_images.blank?
-                - @episode.filepicker_images.split(',').each do |i|
-                  = link_to i do
-                    = filepicker_image_tag i, w: 125, h: 125, fit: :crop
 
               - unless @episode.show_notes.blank?
                 %h3 Show Notes

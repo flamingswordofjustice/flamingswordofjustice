@@ -68,6 +68,6 @@ $ ->
     gallery: { enabled: true }
 
   $('.page-header h1').each () ->
-    chars = $(this).text().length
+    chars = Math.max $(this).text().length, 80
     factor = chars / 45.0 # magic number
-    $(this).fitText factor, maxFontSize: 60
+    $(this).fitText factor

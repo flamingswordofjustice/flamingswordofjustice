@@ -344,7 +344,7 @@ figure.thumbnail {
 
 .affix {
   position: fixed;
-  top: 20px;
+  top: 0;
 }
 
 .affix-bottom {
@@ -444,11 +444,12 @@ a.brand-logo {
 
     > .span12 {
       display: table-row;
+      width: 100%;
 
       > .page-header-logo {
         display: table-cell;
         vertical-align: top;
-        width: 200px;
+        width: 20%;
         padding-right: 20px;
       }
 
@@ -456,10 +457,11 @@ a.brand-logo {
         display: table-cell;
         vertical-align: bottom;
         position: relative;
+        width: 80%;
       }
     };
 
-    h1 { color: #ddd; }
+    h1 { color: #ddd; line-height: 1.4em; }
     ul.breadcrumb {
       > li { text-shadow: none; }
       position: absolute; top: 0; left: 0;
@@ -476,9 +478,16 @@ a.brand-logo {
   }
 }
 
-.image-gallery a {
-  display: inline-block;
-  margin: 0 4px 4px 0;
+.image-gallery {
+  li {
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+
+  a {
+    display: inline-block;
+    margin: 0 4px 4px 0;
+  }
 }
 
 @import "application-responsive";

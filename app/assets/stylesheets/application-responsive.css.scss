@@ -51,6 +51,10 @@
   .entity-image > .thumbnail {
     position: static;
   }
+
+  .image-gallery {
+    li { display: inline-block; width: 20%; }
+  }
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
