@@ -91,6 +91,14 @@ class Episode < ActiveRecord::Base
     [:published, :live].include?(self.state.to_sym)
   end
 
+  def page_headline
+    self.headline.present? ? self.headline : self.title
+  end
+
+  def sub_headline
+    self.headline.present? ? self.title : I18n.t(:tag)
+  end
+
   def next
     Episode.unscoped.visible
       .where("published_at > ?", self.published_at)

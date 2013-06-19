@@ -1,0 +1,15 @@
+%section.header-content.full-width
+  %section.container-fluid
+    %div.row-fluid.page-header
+      %div.span12
+        %a.page-header-logo.hidden-phone.hidden-tablet{href: root_path, title: "Homepage", data: { track: true }}
+          = image_tag "logo.png"
+        %div.page-header-title
+          = breadcrumbs crumbs
+          %h1= title
+
+          %span.muted.attribution
+            = subtitle
+            - if time.present?
+              |
+              %time(pubdate="pubdate")= time.strftime("%m/%d/%Y")
