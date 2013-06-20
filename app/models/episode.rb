@@ -134,6 +134,10 @@ class Episode < ActiveRecord::Base
     update_attributes email_proofed_at: Time.zone.now, email_proofed_by: user
   end
 
+  def audio_filename
+    "flamingsword-#{self.slug}.mp3"
+  end
+
   class << self
     def grouped_by(category)
       if respond_to?("grouped_by_#{category}")

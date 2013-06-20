@@ -34,6 +34,7 @@ class EpisodesController < ApplicationController
 
   def audio
     @episode = Episode.find(params[:id])
+    response.header['Content-Disposition'] = "attachment; filename=#{@episode.audio_filename}"
 
     if @episode.unpublished?
       render text: "Episode is unpublished - no audio stream available", status: :not_found
