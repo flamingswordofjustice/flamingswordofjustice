@@ -2,7 +2,11 @@ class EpisodesController < ApplicationController
   before_filter :touch_session, only: :show
 
   def show
-    @episode = Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
+    @episode = if params[:id] =~ /^\d+$/
+      Episode.find(params[:id])
+    else
+      Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
+    end
 
     # TODO Refactor.
     if @episode.possible_player_types.length == 1
@@ -34,7 +38,13 @@ class EpisodesController < ApplicationController
 
     respond_to do |f|
       f.html { }
-      f.json { render json: @episode.to_json(only: [:title, :state, :show_notes, :description]) }
+      f.json { render json: @episode.attributes.slice(
+        "title", "state", "show_notes", "description", "headline"
+        ).merge(
+          "id" => @episode.slug,
+          "permalink" => episode_url(@episode)
+        ).to_json
+      }
     end
   end
 
@@ -53,7 +63,8 @@ class EpisodesController < ApplicationController
   end
 
   def email
-    email = EpisodeEmail.new(renderer: self, id: params[:id])
+    email = Episode.where(slug: params[:id]).first.email
+    # email = Email.where(episode_id: params[:id]).first.tap {|e| e.renderer = self }
     render text: email.html, content_type: "text/html"
   end
 
