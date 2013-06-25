@@ -3,7 +3,7 @@
                            page_title: @episode.title,
                            description: @episode.social_description || @episode.description,
                            image: @episode.image.url,
-                           url: episode_url(@episode, ref: "fb", protocol: "http")
+                           url: @canonical_fb_url
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
   %div.row-fluid.page-header
@@ -23,10 +23,10 @@
 
   %div.row-fluid.play-and-share
     %div.span8
-      - if @player == "audio"
-        = play_controls style: "full", episode: @episode
-      - else
+      - if @player == Episode::Players::VIDEO
         = youtube_player @episode.youtube_video_id, id: "youtube-episode-player"
+      - else
+        = play_controls style: "full", episode: @episode
     %div.span4
       %div.subscribe-join-social.subscribe-vertical.apply-affix
         = subscribe_join_social orientation: :vertical, share: @episode

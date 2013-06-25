@@ -3,10 +3,34 @@ class EpisodesController < ApplicationController
 
   def show
     @episode = Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
-    @player = @episode.has_video? && params[:type] == "v" ? "video" : "audio"
 
-    ref = (params[:ref].present? && params[:ref] =~ /^\w+$/) ? params[:ref] : "none"
-    Fsj.statsd.gauge "clicks.#{params[:id]}.#{ref}", "+1"
+    # TODO Refactor.
+    if @episode.possible_player_types.length == 1
+      if params[:player].present?
+        redirect_to episode_path(id: @episode.slug) and return
+      else # Just render.
+        @player = @episode.possible_player_types[0]
+      end
+    else
+      if params[:player].present?
+        if !Episode::Players::POSSIBLE_TYPES.include?(params[:player])
+          redirect_to episode_path(id: @episode.slug) and return
+        else
+          session[:player] = params[:player]
+          @player = params[:player]
+        end
+      elsif session[:player].present?
+        redirect_to typed_episodes_path(id: @episode.slug, player: session[:player]) and return
+      else
+        redirect_to typed_episodes_path(id: @episode.slug, player: @episode.possible_player_types[ rand(2) ]) and return
+      end
+    end
+
+    @canonical_fb_url = if @episode.possible_player_types.length == 1
+      episode_path(id: @episode.slug, ref: params[:ref] || "fb", protocol: "http")
+    else
+      typed_episodes_path(id: @episode.slug, player: @player, ref: params[:ref] || "fb", protocol: "http")
+    end
 
     respond_to do |f|
       f.html { }

@@ -5,6 +5,12 @@ class Episode < ActiveRecord::Base
   extend FriendlyId
   extend Groupable
 
+  module Players
+    AUDIO = "a"
+    VIDEO = "v"
+    POSSIBLE_TYPES = [ AUDIO, VIDEO ]
+  end
+
   mapping do
     indexes :id,           :index    => :not_analyzed
     indexes :slug,         :index    => :not_analyzed
@@ -144,6 +150,17 @@ class Episode < ActiveRecord::Base
 
   def has_audio?
     self.download_url.present?
+  end
+
+  def supports_both_play_types?
+    has_video? && has_audio?
+  end
+
+  def possible_player_types
+    [].tap do |a|
+      a << Episode::Players::AUDIO if has_audio?
+      a << Episode::Players::VIDEO if has_video?
+    end
   end
 
   class << self
