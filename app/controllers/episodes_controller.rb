@@ -3,6 +3,7 @@ class EpisodesController < ApplicationController
 
   def show
     @episode = Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
+    @player = @episode.has_video? && params[:type] == "v" ? "video" : "audio"
 
     ref = (params[:ref].present? && params[:ref] =~ /^\w+$/) ? params[:ref] : "none"
     Fsj.statsd.gauge "clicks.#{params[:id]}.#{ref}", "+1"

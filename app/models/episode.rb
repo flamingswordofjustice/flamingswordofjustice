@@ -138,6 +138,14 @@ class Episode < ActiveRecord::Base
     "flamingsword-#{self.slug}.mp3"
   end
 
+  def has_video?
+    self.youtube_video_id.present?
+  end
+
+  def has_audio?
+    self.download_url.present?
+  end
+
   class << self
     def grouped_by(category)
       if respond_to?("grouped_by_#{category}")

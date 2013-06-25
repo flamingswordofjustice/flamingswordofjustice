@@ -8,4 +8,9 @@ module EpisodesHelper
       "play-session" => SecureRandom.urlsafe_base64
     }
   end
+
+  def youtube_player(id, attrs={})
+    elt_id = attrs[:id] || "youtube-placeholder"
+    content_tag "div", "", "id" => elt_id, "class" => "youtube-placeholder", "data-youtube-id" => id
+  end
 end

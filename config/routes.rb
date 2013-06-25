@@ -11,6 +11,7 @@ Fsj::Application.routes.draw do
     member do
       get 'email' => 'episodes#email', as: :email
       get 'audio' => 'episodes#audio', as: :audio
+      get ':type' => 'episodes#show',  as: :typed
     end
 
     collection do

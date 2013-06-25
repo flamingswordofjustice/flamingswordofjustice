@@ -23,7 +23,10 @@
 
   %div.row-fluid.play-and-share
     %div.span8
-      = play_controls style: "full", episode: @episode
+      - if @player == "audio"
+        = play_controls style: "full", episode: @episode
+      - else
+        = youtube_player @episode.youtube_video_id, id: "youtube-episode-player"
     %div.span4
       %div.subscribe-join-social.subscribe-vertical.apply-affix
         = subscribe_join_social orientation: :vertical, share: @episode

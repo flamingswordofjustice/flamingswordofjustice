@@ -1,4 +1,31 @@
 $ ->
+  $(".youtube-placeholder").each () ->
+    youtubeId = $(this).data("youtube-id")
+    eltId     = $(this).attr("id")
+    url       = "http://www.youtube.com/v/#{youtubeId}?enablejsapi=1&playerapiid=#{eltId}&version=3"
+    swfobject.embedSWF url, eltId, "100%", "356", "8", null, null, { allowScriptAccess: "always" }, { id: eltId, class: "youtube-player" }
+
+  window.onYouTubePlayerReady = (id) ->
+    player = $("#" + id)
+    refCode   = $.url().param('ref')
+    episodeId = player.closest("article.episode").attr("id")
+
+    resizer = () ->
+      width = player.width()
+      height = ( ( width / 16.0 ) * 9.0 ) + 100 # Adjust for play controls
+      player.css(height: height)
+
+    resizer()
+    $(window).resize resizer
+
+    window.trackYoutubePlayerState = (stateId) ->
+      player = $("#" + id)
+      if stateId is 1 and !player.attr("data-played")?
+        player.attr "data-played", "played"
+        mixpanel.track "Episode played", "Episode": episodeId, "Referrer": refCode, "Player": "youtube"
+
+    player[0].addEventListener "onStateChange", "trackYoutubePlayerState"
+
   $("[data-mp3-uri]").each () ->
     root         = $(this)
     controls     = root.closest(".play-controls, .full-play-controls")
@@ -25,7 +52,7 @@ $ ->
 
       if !started and playing
         started = true
-        mixpanel.track "Episode played", "Episode": episodeId, "Referrer": ref
+        mixpanel.track "Episode played", "Episode": episodeId, "Referrer": ref, "Player": "audio"
 
       clearInterval(heartbeat) if heartbeat?
 
@@ -39,8 +66,6 @@ $ ->
         type:         type
         ref:          ref
         progressed:   Math.round(evt.jPlayer.status.currentTime * 1000)
-
-      console.log params
 
       ping = () ->
         params.timestamp = new Date()

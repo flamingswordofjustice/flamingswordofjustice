@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605185437) do
+ActiveRecord::Schema.define(:version => 20130625171011) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(:version => 20130605185437) do
     t.integer  "guest_id"
     t.string   "guest_type"
     t.integer  "episode_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "emails", :force => true do |t|
+    t.string   "subject"
+    t.string   "sender"
+    t.string   "recipient"
+    t.integer  "episode_id"
+    t.text     "body"
+    t.text     "header_note"
+    t.datetime "sent_at"
+    t.datetime "proofed_at"
+    t.integer  "proofed_by"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -62,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20130605185437) do
     t.text     "filepicker_images"
     t.string   "share_progress_code"
     t.integer  "host_id"
+    t.string   "youtube_video_id"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
