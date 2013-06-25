@@ -103,7 +103,7 @@ ActiveAdmin.register Episode do
     f.inputs "Episode Details" do
       f.input :title, label: "Name"
       f.input :download_url
-      f.input :youtube_video_id, label: "E.g., d4ozwLGcfGY"
+      f.input :youtube_video_id, hint: "E.g., d4ozwLGcfGY"
       f.input :host
       f.input :description, as: :html_editor
       f.input :show_notes, as: :html_editor
