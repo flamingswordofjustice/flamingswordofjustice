@@ -10,7 +10,7 @@
       %time(pubdate="pubdate")= episode.published_at.strftime("%m/%d/%Y")
 
     - if defined?(play) && play
-      = play_controls style: "full", episode: episode
+      = play_controls style: "full", episode: episode, episode_url: episode_url(episode.slug), player: Episode::Players::AUDIO
 
     %section.body
       - if episode.topics.any?

@@ -1,6 +1,4 @@
 %div.full-play-controls{id: "play-#{episode.slug}", class: episode.state}
-  %div{data: player_data_for(episode)}
-
   %div.share-episode
     %ul.unstyled
       %li
@@ -16,43 +14,47 @@
           %i.icon-rss
           RSS
       %li.fb
-        = facebook_like episode_url(episode, protocol: "http")
+        = facebook_like episode_url
       %li.tw
-        = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)
+        = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url
 
-  %div.play-episode{style: "background-image: url(#{episode.image.url})"}
-    - if episode.visible?
-      %p.small.caption= sanitize episode.image_caption
-      %a.jp-play(rel="nofollow")
-        %i.icon-play
-      %a.jp-pause(rel="nofollow")
-        %i.icon-pause
-    - else
-      %div.cant-play
-        %h1 This episode isn't available yet.
-        %h2.muted
-          Join our mailing list and we'll let you know when it's ready.
+  - if player == Episode::Players::VIDEO
+    = youtube_player @episode.youtube_video_id, id: "youtube-episode-player"
+  - else
+    %div{data: player_data_for(episode)}
+    %div.play-episode{style: "background-image: url(#{episode.image.url})"}
+      - if episode.visible?
+        %p.small.caption= sanitize episode.image_caption
+        %a.jp-play(rel="nofollow")
+          %i.icon-play
+        %a.jp-pause(rel="nofollow")
+          %i.icon-pause
+      - else
+        %div.cant-play
+          %h1 This episode isn't available yet.
+          %h2.muted
+            Join our mailing list and we'll let you know when it's ready.
 
-        %form.form-inline.subscribe{action: subscribe_path, method: :post, title: "Episode Unavailable - Subscribe", data: { remote: true, track: true }}
-          %input(placeholder="you@example.com" type="email" name="subscriber[email]" required style="margin-right: 10px")
-          %a.submit.btn.btn-inverse{href: "#", rel: "nofollow", data: { message: "Thanks for subscribing!" } }
-            %span Subscribe Now
-            = image_tag "fsj_icon.png", style: "margin-top: -5px;", class: "visible-desktop"
+          %form.form-inline.subscribe{action: subscribe_path, method: :post, title: "Episode Unavailable - Subscribe", data: { remote: true, track: true }}
+            %input(placeholder="you@example.com" type="email" name="subscriber[email]" required style="margin-right: 10px")
+            %a.submit.btn.btn-inverse{href: "#", rel: "nofollow", data: { message: "Thanks for subscribing!" } }
+              %span Subscribe Now
+              = image_tag "fsj_icon.png", style: "margin-top: -5px;", class: "visible-desktop"
 
 
-  %div.jp-progress
-    %div.jp-seek-bar
-      %div.jp-play-bar
+    %div.jp-progress
+      %div.jp-seek-bar
+        %div.jp-play-bar
 
-  %div.status
-    %div.jp-controls
-      %a.jp-play(rel="nofollow")
-        %i.icon-play
-      %a.jp-pause(rel="nofollow")
-        %i.icon-pause
-    %div.jp-time-holder
-      %span.jp-current-time
-      \/
-      %span.jp-duration
+    %div.status
+      %div.jp-controls
+        %a.jp-play(rel="nofollow")
+          %i.icon-play
+        %a.jp-pause(rel="nofollow")
+          %i.icon-pause
+      %div.jp-time-holder
+        %span.jp-current-time
+        \/
+        %span.jp-duration
 
   %div.clearfix
