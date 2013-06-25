@@ -11,12 +11,12 @@ Fsj::Application.routes.draw do
     member do
       get 'email' => 'episodes#email', as: :email
       get 'audio' => 'episodes#audio', as: :audio
-      get ':type' => 'episodes#show',  as: :typed
     end
 
     collection do
-      get 'by/:category' => 'episodes#grouped', as: :grouped
-      get 'by/:category/:id' => 'episodes#index', as: :categorized
+      get 'by/:category'     => 'episodes#grouped', as: :grouped
+      get 'by/:category/:id' => 'episodes#index',   as: :categorized
+      get ':type/:id'        => 'episodes#show',    as: :typed
       get 'latest'
     end
   end
