@@ -27,9 +27,9 @@ class EpisodesController < ApplicationController
     end
 
     @canonical_fb_url = if @episode.possible_player_types.length == 1
-      episode_path(id: @episode.slug, ref: params[:ref] || "fb", protocol: "http")
+      episode_url(id: @episode.slug, ref: params[:ref] || "fb", protocol: "http")
     else
-      typed_episodes_path(id: @episode.slug, player: @player, ref: params[:ref] || "fb", protocol: "http")
+      typed_episodes_url(id: @episode.slug, player: @player, ref: params[:ref] || "fb", protocol: "http")
     end
 
     respond_to do |f|
