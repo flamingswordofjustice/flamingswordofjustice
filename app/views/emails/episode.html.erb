@@ -253,7 +253,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 </head>
 
-<% episode_final_url = episode_url(episode, ref: "em", protocol: "http") %>
+<% episode_final_url = episode_url(episode, ref: "em") %>
 
 <body bgcolor="#FFFFFF">
 
@@ -402,7 +402,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 						</p>
 						<% if episode.email_proofed_at.blank? %>
 							<p>
-								This email has not yet been proofed. Visit the <%= link_to "confirmation page", confirm_email_admin_episode_url(episode.slug) %>
+								This email has not yet been proofed. Visit the <%= link_to "confirmation page", confirm_admin_email_url(email.id) %>
 								to validate this proof and send it.
 							</p>
 						<% end %>

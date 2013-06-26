@@ -29,6 +29,10 @@ ActiveAdmin.register Episode do
     end
   end
 
+  member_action :confirm_email, method: :get do
+    @episode = Episode.find(params[:id])
+  end
+
   member_action :mixpanel_stats, method: :get do
     client = Mixpanel::Client.new(
       api_key: ENV['MIXPANEL_API_KEY'],
@@ -64,10 +68,6 @@ ActiveAdmin.register Episode do
     }
 
     render json: resp
-  end
-
-  member_action :confirm_email, method: :get do
-    @episode = Episode.find(params[:id])
   end
 
   show { render "show" }

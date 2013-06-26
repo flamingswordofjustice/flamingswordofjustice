@@ -8,6 +8,7 @@ class EpisodesController < ApplicationController
       Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
     end
 
+<<<<<<< HEAD
     # TODO Refactor.
     if @episode.possible_player_types.length == 1
       if params[:player].present?
@@ -19,32 +20,56 @@ class EpisodesController < ApplicationController
       if params[:player].present?
         if !Episode::Players::POSSIBLE_TYPES.include?(params[:player])
           redirect_to episode_path(id: @episode.slug, ref: params[:ref]) and return
+=======
+    respond_to do |f|
+      f.html do
+        # TODO Refactor.
+        if @episode.possible_player_types.length == 1
+          if params[:player].present?
+            redirect_to episode_path(id: @episode.slug) and return
+          else # Just render.
+            @player = @episode.possible_player_types[0]
+          end
+>>>>>>> Emails work as standalone entities only in conjunction with episodes.
         else
-          session[:player] = params[:player]
-          @player = params[:player]
+          if params[:player].present?
+            if !Episode::Players::POSSIBLE_TYPES.include?(params[:player])
+              redirect_to episode_path(id: @episode.slug) and return
+            else
+              session[:player] = params[:player]
+              @player = params[:player]
+            end
+          elsif session[:player].present?
+            redirect_to typed_episodes_path(id: @episode.slug, player: session[:player]) and return
+          else
+            redirect_to typed_episodes_path(id: @episode.slug, player: @episode.possible_player_types[ rand(2) ]) and return
+          end
         end
+<<<<<<< HEAD
       elsif session[:player].present?
         redirect_to typed_episodes_path(id: @episode.slug, player: session[:player], ref: params[:ref]) and return
       else
         redirect_to typed_episodes_path(id: @episode.slug, player: @episode.possible_player_types[ rand(2) ], ref: params[:ref]) and return
       end
     end
+=======
+>>>>>>> Emails work as standalone entities only in conjunction with episodes.
 
-    @canonical_fb_url = if @episode.possible_player_types.length == 1
-      episode_url(id: @episode.slug, ref: params[:ref] || "fb", protocol: "http")
-    else
-      typed_episodes_url(id: @episode.slug, player: @player, ref: params[:ref] || "fb", protocol: "http")
-    end
+        @canonical_fb_url = if @episode.possible_player_types.length == 1
+          episode_url(id: @episode.slug, ref: params[:ref] || "fb", protocol: "http")
+        else
+          typed_episodes_url(id: @episode.slug, player: @player, ref: params[:ref] || "fb", protocol: "http")
+        end
+      end
 
-    respond_to do |f|
-      f.html { }
-      f.json { render json: @episode.attributes.slice(
-        "title", "state", "show_notes", "description", "headline"
+      f.json do
+        render json: @episode.attributes.slice(
+          "title", "state", "show_notes", "description", "headline"
         ).merge(
           "id" => @episode.slug,
           "permalink" => episode_url(@episode)
         ).to_json
-      }
+      end
     end
   end
 
@@ -64,7 +89,6 @@ class EpisodesController < ApplicationController
 
   def email
     email = Episode.where(slug: params[:id]).first.email
-    # email = Email.where(episode_id: params[:id]).first.tap {|e| e.renderer = self }
     render text: email.html, content_type: "text/html"
   end
 

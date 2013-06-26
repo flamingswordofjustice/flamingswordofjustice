@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619214214) do
+ActiveRecord::Schema.define(:version => 20130626193136) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(:version => 20130619214214) do
     t.text     "header_note"
     t.datetime "sent_at"
     t.datetime "proofed_at"
-    t.integer  "proofed_by"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "proofed_by_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "episodes", :force => true do |t|

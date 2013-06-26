@@ -21,13 +21,13 @@ Fsj::Application.routes.draw do
     end
   end
 
-
   resources :stats,         only: [:index, :update]
   resources :redirects,     only: [:show, :index]
   resources :posts,         only: [:show, :index]
   resources :people,        only: [:show, :index]
   resources :organizations, only: [:show, :index]
   resources :topics,        only: [:show, :index]
+  resources :emails,        only: [:show]
 
   match "/:page" => 'pages#show', as: :page
 end

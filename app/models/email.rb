@@ -5,15 +5,28 @@ class Email < ActiveRecord::Base
 
   belongs_to :episode
   belongs_to :proofed_by, class_name: "User"
+  validates_presence_of :subject, :sender, :recipient
+  attr_accessor :stub_mailer # For tests only.
 
   validates :subject, :body, presence: { if: lambda { |e| e.episode_id.blank? } }
 
   def renderer
-    ApplicationController.new
+    Class.new(ApplicationController) do
+      def url_options
+        {
+          protocol: "http",
+          host: ActionMailer::Base.default_url_options[:host]
+        }
+      end
+    end.new
   end
 
   def proofed?
     self.proofed_at.present?
+  end
+
+  def sent?
+    self.sent_at.present?
   end
 
   def email_template
@@ -24,7 +37,7 @@ class Email < ActiveRecord::Base
     end
   end
 
-  def send!
+  def send!(user)
     raise "Not proofed" unless self.proofed?
 
     if RECIPIENT_BLACKLIST.include?(self.recipient)
@@ -37,17 +50,19 @@ class Email < ActiveRecord::Base
       subject: self.subject,
       html:    self.html
     )
+
+    self.update_attributes proofed_by: user, sent_at: Time.now
   end
 
   def proof!
-    self.proofed_at = Time.now
-
     mailer.send_email(
-      to:      ENV['EMAIL_TEST_RECIPIENT'],
+      to:      self.proof_recipient,
       from:    self.sender,
       subject: self.proof_subject,
       html:    self.html
     )
+
+    self.update_attributes proofed_at: Time.now
   end
 
   def html
@@ -61,8 +76,16 @@ class Email < ActiveRecord::Base
     "[PROOF] #{subject}"
   end
 
+  def proof_recipient
+    ENV['EMAIL_TEST_RECIPIENT']
+  end
+
   def raw_content
-    renderer.render_to_string template: email_template, layout: false, locals: { episode: self.episode }
+    renderer.render_to_string(
+      template: email_template,
+      layout: false,
+      locals: { email: self, episode: self.episode }
+    )
   end
 
   def mailer
