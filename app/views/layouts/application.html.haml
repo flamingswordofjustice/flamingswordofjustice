@@ -16,8 +16,9 @@
 
     %meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
     %meta(name="bitly-verification" content="100f7700b68b")
-    %meta{name: "user-id", content: session[:session_id]}
+    %meta{name: "user-id",         content: session[:session_id]}
     %meta{name: "facebook-app-id", content: facebook_app_id}
+    %meta{name: "ref-code",        content: params[:ref]}
     = yield :head
 
   %body{id: controller.controller_name, class: controller.action_name, data: { spy: "scroll", target: "#side-navbar" }}

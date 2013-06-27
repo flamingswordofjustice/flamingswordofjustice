@@ -7,7 +7,7 @@ $ ->
 
   window.onYouTubePlayerReady = (id) ->
     player = $("#" + id)
-    refCode   = $.url().param('ref')
+    refCode   = util.meta("ref-code")
     episodeId = player.closest("article.episode").attr("id")
 
     resizer = () ->
@@ -22,7 +22,10 @@ $ ->
       player = $("#" + id)
       if stateId is 1 and !player.attr("data-played")?
         player.attr "data-played", "played"
-        mixpanel.track "Episode played", "Episode": episodeId, "Referrer": refCode, "Player": "youtube"
+        mixpanel.track "Episode played",
+          "Episode": episodeId,
+          "Ref code": refCode,
+          "Player": "youtube"
 
     player[0].addEventListener "onStateChange", "trackYoutubePlayerState"
 
@@ -42,7 +45,7 @@ $ ->
     userId       = root.data("user-session")
 
     shouldTrack  = trackingUri? and trackingUri isnt ""
-    ref          = $.url().param('ref')
+    refCode      = util.meta("ref-code")
     started      = false
     heartbeat    = null
 
@@ -52,7 +55,10 @@ $ ->
 
       if !started and playing
         started = true
-        mixpanel.track "Episode played", "Episode": episodeId, "Referrer": ref, "Player": "audio"
+        mixpanel.track "Episode played",
+          "Episode": episodeId,
+          "Ref code": refCode,
+          "Player": "audio"
 
       clearInterval(heartbeat) if heartbeat?
 
@@ -64,7 +70,7 @@ $ ->
         episodeId:    episodeId
         episodeState: episodeState
         type:         type
-        ref:          ref
+        ref:          refCode
         progressed:   Math.round(evt.jPlayer.status.currentTime * 1000)
 
       ping = () ->

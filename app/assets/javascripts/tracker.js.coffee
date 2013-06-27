@@ -1,5 +1,5 @@
 $ ->
-  refCode  = $.url().param('ref')
+  refCode  = util.meta("ref-code")
   referrer = document.referrer
 
   mixpanel.identify util.meta("user-id")
@@ -31,7 +31,7 @@ $ ->
 
   $("body#episodes.show").each () ->
     episodeId = $(this).find("article.episode").attr("id")
-    mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer
+    mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
 
   $("body#home.index").each () ->
     mixpanel.track "Homepage Viewed", "Ref code" : refCode, "Referrer" : referrer
@@ -42,7 +42,6 @@ $ ->
     $(elt).closest("article.episode").attr("id")
 
   $.getScript '//connect.facebook.net/en_UK/all.js', () ->
-    console.log "channel", "//#{document.location.host}/channel.html"
     window.fbAsyncInit = () ->
       protocol = if 'https:' is document.location.protocol then 'https://' else 'http://'
       FB.init
