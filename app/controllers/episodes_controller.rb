@@ -7,22 +7,22 @@ class EpisodesController < ApplicationController
     # TODO Refactor.
     if @episode.possible_player_types.length == 1
       if params[:player].present?
-        redirect_to episode_path(id: @episode.slug) and return
+        redirect_to episode_path(id: @episode.slug, ref: params[:ref]) and return
       else # Just render.
         @player = @episode.possible_player_types[0]
       end
     else
       if params[:player].present?
         if !Episode::Players::POSSIBLE_TYPES.include?(params[:player])
-          redirect_to episode_path(id: @episode.slug) and return
+          redirect_to episode_path(id: @episode.slug, ref: params[:ref]) and return
         else
           session[:player] = params[:player]
           @player = params[:player]
         end
       elsif session[:player].present?
-        redirect_to typed_episodes_path(id: @episode.slug, player: session[:player]) and return
+        redirect_to typed_episodes_path(id: @episode.slug, player: session[:player], ref: params[:ref]) and return
       else
-        redirect_to typed_episodes_path(id: @episode.slug, player: @episode.possible_player_types[ rand(2) ]) and return
+        redirect_to typed_episodes_path(id: @episode.slug, player: @episode.possible_player_types[ rand(2) ], ref: params[:ref]) and return
       end
     end
 
