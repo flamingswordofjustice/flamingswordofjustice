@@ -63,10 +63,6 @@ class Episode < ActiveRecord::Base
     stuff.map {|o| ["#{o.class.name}: #{o.name}", "#{o.class.name}:#{o.id}"]}
   end
 
-  belongs_to :email_proofed_by, class_name: "User"
-
-  has_one :email
-
   linkable_to :navigation_links
   linkable_to :redirects
 
@@ -132,14 +128,6 @@ class Episode < ActiveRecord::Base
       update_attributes redirect: redirect
       redirect.url
     end
-  end
-
-  def proofed?
-    !email_proofed_at.blank?
-  end
-
-  def proof!(user)
-    update_attributes email_proofed_at: Time.zone.now, email_proofed_by: user
   end
 
   def audio_filename

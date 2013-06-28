@@ -11,28 +11,6 @@ ActiveAdmin.register Episode do
     end
   end
 
-  member_action :send_email, method: :post do
-    email = EpisodeEmail.new(
-      id:         params[:id],
-      recipient:  params[:recipient],
-      proofed:    params[:proofed].present?,
-      sender:     params[:sender] || I18n.t(:email_sender),
-      admin_user: current_user,
-      renderer:   self
-    )
-
-    if email.recipient.blank?
-      redirect_to admin_episode_path(@episode), error: "No recipient given for email."
-    else
-      email.send!
-      redirect_to admin_episode_path(@episode), notice: "Email successfully sent to #{email.recipient}."
-    end
-  end
-
-  member_action :confirm_email, method: :get do
-    @episode = Episode.find(params[:id])
-  end
-
   member_action :mixpanel_stats, method: :get do
     client = Mixpanel::Client.new(
       api_key: ENV['MIXPANEL_API_KEY'],
@@ -89,14 +67,6 @@ ActiveAdmin.register Episode do
     link_to "View Live #{active_admin_config.resource_label}", polymorphic_url(resource, protocol: "http"), target: "_new"
   end
 
-  action_item only: [:edit, :show] do
-    form_tag send_email_admin_episode_path(resource.slug), style: "display: inline-block" do
-      hidden_field_tag('sender', ENV['EMAIL_TEST_RECIPIENT']) +
-      hidden_field_tag('recipient', ENV['EMAIL_TEST_RECIPIENT']) +
-      submit_tag("Send Test Email")
-    end
-  end
-
   form html: { multipart: true } do |f|
     f.object.host = Episode.default_host if f.object.new_record?
 
@@ -140,23 +110,6 @@ ActiveAdmin.register Episode do
 
       f.input :share_progress_code, label: "ShareProgress code",
         hint: "If running a ShareProgress experiment, use the code they give you here."
-    end
-
-    f.inputs "Email" do
-      f.input :email_note,
-        as: :html_editor,
-        label: "Additional email note",
-        hint: "Appears at the top of the email"
-
-      f.input :email_proofed_at,
-        as: :string,
-        hint: "Read-only",
-        input_html: { readonly: true, disabled: true }
-
-      f.input :email_proofed_by,
-        as: :string,
-        hint: "Read-only",
-        input_html: { readonly: true, disabled: true, value: f.object.email_proofed_by.try(:name) }
     end
 
     f.inputs "Topics and Guests" do
