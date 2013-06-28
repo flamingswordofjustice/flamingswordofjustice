@@ -23,4 +23,8 @@ class HomeController < ApplicationController
     head :ok
   end
 
+  def rss
+    redirect_to ENV["FEEDBURNER_PODCAST_URI"], status: 302
+  end
+
 end
