@@ -38,11 +38,8 @@ class Email < ActiveRecord::Base
   end
 
   def send!(user)
-    raise "Not proofed" unless self.proofed?
-
-    if RECIPIENT_BLACKLIST.include?(self.recipient)
-      raise "Not sent" if Rails.env.development? || !episode.proofed?
-    end
+    raise "Not proofed" if !self.proofed?
+    raise "Not sent"    if Rails.env.development? && RECIPIENT_BLACKLIST.include?(self.recipient)
 
     mailer.send_email(
       to:      self.recipient,
