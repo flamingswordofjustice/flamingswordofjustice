@@ -12,7 +12,7 @@
 
           %ul.nav.pull-right
             %li
-              %form.navbar-search{action: search_path, method: :get, title: "Search", data: { track: true }}
+              %form.navbar-search{action: search_path, method: :get}
                 %div.control-group
                   %i.icon-search
                   %input.search-query{type: "search", name: "q", placeholder: "Search", value: params[:q]}

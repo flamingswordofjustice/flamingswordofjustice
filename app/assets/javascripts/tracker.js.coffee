@@ -10,7 +10,7 @@ $ ->
     title = $.trim title
 
     track = $(elt).data("track")
-    attrs = if track isnt "" then JSON.parse("{ #{track} }") else {}
+    attrs = if ( track? and track isnt "" ) then JSON.parse("{ #{track} }") else {}
     attrs['Page Name'] = document.title
     [ title, attrs ]
 
@@ -24,10 +24,17 @@ $ ->
     evt.preventDefault()
     track "Clicked", this, () -> window.location = a.attr("href")
 
-  $("form[data-track]").submit (evt) ->
+  mixpanel.track_forms "form.navbar-search", "Submitted Search", (elt) -> titleAndAttrsFor(elt)[1]
+
+  $("form.subscribe").each () ->
     form = $(this)
-    evt.preventDefault()
-    track "Submitted", this, () -> form.submit()
+    submit = form.find("a.submit")
+
+    submit.on "click", (evt) -> form.submit(); evt.preventDefault();
+    form.on "ajax:complete", () ->
+      mixpanel.track "Submitted Subscribe", titleAndAttrsFor(form)[1]
+      submit.find("span").text(submit.data("message"))
+
 
   $("body#episodes.show").each () ->
     episodeId = $(this).find("article.episode").attr("id")

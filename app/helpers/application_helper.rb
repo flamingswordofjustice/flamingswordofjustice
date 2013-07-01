@@ -107,15 +107,7 @@ module ApplicationHelper
 
   def mixpanel_tracker
     if Rails.env.development?
-      raw <<-HTML
-        <script type="text/javascript">
-          window.mixpanel = {
-            track:         function(what, o, done) { console.log("mixpanel track", what, o); typeof(done) == "function" ? done() : null; },
-            identify:      function(who)           { console.log("mixpanel identify", who); },
-            register_once: function(what)          { console.log("mixpanel r_o", what); }
-          };
-        </script>
-      HTML
+      mixpanel_tracker_debug
     else
       raw <<-HTML
         <script type="text/javascript">
@@ -130,10 +122,17 @@ module ApplicationHelper
     raw <<-HTML
       <script type="text/javascript">
         window.mixpanel = {
-          init:          function(uid) { console.log("initted", uid); },
-          identify:      function(uid) { console.log("indentified", uid); },
-          register_once: function(uid) { console.log("registered", uid); },
-          track:         function(what, attrs, done) { console.log("tracked", what, attrs); }
+          init:          function(uid) { console.log("mixpanel init", uid); },
+          identify:      function(uid) { console.log("mixpanel ident", uid); },
+          register_once: function(uid) { console.log("mixpanel r_o", uid); },
+          track:         function(what, attrs, done) { console.log("mixpanel track", what, attrs); },
+          track_forms:   function(query, title, attrs) {
+            console.log(
+              "mixpanel track form enabled",
+              $(query), title,
+              typeof(attrs) === "function" ? attrs(query) : attrs
+            );
+          }
         };
       </script>
     HTML

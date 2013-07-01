@@ -5,13 +5,6 @@ $ ->
       copy: input.val()
       afterCopy: () -> input.focus().select()
 
-  $("form.subscribe").each () ->
-    form = $(this)
-    submit = form.find("a.submit")
-
-    submit.on "click", (evt) -> form.submit(); evt.preventDefault();
-    form.on "ajax:complete", () -> submit.find("span").text(submit.data("message"))
-
   $(".episode.live").each () ->
     episode = $(this)
     uri = episode.data("uri")
