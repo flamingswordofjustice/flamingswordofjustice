@@ -2,20 +2,14 @@
                            type: "article",
                            description: @post.content
 
-%div.row-fluid
-  %header.span12
-    = breadcrumbs :root, @post
-    %h1= @post.title
-    %p.muted.attribution
-      = t(:tag)
-      |
-      %time(pubdate="pubdate")= @post.created_at.strftime("%m/%d/%Y")
-    = social_icons_for @post, type: "share"
 
-= divider
+= page_header @post.title,
+  crumbs: [:root, @post],
+  time: @post.created_at
 
 %div.row-fluid
   %div.span8
+    = social_icons_for @post, type: "share"
     %article.episode{id: @post.slug}
       %section.body
         = raw @post.content

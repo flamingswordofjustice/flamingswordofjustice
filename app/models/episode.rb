@@ -153,6 +153,14 @@ class Episode < ActiveRecord::Base
     end
   end
 
+  def page_headline
+    self.headline.present? ? self.headline : self.title
+  end
+
+  def sub_headline
+    self.headline.present? ? self.title : I18n.t(:tag)
+  end
+
   class << self
     def grouped_by(category)
       if respond_to?("grouped_by_#{category}")

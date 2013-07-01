@@ -82,10 +82,13 @@
   h1 { font-size: 36px; line-height: 40px; }
   h2 { font-size: 30px; line-height: 34px; }
 
-  .page-header {
+  .header-content .page-header {
     margin-top: 0;
     .logo { display: none; }
     .details.offset2 { margin-left: 0; }
+    > .span12 ul.breadcrumb {
+      position: relative;
+    }
   }
 
   .subscribe-join-social {

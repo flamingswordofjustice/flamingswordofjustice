@@ -66,3 +66,15 @@ $ ->
     mainClass: 'mfp-fade',
     removalDelay: 300,
     gallery: { enabled: true }
+
+  $('.page-header h1').each () ->
+    chars = $(this).text().length
+
+    factor = switch
+      when chars < 20 then 0.8
+      when chars < 60 then 1.8
+      else 2.5
+
+    $(this).fitText factor
+
+

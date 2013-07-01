@@ -318,4 +318,13 @@ module ApplicationHelper
       render partial: "episodes/#{partial}", locals: opts
     end
   end
+
+  def page_header(title, attrs={})
+    attrs[:crumbs]   ||= []
+    attrs[:subtitle] ||= t(:tag)
+    attrs[:time]     ||= nil
+
+    render partial: "shared/page_header", locals: attrs.merge(title: title)
+  end
+
 end
