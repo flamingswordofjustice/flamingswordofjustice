@@ -40,6 +40,8 @@ $ ->
     episodeId = $(this).find("article.episode").attr("id")
     mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
 
+    setTimeout (-> $("#share-modal").modal("show")), 1000
+
   $("body#home.index").each () ->
     mixpanel.track "Homepage Viewed", "Ref code" : refCode, "Referrer" : referrer
 
