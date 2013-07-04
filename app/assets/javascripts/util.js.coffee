@@ -3,6 +3,7 @@ window.util =
   timeout:  (ms, fn) -> setTimeout fn, ms
   doto: (o, fn) -> fn(o); o # K combinator
   meta: (name) -> $("meta[name='#{name}']").attr("content")
+  og:   (name) -> $("meta[property='og:#{name}']").attr("content")
 
 Array.prototype.remove = (from, to) ->
   rest = @slice (to || from) + 1 || this.length

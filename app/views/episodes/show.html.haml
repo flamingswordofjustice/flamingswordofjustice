@@ -18,6 +18,20 @@
 
   %div.row-fluid.play-and-share
     %div.span8
+      %div.share-buttons.container-fluid
+        %div.span4
+          %a.facebook{href: "http://facebook.com/sharer.php?u=#{@canonical_fb_url}", target: "_blank", data: {url: @canonical_fb_url}}
+            %i.icon-facebook
+            %h3 Share this
+        %div.span4
+          %a.twitter{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: @episode.default_twitter_text, url: @episode.canonical_short_link || @episode_url).to_param, target: "_blank"}
+            %i.icon-twitter
+            %h3 Tweet this
+        %div.span4
+          %a.subscribe{href: itunes_link, title: "iTunes", data: { track: true }}
+            %i.icon-music
+            %h3 Subscribe
+
       = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player
     %div.span4
       %div.subscribe-join-social.subscribe-vertical.apply-affix

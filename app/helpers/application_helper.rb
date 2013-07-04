@@ -29,6 +29,14 @@ module ApplicationHelper
     HTML
   end
 
+  def twitter_share_attrs(opts={})
+    account = opts[:account] || t(:twitter)
+    url     = opts[:url] || url_for(:only_path => false)
+    text    = html_escape opts[:text]
+
+    { via: account, text: text, url: url, counturl: url }
+  end
+
   def facebook_follow(account=nil)
     account ||= t(:facebook)
     raw <<-HTML

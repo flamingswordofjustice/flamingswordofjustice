@@ -1,10 +1,24 @@
 %div#share-modal.modal.hide.fade{tabindex: -1, role: "dialog", "aria-labelledby" => "share-modal-label", "aria-hidden" => true}
   %div.modal-header
-    %button.close{type: "button", "aria-hidden" => true, "data-dismiss" => "modal"} x
-    %h3#share-modal-label Share now!
+    = image_tag "sword_logo_small.png", class: "logo"
+
+    %button.close{type: "button", "aria-hidden" => true, "data-dismiss" => "modal"}
+      %i.icon-remove
 
   %div.modal-body
-    %p Do you like puppies?
+    %div.intro
+      %h3 Can we make the world a better place?
 
-    %a.btn.btn-success YES
-    %a.btn.btn-danger{"data-dismiss" => "modal"}  NO
+      %a.btn.btn-success Yes, absolutely!
+      %a.btn.btn-danger{"data-dismiss" => "modal"} Not really
+
+    %div.ask.hidden
+      %h3 Then join our mailing list!
+      %p We'll send you more inspirational stories of people changing the world.
+      %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
+        %input(placeholder="you@example.com" type="email" name="subscriber[email]" required)
+        %br
+        %a.submit.btn.btn-primary{href: "#"}
+          %i.icon-envelope
+          %span Join
+
