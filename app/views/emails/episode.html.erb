@@ -257,12 +257,12 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
 <body bgcolor="#FFFFFF">
 
-<% if episode.email_note.present? %>
+<% if email.header_note.present? %>
   <table class="body-wrap">
     <tr>
       <td class="container" bgcolor="#FFFFFF">
         <div class="content">
-          <%= raw episode.email_note %>
+          <%= raw email.header_note %>
         </div>
       </td>
     </tr>
