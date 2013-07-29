@@ -99,18 +99,26 @@ div.full-play-controls {
     display: block;
     float: left;
     width: 100%;
-    min-height: 36px;
+    height: 36px;
     color: $veryLightGrey;
 
+    .jp-controls, .jp-time-holder, .other-commands {
+      line-height: 36px;
+      height: 36px;
+    }
+
     .jp-controls {
-      padding: 4px 10px 4px 20px;
       float: left;
-      a { cursor: pointer; }
+      a {
+        display: block;
+        cursor: pointer;
+        padding: 0 20px;
+        line-height: 36px;
+      }
     }
 
     .jp-time-holder {
       float: left;
-      margin: 4px 0 4px 10px;
     }
   }
 }

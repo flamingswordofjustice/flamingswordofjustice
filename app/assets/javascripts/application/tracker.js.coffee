@@ -39,9 +39,11 @@ $ ->
     episodeId = $(this).find("article.episode").attr("id")
     mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
 
+    $("#share-modal").on "shown", () ->
+      mixpanel.track "Share modal shown", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
+
     util.timeout 1000, () ->
       $("#share-modal").modal("show")
-      mixpanel.track "Share modal shown", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
 
     $("#share-modal").each () ->
       modal = $(this)
