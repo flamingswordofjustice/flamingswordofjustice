@@ -50,6 +50,16 @@ class EpisodesController < ApplicationController
     end
   end
 
+  def alt
+    @episode = if params[:id] =~ /^\d+$/
+      Episode.find(params[:id])
+    else
+      Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
+    end
+
+    render template: "episodes/alt", layout: nil
+  end
+
   def latest
     @episode = Episode.visible.first
     redirect_to episode_path(@episode)

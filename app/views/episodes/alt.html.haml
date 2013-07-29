@@ -1,0 +1,75 @@
+!!!
+
+%html
+  %head
+    %link(href='//fonts.googleapis.com/css?family=Roboto+Condensed:300|Source+Sans+Pro:300' rel='stylesheet' type='text/css')
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = javascript_include_tag "//connect.facebook.net/en_UK/all.js"
+    = javascript_include_tag "//platform.twitter.com/widgets.js"
+    = csrf_meta_tags
+    = favicon_link_tag
+    = syndication_link_tag
+    = google_analytics_tracker
+    = chartbeat_head_tracker
+    = optimizely_tracker
+    = shareprogress_tracker
+    = mixpanel_tracker
+
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+    %meta(name="bitly-verification" content="100f7700b68b")
+    %meta{name: "user-id",         content: session[:session_id]}
+    %meta{name: "facebook-app-id", content: facebook_app_id}
+    %meta{name: "ref-code",        content: params[:ref]}
+    = yield :head
+
+  %body{id: controller.controller_name, class: controller.action_name, data: { spy: "scroll", target: "#side-navbar" }}
+    = internet_defense_league
+    %div#wrap
+      %div.container
+        %div.row
+          %div.offset1.span10
+            %div.navbar
+              %nav.navbar-inner
+                %a.brand{href: root_path, title: "Logo", data: { track: true }}
+            %h4.muted= @episode.title
+            %h1= @episode.headline
+
+            %div.episode-header
+              %p= raw @episode.social_description
+
+            %div.row-fluid.share-buttons
+              %div.span4
+                %a.facebook{href: "http://facebook.com/sharer.php?u=#{@canonical_fb_url}", target: "_blank", data: {url: @canonical_fb_url}}
+                  %i.icon-facebook
+                  %h3 Share this
+              %div.span4
+                %a.twitter{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: @episode.default_twitter_text, url: @episode.canonical_short_link || @episode_url).to_param, target: "_blank"}
+                  %i.icon-twitter
+                  %h3 Tweet this
+              %div.span4
+                %a.subscribe{href: itunes_link, title: "iTunes", data: { track: true }}
+                  %i.icon-music
+                  %h3 Subscribe
+
+            = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player
+
+            = raw @episode.description
+
+            - if @episode.guests.any?
+              %h3 Featuring
+              %div.row-fluid
+                - @episode.guests.in_groups_of 3 do |group|
+                  %div.row-fluid
+                    - group.each do |g|
+                      %div.span4= render g
+
+      %div#push
+
+    %footer#footer
+      %div.container
+        %div.row
+          %div.offset1.span10
+            %h1 I want more stuff like this!
+
+  = chartbeat_tail_tracker

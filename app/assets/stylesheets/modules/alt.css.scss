@@ -1,0 +1,43 @@
+body#episodes.alt {
+  background-color: #eee;
+
+  #wrap {
+    margin-top: 40px;
+    margin-bottom: 0;
+    min-height: 0;
+
+    > .container {
+      background-color: white;
+      padding-top: 40px;
+    }
+  }
+
+  nav.navbar-inner a.brand {
+    background-image: image-url("flamingswordmed.png");
+    background-color: transparent;
+    &:hover { background-color: transparent; }
+  }
+
+  #push { height: 0; }
+
+  > #footer {
+    background-color: transparent;
+    height: auto;
+    padding-bottom: 40px;
+
+    > .container {
+      background-color: #ccc;
+    }
+  }
+
+  .episode-header {
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+
+  .share-buttons {
+
+  }
+}
