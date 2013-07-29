@@ -29,7 +29,7 @@ $ ->
     navbar    = $(".navbar")
     offset    = 50
 
-    # TODO There must be a way to calculate the offset dynamically.
+    # TODO There must be a way to calculate the bottom offset dynamically.
 
     affixable.affix offset: {
       top: () -> header.height() + navbar.height() + offset,
@@ -85,22 +85,5 @@ $ ->
       console.log "setting logo height", newHeight
 
     $(window).resize(resizer).trigger("resize")
-
-    # Just for good measure!
-    # newHeight = titleBox.height()
-    # logo.css height: newHeight, width: newHeight * logoRatio
-
-  # $('.page-header h1').each () ->
-  #   # chars = $(this).text().length
-  #   # window.header = $(this).parent()
-
-  #   # factor = switch
-  #   #   when chars < 20 then 0.8
-  #   #   when chars < 60 then 1.8
-  #   #   else 2.5
-
-  #   factor = 1.5
-
-  #   $(this).fitText factor
 
   $("[data-toggle='tooltip']").tooltip(placement: 'bottom')
