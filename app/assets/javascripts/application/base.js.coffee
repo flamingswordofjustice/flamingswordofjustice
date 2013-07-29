@@ -70,4 +70,4 @@ $ ->
 
     $(this).fitText factor
 
-
+  $("[data-toggle='tooltip']").tooltip(placement: 'bottom')

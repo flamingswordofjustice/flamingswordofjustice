@@ -1,23 +1,4 @@
 %div.full-play-controls{id: "play-#{episode.slug}", class: episode.state}
-  %div.share-episode
-    %ul.unstyled
-      %li
-        %a.btn.btn-mini.btn-primary.itunes{href: itunes_link, data: { track: true }}
-          %i.icon-music
-          Subscribe
-      %li
-        %a.btn.btn-mini.visible-desktop.download{href: audio_episode_url(episode), download: episode.audio_filename, rel: "nofollow"}
-          %i.icon-download
-          Download
-      %li
-        %a.btn.btn-mini.visible-desktop.rss{href: podcast_link, data: { track: true }}
-          %i.icon-rss
-          RSS
-      %li.fb
-        = facebook_like episode_url
-      %li.tw
-        = twitter_share text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url
-
   - if player == Episode::Players::VIDEO
     = youtube_player @episode.youtube_video_id, id: "youtube-episode-player"
   - else
@@ -41,7 +22,6 @@
               %span Subscribe Now
               = image_tag "fsj_icon.png", style: "margin-top: -5px;", class: "visible-desktop"
 
-
     %div.jp-progress
       %div.jp-seek-bar
         %div.jp-play-bar
@@ -56,5 +36,16 @@
         %span.jp-current-time
         \/
         %span.jp-duration
+      %ul.other-commands.inline.pull-right
+        %li
+          %a.itunes{href: itunes_link, title: "Subscribe in iTunes", data: { track: true, toggle: 'tooltip' }}
+            %i.icon-music
+        %li
+          %a.visible-desktop.download{href: audio_episode_url(episode), download: episode.audio_filename, rel: "nofollow", title: "Download full episode", data: { toggle: 'tooltip' }}
+            %i.icon-download
+        %li
+          %a.visible-desktop.rss{href: podcast_link, title: "Subscribe via RSS", data: { track: true, toggle: 'tooltip' }}
+            %i.icon-rss
+
 
   %div.clearfix

@@ -466,4 +466,24 @@ a.brand-logo {
   margin: 0 4px 4px 0;
 }
 
+.modal-backdrop {
+  background-color: rgb(30,0,0);
+}
+
+.modal {
+  .modal-header {
+    .logo {
+      width: 100px;
+    }
+  }
+
+  .modal-body {
+    text-align: center;
+    .intro {
+    }
+    .ask {
+    }
+  }
+}
+
 @import "application-responsive";

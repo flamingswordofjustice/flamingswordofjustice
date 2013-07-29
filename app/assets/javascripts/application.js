@@ -15,4 +15,4 @@
 //= require bootstrap
 //= require zclip
 //= require util
-//= require_tree .
+//= require_tree ./application
