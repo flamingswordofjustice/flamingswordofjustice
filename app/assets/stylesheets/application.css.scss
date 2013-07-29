@@ -425,26 +425,17 @@ a.brand-logo {
     border-bottom: 1px solid $baseRed;
 
     > .span12 {
-      display: table-row;
-      width: 100%;
-
       > .page-header-logo {
-        display: table-cell;
-        vertical-align: top;
-        width: 20%;
         padding-right: 20px;
+        float: left;
       }
 
       > .page-header-title {
-        display: table-cell;
-        vertical-align: bottom;
         position: relative;
-        width: 80%;
       }
 
       ul.breadcrumb {
         > li { text-shadow: none; }
-        position: absolute; top: 0; left: 0;
       }
     };
 

@@ -2,16 +2,9 @@
                            title: @person.name + ", " + @person.title,
                            description: @person.description
 
-%div.row-fluid.page-header
-  %div.span2.logo
-    %a{href: root_path}
-      = image_tag "logo.png"
-
-  %div.span10.offset2.details
-    = breadcrumbs :root, Person, @person
-    %h1= @person.name
-    - unless @person.title.blank?
-      %div.muted= @person.title
+= page_header @person.name,
+  crumbs: [:root, Person, @person],
+  subtitle: @person.title
 
 %div.row-fluid
   %div.span8
@@ -34,8 +27,6 @@
     %div.span4
       %section.organization.clearfix{style: "margin-top: 20px"}
         = render @person.organization
-
-= divider 8
 
 - if @person.appearances.any?
   %div.row-fluid

@@ -60,14 +60,47 @@ $ ->
     removalDelay: 300,
     gallery: { enabled: true }
 
-  $('.page-header h1').each () ->
-    chars = $(this).text().length
+  $('.page-header').each () ->
+    [ minFontSize, maxFontSize ] = [ 18.0, Number.POSITIVE_INFINITY ]
+    header     = $(this)
+    titleBox   = header.find(".page-header-title")
+    title      = titleBox.find("h1")
+    numChars   = title.text().length
+    logo       = header.find(".page-header-logo img")
+    logoRatio  = 1.15
+    compressor = switch
+      when numChars < 20 then 1.0
+      when numChars < 60 then 2.4
+      else 3.0
 
-    factor = switch
-      when chars < 20 then 0.8
-      when chars < 60 then 1.8
-      else 2.5
+    resizer = () ->
+      guessedFontSize = header.width() / (compressor * 10)
+      calcedFontSize  = Math.max(Math.min(guessedFontSize, maxFontSize), minFontSize)
+      lineHeight      = calcedFontSize + ( calcedFontSize / 3 ) + "px"
+      title.css fontSize: calcedFontSize, lineHeight: lineHeight
 
-    $(this).fitText factor
+      newHeight = titleBox.height()
+      logo.css height: newHeight, width: newHeight * logoRatio
+
+      console.log "setting logo height", newHeight
+
+    $(window).resize(resizer).trigger("resize")
+
+    # Just for good measure!
+    # newHeight = titleBox.height()
+    # logo.css height: newHeight, width: newHeight * logoRatio
+
+  # $('.page-header h1').each () ->
+  #   # chars = $(this).text().length
+  #   # window.header = $(this).parent()
+
+  #   # factor = switch
+  #   #   when chars < 20 then 0.8
+  #   #   when chars < 60 then 1.8
+  #   #   else 2.5
+
+  #   factor = 1.5
+
+  #   $(this).fitText factor
 
   $("[data-toggle='tooltip']").tooltip(placement: 'bottom')
