@@ -95,7 +95,8 @@ $ ->
       app_id:  util.meta("facebook-app-id")
       link:    util.og("url")
       name:    util.og("title")
-      caption: util.og("description")
+      caption: document.location.hostname
+      description: util.og("description")
     }
 
   $(".share-buttons .facebook").click (evt) ->
