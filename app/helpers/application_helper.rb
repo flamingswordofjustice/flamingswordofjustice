@@ -305,7 +305,7 @@ module ApplicationHelper
   end
 
   def grouped(title, groups, crumbs)
-    render partial: "shared/grouped", locals: { title: title, groups: groups, crumbs: breadcrumbs(*crumbs) }
+    render partial: "shared/grouped", locals: { title: title, groups: groups, crumbs: crumbs }
   end
 
   def comments_enabled?

@@ -1,12 +1,6 @@
-%div.row-fluid.page-header
-  %div.span2.logo
-    %a{href: root_path}
-      = image_tag "logo.png"
-
-  %div.span10.offset2.details
-    = crumbs
-    %h1= title
-    = render 'episodes/groups_nav' if defined?(@category)
+= page_header title,
+  crumbs: crumbs,
+  subtitle: render(partial: 'episodes/groups_nav')
 
 %div.row-fluid
   %div.span2

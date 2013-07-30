@@ -54,7 +54,8 @@
 
             = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player
 
-            = raw @episode.description
+            %div.episode-description
+              = raw @episode.description
 
             - if @episode.guests.any?
               %h3 Featuring

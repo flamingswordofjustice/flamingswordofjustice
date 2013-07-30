@@ -61,7 +61,7 @@ $ ->
     gallery: { enabled: true }
 
   $('.page-header').each () ->
-    [ minFontSize, maxFontSize ] = [ 18.0, Number.POSITIVE_INFINITY ]
+    [ minFontSize, maxFontSize ] = [ 18.0, 64.0 ]
     header     = $(this)
     titleBox   = header.find(".page-header-title")
     title      = titleBox.find("h1")
