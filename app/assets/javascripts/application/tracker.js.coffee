@@ -50,18 +50,17 @@ $ ->
       contents = modal.find(".modal-contents")
       width = modal.width()
 
-      nextStep = () ->
-        left = contents.position().left
-        contents.css(left: left - width)
+      nextStep = (step) ->
+        contents.css(left: width * -1 * step)
 
-      modal.find(".btn-primary").click (evt) -> evt.preventDefault(); nextStep()
+      modal.find(".btn-primary").click (evt) -> evt.preventDefault(); nextStep(1)
 
       form = modal.find("form.subscribe")
       submitBtn = form.find("a.submit")
       form.on "submit", (evt) -> submitBtn.attr("disabled", "disabled")
       submitBtn.on "click", (evt) -> form.submit(); evt.preventDefault()
       form.on "ajax:complete", (evt) ->
-        nextStep()
+        nextStep(2)
         mixpanel.track "Submitted Subscribe", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
         util.timeout 2000, () -> modal.modal("hide")
 
