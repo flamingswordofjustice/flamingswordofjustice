@@ -29,28 +29,38 @@
       %div.container
         %div.row
           %div.offset1.span10
-            %div.navbar
-              %nav.navbar-inner
+            %div.row-fluid.header
+              %div.span6
                 %a.brand{href: root_path, title: "Logo", data: { track: true }}
-            %h4.muted= @episode.title
+              %div.span6
+                %a.canonical-link.pull-right{href: itunes_link, title: "Subscribe in iTunes", data: { track: true }}
+                  %i.icon.icon-music
+                  %h4= @episode.title
+
+            - if @episode.topics.any?
+              %h4.muted= comma_separated_list_of @episode.topics
+
             %h1= @episode.headline
 
-            %div.episode-header
-              %p= raw @episode.social_description
+            %div.row-fluid.episode-header
+              %div.span7
+                %p= raw @episode.social_description
+              %div.span5.host
+                = render @episode.host
 
-            %div.row-fluid.share-buttons
+            %div.row-fluid{style: "margin-bottom: 20px;"}
               %div.span4
-                %a.facebook{href: "http://facebook.com/sharer.php?u=#{@canonical_fb_url}", target: "_blank", data: {url: @canonical_fb_url}}
+                %a.btn.btn-facebook.btn-large.btn-block{href: "http://facebook.com/sharer.php?u=#{@canonical_fb_url}", target: "_blank", data: {url: @canonical_fb_url}}
                   %i.icon-facebook
-                  %h3 Share this
+                  Share This
               %div.span4
-                %a.twitter{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: @episode.default_twitter_text, url: @episode.canonical_short_link || @episode_url).to_param, target: "_blank"}
+                %a.btn.btn-twitter.btn-large.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: @episode.default_twitter_text, url: @episode.canonical_short_link || @episode_url).to_param, target: "_blank"}
                   %i.icon-twitter
-                  %h3 Tweet this
+                  Tweet this
               %div.span4
-                %a.subscribe{href: itunes_link, title: "iTunes", data: { track: true }}
+                %a.btn.btn-subscribe.btn-large.btn-block{href: itunes_link, title: "iTunes", data: { track: true }}
                   %i.icon-music
-                  %h3 Subscribe
+                  Subscribe
 
             = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player
 

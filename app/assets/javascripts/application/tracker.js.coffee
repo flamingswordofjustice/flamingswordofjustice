@@ -99,14 +99,12 @@ $ ->
       description: util.og("description")
     }
 
-  $(".share-buttons .facebook").click (evt) ->
+  $(".share-buttons .facebook, .btn-facebook").click (evt) ->
     params = fbParamsFromOpenGraph()
-    console.log "params", params
     evt.preventDefault()
     episode = episodeFor(this)
     url = $(this).data("url")
     mixpanel.track "Facebook share click", "URL": url, "Ref code": refCode, "Episode": episode
     FB.ui params, (evt) ->
-      console.log "share event", evt
       unless evt.error_code?
         mixpanel.track "Facebook share success", "URL": url, "Ref code": refCode, "Episode": episode

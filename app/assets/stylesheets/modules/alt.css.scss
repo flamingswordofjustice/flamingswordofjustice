@@ -1,5 +1,5 @@
 body#episodes.alt {
-  background-color: #eee;
+  background: transparent image-url("subtle_bg.png") top left repeat;
 
   #wrap {
     margin-top: 40px;
@@ -9,13 +9,45 @@ body#episodes.alt {
     > .container {
       background-color: white;
       padding-top: 40px;
+      border-radius: 5px;
     }
   }
 
-  nav.navbar-inner a.brand {
-    background-image: image-url("flamingswordmed.png");
-    background-color: transparent;
-    &:hover { background-color: transparent; }
+  div.header {
+    margin-bottom: 40px;
+    margin-top: 20px;
+
+    a.brand {
+      background-image: image-url("flamingswordmed.png");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 260px;
+      height: 65px;
+      display: block;
+    }
+
+    a.canonical-link {
+      background-color: #ddd;
+      border-radius: 5px;
+      color: white;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover { background-color: #ccc; transition: background-color 0.2s; }
+
+      > i {
+        font-size: 28px;
+        padding: 10px;
+        border-right: 2px solid white;
+      }
+
+      > h4 {
+        display: inline;
+        padding: 5px 20px 5px 10px;
+        font-size: 24px;
+      }
+    }
   }
 
   #push { height: 0; }
@@ -31,13 +63,11 @@ body#episodes.alt {
   }
 
   .episode-header {
-    padding-top: 10px;
+    padding: 10px 0;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     margin-bottom: 20px;
-  }
 
-  .share-buttons {
-
+    .media-badge { margin-bottom: 0; }
   }
 }

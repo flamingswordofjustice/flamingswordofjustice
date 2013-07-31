@@ -478,4 +478,22 @@ a.brand-logo {
   }
 }
 
+.btn-large {
+  font-family: $headingsFontFamily;
+  > i { font-size: 26px; margin-right: 4px; }
+}
+
+.btn-facebook {
+  @include buttonBackground($facebookBlue, darken($facebookBlue, 10%));
+}
+
+.btn-twitter {
+  @include buttonBackground($twitterTeal, darken($twitterTeal, 10%));
+}
+
+.btn-subscribe {
+  $lighterRed: lighten($baseRed, 20%);
+  @include buttonBackground($lighterRed, darken($lighterRed, 10%));
+}
+
 @import "application-responsive";
