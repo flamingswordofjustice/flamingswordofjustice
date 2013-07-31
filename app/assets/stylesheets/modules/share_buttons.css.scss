@@ -23,6 +23,7 @@
   }
 
   .facebook {
+    font-weight: 300;
     background-color: $facebookBlue;
     i { margin-left: 28px; margin-right: 22px; }
     > .follow { background-color: darken($facebookBlue, 20%); padding-top: 5px; padding-bottom: 3px; }
@@ -30,6 +31,7 @@
   }
 
   .twitter {
+    font-weight: 300;
     background-color: $twitterTeal;
     i { margin-left: 7px; margin-right: 10px; }
     > .follow { background-color: darken($twitterTeal, 20%); padding-top: 5px; padding-bottom: 2px; padding-right: 0; }
@@ -37,6 +39,7 @@
   }
 
   .subscribe {
+    font-weight: 300;
     background-color: lighten($baseRed, 20%);
     i { font-size: 46px; margin-left: 4px; margin-right: 10px; }
     @include transition(background-color linear $transitionDuration);
