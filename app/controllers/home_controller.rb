@@ -15,11 +15,7 @@ class HomeController < ApplicationController
 
   def subscribe
     subscriber = params.require(:subscriber).permit(:email)
-
-    unless Rails.env.development?
-      Subscriber.subscribe subscriber[:email]
-    end
-
+    Subscriber.subscribe subscriber[:email]
     head :ok
   end
 

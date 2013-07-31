@@ -6,7 +6,10 @@ class Subscriber < ActiveRecord::Base
   end
 
   def self.subscribe(email)
-    Mailgun().list_members(default_mailing_list).add email
+    if Rails.env.production?
+      Mailgun().list_members(default_mailing_list).add email
+    end
+
     self.create email: email
   end
 end

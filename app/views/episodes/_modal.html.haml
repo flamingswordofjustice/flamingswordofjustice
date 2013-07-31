@@ -1,24 +1,31 @@
 %div#share-modal.modal.hide.fade{tabindex: -1, role: "dialog", "aria-labelledby" => "share-modal-label", "aria-hidden" => true}
   %div.modal-header
-    = image_tag "sword_logo_small.png", class: "logo"
-
-    %button.close{type: "button", "aria-hidden" => true, "data-dismiss" => "modal"}
-      %i.icon-remove
+    %button.close(type="button" data-dismiss="modal" aria-hidden="true")
+      %span Close
+      &times;
+    %h3 &nbsp;
 
   %div.modal-body
-    %div.intro
-      %h3 Can we make the world a better place?
+    %div.modal-contents
+      %div.step.intro
+        %h3 There's nothing better than a good story.
+        %p Especially when it's true.
+        %div.buttons
+          %a.btn.btn-primary.btn-large I agree
+          %a.btn.btn-large{"data-dismiss" => "modal"} I disagree
 
-      %a.btn.btn-success Yes, absolutely!
-      %a.btn.btn-danger{"data-dismiss" => "modal"} Not really
+      %div.step.subscribe
+        %h3 Awesome. We think alike.
+        %p
+          On our show, we tell inspiring true stories about people changing the world.
+          And then we write a delicious email about each episode. <strong>Take a look!</strong>
+          Or not; totally up to you.
 
-    %div.ask.hidden
-      %h3 Then join our mailing list!
-      %p We'll send you more inspirational stories of people changing the world.
-      %form.subscribe{action: subscribe_path, method: :post, data: { remote: true }}
-        %input(placeholder="you@example.com" type="email" name="subscriber[email]" required)
-        %br
-        %a.submit.btn.btn-primary{href: "#"}
-          %i.icon-envelope
-          %span Join
+        %form.subscribe.form-inline{action: subscribe_path, method: :post, data: { remote: true }}
+          %input.input-large(placeholder="Email Address" type="email" name="subscriber[email]" required)
+          %a.submit.btn.btn-primary.btn-large{href: "#"}
+            Let's do this!
 
+      %div.step.thanks
+        %h3 Thanks for joining.
+        %p Now enjoy the episode.

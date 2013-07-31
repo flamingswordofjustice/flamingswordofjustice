@@ -2,7 +2,7 @@
 
 %html
   %head
-    %link(href='//fonts.googleapis.com/css?family=Roboto+Condensed:300|Source+Sans+Pro:300' rel='stylesheet' type='text/css')
+    %link(href='//fonts.googleapis.com/css?family=Roboto+Condensed:300,700' rel='stylesheet' type='text/css')
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
     = javascript_include_tag "//connect.facebook.net/en_UK/all.js"
@@ -66,7 +66,7 @@
                   %i.icon-twitter
                   Tweet this
               %div.span4
-                %a.btn.btn-subscribe.btn-large.btn-block{href: itunes_link, title: "iTunes", data: { track: true }}
+                %a.btn.btn-primary.btn-large.btn-block{href: itunes_link, title: "iTunes", data: { track: true }}
                   %i.icon-music
                   Subscribe
 
