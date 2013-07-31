@@ -57,7 +57,9 @@ $ ->
       modal.find(".btn-primary").click (evt) -> evt.preventDefault(); nextStep()
 
       form = modal.find("form.subscribe")
-      form.find("a.submit").on "click", (evt) -> $(this).attr("disabled", "disabled"); form.submit(); evt.preventDefault();
+      submitBtn = form.find("a.submit")
+      form.on "submit", (evt) -> submitBtn.attr("disabled", "disabled")
+      submitBtn.on "click", (evt) -> form.submit(); evt.preventDefault()
       form.on "ajax:complete", (evt) ->
         nextStep()
         mixpanel.track "Submitted Subscribe", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
