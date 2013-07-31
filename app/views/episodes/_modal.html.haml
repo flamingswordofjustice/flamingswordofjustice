@@ -18,8 +18,8 @@
         %h3 Awesome. We think alike.
         %p
           On our show, we tell inspiring true stories about people changing the world.
-          And then we write a delicious email about each episode. <strong>Take a look!</strong>
-          Or not; totally up to you.
+          And then we write a delicious email about each episode.
+          %br <strong>Take a look!</strong> Or not; totally up to you.
 
         %form.subscribe.form-inline{action: subscribe_path, method: :post, data: { remote: true }}
           %input.input-large(placeholder="Email Address" type="email" name="subscriber[email]" required)
@@ -27,5 +27,5 @@
             Let's do this!
 
       %div.step.thanks
-        %h3 Thanks for joining.
+        %h3 Thanks for joining!
         %p Now enjoy the episode.
