@@ -9,7 +9,8 @@ body#episodes.alt {
     > .container {
       background-color: white;
       padding-top: 40px;
-      border-radius: 5px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
 
@@ -56,11 +57,11 @@ body#episodes.alt {
 
   > #footer {
     background-color: transparent;
-    height: auto;
-    padding-bottom: 40px;
 
     > .container {
-      background-color: #ccc;
+      background-color: $baseGrey;
+      padding-top: 40px;
+      padding-bottom: 80px;
     }
   }
 
