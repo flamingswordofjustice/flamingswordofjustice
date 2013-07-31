@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require zclip
 //= require util
+//= require_tree ./application/vendor
 //= require_tree ./application

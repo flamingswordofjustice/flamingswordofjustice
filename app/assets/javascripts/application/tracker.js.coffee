@@ -35,7 +35,7 @@ $ ->
       mixpanel.track "Submitted Subscribe", titleAndAttrsFor(form)[1]
       submit.find("span").text(submit.data("message"))
 
-  $("body#episodes.show").each () ->
+  $("body#episodes.show, body#episodes.alt").each () ->
     episodeId = $(this).find("article.episode").attr("id")
     mixpanel.track "Episode Viewed", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
 
