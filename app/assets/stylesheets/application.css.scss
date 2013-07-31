@@ -2,6 +2,7 @@ $baseGrey: #292728;
 $lightGrey: #999999;
 $veryLightGrey: lighten($baseGrey, 80%);
 $baseRed: #b0242f;
+$lighterRed: lighten($baseRed, 20%);
 $flameOrange: #FF9100;
 $headingsFontFamily: 'Roboto Condensed', sans-serif;
 $baseFontSize: 16px;
@@ -492,8 +493,11 @@ a.brand-logo {
 }
 
 .btn-subscribe {
-  $lighterRed: lighten($baseRed, 20%);
   @include buttonBackground($lighterRed, darken($lighterRed, 10%));
+}
+
+.btn-appearances {
+  > i { color: $lighterRed; text-shadow: 1px 0 rgba(0,0,0,0.4); margin-right: 4px; }
 }
 
 @import "application-responsive";

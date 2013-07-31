@@ -25,28 +25,36 @@
 
   %body{id: controller.controller_name, class: controller.action_name, data: { spy: "scroll", target: "#side-navbar" }}
     = internet_defense_league
+
     %div#wrap
-      %div.container
+      %article.container.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
+        = render partial: "episodes/modal"
         %div.row
           %div.offset1.span10
             %div.row-fluid.header
-              %div.span6
-                %a.brand{href: root_path, title: "Logo", data: { track: true }}
-              %div.span6
-                %a.canonical-link.pull-right{href: itunes_link, title: "Subscribe in iTunes", data: { track: true }}
-                  %i.icon.icon-music
-                  %h4= @episode.title
+              %a.brand{href: root_path, title: "Logo", data: { track: true }}
+              / %div.span6
+              /   %a.canonical-link.pull-right{href: itunes_link, title: "Subscribe in iTunes", data: { track: true }}
+              /     %i.icon.icon-music
+              /     %h4= @episode.title
 
-            - if @episode.topics.any?
-              %h4.muted= comma_separated_list_of @episode.topics
+            / - if @episode.topics.any?
+            /   %h4.muted= comma_separated_list_of @episode.topics
+            %h4.muted Episode #{@episode.title.match(/(#\d+)/)[0]}
 
             %h1= @episode.headline
 
             %div.row-fluid.episode-header
-              %div.span7
+              %div.span8
                 %p= raw @episode.social_description
-              %div.span5.host
-                = render @episode.host
+
+              %div.span4.host
+                / = render @episode.host
+                %div.media
+                  = image_tag @episode.host.image.thumb, class: "media-object pull-left", width: 75, height: 75
+                  %div.media-body
+                    %h4.media-heading= @episode.host.name
+                    %p{style: "font-size: 14px; line-height: 22px; margin: 0"}= @episode.host.title
 
             %div.row-fluid{style: "margin-bottom: 20px;"}
               %div.span4
@@ -74,6 +82,9 @@
                   %div.row-fluid
                     - group.compact.each do |g|
                       %div.span4= render g
+
+            %div.show-notes
+              = raw @episode.show_notes
 
       %div#push
 

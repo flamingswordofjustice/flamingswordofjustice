@@ -1,11 +1,9 @@
 %ul.social-icons.unstyled
-  - if signed_in?
-    - route = "edit_admin_" + model.class.model_name.singular + "_path"
-    - if respond_to?(route) && path = self.send(route, model)
-      %li.link
-        %a.btn.btn-mini.btn-primary{href: path}
-          %i.icon-edit
-          Edit
+  - if model.appearances_count > 0
+    %li.appearances
+      %a.btn.btn-mini.btn-appearances{href: polymorphic_path(model, anchor: "appearances")}
+        %i.icon-music
+        = pluralize(model.appearances_count, "episode")
 
   - if type == "follow" || type == "like"
     - if model.respond_to?(:facebook) && model.facebook.present?
@@ -15,15 +13,3 @@
   - elsif type == "share"
     %li.facebook_like= facebook_like request.original_url
     %li.twitter= twitter_share
-
-  - if model.respond_to?(:public_email) && model.public_email.present?
-    %li.link
-      %a.btn.btn-mini{href: "mailto:#{model.public_email}"}
-        %i.icon-envelope
-        Mail
-  - if model.respond_to?(:website) && model.website.present?
-    %li.link
-      %a.btn.btn-mini{href: model.website, target: "_blank"}
-        %i.icon-home
-        Website
-
