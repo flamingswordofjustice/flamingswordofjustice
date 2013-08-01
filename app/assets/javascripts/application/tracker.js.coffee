@@ -49,6 +49,9 @@ $ ->
       modal = $(this)
       contents = modal.find(".modal-contents")
       width = modal.width()
+      innerWidth = width - 50;
+
+      modal.find(".modal-body, .step").width innerWidth
 
       nextStep = (step) ->
         contents.css(left: width * -1 * step)

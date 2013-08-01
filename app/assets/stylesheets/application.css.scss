@@ -485,6 +485,8 @@ input[type='text'], input[type='email'] {
     height: 38px;
     font-size: 20px;
     padding-left: 12px;
+
+    &.input-block-level { height: 48px; }
   }
 }
 

@@ -22,9 +22,12 @@
           %br <strong>Take a look!</strong> Or not; totally up to you.
 
         %form.subscribe.form-inline{action: subscribe_path, method: :post, data: { remote: true }}
-          %input.input-large(placeholder="Email Address" type="email" name="subscriber[email]" required)
-          %a.submit.btn.btn-primary.btn-large{href: "#"}
-            Let's do this!
+          %div.row-fluid
+            %div.span6.vertical-gap-phone
+              %input.input-large.input-block-level(placeholder="Email Address" type="email" name="subscriber[email]" required)
+            %div.span4
+              %a.submit.btn.btn-primary.btn-large.btn-block{href: "#"}
+                Let's do this!
 
       %div.step.thanks
         %h3 Thanks for joining!

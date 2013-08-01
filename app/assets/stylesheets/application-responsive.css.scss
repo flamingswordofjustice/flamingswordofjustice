@@ -70,6 +70,52 @@
   .entity-image > .thumbnail {
     position: static;
   }
+
+  .btn-large {
+    padding: 7px 14px;
+    font-size: 16px;
+    border-radius: 4px;
+
+    > i {
+      font-size: 18px;
+    }
+  }
+
+  input[type='text'], input[type='email'] {
+    &.input-large { font-size: 16px; }
+  }
+
+  body#episodes.alt {
+    #wrap {
+      margin-top: 10px;
+      > .container {
+        padding-top: 0;
+        border-radius: 0;
+      }
+    }
+
+    div.header {
+      margin-bottom: 10px;
+    }
+
+    .host .media {
+      img { float: left; }
+      .media-heading { line-height: 50px; }
+    }
+  }
+
+  .modal {
+    .modal-body {
+      .step { margin-top: 0; }
+      .intro .buttons { margin-top: 80px; }
+    }
+  }
+
+  .vertical-gap-phone { margin-bottom: 10px; }
+
+  input[type='text'], input[type='email'] {
+    &.input-large.input-block-level { height: 38px; }
+  }
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
