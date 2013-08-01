@@ -11,8 +11,8 @@
         %h3 There's nothing better than a good story.
         %p Especially when it's true.
         %div.buttons
-          %a.btn.btn-primary.btn-large I agree
-          %a.btn.btn-large{"data-dismiss" => "modal"} I disagree
+          %a.btn.btn-large.btn-primary{title: "Modal next step", href: "#", data: { track: true }} I agree
+          %a.btn.btn-large.btn-dismiss{title: "Modal dismiss", href: "#", data: { dismiss: "modal" }} I disagree
 
       %div.step.subscribe
         %h3 Awesome. We think alike.
@@ -30,5 +30,5 @@
                 Let's do this!
 
       %div.step.thanks
-        %h3 Thanks for joining!
-        %p Now enjoy the episode.
+        %h3 Awesome!
+        %p You're all set. See you in your inbox. Meanwhile, enjoy the show.

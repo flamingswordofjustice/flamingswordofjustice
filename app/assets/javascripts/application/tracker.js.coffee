@@ -22,18 +22,25 @@ $ ->
   $("a[data-track], button[data-track]").click (evt) ->
     a = $(this)
     evt.preventDefault()
-    track "Clicked", this, () -> console.log("bam"); window.location = a.attr("href")
+    track "Clicked", this, () ->
+      window.location = a.attr("href") if a.attr("href") isnt "#"
 
   mixpanel.track_forms "form.navbar-search", "Submitted Search", (elt) -> titleAndAttrsFor(elt)[1]
 
-  $(".subscribe-join-social form.subscribe").each () ->
+  $("form.subscribe").each () ->
     form = $(this)
-    submit = form.find("a.submit")
+    submitBtn = form.find("a.submit")
+    form.on "submit", (evt) -> submitBtn.attr("disabled", "disabled")
+    submitBtn.on "click", (evt) -> form.submit(); evt.preventDefault()
 
-    submit.on "click", (evt) -> form.submit(); evt.preventDefault();
-    form.on "ajax:complete", () ->
-      mixpanel.track "Submitted Subscribe", titleAndAttrsFor(form)[1]
-      submit.find("span").text(submit.data("message"))
+  $(".subscribe-join-social form.subscribe").on "ajax:complete", () ->
+    mixpanel.track "Submitted Subscribe", titleAndAttrsFor($(this))[1]
+    submit.find("span").text(submit.data("message"))
+
+  $(".subscribe-after form.subscribe").on "ajax:complete", () ->
+    mixpanel.track "Submitted Subscribe", titleAndAttrsFor($(this))[1]
+    $(this).slideUp "fast", () ->
+      $(this).nextAll(".thanks").slideDown("fast");
 
   $("body#episodes.show, body#episodes.alt").each () ->
     episodeId = $(this).find("article.episode").attr("id")
@@ -56,15 +63,18 @@ $ ->
       nextStep = (step) ->
         contents.css(left: width * -1 * step)
 
-      modal.find(".btn-primary").click (evt) -> evt.preventDefault(); nextStep(1)
+      modal.find(".btn-primary").click (evt) ->
+        evt.preventDefault(); nextStep(1); mixpanel.track
 
-      form = modal.find("form.subscribe")
-      submitBtn = form.find("a.submit")
-      form.on "submit", (evt) -> submitBtn.attr("disabled", "disabled")
-      submitBtn.on "click", (evt) -> form.submit(); evt.preventDefault()
-      form.on "ajax:complete", (evt) ->
+      modal.find("form.subscribe").on "ajax:complete", (evt) ->
         nextStep(2)
-        mixpanel.track "Submitted Subscribe", "Episode" : episodeId, "Ref code" : refCode, "Referrer" : referrer, "Player" : util.meta("player")
+        mixpanel.track "Submitted Subscribe",
+          "Episode" : episodeId,
+          "Ref code" : refCode,
+          "Referrer" : referrer,
+          "Player" : util.meta("player"),
+          "Source" : "modal"
+
         util.timeout 2000, () -> modal.modal("hide")
 
   $("body#home.index").each () ->
