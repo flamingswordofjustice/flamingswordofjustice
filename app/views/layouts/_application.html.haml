@@ -1,0 +1,29 @@
+!!!
+
+%html
+  %head
+    %link(href='//fonts.googleapis.com/css?family=Roboto+Condensed:300,700' rel='stylesheet' type='text/css')
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = javascript_include_tag "//connect.facebook.net/en_UK/all.js"
+    = javascript_include_tag "//platform.twitter.com/widgets.js"
+    = csrf_meta_tags
+    = favicon_link_tag
+    = syndication_link_tag
+    = google_analytics_tracker
+    = chartbeat_head_tracker
+    = optimizely_tracker
+    = shareprogress_tracker
+    = mixpanel_tracker
+
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+    %meta(name="bitly-verification" content="100f7700b68b")
+    %meta{name: "user-id",         content: session[:session_id]}
+    %meta{name: "facebook-app-id", content: facebook_app_id}
+    %meta{name: "ref-code",        content: params[:ref]}
+    = yield :head
+
+  %body{id: controller.controller_name, class: controller.action_name, data: { spy: "scroll", target: "#side-navbar" }}
+    = internet_defense_league
+    = yield
+    = chartbeat_tail_tracker

@@ -57,7 +57,7 @@ class EpisodesController < ApplicationController
       Episode.where(slug: params[:id]).first or raise ActiveRecord::RecordNotFound
     end
 
-    render template: "episodes/alt", layout: nil
+    render template: "episodes/alt", layout: "minimal"
   end
 
   def latest
