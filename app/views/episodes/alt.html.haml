@@ -133,11 +133,15 @@
                 %li
                   %a{href: link.url, data: { track: '"Type" : "Nav link"'}}= link.title
 
-        %div.row-fluid
+        %div.row-fluid.partners
           %div.span12
-            %div.powered-by
-              = render 'shared/powered_by'
-            %div.partner
-              %a{href: "https://mixpanel.com/f/partner", style: "display: block; text-align: center; margin-top: 20px"}
-                %img{src: "//cdn.mxpnl.com/site_media/images/partner/badge_light.png", alt: "Mobile Analytics", style: "text-align: center"}
-            %div.partner
+            %a.partner{href: "http://moveon.org", title: "Powered by MoveOn", data: { track: true }}
+              %div= t(:powered_by)
+              = image_tag "moveon.png", width: 180
+            %a.partner{href: "http://www.thoughtworks.com", title: "Supported by ThoughtWorks", data: { track: true }}
+              %div with support from
+              = image_tag "tw-logo-inverted.png", width: 120
+            %a.partner{href: "https://mixpanel.com/f/partner"}
+              %div tracking by
+              %img{src: "//cdn.mxpnl.com/site_media/images/partner/badge_light.png", alt: "Mobile Analytics", style: "text-align: center"}
+
