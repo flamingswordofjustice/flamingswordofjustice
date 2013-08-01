@@ -5,7 +5,7 @@
 }
 
 @media (max-width: 767px) {
-  ol, ul { margin-left: 0; }
+  ol, ul { margin-left: 0; list-style-position: inside; }
 
   .full-width {
     margin-left: -$gridGutterWidth;
