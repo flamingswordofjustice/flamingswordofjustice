@@ -105,6 +105,7 @@
   }
 
   .modal {
+    &.fade.in { top: 80px; }
     .modal-body {
       .step { margin-top: 0; }
       .intro .buttons { margin-top: 80px; }
