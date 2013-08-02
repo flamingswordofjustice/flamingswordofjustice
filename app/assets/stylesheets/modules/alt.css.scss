@@ -81,4 +81,13 @@ body#episodes.layout_a {
   .host .media {
     img { width: 54px; height: 54px; }
   }
+
+  .next-prev-episodes {
+    margin-bottom: 40px;
+    a {
+      display: block;
+      i { font-size: 75px; color: $lightGrey; }
+      h3 { color: $baseRed; }
+    }
+  }
 }

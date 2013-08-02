@@ -83,6 +83,25 @@
           %div.show-notes{style: "margin-bottom: 20px;"}
             = raw @episode.show_notes
 
+        %div.row-fluid.next-prev-episodes
+          %div.span6
+            - if @episode.prev.present?
+              %a{href: episode_path(@episode.prev), title: "Previous Episode", data: { track: true }}
+                %div.media
+                  %i.icon-chevron-left.pull-left
+                  %div.media-body
+                    %small.muted Previous episode
+                    %h3.nomargin= @episode.prev.title
+
+          %div.span6{style: "text-align: right"}
+            - if @episode.next.present?
+              %a{href: episode_path(@episode.next), title: "Next Episode", data: { track: true }}
+                %div.media
+                  %i.icon-chevron-right.pull-right
+                  %div.media-body
+                    %small.muted Previous episode
+                    %h3.nomargin= @episode.next.title
+
   %div.container.subscribe-after.full-width
     %div.row
       %div.span8.offset2
