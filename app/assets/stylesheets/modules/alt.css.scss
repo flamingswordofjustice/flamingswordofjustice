@@ -82,12 +82,15 @@ body#episodes.layout_a {
     img { width: 54px; height: 54px; }
   }
 
-  .next-prev-episodes {
+  .show-notes, .next-prev-episodes {
     margin-bottom: 40px;
+  }
+
+  .next-prev-episodes {
     a {
       display: block;
       i { font-size: 75px; color: $lightGrey; }
-      h3 { color: $baseRed; }
+      h3 { font-size: 24px; color: $baseRed; }
     }
   }
 }
