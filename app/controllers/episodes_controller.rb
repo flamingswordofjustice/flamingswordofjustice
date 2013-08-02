@@ -13,7 +13,7 @@ class EpisodesController < ApplicationController
         layout = params[:l]
 
         if layout.blank?
-          redirect_to episode_path(params[:id], l: choose_layout)
+          redirect_to episode_path(params[:id], params.merge(l: choose_layout))
         elsif layout == ALTERNATE
           render template: "episodes/alt", layout: "minimal"
         else # Standard layout
