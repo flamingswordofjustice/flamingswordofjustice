@@ -8,8 +8,10 @@
 %div.row-fluid
   %div.span8
     %section.social
-      = social_icons_for @organization
-    %article.organization.clearfix
+      = social_icons_for @organization, type: "like"
+      %div.clearfix
+
+    %article.organization{style: "margin-top: 10px;"}
       = raw @organization.description
 
   - unless @organization.image.blank?
