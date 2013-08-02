@@ -85,7 +85,7 @@
     &.input-large { font-size: 16px; }
   }
 
-  body#episodes.alt {
+  body#episodes.layout_a {
     #wrap {
       margin-top: 10px;
       .episode.container {
@@ -99,7 +99,7 @@
     }
 
     .host .media {
-      img { float: left; }
+      .media-object { float: left; }
       .media-heading { line-height: 50px; }
     }
   }

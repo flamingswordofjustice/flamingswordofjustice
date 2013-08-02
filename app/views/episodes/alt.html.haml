@@ -19,9 +19,11 @@
             %li &middot;
             %li= link_to "Episodes", episodes_path
 
-        / - if @episode.topics.any?
-        /   %h4.muted= comma_separated_list_of @episode.topics
-        %h4.muted Episode #{@episode.title.match(/(#\d+)/)[0]}
+        %h4.muted
+          Episode #{@episode.title.match(/(#\d+)/)[0]}
+          / &middot;
+          / Topic:
+          / = comma_separated_list_of @episode.topics
 
         %h1= @episode.headline
 
@@ -31,8 +33,8 @@
 
           %div.span4.host
             %div.media
-              %a{href: person_path(@episode.host)}
-                = image_tag @episode.host.image.thumb, class: "media-object pull-left", width: 54, height: 54
+              %a.pull-left.media-object{href: person_path(@episode.host)}
+                = image_tag @episode.host.image.thumb, width: 54, height: 54
               %div.media-body
                 %a{href: person_path(@episode.host), style: "color: black"}
                   %h4.media-heading Host: #{@episode.host.name}
@@ -83,7 +85,7 @@
           %div.show-notes
             = raw @episode.show_notes
 
-        %div.row-fluid.next-prev-episodes
+        %div.row-fluid.next-prev-episodes.hidden-phone
           %div.span6
             - if @episode.prev.present?
               %a{href: episode_path(@episode.prev, params.slice(:l)), title: "Previous Episode", data: { track: true }}
