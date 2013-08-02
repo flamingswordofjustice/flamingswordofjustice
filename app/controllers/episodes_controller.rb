@@ -77,7 +77,7 @@ class EpisodesController < ApplicationController
     if ENV["RANDOMIZE_LAYOUT"]
       [STANDARD, ALTERNATE][ rand(2) ]
     else
-      STANDARD
+      ALTERNATE
     end
   end
 
