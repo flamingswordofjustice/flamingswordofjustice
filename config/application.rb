@@ -67,9 +67,10 @@ module Fsj
 
     config.assets.precompile += [
       "vendor/chosen.css",
-      "vendor/chosen-sprite.png",
-      "vendor/Jplayer.swf"
+      "vendor/chosen-sprite.png"
     ]
+
+    config.assets.paths << Rails.root.join("app", "assets", "flash")
 
     config.filepicker_rails.api_key = ENV['FILEPICKER_API_KEY']
 
