@@ -12,7 +12,6 @@ Fsj::Application.routes.draw do
     member do
       get 'email' => 'episodes#email', as: :email
       get 'audio' => 'episodes#audio', as: :audio
-      get 'alt'   => 'episodes#alt',   as: :alt
     end
 
     collection do

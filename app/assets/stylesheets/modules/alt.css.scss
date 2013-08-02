@@ -1,4 +1,4 @@
-body#episodes.alt {
+body#episodes.layout_a {
   background: transparent image-url("subtle_bg.png") top left repeat;
 
   #wrap {
@@ -19,9 +19,6 @@ body#episodes.alt {
     margin-top: 20px;
 
     a.brand {
-      background-image: image-url("flamingswordmed.png");
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
       width: 260px;
       height: 65px;
       display: block;

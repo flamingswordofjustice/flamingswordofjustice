@@ -23,7 +23,7 @@
     %meta{name: "ref-code",        content: params[:ref]}
     = yield :head
 
-  %body{id: controller.controller_name, class: controller.action_name, data: { spy: "scroll", target: "#side-navbar" }}
+  %body{id: controller.controller_name, class: controller.action_name + " layout_#{params[:l]}", data: { spy: "scroll", target: "#side-navbar" }}
     = internet_defense_league
     = yield
     = chartbeat_tail_tracker
