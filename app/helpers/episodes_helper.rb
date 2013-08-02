@@ -10,10 +10,12 @@ module EpisodesHelper
   end
 
   def player_url_for(episode)
+    image_url = is_uri?(episode.image.url) ? episode.image.url : request.hostname + episode.image.url
+
     params = {
       mp3:       audio_episode_url(episode),
       userId:    session[:session_id],
-      image:     "http://localhost:4000/" + episode.image.url,
+      image:     image_url,
       caption:   episode.image_caption,
       episodeId: episode.slug
     }
