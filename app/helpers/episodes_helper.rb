@@ -10,7 +10,9 @@ module EpisodesHelper
   end
 
   def player_url_for(episode)
-    image_url = is_uri?(episode.image.url) ? episode.image.url : request.hostname + episode.image.url
+    image_url = asset_paths.is_uri?(episode.image.url) ?
+      episode.image.url :
+      "http://" + request.host_with_port + episode.image.url
 
     params = {
       mp3:       audio_episode_url(episode),
