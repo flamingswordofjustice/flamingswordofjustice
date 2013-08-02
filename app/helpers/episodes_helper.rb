@@ -9,6 +9,18 @@ module EpisodesHelper
     }
   end
 
+  def player_url_for(episode)
+    params = {
+      mp3:       audio_episode_url(episode),
+      userId:    session[:session_id],
+      image:     "http://localhost:4000/" + episode.image.url,
+      caption:   episode.image_caption,
+      episodeId: episode.slug
+    }
+
+    "http://localhost:5000/player?" + params.to_param
+  end
+
   def youtube_player(id, attrs={})
     elt_id = attrs[:id] || "youtube-placeholder"
     content_tag "div", "", "id" => elt_id, "class" => "youtube-placeholder", "data-youtube-id" => id

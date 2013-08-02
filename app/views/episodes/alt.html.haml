@@ -53,7 +53,7 @@
             Subscribe
             %span.hidden-phone on iTunes
 
-        = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player
+        = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player, embed: params[:embed]
 
         %div.row-fluid{style: "margin-bottom: 20px"}
           %span.span4.offset2.vertical-gap-phone

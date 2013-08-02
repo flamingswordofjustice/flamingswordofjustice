@@ -32,7 +32,7 @@
             %i.icon-music
             %h3 Subscribe
 
-      = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player
+      = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player, embed: params[:embed]
     %div.span4
       %div.subscribe-join-social.subscribe-vertical.apply-affix
         = subscribe_join_social orientation: :vertical, share: @episode
