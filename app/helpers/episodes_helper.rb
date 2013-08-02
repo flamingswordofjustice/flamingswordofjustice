@@ -22,7 +22,7 @@ module EpisodesHelper
       episodeId: episode.slug
     }
 
-    "http://localhost:5000/player?" + params.to_param
+    listener_tracking_uri + "/player?" + params.to_param
   end
 
   def youtube_player(id, attrs={})
