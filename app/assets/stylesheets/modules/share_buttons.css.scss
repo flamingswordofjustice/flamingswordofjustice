@@ -10,6 +10,7 @@
     font-size: 14px;
     font-family: $headingsFontFamily;
     clear: left;
+
     @include transition(background-color linear $transitionDuration);
 
     i {
@@ -19,7 +20,7 @@
       float: left;
     }
 
-    h1, h2, h3 { color: white; margin: 0; }
+    h1, h2, h3 { color: white; margin: 0; font-weight: 300; }
   }
 
   .facebook {
