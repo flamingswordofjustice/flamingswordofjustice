@@ -5,6 +5,10 @@
                            image: @episode.image.url,
                            url: @canonical_fb_url
 
+- content_for :head do
+  %meta{name: "episode-id", content: @episode.slug}
+  %meta{name: "layout", content: "alt"}
+
 %div#wrap
   %article.episode.container.full-width{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
     = render partial: "episodes/modal"

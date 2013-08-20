@@ -82,8 +82,6 @@ $ ->
       newHeight = titleBox.height()
       logo.css height: newHeight, width: newHeight * logoRatio
 
-      console.log "setting logo height", newHeight
-
     $(window).resize(resizer).trigger("resize")
 
   $("[data-toggle='tooltip']").tooltip(placement: 'bottom')

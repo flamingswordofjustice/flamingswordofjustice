@@ -7,6 +7,8 @@
 
 - content_for :head do
   %meta{name: "player", content: ( @player || "a" ) == "a" ? "audio" : "youtube"}
+  %meta{name: "episode-id", content: @episode.slug}
+  %meta{name: "layout", content: "orig"}
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
   = page_header @episode.page_headline,

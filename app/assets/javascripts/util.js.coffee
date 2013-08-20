@@ -4,6 +4,14 @@ window.util =
   doto: (o, fn) -> fn(o); o # K combinator
   meta: (name) -> $("meta[name='#{name}']").attr("content")
   og:   (name) -> $("meta[property='og:#{name}']").attr("content")
+  mixparams: (extra) ->
+    baseParams =
+      "Episode"  : util.meta("episode-id")
+      "Player"   : util.meta("player")
+      "Layout"   : util.meta("layout")
+      "Ref code" : util.meta("ref-code")
+
+    $.extend {}, baseParams, extra
 
 Array.prototype.remove = (from, to) ->
   rest = @slice (to || from) + 1 || this.length

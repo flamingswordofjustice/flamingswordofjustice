@@ -22,10 +22,7 @@ $ ->
       player = $("#" + id)
       if stateId is 1 and !player.attr("data-played")?
         player.attr "data-played", "played"
-        mixpanel.track "Episode played",
-          "Episode": episodeId,
-          "Ref code": refCode,
-          "Player": "youtube"
+        mixpanel.track "Episode played", util.mixparams()
 
     player[0].addEventListener "onStateChange", "trackYoutubePlayerState"
 
@@ -55,10 +52,7 @@ $ ->
 
       if !started and playing
         started = true
-        mixpanel.track "Episode played",
-          "Episode": episodeId,
-          "Ref code": refCode,
-          "Player": "audio"
+        mixpanel.track "Episode played", util.mixparams()
 
       clearInterval(heartbeat) if heartbeat?
 
