@@ -26,6 +26,13 @@ $ ->
 
     player[0].addEventListener "onStateChange", "trackYoutubePlayerState"
 
+  $("iframe.player").each () ->
+    frameWindow = this.contentWindow
+    $(window).on "message", (evt) ->
+      msg = evt.originalEvent
+      if msg and msg.source is frameWindow and msg.data is "play"
+        mixpanel.track "Episode played", util.mixparams()
+
   $("[data-mp3-uri]").each () ->
     root         = $(this)
     controls     = root.closest(".play-controls, .full-play-controls")

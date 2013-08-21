@@ -321,7 +321,7 @@ module ApplicationHelper
   def play_controls(opts={})
     if opts[:embed].present? && opts[:episode].present?
       content_tag :div, class: "embed-container" do
-        content_tag :iframe, "", src: player_url_for(@episode), frameborder: 0, allowfullscreen: true
+        content_tag :iframe, "", src: player_url_for(@episode), frameborder: 0, allowfullscreen: true, class: "player"
       end
     else
       partial = opts[:style] == "full" ? "full_play_controls" : "play_controls"
