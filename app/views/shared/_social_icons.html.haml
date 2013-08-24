@@ -1,5 +1,5 @@
 %ul.social-icons.unstyled
-  - if model.appearances_count > 0
+  - if model.respond_to?(:appearances_count) && model.appearances_count > 0
     %li.appearances
       %a.btn.btn-mini.btn-appearances{href: polymorphic_path(model, anchor: "appearances")}
         %i.icon-music

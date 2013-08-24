@@ -10,7 +10,7 @@
 %div.row-fluid
   %div.span8
     = social_icons_for @post, type: "share"
-    %article.episode{id: @post.slug}
+    %article.episode{id: @post.slug, style: "clear: both; padding-top: 10px;"}
       %section.body
         = raw @post.content
       - if @post.topics.any?
