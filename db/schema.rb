@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628211045) do
+ActiveRecord::Schema.define(:version => 20130824135502) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -142,8 +142,9 @@ ActiveRecord::Schema.define(:version => 20130628211045) do
     t.string   "slug"
     t.text     "content"
     t.integer  "author_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "embedded_content"
   end
 
   create_table "redirects", :force => true do |t|

@@ -22,6 +22,7 @@ ActiveAdmin.register Post do
       f.input :author
       f.input :topics
       f.input :slug, hint: "Optional - will be generated as needed"
+      f.input :embedded_content, hint: "E.g., a YouTube video. When embedding, use the embed version of the URL: https://www.youtube.com/embed/ABCD1234"
       f.input :content, as: :html_editor
     end
     f.actions
