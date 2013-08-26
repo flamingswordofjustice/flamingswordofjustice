@@ -9,6 +9,7 @@
   %meta{name: "player", content: ( @player || "a" ) == "a" ? "audio" : "youtube"}
   %meta{name: "episode-id", content: @episode.slug}
   %meta{name: "layout", content: "orig"}
+  %meta{name: "modal-enabled", content: @modal_enabled}
 
 %article.episode{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
   = page_header @episode.page_headline,
@@ -16,7 +17,7 @@
     subtitle: @episode.sub_headline,
     time: @episode.published_at
 
-  / = render partial: "episodes/modal"
+  = render partial: "episodes/modal" if @modal_enabled
 
   %div.row-fluid.play-and-share
     %div.span8

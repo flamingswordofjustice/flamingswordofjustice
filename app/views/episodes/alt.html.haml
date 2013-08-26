@@ -8,10 +8,11 @@
 - content_for :head do
   %meta{name: "episode-id", content: @episode.slug}
   %meta{name: "layout", content: "alt"}
+  %meta{name: "modal-enabled", content: @modal_enabled}
 
 %div#wrap
   %article.episode.container.full-width{id: @episode.slug, class: @episode.state, data: { uri: episode_path(@episode, format: :json), poll: 5.seconds, state: @episode.state }}
-    = render partial: "episodes/modal"
+    = render partial: "episodes/modal" if @modal_enabled
     %div.row
       %div.offset1.span10
         %div.row-fluid.header

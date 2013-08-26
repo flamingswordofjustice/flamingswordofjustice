@@ -6,10 +6,11 @@ window.util =
   og:   (name) -> $("meta[property='og:#{name}']").attr("content")
   mixparams: (extra) ->
     baseParams =
-      "Episode"  : util.meta("episode-id")
-      "Player"   : util.meta("player")
-      "Layout"   : util.meta("layout")
-      "Ref code" : util.meta("ref-code")
+      "Episode"       : util.meta("episode-id")
+      "Player"        : util.meta("player")
+      "Layout"        : util.meta("layout")
+      "Ref code"      : util.meta("ref-code")
+      "Modal enabled" : util.meta("modal-enabled")
 
     $.extend {}, baseParams, extra
 

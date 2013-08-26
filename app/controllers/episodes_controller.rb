@@ -2,6 +2,8 @@ class EpisodesController < ApplicationController
   before_filter :touch_session, only: :show
 
   def show
+    @modal_enabled = [ true, false ][ rand(2) ]
+
     @episode = if params[:id] =~ /^\d+$/
       Episode.find(params[:id])
     else
