@@ -70,17 +70,5 @@ class EpisodesController < ApplicationController
     end
   end
 
-  private
-
-  STANDARD = "s"
-  ALTERNATE = "a"
-
-  def choose_layout
-    if ENV["RANDOMIZE_LAYOUT"]
-      [STANDARD, ALTERNATE][ rand(2) ]
-    else
-      ALTERNATE
-    end
-  end
 
 end

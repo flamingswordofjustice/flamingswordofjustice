@@ -1,4 +1,4 @@
-body#episodes.layout_a {
+body.layout_a {
   background: transparent image-url("subtle_bg.png") top left repeat;
 
   #wrap {
@@ -6,7 +6,7 @@ body#episodes.layout_a {
     margin-bottom: 0;
     min-height: 0;
 
-    .episode.container {
+    article.container {
       background-color: white;
       padding-top: 40px;
       border-top-left-radius: 5px;

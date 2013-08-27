@@ -29,4 +29,20 @@ class ApplicationController < ActionController::Base
   def touch_session
     session[:noop]; true # Read to force a session init.
   end
+
+  private
+
+  STANDARD = "s"
+  ALTERNATE = "a"
+
+  def choose_layout
+    if ENV["RANDOMIZE_LAYOUT"]
+      [STANDARD, ALTERNATE][ rand(2) ]
+    else
+      ALTERNATE
+    end
+  end
+
+  def layout; params[:l]; end
+
 end

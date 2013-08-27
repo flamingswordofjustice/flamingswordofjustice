@@ -24,8 +24,11 @@ class Post < ActiveRecord::Base
   validates :title, :content, presence: true
   validates :author_id, presence: true
 
-
   def author_name
     author.name || author.email.split("@").first
+  end
+
+  def canonical_short_link
+    Redirect.pointed_at(self).first
   end
 end
