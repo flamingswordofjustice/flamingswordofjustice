@@ -71,6 +71,14 @@
     position: static;
   }
 
+  figure.thumbnail.pull-left {
+    float: none;
+    max-width: inherit;
+    padding: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
   .btn-large {
     padding: 7px 14px;
     font-size: 16px;

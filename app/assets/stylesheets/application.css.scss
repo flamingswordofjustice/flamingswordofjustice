@@ -327,7 +327,7 @@ ul.breadcrumb {
 
 figure.thumbnail {
   background-color: $veryLightGrey;
-  padding: 15px;
+  padding: 10px;
   border: 1px solid #ddd;
   margin: 0;
   border-radius: 0;
@@ -337,6 +337,11 @@ figure.thumbnail {
     font-weight: 300;
     margin-top: 14px;
     line-height: 14px;
+  }
+
+  &.pull-left {
+    margin-right: 20px;
+    max-width: 30%;
   }
 }
 
