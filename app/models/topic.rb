@@ -19,11 +19,15 @@ class Topic < ActiveRecord::Base
     topic_assignments.includes(:assignable).map &:assignable
   end
 
+  def episodes
+    topic_assignments.episodes.includes(:assignable).map &:assignable
+  end
+
   def groupable_by
     self.name.chars.first
   end
 
   def episodes_count
-    topic_assignments.where("assignable_type = ?", Episode.name).count
+    topic_assignments.episodes.count
   end
 end

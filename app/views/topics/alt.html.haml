@@ -20,11 +20,14 @@
 
       = raw @topic.description
 
-      - if @topic.assignables.any?
-        %div.related{style: "margin-bottom: 20px"}
-          = render @topic.assignables
-      - else
-        %p There are no episodes or posts for this topic.
+      %h3 Episodes
+      = render partial: "episodes/mini_collection", locals: { episodes: @topic.episodes }
+
+      / - if @topic.assignables.any?
+      /   %div.related{style: "margin-bottom: 20px"}
+      /     = render @topic.assignables
+      / - else
+      /   %p There are no episodes or posts for this topic.
 
 = render partial: "shared/subscribe_after"
 

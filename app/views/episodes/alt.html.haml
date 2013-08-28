@@ -30,7 +30,7 @@
 
       %div.row-fluid.episode-header
         %div.span8
-          %p= raw @episode.social_description
+          %div= raw @episode.social_description
 
         %div.span4.host
           %div.media
@@ -85,6 +85,13 @@
         %h3 Show Notes
         %div.show-notes
           = raw @episode.show_notes
+
+      - unless @episode.related.empty?
+        %h3 Related Episodes
+        %h5
+          Topics:
+          = comma_separated_list_of @episode.topics
+        = render partial: "episodes/mini_collection", locals: { episodes: @episode.related }
 
       %div.row-fluid.next-prev-episodes.hidden-phone
         %div.span6

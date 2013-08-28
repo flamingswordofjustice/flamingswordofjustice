@@ -161,6 +161,16 @@ class Episode < ActiveRecord::Base
     self.headline.present? ? self.title : I18n.t(:tag)
   end
 
+  def related
+    Episode
+      .where("episodes.id != ?", self.id)
+      .where("topics.id IN (?)", self.topics.select("topics.id").map(&:id))
+      .joins(:topics)
+      .group("episodes.id")
+      .order("random()")
+      .limit(2)
+  end
+
   class << self
     def grouped_by(category)
       if respond_to?("grouped_by_#{category}")

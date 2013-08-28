@@ -14,8 +14,7 @@
           %li &middot;
           %li= link_to "Episodes", episodes_path
 
-      %h4.muted
-        = comma_separated_list_of @post.topics
+      %h4.muted= comma_separated_list_of @post.topics
 
       %h1= @post.title
 
@@ -44,6 +43,9 @@
             %a.btn.btn-twitter.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(url: @post.canonical_short_link).to_param, target: "_blank"}
               Share on Twitter
 
-      %div.post-content{style: "margin-bottom: 20px"}= raw @post.content
+      %div.post-content{style: "margin-bottom: 20px"}
+        %span.muted= @post.created_at.to_date.to_s(:long)
+        |
+        = raw @post.content
 
 = render partial: "shared/subscribe_after"

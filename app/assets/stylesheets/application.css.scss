@@ -524,4 +524,63 @@ input[type='text'], input[type='email'] {
   }
 }
 
+// .grayscale {
+//   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+//   filter: gray; /* IE6-9 */
+//   -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+//   transition: all 0.4s ease;
+//   &:hover {
+//     filter: none;
+//     -webkit-filter: grayscale(0%);
+//     transition: all 0.4s ease;
+//   }
+// }
+
+.mini-episode {
+  margin-bottom: 20px;
+
+  > div {
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center center;
+
+    > a {
+      display: block;
+      position: relative;
+      border-radius: 4px;
+      color: white;
+      text-shadow: 0 0 0.2em black, 0 0 0.5em rgba(0,0,0,0.4);
+      transition: all 0.4s ease;
+      background-color: rgba(0,0,0,0.6);
+
+      .blurb {
+        padding: 20px 20px 50% 20px;
+      }
+
+      .title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        transition: all 0.4s ease;
+
+        h3 {
+          margin: 0;
+          color: white;
+          font-weight: 300;
+          line-height: 38px;
+          padding: 20px;
+        }
+      }
+
+      &:hover {
+        background: none;
+        transition: all 0.4s ease;
+      }
+    }
+  }
+}
+
 @import "application-responsive";
