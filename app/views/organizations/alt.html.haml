@@ -1,0 +1,28 @@
+= open_graph_and_meta_tags type: "organization",
+                           title: @organization.name,
+                           description: @organization.description
+
+%h4.muted
+  %a{href: organizations_path} Organizations
+
+%h1= @organization.name
+
+%div.bio
+  %figure.thumbnail.pull-left
+    = image_tag @organization.image.url
+    = social_icons_for @organization, skip: [:appearances]
+    %div.clearfix
+  = raw @organization.description
+
+- unless @organization.people.empty?
+  %div.people.clearfix
+    %h3 People
+    - @organization.people.in_groups_of(3).each do |group|
+      %div.row-fluid.clearfix
+        - group.compact.each do |person|
+          %div.span4= render person
+
+- if @organization.episodes.any?
+  %div.episodes.clearfix
+    %h3 Episodes
+    = render partial: "episodes/mini_collection", locals: { episodes: @organization.episodes }

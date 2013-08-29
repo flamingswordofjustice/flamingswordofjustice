@@ -1,15 +1,17 @@
 %ul.social-icons.unstyled
-  - if model.respond_to?(:appearances_count) && model.appearances_count > 0
+  - if model.respond_to?(:appearances_count) && model.appearances_count > 0 && !skip.include?(:appearances)
     %li.appearances
       %a.btn.btn-mini.btn-appearances{href: polymorphic_path(model, anchor: "appearances")}
         %i.icon-music
         = pluralize(model.appearances_count, "episode")
 
   - if type == "follow" || type == "like"
-    - if model.respond_to?(:facebook) && model.facebook.present?
+    - if model.respond_to?(:facebook) && model.facebook.present? && !skip.include?(:facebook)
       %li.facebook= send "facebook_#{type}", model.facebook
-    - if model.respond_to?(:twitter) && model.twitter.present?
+    - if model.respond_to?(:twitter) && model.twitter.present? && !skip.include?(:twitter)
       %li.twitter= twitter_follow account: model.twitter, count: false
   - elsif type == "share"
-    %li.facebook_like= facebook_like request.original_url
-    %li.twitter= twitter_share
+    - unless skip.include?(:facebook)
+      %li.facebook_like= facebook_like request.original_url
+    - unless skip.include?(:twitter)
+      %li.twitter= twitter_share

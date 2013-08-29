@@ -215,6 +215,7 @@ module ApplicationHelper
 
   def social_icons_for(model, opts={})
     opts[:type] ||= "follow"
+    opts[:skip] ||= []
     render partial: 'shared/social_icons', locals: { model: model }.merge(opts)
   end
 
