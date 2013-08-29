@@ -32,6 +32,8 @@
         Share on Twitter
 
 %div.post-content{style: "margin-bottom: 20px"}
-  %span.muted= @post.created_at.to_date.to_s(:long)
-  |
   = raw @post.content
+  %p.muted.clearfix
+    Originally posted on
+    = @post.created_at.to_date.to_s(:long)
+

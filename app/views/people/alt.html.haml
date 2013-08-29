@@ -12,7 +12,8 @@
   %figure.thumbnail.pull-left
     = image_tag @person.image.url
     = social_icons_for @person
-  = raw @person.description
+  %div.clearfix
+    = raw @person.description
 
 - unless @person.organization.blank?
   %div.row-fluid.clearfix

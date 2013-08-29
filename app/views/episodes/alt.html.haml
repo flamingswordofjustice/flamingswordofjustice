@@ -57,6 +57,9 @@
 
 %div.episode-description
   = raw @episode.description
+  %p.muted.clearfix
+    Originally posted on
+    = @episode.created_at.to_date.to_s(:long)
 
 %div.row-fluid
   %div.span8
