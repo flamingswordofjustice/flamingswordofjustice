@@ -24,7 +24,11 @@ class Topic < ActiveRecord::Base
   end
 
   def groupable_by
-    self.name.chars.first
+    self.name.chars.first.upcase
+  end
+
+  def alphabet
+    ("A".."Z").to_a
   end
 
   def episodes_count
