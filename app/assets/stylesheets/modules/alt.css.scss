@@ -86,11 +86,9 @@ body.layout_a {
     margin-bottom: 40px;
   }
 
-  .next-prev-episodes {
-    a {
-      display: block;
-      i { font-size: 75px; color: $lightGrey; }
-      h3 { font-size: 24px; color: $baseRed; }
-    }
+  a.next-prev {
+    display: block;
+    i { color: $lightGrey; line-height: 1em; }
+    h3 { color: $baseRed; }
   }
 }

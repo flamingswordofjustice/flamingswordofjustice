@@ -1,12 +1,4 @@
 - episodes.in_groups_of(2).each do |group|
   %div.row-fluid.clearfix{style: "margin-bottom: 20px"}
     - group.compact.each do |episode|
-      %div.span6.mini-episode
-        %div.grayscale{style: "background-image: url(#{image_path(episode.image)});"}
-          %a{href: episode_path(episode)}
-            %div.blurb
-              = "Episode #{episode.title.match(/(#\d+)/)[0]}"
-              &middot;
-              = episode.created_at.to_date.to_s(:long)
-            %div.title
-              %h3= episode.headline
+      %div.span6= render partial: "episodes/mini_episode", locals: { episode: episode }

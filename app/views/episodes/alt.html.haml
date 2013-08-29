@@ -79,27 +79,22 @@
     = raw @episode.show_notes
 
 - unless @episode.related.empty?
-  %h3 Related Episodes
-  %h5
-    Topics:
-    = comma_separated_list_of @episode.topics
+  %h3 Related Episodes: #{comma_separated_list_of @episode.topics}
   = render partial: "episodes/mini_collection", locals: { episodes: @episode.related }
 
-%div.row-fluid.next-prev-episodes.hidden-phone
+%div.row-fluid
   %div.span6
     - if @episode.prev.present?
-      %a{href: episode_path(@episode.prev, params.slice(:l)), title: "Previous Episode", data: { track: true }}
-        %div.media
-          %i.icon-chevron-left.pull-left
-          %div.media-body
-            %small.muted Previous episode
-            %h3.nomargin= @episode.prev.title
+      %a.next-prev{href: episode_path(@episode.prev, params.slice(:l)), title: "Previous Episode", data: { track: true }}
+        %h3
+          %i.icon-large.icon-double-angle-left
+          Previous Episode
+      = render partial: "episodes/mini_episode", locals: { episode: @episode.prev }
 
   %div.span6{style: "text-align: right"}
     - if @episode.next.present?
-      %a{href: episode_path(@episode.next, params.slice(:l)), title: "Next Episode", data: { track: true }}
-        %div.media
-          %i.icon-chevron-right.pull-right
-          %div.media-body
-            %small.muted Next episode
-            %h3.nomargin= @episode.next.title
+      %a.next-prev{href: episode_path(@episode.next, params.slice(:l)), title: "Next Episode", data: { track: true }}
+        %h3{style: "text-align: right"}
+          Next episode
+          %i.icon-large.icon-double-angle-right
+      = render partial: "episodes/mini_episode", locals: { episode: @episode.next }
