@@ -1,6 +1,6 @@
 = render layout: "layouts/application" do
   %div#wrap
-    %article.container.full-width
+    %article.container.full-width{data: { spy: "scroll", target: ".top-navbar", offset: 20 }}
       %div.row
         %div.offset1.span10
           %div.row-fluid.header

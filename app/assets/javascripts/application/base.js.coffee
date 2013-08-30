@@ -20,25 +20,18 @@ $ ->
 
     updateShowNotes()
 
+  $(".affix-wrapper").each () ->
+    $(this).height($(this).find(".apply-affix").height())
+
   $(".apply-affix").each () ->
     affixable = $(this)
     pos = affixable.position()
     parent    = affixable.parent()
-    footer    = $("#footer")
-    header    = $(".page-header")
-    navbar    = $(".navbar")
-    offset    = 50
 
-    # TODO There must be a way to calculate the bottom offset dynamically.
-
-    affixable.affix offset: {
-      top: () -> header.height() + navbar.height() + offset,
-      bottom: 260
-    }
+    affixable.affix offset: { top: pos.top - 20, bottom: $("#footer").height() + $(".subscribe-after").height() + 50 }
 
     affixable.width parent.width()
-    $(window).resize () ->
-      affixable.width parent.width()
+    $(window).resize () -> affixable.width parent.width()
 
   $(".full-play-controls").each () ->
     player = $(this).find ".play-episode"

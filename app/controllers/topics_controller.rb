@@ -1,19 +1,18 @@
 class TopicsController < ApplicationController
 
   def index
-
-
     if layout == ALTERNATE
+      n = 4
       alphabet = ("A".."Z").to_a
-      groups   = alphabet.in_groups_of(3)
+      groups   = [ ("0".."9").to_a ] + alphabet.in_groups_of(n)
       @topics  = groups.inject({}) do |h, group|
-        h.merge(group => [])
+        h.merge(group.compact => [])
       end
 
       Topic.all.each do |t|
         index_of_letter = alphabet.index t.name.chars.first.upcase
-        # Integer division rounds down and places us in the right group.
-        group = groups[ index_of_letter / 3 ]
+        index_of_group  = index_of_letter.nil? ? 0 : (index_of_letter / n) + 1
+        group = groups[ index_of_group ]
         @topics[group].push t
       end
 
