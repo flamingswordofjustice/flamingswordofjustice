@@ -28,7 +28,10 @@ $ ->
     pos = affixable.position()
     parent    = affixable.parent()
 
-    affixable.affix offset: { top: pos.top - 20, bottom: $("#footer").height() + $(".subscribe-after").height() + 50 }
+    affixable.affix
+      offset:
+        top: pos.top - 20
+        bottom: () -> $("#footer").height() + $(".subscribe-after").height() + 100
 
     affixable.width parent.width()
     $(window).resize () -> affixable.width parent.width()
