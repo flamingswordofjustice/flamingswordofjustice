@@ -1,4 +1,4 @@
-%div.mini-episode{style: "background-image: url(//flamingswordofjustice.s3.amazonaws.com#{episode.image});"}
+%div.mini-episode{style: "background-image: url(#{image_path(episode.image)});"}
   %a{href: episode_path(episode)}
     %div.blurb
       = "Episode #{episode.title.match(/(#\d+)/)[0]}"
