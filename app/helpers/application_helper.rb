@@ -220,7 +220,7 @@ module ApplicationHelper
   end
 
   def open_graph_and_meta_tags(attrs={})
-    attrs[:image]   = image_path("sword.png") || asset_path(attrs[:image])
+    attrs[:image]   = asset_path(attrs[:image].present? ? attrs[:image] : "sword.png")
     attrs[:type]  ||= "website"
     attrs[:url]   ||= request.original_url
     attrs[:admin] ||= facebook_admin_id
@@ -347,6 +347,14 @@ module ApplicationHelper
 
   def canonical_fb_url(object)
     (polymorphic_url(object, protocol: "http", id: object.slug) + "?" + { ref: params[:ref] || "fb", l: params[:l] }.to_query).html_safe
+  end
+
+  def canonical_fb_image(object)
+    if object.facebook_image_url.present?
+      filepicker_image_tag(object.facebook_image_url, w: 403, h: 403)
+    else
+      object.image.url
+    end
   end
 
 end

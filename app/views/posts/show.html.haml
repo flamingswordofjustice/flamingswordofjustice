@@ -2,7 +2,7 @@
                            title: if_blank(@post, :headline, :title),
                            page_title: @post.title,
                            description: if_blank(@post, :social_description, :content),
-                           image: @post.facebook_image_url,
+                           image: filepicker_image_tag(@post.facebook_image_url, w: 403, h: 403),
                            url: canonical_fb_url(@post)
 
 = page_header @post.title,

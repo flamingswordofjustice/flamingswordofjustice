@@ -4,8 +4,10 @@ class FilePickerInput < Formtastic::Inputs::FileInput
 
   def to_html
     possible_images = ( object.send(method) || "" ).split(',')
+    opts = { :class => "thumbs" }
+    opts["data-multiple"] = true if self.options[:multiple]
 
-    images_html = template.content_tag :ul, class: "thumbs" do
+    images_html = template.content_tag :ul, opts do
       possible_images.map do |i|
         template.content_tag :li do
           template.filepicker_image_tag(i, { w: 125, h: 125 }, { "data-src" => i }) +

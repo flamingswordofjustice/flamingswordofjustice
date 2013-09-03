@@ -2,7 +2,7 @@
                            title: if_blank(@episode, :headline, :title),
                            page_title: @episode.title,
                            description: if_blank(@episode, :social_description, :description),
-                           image: @episode.image.url,
+                           image: canonical_fb_image(@episode),
                            url: canonical_fb_url(@episode)
 
 - content_for :head do

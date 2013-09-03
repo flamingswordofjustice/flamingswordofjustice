@@ -7,8 +7,9 @@ $ ->
     tmpl = $("<li><img /></li>").addClass('new')
 
     setImages = (ary) ->
+      ary = (o for o in ary when o isnt "" and o isnt null)
       str = ary.join(',')
-      console.log "setImages", str
+      console.log "setImages", ary, str
       picker.data 'val', str
       picker.val str
 
