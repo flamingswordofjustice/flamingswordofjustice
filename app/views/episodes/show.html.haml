@@ -1,9 +1,9 @@
 = open_graph_and_meta_tags type: "article",
-                           title: @episode.headline.blank? ? @episode.title : @episode.headline,
+                           title: if_blank(@episode, :headline, :title),
                            page_title: @episode.title,
-                           description: @episode.social_description || @episode.description,
+                           description: if_blank(@episode, :social_description, :description),
                            image: @episode.image.url,
-                           url: @canonical_fb_url
+                           url: canonical_fb_url(@episode)
 
 - content_for :head do
   %meta{name: "player", content: ( @player || "a" ) == "a" ? "audio" : "youtube"}
@@ -23,7 +23,7 @@
     %div.span8
       %div.share-buttons.container-fluid
         %div.span4
-          %a.facebook{href: "http://facebook.com/sharer.php?u=#{@canonical_fb_url}", target: "_blank", data: {url: @canonical_fb_url}}
+          %a.facebook{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(@episode)}", target: "_blank", data: {url: canonical_fb_url(@episode)}}
             %i.icon-facebook
             %h3 Share this
         %div.span4
@@ -35,7 +35,7 @@
             %i.icon-music
             %h3 Subscribe
 
-      = play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player, embed: params[:embed]
+      = play_controls style: "full", episode: @episode, episode_url: canonical_fb_url(@episode), player: @player, embed: params[:embed]
     %div.span4
       %div.subscribe-join-social.subscribe-vertical.apply-affix
         = subscribe_join_social orientation: :vertical, share: @episode

@@ -1,7 +1,9 @@
-= open_graph_and_meta_tags title: @post.title,
-                           type: "article",
-                           description: @post.content
-
+= open_graph_and_meta_tags type: "article",
+                           title: if_blank(@post, :headline, :title),
+                           page_title: @post.title,
+                           description: if_blank(@post, :social_description, :content),
+                           image: @post.facebook_image_url,
+                           url: canonical_fb_url(@post)
 
 = page_header @post.title,
   crumbs: [:root, @post],

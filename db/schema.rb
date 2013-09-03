@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130824135502) do
+ActiveRecord::Schema.define(:version => 20130903194120) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20130824135502) do
     t.string   "share_progress_code"
     t.integer  "host_id"
     t.string   "youtube_video_id"
+    t.string   "facebook_image_url"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
@@ -142,9 +143,15 @@ ActiveRecord::Schema.define(:version => 20130824135502) do
     t.string   "slug"
     t.text     "content"
     t.integer  "author_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "embedded_content"
+    t.string   "facebook_image_url"
+    t.string   "headline"
+    t.text     "social_description"
+    t.string   "twitter_text"
+    t.integer  "redirect_id"
+    t.integer  "public_author_id"
   end
 
   create_table "redirects", :force => true do |t|
@@ -165,6 +172,8 @@ ActiveRecord::Schema.define(:version => 20130824135502) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  add_index "subscribers", ["email"], :name => "index_subscribers_on_email", :unique => true
 
   create_table "topic_assignments", :force => true do |t|
     t.integer "topic_id"

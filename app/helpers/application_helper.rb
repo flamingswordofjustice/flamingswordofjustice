@@ -220,7 +220,7 @@ module ApplicationHelper
   end
 
   def open_graph_and_meta_tags(attrs={})
-    attrs[:image] ||= image_path("sword.png")
+    attrs[:image]   = image_path("sword.png") || asset_path(attrs[:image])
     attrs[:type]  ||= "website"
     attrs[:url]   ||= request.original_url
     attrs[:admin] ||= facebook_admin_id
@@ -339,6 +339,14 @@ module ApplicationHelper
     attrs[:time]     ||= nil
 
     render partial: "shared/page_header", locals: attrs.merge(title: title)
+  end
+
+  def if_blank(object, *methods)
+    methods.inject(nil) { |val, m| val.present? ? val : object.send(m) }
+  end
+
+  def canonical_fb_url(object)
+    (polymorphic_url(object, protocol: "http", id: object.slug) + "?" + { ref: params[:ref] || "fb", l: params[:l] }.to_query).html_safe
   end
 
 end

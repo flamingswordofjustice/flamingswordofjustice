@@ -21,8 +21,6 @@ class EpisodesController < ApplicationController
         else # Standard layout
           render template: "episodes/show", layout: "application"
         end
-
-        @canonical_fb_url = episode_url(id: @episode.slug, ref: params[:ref] || "fb", protocol: "http", l: layout)
       end
 
       f.json do

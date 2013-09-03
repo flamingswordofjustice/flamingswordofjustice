@@ -24,6 +24,9 @@ class Post < ActiveRecord::Base
   validates :title, :content, presence: true
   validates :author_id, presence: true
 
+  belongs_to :redirect
+  belongs_to :public_author, class_name: "Person"
+
   def author_name
     author.name || author.email.split("@").first
   end

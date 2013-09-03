@@ -1,9 +1,9 @@
 = open_graph_and_meta_tags type: "article",
-                           title: @episode.headline.blank? ? @episode.title : @episode.headline,
+                           title: if_blank(@episode, :headline, :title),
                            page_title: @episode.title,
-                           description: @episode.social_description || @episode.description,
+                           description: if_blank(@episode, :social_description, :description),
                            image: @episode.image.url,
-                           url: @canonical_fb_url
+                           url: canonical_fb_url(@episode)
 
 - content_for :head do
   %meta{name: "episode-id", content: @episode.slug}
@@ -33,7 +33,7 @@
           %li.twitter.hidden-tablet= twitter_follow account: @episode.host.twitter
 
 %div{style: "margin-bottom: 20px;"}
-  %a.btn.btn-facebook.btn-large{href: "http://facebook.com/sharer.php?u=#{@canonical_fb_url}", target: "_blank", data: {url: @canonical_fb_url}}
+  %a.btn.btn-facebook.btn-large{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(@episode)}", target: "_blank", data: {url: canonical_fb_url(@episode)}}
     %i.icon-facebook
     %span.hidden-phone Share on
     Facebook
@@ -45,11 +45,11 @@
     Subscribe
     %span.hidden-phone on iTunes
 
-= play_controls style: "full", episode: @episode, episode_url: @canonical_fb_url, player: @player, embed: true
+= play_controls style: "full", episode: @episode, episode_url: canonical_fb_url(@episode), player: @player, embed: true
 
 %div.row-fluid{style: "margin-bottom: 20px"}
   %span.span4.offset2.vertical-gap-phone
-    %a.btn.btn-facebook.btn-block{href: "http://facebook.com/sharer.php?u=#{@canonical_fb_url}", target: "_blank", data: {url: @canonical_fb_url}}
+    %a.btn.btn-facebook.btn-block{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(@episode)}", target: "_blank", data: {url: canonical_fb_url(@episode)}}
       Share on Facebook
   %span.span4
     %a.btn.btn-twitter.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: @episode.default_twitter_text, url: @episode.canonical_short_link || @episode_url).to_param, target: "_blank"}
