@@ -22,6 +22,7 @@ $twitterTeal: #9AE4E8;
 @import "font-awesome";
 @import "modules/**/*";
 @import "vendor/magnific";
+@import "vendor/chosen";
 
 html, body {
   height: 100%;
@@ -586,6 +587,24 @@ input[type='text'], input[type='email'] {
       background: none;
       transition: all 0.4s ease;
     }
+  }
+}
+
+#episode-list {
+  > li {
+    display: inline-block;
+    width: 49.5%;
+
+    &.mix {
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  &:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
   }
 }
 

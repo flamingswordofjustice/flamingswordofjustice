@@ -35,11 +35,13 @@ Fsj::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.asset_host = lambda do |source, req|
+  config.asset_host = lambda do |source, req=nil|
     if source =~ /uploads\/(.*?)(jpg|png|gif)$/
       "#{ENV['S3_BUCKET']}.s3.amazonaws.com"
-    else
+    elsif !req.nil?
       "#{req.host}:#{req.port}"
+    else
+      "localhost:4000"
     end
   end
 

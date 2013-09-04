@@ -357,4 +357,9 @@ module ApplicationHelper
     end
   end
 
+  def filter_classes_for(episode)
+    episode.topics.map {|t| "topic_#{t.name.parameterize}"} +
+    episode.guests.map {|g| "guest_#{g.name.parameterize}"}
+  end
+
 end

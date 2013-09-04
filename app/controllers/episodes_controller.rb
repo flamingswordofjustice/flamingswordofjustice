@@ -46,6 +46,12 @@ class EpisodesController < ApplicationController
 
   def index
     @episodes = Episode.visible.all
+
+    if layout == ALTERNATE
+      render template: "episodes/alt_index", layout: "minimal"
+    else # Standard layout
+      render template: "episodes/index", layout: "application"
+    end
   end
 
   def email

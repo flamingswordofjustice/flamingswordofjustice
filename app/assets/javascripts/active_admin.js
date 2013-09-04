@@ -1,7 +1,8 @@
 //= require active_admin/base
 //= require util
 //= require application/vendor/underscore
-//= require admin/vendor/knockout
+//= require application/vendor/knockout
+//= require application/vendor/jquery.chosen.js
 //= require admin/vendor/backbone
 //= require admin/vendor/knockback
 //= require_tree ./admin/vendor

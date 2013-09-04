@@ -1,0 +1,23 @@
+%h1 Episodes
+
+%div{data: {bind: "with: episodeFilter"}}
+  %ul.inline
+    %li
+      %label
+        Topic:
+        %select{name: "topic-filter", data: { placeholder: "No filter", bind: "chosen: topicFilter" }}
+          %option
+          - Topic.order("name").all.each do |t|
+            %option{value: "topic_#{t.name.parameterize}"}= t.name
+
+    %li
+      %label
+        Guests:
+        %select{name: "guest-filter", multiple: true, data: { bind: "chosen: guestFilter" }}
+          - Person.with_episodes.all.each do |p|
+            %option{value: "guest_#{p.name.parameterize}"}= p.name
+
+  %ul#episode-list.unstyled
+    - @episodes.each do |episode|
+      %li.mix{class: filter_classes_for(episode).join(" ")}
+        = render partial: "episodes/mini_episode", locals: { episode: episode }
