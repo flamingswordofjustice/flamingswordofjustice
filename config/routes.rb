@@ -4,9 +4,10 @@ Fsj::Application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
 
   root to: 'home#index'
-  match "/subscribe" => "home#subscribe", via: :post, as: :subscribe
-  match "/search" => "search#index", via: :get, as: :search
-  match "/rss" => "home#rss", via: :get, as: :rss
+  get  "/subscribe" => "home#subscribe", as: :subscribe
+  get  "/search"    => "search#index",   as: :search
+  get  "/rss"       => "home#rss",       as: :rss
+  post "/ignore"    => "home#ignore",    as: :ignore
 
   resources :episodes do
     member do
@@ -30,5 +31,5 @@ Fsj::Application.routes.draw do
   resources :topics,        only: [:show, :index]
   resources :emails,        only: [:show]
 
-  match "/:page" => 'pages#show', as: :page
+  get "/:page" => 'pages#show', as: :page
 end

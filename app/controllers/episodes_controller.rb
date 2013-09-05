@@ -2,7 +2,19 @@ class EpisodesController < ApplicationController
   before_filter :touch_session, only: :show
 
   def show
-    @modal_enabled = [ true, false ][ rand(2) ]
+    @modal_enabled = true
+
+    @modal_enabled = if session[:never_show_modal].present?
+      false
+    elsif session[:modal_shown_at].present?
+      session[:modal_shown_at] < 24.hours.ago
+    else
+      [ true, false ][ rand(2) ]
+    end
+
+    if @modal_enabled
+      session[:modal_shown_at] = DateTime.now
+    end
 
     @episode = if params[:id] =~ /^\d+$/
       Episode.find(params[:id])

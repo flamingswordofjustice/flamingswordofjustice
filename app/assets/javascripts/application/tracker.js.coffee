@@ -68,6 +68,11 @@ $ ->
 
         util.timeout 2000, () -> modal.modal("hide")
 
+      modal.find(".ignoreme").click (evt) ->
+        mixpanel.track "Permahid Modal", util.mixparams()
+        modal.modal("hide")
+        $.post("/ignore")
+
   $("body#home.index").each () ->
     mixpanel.track "Homepage Viewed", "Ref code" : refCode
 

@@ -23,4 +23,10 @@ class HomeController < ApplicationController
     redirect_to ENV["FEEDBURNER_PODCAST_URI"], status: 302
   end
 
+  # Permanently don't show these users a modal.
+  def ignore
+    session[:never_show_modal] = true
+    head :ok
+  end
+
 end

@@ -46,4 +46,12 @@
       margin: 25px;
     }
   }
+
+  .modal-footer {
+    text-align: center;
+    a { color: $baseRed; }
+    border: 0;
+    padding: 4px;
+    background: none;
+  }
 }
