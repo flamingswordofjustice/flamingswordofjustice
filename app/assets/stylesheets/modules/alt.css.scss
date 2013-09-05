@@ -92,4 +92,17 @@ body.layout_a {
     i { color: $lightGrey; line-height: 1em; }
     h3 { color: $baseRed; }
   }
+
+  ul.chzn-choices {
+    border-radius: 4px;
+    > .search-field {
+      line-height: 32px;
+    }
+    > .search-choice {
+      line-height: 20px;
+      > .search-choice-close {
+        top: 8px;
+      }
+    }
+  }
 }

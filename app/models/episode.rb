@@ -172,6 +172,16 @@ class Episode < ActiveRecord::Base
   end
 
   class << self
+    def possible_years
+      results = self.connection.select_all <<-SQL
+        SELECT EXTRACT(YEAR FROM published_at) AS year
+        FROM #{self.table_name}
+        GROUP BY year
+      SQL
+
+      results.map {|r| r['year']}
+    end
+
     def grouped_by(category)
       if respond_to?("grouped_by_#{category}")
         send "grouped_by_#{category}"

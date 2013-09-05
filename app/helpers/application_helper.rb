@@ -357,9 +357,22 @@ module ApplicationHelper
     end
   end
 
+  def episode_filters
+    Person.with_episodes.all.map {|p| "Guest: #{p.name}"} +
+    Topic.order("name").all.map {|t| "Topic: #{t.name}"} +
+    Episode.possible_years.map {|y| "Year: #{y}"} +
+    Organization.with_episodes.map {|o| "Organization: #{o.name}"}
+  end
+
   def filter_classes_for(episode)
-    episode.topics.map {|t| "topic_#{t.name.parameterize}"} +
-    episode.guests.map {|g| "guest_#{g.name.parameterize}"}
+    guests = episode.guests.map {|g|
+      type = g.is_a?(Person) ? "Guest" : "Organization"
+      "#{type}: #{g.name}"
+    }
+    topics = episode.topics.map {|t| "Topic: #{t.name}"}
+    year   = "Year: #{episode.published_at.year}"
+
+    ( guests + topics + [ year ] ).map(&:parameterize)
   end
 
 end

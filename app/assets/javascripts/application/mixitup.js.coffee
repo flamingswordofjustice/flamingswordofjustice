@@ -1,21 +1,11 @@
 EpisodeFilter = (list) ->
-  @topicFilter = ko.observable("")
-  @guestFilter = ko.observable([])
+  @filters = ko.observable([])
 
-  @filters = ko.computed () =>
-    topic = @topicFilter()
-    guests = @guestFilter()
-
-    if topic is "" and guests.length is 0
-      "all"
-    else
-      dup = guests.slice(0)
-      dup.push(topic)
-      $.trim dup.join(" ")
+  @clearFilters = () -> @filters([])
 
   ko.computed () =>
-    console.log "topic", @topicFilter(), "guest", @guestFilter(), "total", @filters()
-    list.mixitup "filter", @filters()
+    filts = @filters()
+    list.mixitup "filter", if filts.length is 0 then "all" else filts.join(" ")
 
   return this
 
@@ -23,12 +13,19 @@ ko.bindingHandlers.chosen =
   init: (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) ->
     observable = valueAccessor()
     $(element).chosen(allow_single_deselect: true).on "change", () ->
-      console.log "val was", $(element).val()
-      observable $(element).val() || []
+      newVal = $(element).val() || []
+      curVal = observable()
+
+      if newVal.join(" ") isnt curVal.join(" ")
+        observable newVal
 
   update: (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) ->
     observable = valueAccessor()
-    $(element).val(observable()).trigger("liszt:updated")
+    curVal = $(element).val() || []
+    newVal = observable()
+
+    if newVal.join(" ") isnt curVal.join(" ")
+      $(element).val(if newVal.length is 0 then null else newVal).trigger("liszt:updated")
 
 $ ->
   list = $("#episode-list")
