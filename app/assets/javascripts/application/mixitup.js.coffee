@@ -12,7 +12,7 @@ EpisodeFilter = (list) ->
 ko.bindingHandlers.chosen =
   init: (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) ->
     observable = valueAccessor()
-    $(element).chosen(allow_single_deselect: true).on "change", () ->
+    $(element).chosen(allow_single_deselect: true, width: "100%").on "change", () ->
       newVal = $(element).val() || []
       curVal = observable()
 
@@ -25,7 +25,7 @@ ko.bindingHandlers.chosen =
     newVal = observable()
 
     if newVal.join(" ") isnt curVal.join(" ")
-      $(element).val(if newVal.length is 0 then null else newVal).trigger("liszt:updated")
+      $(element).val(if newVal.length is 0 then null else newVal).trigger("chosen:updated")
 
 $ ->
   list = $("#episode-list")

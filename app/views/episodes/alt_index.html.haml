@@ -1,17 +1,20 @@
+%h4
+  %a{href: root_path} Home
+
 %h1 Episodes
 
 %div{data: {bind: "with: episodeFilter"}}
   %form.form-inline
     %div.row-fluid
-      %div.span2
+      %div.span10
+        %select{name: "guest-filter", multiple: true, data: { placeholder: "No filter", bind: "chosen: filters" }}
+          - episode_filters.each do |name|
+            %option{value: name.parameterize}= name
+
+      %div.span2.hidden-phone
         %a.btn{style: "width: 80%", data: { bind: "click: clearFilters"}}
           %i.icon-trash
           Clear
-
-      %div.span10
-        %select{name: "guest-filter", style: "width: 100%", multiple: true, data: { placeholder: "No filter", bind: "chosen: filters" }}
-          - episode_filters.each do |name|
-            %option{value: name.parameterize}= name
 
   %ul#episode-list.unstyled
     - @episodes.each do |episode|

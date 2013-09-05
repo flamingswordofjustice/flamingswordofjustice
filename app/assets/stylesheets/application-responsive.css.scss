@@ -127,6 +127,10 @@
   input[type='text'], input[type='email'] {
     &.input-large.input-block-level { height: 38px; }
   }
+
+  #episode-list > li {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 979px) {
