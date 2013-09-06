@@ -1,4 +1,5 @@
-worker_processes 3
+processes = ( env = ENV["UNICORN_WORKERS"] ).nil? ? 1 : env.to_i
+worker_processes processes
 timeout 30
 preload_app true
 
