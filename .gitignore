@@ -20,7 +20,10 @@
 # Bundler cache
 /vendor/bundle
 
-# Env file
+# Foreman env file
 /.env
+
+# rbenv
+/.ruby-version
 
 .DS_Store
