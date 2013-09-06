@@ -1,6 +1,8 @@
 class EpisodesController < ApplicationController
   before_filter :touch_session, only: :show
 
+  DEFAULT_PER_PAGE = 10
+
   def show
     @modal_enabled = true
 
@@ -57,7 +59,10 @@ class EpisodesController < ApplicationController
   end
 
   def index
-    @episodes = Episode.visible.all
+    page = params[:page]     || 1
+    per  = params[:per_page] || DEFAULT_PER_PAGE
+
+    @episodes = Episode.visible.page(page).per(per)
 
     if layout == ALTERNATE
       render template: "episodes/alt_index", layout: "minimal"
@@ -86,5 +91,12 @@ class EpisodesController < ApplicationController
     end
   end
 
+  # Specific to AJAX requests for whole episodes.
+  def rest
+    episodes = Episode.visible.offset(params[:offset] || DEFAULT_PER_PAGE).all
+    list = render_to_string partial: "episodes/mixed", collection: episodes
+
+    render json: { episodes: list }
+  end
 
 end

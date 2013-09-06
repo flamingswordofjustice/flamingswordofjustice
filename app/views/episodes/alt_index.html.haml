@@ -17,6 +17,5 @@
           Clear
 
   %ul#episode-list.unstyled
-    - @episodes.each do |episode|
-      %li.mix{class: filter_classes_for(episode).join(" ")}
-        = render partial: "episodes/mini_episode", locals: { episode: episode }
+    = render partial: "episodes/mixed", collection: @episodes
+  = paginate @episodes

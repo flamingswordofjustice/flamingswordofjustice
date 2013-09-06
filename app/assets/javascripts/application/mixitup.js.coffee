@@ -1,11 +1,26 @@
 EpisodeFilter = (list) ->
-  @filters = ko.observable([])
+  @filters  = ko.observable([])
+  @loaded   = false
 
   @clearFilters = () -> @filters([])
 
   ko.computed () =>
     filts = @filters()
-    list.mixitup "filter", if filts.length is 0 then "all" else filts.join(" ")
+
+    if filts.length is 0
+      list.mixitup "filter", "all"
+    else
+      filter = filts.join(" ")
+      console.log "bam"
+
+      if !@loaded
+        $.get("/episodes/rest").done (resp) =>
+          $("nav.pagination").hide()
+          $("#episode-list").append(resp.episodes).mixitup("remix")
+          @loaded = true
+          list.mixitup "filter", filter
+      else
+        list.mixitup "filter", filter
 
   return this
 

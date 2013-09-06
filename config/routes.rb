@@ -20,6 +20,7 @@ Fsj::Application.routes.draw do
       get 'by/:category/:id' => 'episodes#index',   as: :categorized
       get ':player/:id'      => 'episodes#show',    as: :typed
       get 'latest'
+      get 'rest'
     end
   end
 
