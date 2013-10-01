@@ -26,15 +26,7 @@ class EpisodesController < ApplicationController
 
     respond_to do |f|
       f.html do
-        layout = params[:l]
-
-        if layout.blank?
-          redirect_to episode_path(params[:id], params.merge(l: choose_layout))
-        elsif layout == ALTERNATE
-          render template: "episodes/alt", layout: "minimal"
-        else # Standard layout
-          render template: "episodes/show", layout: "application"
-        end
+        render template: "episodes/alt", layout: "minimal"
       end
 
       f.json do
@@ -64,11 +56,7 @@ class EpisodesController < ApplicationController
 
     @episodes = Episode.visible.page(page).per(per)
 
-    if layout == ALTERNATE
-      render template: "episodes/alt_index", layout: "minimal"
-    else # Standard layout
-      render template: "episodes/index", layout: "application"
-    end
+    render template: "episodes/alt_index", layout: "minimal"
   end
 
   def email

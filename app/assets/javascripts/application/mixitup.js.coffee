@@ -27,6 +27,7 @@ EpisodeFilter = (list) ->
 ko.bindingHandlers.chosen =
   init: (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) ->
     observable = valueAccessor()
+
     $(element).chosen(allow_single_deselect: true, width: "100%").on "change", () ->
       newVal = $(element).val() || []
       curVal = observable()

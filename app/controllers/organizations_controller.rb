@@ -3,11 +3,7 @@ class OrganizationsController < ApplicationController
   def show
     @organization = Organization.find(params[:id])
 
-    if layout == ALTERNATE
-      render template: "organizations/alt", layout: "minimal"
-    else # Standard layout
-      render template: "organizations/show", layout: "application"
-    end
+    render template: "organizations/alt", layout: "minimal"
   end
 
   def index

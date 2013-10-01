@@ -7,7 +7,7 @@
   %form.form-inline
     %div.row-fluid
       %div.span10
-        %select{name: "guest-filter", multiple: true, data: { placeholder: "Search for a guest, topic, etc.", bind: "chosen: filters" }}
+        %select{name: "guest-filter", multiple: true, data: { placeholder: "Search for a guest, topic, etc.", bind: "chosen: filters", val: @filters.join(",") }}
           - episode_filters.each do |name|
             %option{value: name.parameterize}= name
 
