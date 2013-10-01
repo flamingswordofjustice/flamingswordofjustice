@@ -255,7 +255,7 @@ module ApplicationHelper
 
   def comma_separated_list_of(objects, label=:name)
     links = objects.map do |o|
-      link_to o.send(label), url_for(o)
+      link_to o.send(label), episodes_path(f: "#{o.class.name.titleize}: #{o.send(label)}".parameterize)
     end
 
     safe_join links, ", "

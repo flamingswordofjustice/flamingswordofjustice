@@ -35,6 +35,10 @@ ko.bindingHandlers.chosen =
       if newVal.join(" ") isnt curVal.join(" ")
         observable newVal
 
+    presets = $(element).data("val").split(",")
+    console.log "presets are", presets, "data is", $(element).data("val")
+    observable(presets) if ( presets.length isnt 0 or presets[0] isnt "" )
+
   update: (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) ->
     observable = valueAccessor()
     curVal = $(element).val() || []

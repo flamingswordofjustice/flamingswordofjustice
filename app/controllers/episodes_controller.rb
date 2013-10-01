@@ -55,6 +55,7 @@ class EpisodesController < ApplicationController
     per  = params[:per_page] || DEFAULT_PER_PAGE
 
     @episodes = Episode.visible.page(page).per(per)
+    @filters  = ( params[:f] || "" ).split(",")
 
     render template: "episodes/alt_index", layout: "minimal"
   end

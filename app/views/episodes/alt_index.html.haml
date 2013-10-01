@@ -9,11 +9,12 @@
       %div.span10
         %select{name: "guest-filter", multiple: true, data: { placeholder: "Search for a guest, topic, etc.", bind: "chosen: filters", val: @filters.join(",") }}
           - episode_filters.each do |name|
-            %option{value: name.parameterize}= name
+            - param = name.parameterize
+            %option{value: param, selected: @filters.include?(param)}= name
 
       %div.span2.hidden-phone
         %a.btn.input-block-level{data: { bind: "click: clearFilters"}}
-          %i.icon-trash
+          %i.icon-remove
           Clear
 
   %ul#episode-list.unstyled
