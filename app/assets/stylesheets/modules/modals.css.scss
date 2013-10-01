@@ -22,7 +22,7 @@
 
   .modal-body {
     position: relative;
-    padding: 25px;
+    padding: 10px 25px;
     h3 { margin: 10px 0 5px 0; line-height: 30px; }
     .buttons { text-align: center; }
     .intro .buttons { margin-top: 60px; }
@@ -32,7 +32,7 @@
     overflow: hidden;
   }
 
-  .modal-contents {
+  .modal-contents.steppable {
     position: absolute;
     top: 0;
     left: 0;
@@ -45,6 +45,15 @@
       height: 175px;
       margin: 25px;
     }
+  }
+
+  &#link-modal .modal-body { height: 230px; }
+
+  .modal-contents.share-this {
+    .copy-embed-code, .copy-shareable-url > input { font-size: 12px; }
+    .copy-embed-code { font-family: monospace; line-height: 13px; }
+    .copy-shareable-url > input { width: 454px; height: 64px; }
+    .copy-embed-code    { width: 494px; }
   }
 
   .modal-footer {

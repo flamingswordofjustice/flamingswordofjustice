@@ -11,6 +11,7 @@
   %meta{name: "modal-enabled", content: @modal_enabled}
 
 = render partial: "episodes/modal" if @modal_enabled
+= render partial: "shared/link_modal", locals: { episode: @episode }
 
 %h4.muted
   Episode #{@episode.title.match(/(#\d+)/)[0]}
@@ -48,12 +49,15 @@
 = play_controls style: "full", episode: @episode, episode_url: canonical_fb_url(@episode), player: @player, embed: true
 
 %div.row-fluid{style: "margin-bottom: 20px"}
-  %span.span4.offset2.vertical-gap-phone
+  %span.span3.offset1.vertical-gap-phone
     %a.btn.btn-facebook.btn-block{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(@episode)}", target: "_blank", data: {url: canonical_fb_url(@episode)}}
       Share on Facebook
-  %span.span4
+  %span.span3
     %a.btn.btn-twitter.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: @episode.default_twitter_text, url: @episode.canonical_short_link || @episode_url).to_param, target: "_blank"}
       Share on Twitter
+  %psan.span3.hidden-phone
+    %a.btn.btn-block{href: "#link-modal", role: "button", data: { toggle: "modal" }}
+      Link to or embed
 
 %div.episode-description
   = raw @episode.description

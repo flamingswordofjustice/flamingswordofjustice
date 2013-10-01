@@ -1,0 +1,20 @@
+%div#link-modal.modal.hide.fade{tabindex: -1, role: "dialog", "aria-labelledby" => "share-modal-label", "aria-hidden" => true}
+  %div.modal-header
+    %button.close(type="button" data-dismiss="modal" aria-hidden="true")
+      %span Close
+      &times;
+    %h3 &nbsp;
+
+  %div.modal-body
+    %div.modal-contents.share-this
+      %h3 Share this episode
+      %label Copy link:
+      %div.copy-shareable-url.input-append
+        %input.shareable-url{type: "text", value: request.original_url, readonly: true, style: "cursor: default; background-color: white"}
+        %button.btn{type: "button", class: "share-link"}
+          %i.icon-copy
+
+      %label Embed:
+      %textarea.copy-embed-code
+        :escaped
+          #{play_controls embed: true, episode: episode}
