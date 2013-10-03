@@ -6,7 +6,7 @@ $lighterRed: lighten($baseRed, 20%);
 $flameOrange: #FF9100;
 $headingsFontFamily: 'Roboto Condensed', sans-serif;
 $baseFontSize: 16px;
-$baseLineHeight: 24px;
+$baseLineHeight: 28px;
 $transitionDuration: 0.05s;
 $dropdownLinkBackgroundHover: $baseRed;
 
@@ -30,7 +30,6 @@ html, body {
 
 body {
   font-weight: 300;
-  line-height: 28px;
 }
 
 h1, h2, h3 { font-weight: 700; }

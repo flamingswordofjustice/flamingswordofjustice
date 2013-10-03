@@ -97,9 +97,3 @@
         %a.next{href: episode_path(@episode.next), title: "Next Episode", data: { track: %{"Episode" : "#{@episode.next.slug}"} }}
           = @episode.next.title
           %i.icon-chevron-right
-
-  - if comments_enabled?
-    %div.row-fluid.comments
-      %div.span8
-        %section.comments
-          = livefyre_comments
