@@ -1,9 +1,9 @@
 $ ->
-  $(".share-link").each () ->
-    input = $(this).prev("input")
-    $(this).zclip
-      copy: input.val()
-      afterCopy: () -> input.focus().select()
+  $(".copyable").each () ->
+    elt = $(this)
+    elt.on "click", () -> elt.select()
+
+    elt.nextAll(".btn").zclip(copy: elt.val(), afterCopy: () -> elt.focus().select())
 
   $(".episode.live").each () ->
     episode = $(this)
@@ -80,4 +80,18 @@ $ ->
 
     $(window).resize(resizer).trigger("resize")
 
-  $("[data-toggle='tooltip']").tooltip(placement: 'bottom')
+  $('[data-toggle*="tooltip"]').tooltip(placement: 'bottom')
+
+  $('[data-toggle*="popbetter"]').each () ->
+    elt = $(this)
+    popover = elt.nextAll(".popover")
+
+    elt.one "click", () ->
+      pos = elt.position()
+      popover.css
+        top: pos.top - popover.height()
+        left: pos.left - ( (popover.width() - elt.width()) / 2 )
+        display: "none"
+
+    elt.on "click", () ->
+      popover.animate { opacity: "toggle" }, { duration: 120 }

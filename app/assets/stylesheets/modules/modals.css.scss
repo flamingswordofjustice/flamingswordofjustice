@@ -49,18 +49,28 @@
 
   &#link-modal .modal-body { height: 230px; }
 
-  .modal-contents.share-this {
-    .copy-embed-code, .copy-shareable-url > input { font-size: 12px; }
-    .copy-embed-code { font-family: monospace; line-height: 13px; }
-    .copy-shareable-url > input { width: 454px; height: 64px; }
-    .copy-embed-code    { width: 494px; }
-  }
-
   .modal-footer {
     text-align: center;
     a { color: $baseRed; }
     border: 0;
     padding: 4px;
     background: none;
+  }
+}
+
+.btn-copy-embed + .popover {
+  width: 300px;
+
+  .popover-content {
+    .copy-embed-code, .copy-shareable-url > input { font-size: 12px; }
+    .copy-embed-code { font-family: monospace; line-height: 13px; }
+    .copy-shareable-url > input { width: 222px; height: 16px;  line-height: 14px; }
+    .copy-embed-code    { width: 258px; height: 64px; }
+    .btn { font-size: 12px; line-height: 16px;}
+    [readonly] {
+      cursor: default;
+      background-color: white;
+      color: black;
+    }
   }
 }
