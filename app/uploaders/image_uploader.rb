@@ -44,4 +44,8 @@ class ImageUploader < CarrierWave::Uploader::Base
       "#{@name}.#{file.extension}"
     end
   end
+
+  def s3_headers
+    { "Expires" => 1.year.from_how.httpdate }
+  end
 end

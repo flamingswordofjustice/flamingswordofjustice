@@ -7,6 +7,11 @@ class EpisodeImageUploader < ImageUploader
     process :composite_play_button
   end
 
+  version :mini do
+    # Distinct from thumb in that it retains dimensions.
+    process resize_to_fit: [200,200]
+  end
+
   def grayscale
     manipulate! { |img| img.colorspace "gray"; img }
   end
