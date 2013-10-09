@@ -109,9 +109,6 @@ ActiveAdmin.register Episode do
         input_html: { rows: 3, maxlength: 102 }
 
       f.input :facebook_image_url, as: :file_picker, multiple: false, hint: "Facebook timeline images should be 403px by 403px."
-
-      f.input :share_progress_code, label: "ShareProgress code",
-        hint: "If running a ShareProgress experiment, use the code they give you here."
     end
 
     f.inputs "Topics and Guests" do

@@ -130,36 +130,4 @@
       &:hover { background-color: darken($twitterTeal, 10%); }
     }
   }
-
-  .shareprogress {
-    line-height: 12px;
-    background-color: #cdcdcd;
-    position: relative;
-    height: 104px;
-    padding-left: 10px;
-    overflow: hidden;
-
-    .heading {
-      font-size: 28px;
-      margin: 0;
-      line-height: 38px;
-      margin-bottom: 30px;
-      color: white;
-    }
-
-    div[class^="sp"] {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-
-    .arrow {
-      background: transparent image-url('share-arrow.png') top right no-repeat;
-      height: 104px;
-      position: absolute;
-      right: 200px;
-      top: 0;
-      width: 100%;
-    }
-  }
 }

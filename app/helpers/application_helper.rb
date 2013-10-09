@@ -166,12 +166,6 @@ module ApplicationHelper
     HTML
   end
 
-  def shareprogress_tracker
-    raw <<-HTML
-      <script src="//c.shpg.org/13/sp.js"></script>
-    HTML
-  end
-
   def optimizely_tracker
     return nil if optimizely_project_code.blank?
 
