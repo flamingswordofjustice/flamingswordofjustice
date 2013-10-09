@@ -1,17 +1,16 @@
 - container_class = orientation == :horizontal ? "span4" : ""
 
-- else
-  %div.share{class: container_class}
-    %section
-      %div.facebook
-        %i.icon-facebook
-        %div.follow
-          = facebook_like
+%div.share{class: container_class}
+  %section
+    %div.facebook
+      %i.icon-facebook
+      %div.follow
+        = facebook_like
 
-      %div.twitter
-        %i.icon-twitter
-        %div.follow
-          = twitter_follow count: true
+    %div.twitter
+      %i.icon-twitter
+      %div.follow
+        = twitter_follow count: true
 
 %div.subscribe{class: container_class}
   %section
