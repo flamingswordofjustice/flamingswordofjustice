@@ -1,8 +1,7 @@
-== THE FLAMING SWORD OF JUSTICE
+== The Good Fight
 
 ... is a daily podcast and radio show that features interviews with people fighting to
-improve the world. Join host Ben Wikler every day at 3PM at We Act Radio 1480AM in DC,
-online at http://www.flamingswordofjustice.com, and via podcast.
+improve the world. Join host Ben Wikler online at http://www.thegoodfight.fm, and via podcast.
 
 This is the codebase we use to host the website. It's a fairly straightforward Rails app
 hosted on Heroku and Postgres. Currently the app is pretty narrowly
