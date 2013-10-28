@@ -10,6 +10,7 @@ gem 'strong_parameters'
 gem 'yajl-ruby'
 gem 'multi_json'
 gem 'nokogiri'
+gem 'rails_12factor'
 
 # Admin
 
