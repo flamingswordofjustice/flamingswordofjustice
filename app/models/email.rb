@@ -1,6 +1,6 @@
 class Email < ActiveRecord::Base
   RECIPIENT_BLACKLIST = [
-    "daily@flamingswordofjustice.com"
+    "daily@thegoodfight.fm"
   ]
 
   belongs_to :episode

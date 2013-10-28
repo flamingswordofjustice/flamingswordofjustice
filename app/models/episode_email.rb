@@ -12,7 +12,8 @@ class EpisodeEmail
   EMAIL_TEMPLATE = 'episode_mailer/published_email'
 
   RECIPIENT_BLACKLIST = [
-    "daily@flamingswordofjustice.com"
+    "daily@flamingswordofjustice.com",
+    "daily@thegoodfight.fm"
   ]
 
   alias_method :proofed?, :proofed

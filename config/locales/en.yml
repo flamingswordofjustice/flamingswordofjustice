@@ -2,16 +2,19 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  tag: "The Flaming Sword of Justice with Ben Wikler"
+  tag: "The Good Fight with Ben Wikler"
+  tag_short: "The Good Fight"
+  abbrev: "goodfight"
   powered_by: powered by
   share: Share
-  twitter: fsjradio
-  facebook: flamingswordofjustice
-  email_sender: "Ben Wikler, The Flaming Sword of Justice <show@flamingswordofjustice.com>"
+  twitter: teamgoodfight
+  facebook: teamgoodfight
+  email: "show@thegoodfight.fm"
+  email_sender: "Ben Wikler, The Good Fight <show@thegoodfight.fm>"
   description: >
     A show about people changing the world: who they are, what they're doing,
     and how you can get involved.
   admin:
-    twitter_text: "The episode link and 'via @fsjradio' will be automatically added to the end of your custom Tweet. So, just write a tweet that includes the guest's Twitter handle and the host's Twitter handle."
+    twitter_text: "The episode link and 'via @teamgoodfight' will be automatically added to the end of your custom Tweet. So, just write a tweet that includes the guest's Twitter handle and the host's Twitter handle."
   active_admin:
     listeners: "Listeners"

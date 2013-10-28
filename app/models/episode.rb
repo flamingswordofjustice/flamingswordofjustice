@@ -131,7 +131,7 @@ class Episode < ActiveRecord::Base
   end
 
   def audio_filename
-    "flamingsword-#{self.slug}.mp3"
+    "#{I18n.t('abbrev')}-#{self.slug}.mp3"
   end
 
   def has_video?

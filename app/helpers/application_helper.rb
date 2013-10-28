@@ -74,7 +74,7 @@ module ApplicationHelper
 
     raw <<-HTML
       <script type="text/javascript">
-        var _sf_async_config = { uid: #{chartbeat_uid}, domain: 'flamingswordofjustice.com', useCanonical: true };
+        var _sf_async_config = { uid: #{chartbeat_uid}, domain: 'thegoodfight.fm', useCanonical: true };
         (function() {
           function loadChartbeat() {
             window._sf_endpt = (new Date()).getTime();
@@ -138,7 +138,7 @@ module ApplicationHelper
       <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '#{google_analytics_tracking_id}']);
-        _gaq.push(['_setDomainName', 'flamingswordofjustice.com']);
+        _gaq.push(['_setDomainName', 'thegoodfight.fm']);
         _gaq.push(['_trackPageview']);
 
         (function() {

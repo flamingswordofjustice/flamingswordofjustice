@@ -85,9 +85,6 @@ ActiveAdmin.register Episode do
       f.input :image_caption
 
       f.input :filepicker_images, as: :file_picker, multiple: true
-
-      # filepicker_image_tag f.object.image, watermark: "http://www.flamingswordofjustice.com/assets/play-button.png", waterposition: "middle,middle", watersize: "20%"
-      # http://www.flamingswordofjustice.com/assets/play-button.png
     end
 
     f.inputs "Social and Sharing" do

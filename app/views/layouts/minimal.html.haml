@@ -8,7 +8,7 @@
               = image_tag "flamingswordmed.png"
 
             %ul.unstyled.inline.hidden-phone{style: "text-align: center; text-transform: uppercase; font-size: 14px; margin-top: 10px"}
-              %li= link_to "About", "/organizations/the-flaming-sword-of-justice", style: "margin-left: 20px;"
+              %li= link_to "About", "/organizations/the-good-fight", style: "margin-left: 20px;"
               %li &middot;
               %li= link_to "Episodes", episodes_path
 
@@ -28,7 +28,7 @@
               = image_tag 'sword_light.png'
           %div.span3
             %a{href: root_path}
-              %h4 The Flaming Sword of Justice
+              %h4= t 'short_tag'
             %p{style: "font-size: 12px; line-height: 16px"}
               = raw t(:description)
               = facebook_like

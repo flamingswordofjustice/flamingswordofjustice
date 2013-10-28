@@ -3,15 +3,14 @@
   %h1 The Unreliable 500 Page of Bugginess
   %h3 Oops! Sorry about that.
 
-  - mailto = link_to("show@flamingswordofjustice.com", "mailto:show@flamingswordofjustice.com")
   %p
     Your arrival here means that something is amiss&dash;it's possible that the Internet is on
     fire, or maybe our servers have exploded, but probably we just wrote some bad code.
-    If you get a chance, please pop us an email at #{mailto}.
+    If you get a chance, please pop us an email at #{mail_to t('email')}.
 
   %p
     Or you could click that sword in the upper-left corner to check out our awesome
     home page—and enjoy the
     %a{href: latest_episodes_path}
       latest episode
-    of our flagship radio show, The Flaming Sword of Justice.
+    of our flagship radio show, #{t 'short_tag'}.
