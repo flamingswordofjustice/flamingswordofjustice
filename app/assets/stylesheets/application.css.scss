@@ -203,9 +203,15 @@ form.navbar-search, form.search-form {
 #home {
   .current-episode {
     background-size: cover;
-    background-position: top left no-repeat;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
 
-    .overlay { padding: 30px 0; background-color: rgba(0,0,0,0.7); };
+    .overlay {
+      @include gradient(rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.7) 100%);
+      padding: 30px 0;
+      height: 500px;
+    };
 
     color: $veryLightGrey;
 

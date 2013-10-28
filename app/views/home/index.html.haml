@@ -1,22 +1,32 @@
 = open_graph_and_meta_tags
 
-%section.current-episode.full-width{style: "background-image: url(#{@latest.image.bw})"}
+%section.current-episode.full-width{style: "background-image: url('#{@latest.image}');"}
   %section.overlay
     %section.container
       %div.row-fluid
-        %div.span4.splash-logo
-          %a.visible-desktop{href: root_path}
-            = image_tag "logo.png", width: "100%", class: "big-brand"
-          = render 'shared/powered_by'
+        %div.span12
+          %div.episode-blurb{style: "display: table-cell; vertical-align: bottom; height: 500px"}
+            %h4= t 'tag'
+            %a{href: episode_path(@latest)}
+              %h1{style: "color: #eee"}= @latest.headline
+            %p= @latest.social_description
+            %a.btn.btn-primary{href: episode_path(@latest)}
+              Listen Now
+              %i.icon-play
 
-          %h3{style: "text-align: center"}= raw t(:description)
+      /   %div.span4.splash-logo
+      /     %a.visible-desktop{href: root_path}
+      /       = image_tag "logo.png", width: "100%", class: "big-brand"
+      /     = render 'shared/powered_by'
 
-        %div.span8.episode-blurb
-          - unless @latest.nil?
-            = render partial: 'episodes/episode', object: @latest, locals: { play: true, featured: true }
+      /     %h3{style: "text-align: center"}= raw t(:description)
 
-      %div.row-fluid.subscribe-join-social
-        = subscribe_join_social orientation: :horizontal
+      /   %div.span8.episode-blurb
+      /     - unless @latest.nil?
+      /       = render partial: 'episodes/episode', object: @latest, locals: { play: true, featured: true }
+
+      / %div.row-fluid.subscribe-join-social
+      /   = subscribe_join_social orientation: :horizontal
 
 %section.past-episodes
   %section.container

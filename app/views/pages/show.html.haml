@@ -1,14 +1,8 @@
 = open_graph_and_meta_tags title: @page.title
 
-%div.row-fluid.page-header
-  %div.span2.logo
-    %a{href: root_path}
-      = image_tag "logo.png"
+%h4.muted
+  %a{href: root_path} Home
+%h1= @page.title
 
-  %div.span10.offset2.details
-    = breadcrumbs :root, @page
-    %h1= @page.title
-
-%div.row-fluid
-  %div.span8{style: "margin-bottom: 20px;"}
-    = raw @page.content
+%div{style: "margin-bottom: 20px"}
+  = raw @page.content

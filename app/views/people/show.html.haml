@@ -2,34 +2,27 @@
                            title: @person.name + ", " + @person.title,
                            description: @person.description
 
-= page_header @person.name,
-  crumbs: [:root, Person, @person],
-  subtitle: @person.title
+%h4.muted
+  %a{href: people_path} People
 
-%div.row-fluid
-  %div.span8
-    %section.social.clearfix
-      = social_icons_for @person
-    %article.person
-      %p= raw @person.description
+%h1= @person.name
+%h5= @person.title
 
-  - unless @person.image.blank?
-    %div.span4.entity-image
-      %figure.thumbnail
-        = image_tag @person.image.url
+%div.bio
+  %figure.thumbnail.pull-left
+    = image_tag @person.image.url
+    = social_icons_for @person, skip: [:appearances]
+    %div.clearfix
+  = raw @person.description
 
-
-- if @person.organization.present?
-  %div.row-fluid
-    %div.span8
-      %h3 Organization
-  %div.row-fluid
-    %div.span4
-      %section.organization.clearfix{style: "margin-top: 20px"}
+- unless @person.organization.blank?
+  %div.organization.clearfix
+    %h3 Organization
+    %div.row-fluid
+      %div.span6
         = render @person.organization
 
 - if @person.appearances.any?
-  %div.row-fluid
-    %div.span8
-      %h3#appearances Episodes
-      = render @person.episodes
+  %div.episodes.clearfix
+    %h3 Episodes
+    = render partial: "episodes/mini_collection", locals: { episodes: @person.episodes }

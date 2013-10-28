@@ -1,39 +1,28 @@
-= open_graph_and_meta_tags title: @organization.name, description: @organization.description, type: "company"
+= open_graph_and_meta_tags type: "organization",
+                           title: @organization.name,
+                           description: @organization.description
 
+%h4.muted
+  %a{href: organizations_path} Organizations
 
-= page_header @organization.name,
-  crumbs: [:root, Organization, @organization],
-  subtitle: @organization.website.blank? ? nil : link_to(@organization.website)
+%h1= @organization.name
 
-%div.row-fluid
-  %div.span8
-    %section.social
-      = social_icons_for @organization, type: "like"
-      %div.clearfix
+%div.bio
+  %figure.thumbnail.pull-left
+    = image_tag @organization.image.url
+    = social_icons_for @organization, skip: [:appearances]
+    %div.clearfix
+  = raw @organization.description
 
-    %article.organization{style: "margin-top: 10px;"}
-      = raw @organization.description
+- unless @organization.people.empty?
+  %div.people.clearfix
+    %h3 People
+    - @organization.people.in_groups_of(3).each do |group|
+      %div.row-fluid.clearfix
+        - group.compact.each do |person|
+          %div.span4= render person
 
-  - unless @organization.image.blank?
-    %div.span4.entity-image
-      %figure.thumbnail
-        = image_tag @organization.image.url
-
-
-- if @organization.people.any?
-  %div.row-fluid
-    %div.span8
-      %h3 People
-  - @organization.people.in_groups_of 2 do |group|
-    %div.row-fluid
-      %div.span4= render group[0]
-      %div.span4= render group[1] unless group[1].nil?
-
-= divider 8
-
-- if @organization.appearances.any?
-  %div.row-fluid
-    %div.span8
-      %h3#appearances Episodes
-      = render @organization.episodes
-
+- if @organization.episodes.any?
+  %div.episodes.clearfix
+    %h3 Episodes
+    = render partial: "episodes/mini_collection", locals: { episodes: @organization.episodes }

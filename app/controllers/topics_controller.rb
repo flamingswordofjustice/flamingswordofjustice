@@ -14,14 +14,10 @@ class TopicsController < ApplicationController
       group = groups[ index_of_group ]
       @topics[group].push t
     end
-
-    render template: "topics/alt_index", layout: "minimal"
   end
 
   def show
     @topic = Topic.find(params[:id])
-
-    render template: "topics/alt", layout: "minimal"
   end
 
 end

@@ -1,0 +1,8 @@
+= render layout: "layouts/application" do
+  = yield
+
+- content_for :partners do
+  %a.partner{href: "https://mixpanel.com/f/partner"}
+    %div tracking by
+    %img{src: "//cdn.mxpnl.com/site_media/images/partner/badge_blue.png", alt: "Mobile Analytics", style: "text-align: center"}
+

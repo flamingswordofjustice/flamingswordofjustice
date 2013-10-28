@@ -25,9 +25,7 @@ class EpisodesController < ApplicationController
     end
 
     respond_to do |f|
-      f.html do
-        render template: "episodes/alt", layout: "minimal"
-      end
+      f.html {}
 
       f.json do
         render json: @episode.attributes.slice(
@@ -56,8 +54,6 @@ class EpisodesController < ApplicationController
 
     @episodes = Episode.visible.page(page).per(per)
     @filters  = ( params[:f] || "" ).split(",")
-
-    render template: "episodes/alt_index", layout: "minimal"
   end
 
   def email
