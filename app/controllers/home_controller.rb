@@ -2,7 +2,6 @@ class HomeController < ApplicationController
   before_filter :touch_session, only: :index
 
   def index
-    raise "bang"
     @episodes = Episode.visible.limit(11).all
     @latest = @episodes.shift
     @guests = Appearance.order("created_at DESC").limit(10).all.map(&:guest).reject(&:nil?).uniq
