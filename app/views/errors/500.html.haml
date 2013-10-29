@@ -1,16 +1,12 @@
-%div.container
-  %img.pull-right{src: image_path('broken_sword.jpg')}
-  %h1 The Unreliable 500 Page of Bugginess
-  %h3 Oops! Sorry about that.
+%h4 Oops! Sorry about that.
+%h1 The Unreliable 500 Page of Bugginess
 
-  %p
-    Your arrival here means that something is amiss&dash;it's possible that the Internet is on
-    fire, or maybe our servers have exploded, but probably we just wrote some bad code.
-    If you get a chance, please pop us an email at #{mail_to t('email')}.
+%p
+  Your arrival here means that something is amiss––it's possible that the Internet is on
+  fire, or maybe our servers have exploded, but probably we just wrote some bad code.
+  If you get a chance, please pop us an email at #{mail_to t('email')}.
 
-  %p
-    Or you could click that sword in the upper-left corner to check out our awesome
-    home page—and enjoy the
-    %a{href: latest_episodes_path}
-      latest episode
-    of our flagship radio show, #{t 'tag_short'}.
+%p
+  Or you could click our logo at the top to check out our awesome homepage––and enjoy the
+  %a{href: latest_episodes_path} latest episode
+  of our flagship radio show, #{t 'tag_short'}.

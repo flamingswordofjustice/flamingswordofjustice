@@ -1,16 +1,12 @@
-%div.container
-  %img.pull-right{src: image_path('broken_sword.jpg')}
-  %h1 The Erroneous 404 Page of Dissatisfaction
-  %h3 Oops! Sorry about that.
+%h4 Oops! Sorry about that.
+%h1 The Erroneous 404 Page of Dissatisfaction
 
-  %p
-    Your arrival here suggests that something is amiss. Why? Because there's no page
-    at this link. If you think the problem is at our end, please pop us an email at
-    #{mail_to t('email')}.
+%p
+  Your arrival here suggests that something is amiss. Why? Because there's no page
+  at this link. If you think the problem is at our end, please pop us an email at
+  #{mail_to t('email')}.
 
-  %p
-    Or you could click that sword in the upper-left corner to check out our awesome
-    home page—and enjoy the
-    %a{href: latest_episodes_path}
-      latest episode
-    of our flagship radio show, %{t 'tag_short'}.
+%p
+  Or you could click our logo at the top to check out our awesome homepage––and enjoy the
+  %a{href: latest_episodes_path} latest episode
+  of our flagship radio show, #{t 'tag_short'}.

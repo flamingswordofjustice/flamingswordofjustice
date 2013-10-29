@@ -100,10 +100,8 @@ h1, h2, h3 {
   > a { color: $baseRed; }
 }
 
-article.post, article.episode {
-  > header {
-    margin-bottom: 20px;
-  }
+.main-content {
+  margin-bottom: 40px;
 }
 
 ul.social-icons {
