@@ -14,5 +14,5 @@
     %a.btn.btn-facebook.btn-block{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(episode)}", target: "_blank", data: {url: canonical_fb_url(episode)}}
       Share on Facebook
   %div.span3
-    %a.btn.btn-twitter.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url).to_param, target: "_blank"}
+    %a.btn.btn-twitter.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url(episode)).to_param, target: "_blank"}
       Share on Twitter
