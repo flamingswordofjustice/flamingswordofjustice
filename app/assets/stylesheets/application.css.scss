@@ -611,4 +611,41 @@ input[type='text'], input[type='email'] {
   }
 }
 
+#home.index {
+  .homepage-logo {
+    background: linear-gradient(to bottom, #333 0%, #111 100%);
+    h3 {
+      max-width: 500px;
+      line-height: 40px;
+      color: #eee;
+      font-weight: 300;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 0;
+      margin-top: -20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .homepage-content {
+    background-color: white;
+    padding: 40px 0;
+
+    &:nth-child(even)  {
+      background-color: #274059;
+      .post-content, a > h2 {
+        color: #eee;
+      }
+    }
+
+    &:nth-child(odd) {
+      background-color: white;
+    }
+  }
+
+  #footer {
+    background-color: #292728;
+  }
+}
+
 @import "application-responsive";

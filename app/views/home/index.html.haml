@@ -1,42 +1,13 @@
 = open_graph_and_meta_tags
 
-%section.current-episode.full-width{style: "background-image: url('#{@latest.image}');"}
-  %section.overlay
-    %section.container
+%section.homepage-logo{style: "text-align: center;"}
+  %a{href: root_path, style: "display: block; padding: 40px 0"}
+    = image_tag "logo.png", style: "height: 200px"
+  %h3= t 'description'
+
+- @content.each do |c|
+  %section.homepage-content{class: c.class.name.parameterize}
+    %div.container
       %div.row-fluid
-        %div.span12
-          %div.episode-blurb{style: "display: table-cell; vertical-align: bottom; height: 500px"}
-            %h4= t 'tag'
-            %a{href: episode_path(@latest)}
-              %h1{style: "color: #eee"}= @latest.headline
-            %p= @latest.social_description
-            %a.btn.btn-primary{href: episode_path(@latest)}
-              Listen Now
-              %i.icon-play
-
-      /   %div.span4.splash-logo
-      /     %a.visible-desktop{href: root_path}
-      /       = image_tag "logo.png", width: "100%", class: "big-brand"
-      /     = render 'shared/powered_by'
-
-      /     %h3{style: "text-align: center"}= raw t(:description)
-
-      /   %div.span8.episode-blurb
-      /     - unless @latest.nil?
-      /       = render partial: 'episodes/episode', object: @latest, locals: { play: true, featured: true }
-
-      / %div.row-fluid.subscribe-join-social
-      /   = subscribe_join_social orientation: :horizontal
-
-%section.past-episodes
-  %section.container
-    %div.row-fluid
-      %div.span8
-        %h2 More Justice
-        = render @content
-      %div.span4
-        %h2 More Guests
-        = render @guests
-        %a{style: "", href: "http://internetdefenseleague.org"}
-          %img{style: "margin-left: 15px", src: "http://internetdefenseleague.org/images/badges/final/shield_badge.png", alt: "Member of The Internet Defense League"}
-
+        %div.span10.offset1
+          = render c

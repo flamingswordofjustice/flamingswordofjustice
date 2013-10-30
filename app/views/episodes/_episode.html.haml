@@ -1,24 +1,18 @@
-- type = ( defined?(featured) && featured ) ? "Featured Episode" : "Episode"
+%a{href: episode_path(episode)}
+  %h2= episode.headline
 
-%article.media.episode{id: episode.slug, data: { uri: episode_path(episode, format: :json), state: episode.state }}
-  %section.media-body
-    %a{href: episode_path(episode), data: { event: "Clicked #{type}", track: %{"Episode" : "#{episode.slug}"}}}
-      %h1= episode.title
-    %div.muted.attribution
-      = episode.headline.present? ? episode.headline : t(:tag)
-      |
-      %time(pubdate="pubdate")= episode.published_at.strftime("%m/%d/%Y")
+%div.post-content
+  = raw episode.social_description
+  %p.muted.clearfix
+    Originally published on
+    = episode.published_at.to_date.to_s(:long)
 
-    - if defined?(play) && play
-      = play_controls style: "full", episode: episode, episode_url: episode_url(episode.slug), player: Episode::Players::AUDIO, embed: params[:embed]
+= play_controls style: "full", episode: episode, episode_url: canonical_fb_url(episode), player: :full, embed: true
 
-    %section.body
-      - if episode.topics.any?
-        %small.topics
-          %strong Topics:
-          = comma_separated_list_of episode.topics
-      %a.pull-left{href: episode_path(episode.slug), data: { event: "Clicked #{type}", track: %{"Episode" : "#{episode.slug}"}}}
-        = image_tag episode.image.url(:thumb), class: "media-object", style: "width: 100px; margin-top: 8px"
-      %div.description
-        = raw episode.description
-
+%div.row-fluid{style: "margin-bottom: 20px"}
+  %div.span3.offset3.vertical-gap-phone
+    %a.btn.btn-facebook.btn-block{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(episode)}", target: "_blank", data: {url: canonical_fb_url(episode)}}
+      Share on Facebook
+  %div.span3
+    %a.btn.btn-twitter.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(text: episode.default_twitter_text, url: episode.canonical_short_link || episode_url).to_param, target: "_blank"}
+      Share on Twitter

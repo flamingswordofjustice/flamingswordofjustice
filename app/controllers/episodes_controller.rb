@@ -57,10 +57,9 @@ class EpisodesController < ApplicationController
   end
 
   def email
-    # Maintained for backwards compatibility with old emails.
     episode = Episode.where(slug: params[:id]).first
     email = Email.where(episode_id: episode.id).first
-    render text: email.html, content_type: "text/html"
+    render text: email.html(request), content_type: "text/html"
   end
 
   def audio

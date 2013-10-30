@@ -62,7 +62,7 @@
   }
 
   nav.navbar-inner a.brand {
-    background-image: image-url("flamingswordmed.png");
+    background-image: image-url("logo_horizontal.png");
     background-color: transparent;
     &:hover { background-color: transparent; }
   }
@@ -135,7 +135,7 @@
 
 @media (min-width: 768px) and (max-width: 979px) {
   nav.navbar-inner a.brand {
-    background-image: image-url("flamingswordmed.png");
+    background-image: image-url("logo_horizontal.png");
     background-color: transparent;
     &:hover { background-color: transparent; }
   }

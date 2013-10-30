@@ -1,15 +1,20 @@
-/ %article.post
-/   %header
-/     %a{href: post_path(post)}
-/       %h1= post.title
-/     %div.muted.attribution
-/       = link_to post.author_name, "#"
-/       |
-/       %time(pubdate="pubdate")= post.created_at.to_s(:long)
-/     - if post.topics.any?
-/       %div.topics
-/         Topics:
-/         = comma_separated_list_of post.topics
+%a{href: post_path(post)}
+  %h2= post.title
 
-/   %section.body
-/     %p= raw post.content + link_to("more", post_path(post.slug), class: "action")
+- if post.embedded_content.present?
+  %div.embed-container
+    %iframe{allowfullscreen: true, frameborder: 0, src: post.embedded_content.gsub(/http(s?):/, '')}
+
+  %div.row-fluid{style: "margin-bottom: 20px"}
+    %span.span4.offset2.vertical-gap-phone
+      %a.btn.btn-facebook.btn-block{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(post)}", target: "_blank", data: {url: canonical_fb_url(post)}}
+        Share on Facebook
+    %span.span4
+      %a.btn.btn-twitter.btn-block{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(url: post.canonical_short_link).to_param, target: "_blank"}
+        Share on Twitter
+
+%div.post-content{style: "margin-bottom: 20px"}
+  = raw post.content
+  %p.muted.clearfix
+    Originally posted on
+    = post.created_at.to_date.to_s(:long)

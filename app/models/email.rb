@@ -1,6 +1,7 @@
 class Email < ActiveRecord::Base
   RECIPIENT_BLACKLIST = [
-    "daily@thegoodfight.fm"
+    "daily@thegoodfight.fm",
+    "daily@flamingswordofjustice.com"
   ]
 
   belongs_to :episode
@@ -10,15 +11,16 @@ class Email < ActiveRecord::Base
 
   validates :subject, :body, presence: { if: lambda { |e| e.episode_id.blank? } }
 
-  def renderer
+  def renderer(request)
+    host = request.nil? ? ActionMailer::Base.default_url_options[:host] : request.host
+
     Class.new(ApplicationController) do
+      def initialize(host); @host = host; end
+
       def url_options
-        {
-          protocol: "http",
-          host: ActionMailer::Base.default_url_options[:host]
-        }
+        { protocol: "http", host: @host }
       end
-    end.new
+    end.new(host).tap {|c| c.request = request }
   end
 
   def proofed?
@@ -62,8 +64,8 @@ class Email < ActiveRecord::Base
     self.update_attributes proofed_at: Time.now
   end
 
-  def html
-    Premailer.new(raw_content,
+  def html(host=nil)
+    Premailer.new(raw_content(host),
       with_html_string: true,
       input_encoding: "UTF-8"
     ).to_inline_css
@@ -77,8 +79,8 @@ class Email < ActiveRecord::Base
     ENV['EMAIL_TEST_RECIPIENT']
   end
 
-  def raw_content
-    renderer.render_to_string(
+  def raw_content(host)
+    renderer(host).render_to_string(
       template: email_template,
       layout: false,
       locals: { email: self, episode: self.episode }

@@ -2,8 +2,7 @@ class HomeController < ApplicationController
   before_filter :touch_session, only: :index
 
   def index
-    @episodes = Episode.visible.limit(11).all
-    @latest = @episodes.shift
+    @episodes = Episode.visible.limit(10).all
     @guests = Appearance.order("created_at DESC").limit(10).all.map(&:guest).reject(&:nil?).uniq
 
     @posts = Post.order(:created_at).limit(10).all
