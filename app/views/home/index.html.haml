@@ -2,8 +2,7 @@
 
 %section.homepage-logo{style: "text-align: center;"}
   %a{href: root_path, style: "display: block; padding: 40px 0"}
-    = image_tag "logo.png", style: "height: 200px"
-  %h3= t 'description'
+    = image_tag "logo_horizontal.png", style: "height: 280px"
 
 - @content.each do |c|
   %section.homepage-content{class: c.class.name.parameterize}
