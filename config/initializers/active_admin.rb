@@ -17,7 +17,7 @@ ActiveAdmin.setup do |config|
   #
   # Note: Recommended image height is 21px to properly fit in the header
   #
-  config.site_title_image = "/assets/fsj_icon.png"
+  config.site_title_image = "/assets/icon.png"
 
   # == Default Namespace
   #
