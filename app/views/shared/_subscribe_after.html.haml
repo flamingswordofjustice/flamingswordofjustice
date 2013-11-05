@@ -1,21 +1,18 @@
-%div.container.subscribe-after.full-width
-  %div.row
-    %div.span8.offset2
-      %h3 Enjoy the show? Get every episode in your inbox.
-      %p
-        At #{t('tag_short')}, we think about email the
-        way some people think about diamonds. We craft them. We
-        hone them. And then we distribute them only to people that
-        we love. Join us: sign up below.
+%h3 Want to learn more? Get every episode in your inbox.
+%p
+  At #{t('tag_short')}, we think about email the
+  way some people think about diamonds. We craft them. We
+  hone them. And then we distribute them only to people that
+  we love. Join us: sign up below.
 
-      %form.subscribe.form-inline{action: subscribe_path, method: :post, data: { remote: true, track: true }}
-        %div.row-fluid
-          %div.span6.offset1.vertical-gap-phone
-            %input.input-large.input-block-level(placeholder="Email Address" type="email" name="subscriber[email]" required)
-          %div.span4
-            %a.submit.btn.btn-primary.btn-large.btn-block{href: "#"}
-              Sign Up
+%form.subscribe.form-inline{action: subscribe_path, method: :post, data: { remote: true, track: true }}
+  %div.row-fluid
+    %div.span6.offset1.vertical-gap-phone
+      %input.input-large.input-block-level(placeholder="Email Address" type="email" name="subscriber[email]" required)
+    %div.span4
+      %a.submit.btn.btn-primary.btn-large.btn-block{href: "#"}
+        Sign Up
 
-      %div.thanks{style: "display: none;"}
-        %h3 Thanks! Like us on Facebook?
-        = facebook_like
+%div.thanks{style: "display: none;"}
+  %h3 Thanks! Like us on Facebook?
+  = facebook_like
