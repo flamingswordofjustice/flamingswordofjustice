@@ -643,9 +643,7 @@ input[type='text'], input[type='email'] {
 
     &:nth-child(even)  {
       background-color: #274059;
-      .post-content, a > h2 {
-        color: #eee;
-      }
+      .post-content, a > h2 { color: #eee; }
     }
 
     &:nth-child(odd) {

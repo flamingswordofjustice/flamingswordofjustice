@@ -1,18 +1,21 @@
 = open_graph_and_meta_tags
 
-%section.homepage-logo.container.full-width
-  %div.row-fluid
-    %div.span8.offset2
-      %a{href: root_path, style: "display: block; padding: 40px 0"}
-        = image_tag "logo_horizontal.png"
+%section.homepage-logo.full-width
+  %div.container
+    %div.row-fluid
+      %div.span8.offset2
+        %a{href: root_path, style: "display: block; padding: 40px 0"}
+          = image_tag "logo_horizontal.png"
 
 - @content.each do |c|
-  %section.homepage-content.container.full-width{class: c.class.name.parameterize}
+  %section.homepage-content.full-width{class: c.class.name.parameterize}
+    %div.container
+      %div.row-fluid
+        %div.span10.offset1
+          = render c
+
+%section.subscribe-after.full-width
+  %div.container
     %div.row-fluid
       %div.span10.offset1
-        = render c
-
-%section.subscribe-after.container.full-width
-  %div.row-fluid
-    %div.span10.offset1
-      = render partial: "shared/subscribe_after"
+        = render partial: "shared/subscribe_after"
