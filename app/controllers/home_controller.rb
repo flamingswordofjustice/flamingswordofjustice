@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   end
 
   def rss
-    redirect_to ENV["FEEDBURNER_PODCAST_URI"], status: 302
+    redirect_to ENV["PODCAST_URI"], status: 302
   end
 
   # Permanently don't show these users a modal.
