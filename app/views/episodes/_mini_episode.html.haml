@@ -1,7 +1,7 @@
 %div.mini-episode{style: "background-image: url(#{image_path(episode.image)});"}
   %a{href: episode_path(episode)}
     %div.blurb
-      = "Episode #{episode.title.match(/(#\d+)/)[0]}"
+      = "Episode #{episode.number}"
       &middot;
       = episode.created_at.to_date.to_s(:long)
     %div.title
