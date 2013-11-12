@@ -17,7 +17,7 @@ class RedirectsController < ApplicationController
       redirect_to destination, status: 307
     else
       logger.error "Couldn't find a redirect for #{params[:id]}"
-      redirect_to root_path
+      not_found
     end
   end
 end

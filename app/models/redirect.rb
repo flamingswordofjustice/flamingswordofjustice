@@ -5,6 +5,8 @@ class Redirect < ActiveRecord::Base
 
   before_save :generate_path
 
+  validate :path_must_not_exist
+
   def display_name
     self.path + " -> " + self.destination
   end
@@ -31,6 +33,14 @@ class Redirect < ActiveRecord::Base
   def generate_path
     if self.path.blank?
       self.path = SecureRandom.urlsafe_base64(8)
+    end
+  end
+
+  def path_must_not_exist
+    route = Fsj::Application.routes.recognize_path(self.path)
+
+    if route[:controller] != "redirects"
+      errors.add :path, "conflicts with an existing route: #{route[:controller].inspect}"
     end
   end
 

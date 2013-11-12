@@ -31,6 +31,7 @@ Fsj::Application.routes.draw do
   resources :organizations, only: [:show, :index]
   resources :topics,        only: [:show, :index]
   resources :emails,        only: [:show]
+  resources :pages,         only: [:show]
 
-  get "/:page" => 'pages#show', as: :page
+  get "/:id" => 'redirects#show', as: :redirect
 end
