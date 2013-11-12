@@ -4,10 +4,10 @@ Fsj::Application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
 
   root to: 'home#index'
-  get  "/subscribe" => "home#subscribe", as: :subscribe
-  get  "/search"    => "search#index",   as: :search
-  get  "/rss"       => "home#rss",       as: :rss
-  post "/ignore"    => "home#ignore",    as: :ignore
+  post  "/home/subscribe" => "home#subscribe", as: :subscribe
+  get   "/search"    => "search#index",   as: :search
+  get   "/rss"       => "home#rss",       as: :rss
+  post  "/ignore"    => "home#ignore",    as: :ignore
 
   resources :episodes do
     member do

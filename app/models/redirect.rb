@@ -21,10 +21,10 @@ class Redirect < ActiveRecord::Base
   }
 
   def url
-    "http://fsj.fm/#{self.path}"
+    "http://thegoodfight.fm/#{self.path}"
   end
 
-  def desination_url
+  def destination_url
     linkable_path || destination
   end
 
@@ -40,7 +40,7 @@ class Redirect < ActiveRecord::Base
     route = Fsj::Application.routes.recognize_path(self.path)
 
     if route[:controller] != "redirects"
-      errors.add :path, "conflicts with an existing route: #{route[:controller].inspect}"
+      errors.add :path, "conflicts with an existing route: '#{route[:controller]}/#{route[:action]}"
     end
   end
 

@@ -3,7 +3,7 @@ ActiveAdmin.register Redirect do
 
   index do
     column :redirect do |redirect|
-      link_to("http://fsj.fm/" + redirect.path, redirect.path, style: "") + " &#8594; ".html_safe + link_to(redirect.destination, redirect.destination)
+      link_to("http://thegoodfight.fm/" + redirect.path, redirect.path, style: "") + " &#8594; ".html_safe + link_to(redirect.destination_url)
     end
     column :hits
     column "2-hour activity" do |redirect|
@@ -28,7 +28,7 @@ ActiveAdmin.register Redirect do
         label: "External Location",
         hint: "Use EITHER this OR Internal Location above. The destination path for the redirect, e.g. '/episodes/14-this-is-an-episode' or 'https://google.com'."
 
-      f.input :path, hint: "The public path. For http://fsj.fm/14, this should be '14'. Leave this blank to auto-generate a hash."
+      f.input :path, hint: "The public path. For http://thegoodfight.fm/14, this should be '14'. Leave this blank to auto-generate a hash."
       f.input :notes
     end
     f.actions
