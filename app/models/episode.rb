@@ -171,6 +171,12 @@ class Episode < ActiveRecord::Base
       .limit(2)
   end
 
+  def number
+    matches = title.try :match, /(#\d+)/
+
+    matches.present? ? matches[0] : "Unknown"
+  end
+
   class << self
     def possible_years
       results = self.connection.select_all <<-SQL

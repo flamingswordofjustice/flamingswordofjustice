@@ -13,7 +13,7 @@
 = render partial: "episodes/modal" if @modal_enabled
 
 %h4.muted
-  Episode #{@episode.title.match(/(#\d+)/)[0]}
+  Episode #{@episode.number}
 
 %h1= @episode.headline
 
