@@ -197,7 +197,7 @@ module ApplicationHelper
   end
 
   def open_graph_and_meta_tags(attrs={})
-    attrs[:image]   = asset_path(attrs[:image].present? ? attrs[:image] : "sword.png")
+    attrs[:image]   = asset_path(attrs[:image].present? ? attrs[:image] : "logo.png")
     attrs[:type]  ||= "website"
     attrs[:url]   ||= request.original_url
     attrs[:admin] ||= facebook_admin_id
