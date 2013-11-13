@@ -78,7 +78,7 @@ $ ->
 
   $.ajaxSetup cache: true
 
-  if window.FB?
+  window.fbAsyncInit = () =>
     FB.init
       appId: util.meta("facebook-app-id")
       status: true
