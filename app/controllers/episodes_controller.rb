@@ -4,15 +4,15 @@ class EpisodesController < ApplicationController
   DEFAULT_PER_PAGE = 10
 
   def show
-    @modal_enabled = true
+    @modal_enabled = false
 
-    @modal_enabled = if session[:never_show_modal].present?
-      false
-    elsif session[:modal_shown_at].present?
-      session[:modal_shown_at] < 24.hours.ago
-    else
-      [ true, false ][ rand(2) ]
-    end
+    # @modal_enabled = if session[:never_show_modal].present?
+    #   false
+    # elsif session[:modal_shown_at].present?
+    #   session[:modal_shown_at] < 24.hours.ago
+    # else
+    #   [ true, false ][ rand(2) ]
+    # end
 
     if @modal_enabled
       session[:modal_shown_at] = DateTime.now
