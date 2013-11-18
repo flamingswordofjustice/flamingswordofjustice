@@ -11,8 +11,9 @@ Fsj::Application.routes.draw do
 
   resources :episodes do
     member do
-      get 'email' => 'episodes#email', as: :email
-      get 'audio' => 'episodes#audio', as: :audio
+      get 'email'  => 'episodes#email',  as: :email
+      get 'audio'  => 'episodes#audio',  as: :audio
+      get 'itunes' => 'episodes#itunes', as: :itunes
     end
 
     collection do

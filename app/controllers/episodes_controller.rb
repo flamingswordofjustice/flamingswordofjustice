@@ -75,6 +75,10 @@ class EpisodesController < ApplicationController
     end
   end
 
+  def itunes
+    @episode = Episode.find(params[:id])
+  end
+
   # Specific to AJAX requests for whole episodes.
   def rest
     episodes = Episode.visible.offset(params[:offset] || DEFAULT_PER_PAGE).all

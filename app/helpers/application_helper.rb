@@ -116,7 +116,7 @@ module ApplicationHelper
           init:          function(uid) { console.log("mixpanel init", uid); },
           identify:      function(uid) { console.log("mixpanel ident", uid); },
           register_once: function(uid) { console.log("mixpanel r_o", uid); },
-          track:         function(what, attrs, done) { console.log("mixpanel track", what, attrs); },
+          track:         function(what, attrs, done) { console.log("mixpanel track", what, attrs); if (done) { setTimeout(done, 0); } },
           track_forms:   function(query, title, attrs) {
             console.log(
               "mixpanel track form enabled",

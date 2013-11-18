@@ -39,6 +39,10 @@ $ ->
     $(this).slideUp "fast", () ->
       $(this).nextAll(".thanks").slideDown("fast");
 
+  $("body#episodes.itunes").each () ->
+    mixpanel.track "iTunes Subscribed", util.mixparams(), () ->
+      window.location = $("a.itunes-direct").attr("href")
+
   $("body#episodes.show, body#episodes.alt").each () ->
     mixpanel.track "Episode Viewed", util.mixparams()
 
