@@ -43,18 +43,25 @@ article.media-badge {
     padding: 10px 10px 10px 0;
     overflow: hidden;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 16px;
+    max-height: 68px;
 
     .description {
       display: block;
-      height: 34px;
       overflow: hidden;
+      @extend .hidden-tablet;
     }
 
-    h4 {
-      color: $baseRed;
-      margin: 0;
-      font-size: 16px;
+    > a {
+      display: block;
+
+
+      > h4 {
+        color: $baseRed;
+        margin: 0;
+        font-size: 16px;
+        line-height: 20px;
+      }
     }
 
     p {
