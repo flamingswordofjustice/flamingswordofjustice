@@ -597,7 +597,18 @@ input[type='text'], input[type='email'] {
 #episode-list {
   > li {
     display: inline-block;
-    width: 49.5%;
+    width: 49%;
+
+    &:nth-child(odd) { margin-right: 2%; }
+
+    // 0.3em is magically being placed between list elements in both Firefox and Chrome.
+    // It's not a set margin. I don't know where it's coming from.
+    // Removing it allows me to give each item a full 50% width.
+    // It's not a pixel. It's not a percentage. It's an em.
+    // But it's there.
+    // I'm not crazy.
+    // http://stackoverflow.com/questions/10038636/how-to-remove-the-gap-between-the-inline-block-elements
+    &:nth-child(even) { margin-left: -0.3em; }
 
     &.mix {
       opacity: 0;
