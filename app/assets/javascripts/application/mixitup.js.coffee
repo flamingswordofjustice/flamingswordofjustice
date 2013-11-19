@@ -11,7 +11,6 @@ EpisodeFilter = (list) ->
       list.mixitup "filter", "all"
     else
       filter = filts.join(" ")
-      console.log "bam"
 
       if !@loaded
         $.get("/episodes/rest").done (resp) =>
@@ -36,8 +35,8 @@ ko.bindingHandlers.chosen =
         observable newVal
 
     presets = $(element).data("val").split(",")
-    console.log "presets are", presets, "data is", $(element).data("val")
-    observable(presets) if ( presets.length isnt 0 or presets[0] isnt "" )
+
+    observable(presets) if ( presets.length isnt 0 and presets[0] isnt "" )
 
   update: (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) ->
     observable = valueAccessor()
