@@ -1,8 +1,14 @@
-%h1 Subscribe via iTunes
+%h1 Opening iTunes...
 
 %p
-  You should be redirected to iTunes shortly. If not, please
+  The iTunes app should load momentarily. If not, please
   %a{href: itunes_link, class: "itunes-direct", title: "iTunes Direct", data: { track: true }} click here.
+
+%p
+  Alternately, you can
+  %a.visible-desktop.rss{href: podcast_link, title: "Subscribe via RSS", data: { track: true }} subscribe to the show via RSS
+  or
+  %a{href: root_path} visit our home page.
 
 %div.row-fluid{style: "margin-bottom: 20px"}
   %div.span3.offset1.vertical-gap-phone

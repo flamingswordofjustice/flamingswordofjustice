@@ -9,18 +9,7 @@
 
 %h1= @post.title
 
-%div{style: "margin-bottom: 20px;"}
-  %a.btn.btn-facebook.btn-large{href: "http://facebook.com/sharer.php?u=#{canonical_fb_url(@post)}", target: "_blank", data: {url: canonical_fb_url(@post)}}
-    %i.icon-facebook
-    %span.hidden-phone Share on
-    Facebook
-  %a.btn.btn-twitter.btn-large.hidden-phone{href: "http://twitter.com/intent/tweet?" + twitter_share_attrs(url: @post.canonical_short_link).to_param, target: "_blank"}
-    %i.icon-twitter
-    Tweet
-  %a.btn.btn-primary.btn-large{href: itunes_link, title: "iTunes", data: { track: true }}
-    %i.icon-music
-    Subscribe
-    %span.hidden-phone on iTunes
+= share_subscribe fb: canonical_fb_url(@post), short: @post.canonical_short_link
 
 - if @post.embedded_content.present?
   %div.embed-container

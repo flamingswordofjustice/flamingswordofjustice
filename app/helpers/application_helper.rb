@@ -61,6 +61,10 @@ module ApplicationHelper
       "data-show-faces" => "false"
   end
 
+  def share_subscribe(links)
+    render partial: "shared/share_subscribe", locals: links
+  end
+
   def chartbeat_head_tracker
     return nil if chartbeat_uid.blank?
 
