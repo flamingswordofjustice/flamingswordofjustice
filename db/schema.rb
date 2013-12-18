@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009202236) do
+ActiveRecord::Schema.define(:version => 20131218164959) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20131009202236) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "slug"
-    t.string   "image"
     t.string   "number"
     t.string   "libsyn_id"
     t.string   "headline"
@@ -70,10 +69,11 @@ ActiveRecord::Schema.define(:version => 20131009202236) do
     t.string   "image_caption"
     t.string   "twitter_text"
     t.integer  "redirect_id"
-    t.text     "filepicker_images"
     t.integer  "host_id"
     t.string   "youtube_video_id"
     t.string   "facebook_image_url"
+    t.text     "filepicker_images"
+    t.string   "image"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20131009202236) do
     t.string   "email"
     t.string   "public_email"
     t.integer  "appearances_count", :default => 0
+    t.string   "facebook_type"
   end
 
   add_index "people", ["appearances_count"], :name => "index_people_on_appearances_count"

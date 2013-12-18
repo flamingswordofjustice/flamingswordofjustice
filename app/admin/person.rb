@@ -30,6 +30,7 @@ ActiveAdmin.register Person do
       f.input :website, hint: "Full URL, including http://"
       f.input :twitter, hint: "Just the username - no http, no @ symbol"
       f.input :facebook, hint: "Just the username - no http"
+      f.input :facebook_type, as: :radio, collection: Person::FacebookType::COLLECTION, hint: "If the person is an organization or public figure with their own Facebook page, select Page to render their link as a Like button. Otherwise, choose Person."
       f.input :public_email, hint: "Optional - will be shown on site if provided."
       f.input :image, as: :image_upload, preview: :thumb
       f.input :description, as: :html_editor

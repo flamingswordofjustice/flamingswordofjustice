@@ -5,6 +5,13 @@ class Person < ActiveRecord::Base
   extend FriendlyId
   extend Groupable
 
+  module FacebookType
+    PERSON = "person"
+    PAGE   = "page"
+    ALL    = [ PAGE, PERSON ]
+    COLLECTION = ALL.map {|k| [ k.titleize, k ]}
+  end
+
   mapping do
     indexes :id,           :index    => :not_analyzed
     indexes :slug,         :index    => :not_analyzed
@@ -26,6 +33,11 @@ class Person < ActiveRecord::Base
   scope :with_episodes, where("appearances_count > 0").order("name ASC")
 
   default_scope { order("name ASC") }
+  default_value_for(:facebook_type) { Person::FacebookType::PERSON }
+
+  def facebook_page?
+    self.facebook_type == Person::FacebookType::PAGE
+  end
 
   def groupable_by
     self.name.chars.first

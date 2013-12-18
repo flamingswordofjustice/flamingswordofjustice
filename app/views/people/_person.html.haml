@@ -13,4 +13,4 @@
       - else
         = raw truncate_html(person.description)
   %section.social
-    = social_icons_for person
+    = social_icons_for person, type: person.facebook_page? ? "like" : "follow"

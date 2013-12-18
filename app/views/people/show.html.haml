@@ -11,7 +11,7 @@
 %div.bio
   %figure.thumbnail.pull-left
     = image_tag @person.image.url
-    = social_icons_for @person, skip: [:appearances]
+    = social_icons_for @person, skip: [:appearances], type: @person.facebook_page? ? "like" : "follow"
     %div.clearfix
   = raw @person.description
 
