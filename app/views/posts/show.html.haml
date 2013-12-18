@@ -9,7 +9,7 @@
 
 %h1= @post.title
 
-= share_subscribe fb: canonical_fb_url(@post), short: @post.canonical_short_link
+= share_subscribe fb: canonical_fb_url(@post), short: @post.canonical_short_link, tweet: @post.title
 
 - if @post.embedded_content.present?
   %div.embed-container
