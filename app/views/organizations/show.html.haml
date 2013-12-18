@@ -10,7 +10,7 @@
 %div.bio
   %figure.thumbnail.pull-left
     = image_tag @organization.image.url
-    = social_icons_for @organization, skip: [:appearances], type: :like
+    = social_icons_for @organization, skip: [:appearances], type: "like"
     %div.clearfix
   = raw @organization.description
 
