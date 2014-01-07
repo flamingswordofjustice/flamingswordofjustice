@@ -11,6 +11,7 @@ gem 'yajl-ruby'
 gem 'multi_json'
 gem 'nokogiri'
 gem 'rails_12factor'
+gem 'heroku'
 
 # Admin
 
