@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131218164959) do
+ActiveRecord::Schema.define(:version => 20140107141543) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -152,7 +152,10 @@ ActiveRecord::Schema.define(:version => 20131218164959) do
     t.string   "twitter_text"
     t.integer  "redirect_id"
     t.integer  "public_author_id"
+    t.string   "state"
   end
+
+  add_index "posts", ["state"], :name => "index_posts_on_state"
 
   create_table "redirects", :force => true do |t|
     t.string  "path",                         :null => false

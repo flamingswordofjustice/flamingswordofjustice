@@ -27,6 +27,22 @@ class Post < ActiveRecord::Base
   belongs_to :redirect
   belongs_to :public_author, class_name: "Person"
 
+  # Post state affects homepage visibility, but don't otherwise prevent viewing.
+  POSSIBLE_STATES = [ :published, :unpublished ]
+
+  POSSIBLE_STATES.each do |state|
+    define_method("#{state}?") { self.state.to_sym == state }
+    scope state, lambda { where(state: state) }
+  end
+
+  def possible_states
+    POSSIBLE_STATES
+  end
+
+  def default_state
+    :published
+  end
+
   def author_name
     author.name || author.email.split("@").first
   end

@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @episodes = Episode.visible.limit(10).all
     @guests = Appearance.order("created_at DESC").limit(10).all.map(&:guest).reject(&:nil?).uniq
 
-    @posts = Post.order(:created_at).limit(10).all
+    @posts = Post.order(:created_at).published.limit(10).all
 
     @content = ( @posts + @episodes ).sort_by do |o|
       o.is_a?(Episode) ? o.published_at : o.created_at

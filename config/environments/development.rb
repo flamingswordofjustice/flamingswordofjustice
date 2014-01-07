@@ -35,16 +35,18 @@ Fsj::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  local_port = ENV['PORT'] || 4000
+
   config.asset_host = lambda do |source, req=nil|
     if source =~ /uploads\/(.*?)(jpg|png|gif)$/
       "#{ENV['S3_BUCKET']}.s3.amazonaws.com"
     elsif !req.nil?
       "#{req.host}:#{req.port}"
     else
-      "localhost:4000"
+      "localhost:#{local_port}"
     end
   end
 
   # Default mailer host for Devise
-  config.action_mailer.default_url_options = { host: 'localhost:4000' }
+  config.action_mailer.default_url_options = { host: "localhost:#{local_port}" }
 end
