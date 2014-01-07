@@ -12,7 +12,7 @@
 = share_subscribe fb: canonical_fb_url(@post), short: @post.canonical_short_link, tweet: @post.title
 
 - if @post.embedded_content.present?
-  %div.embed-container
+  %div.embed-container{style: @post.content_height.present? ? "padding-bottom: #{@post.content_height}px" : nil}
     %iframe{allowfullscreen: true, frameborder: 0, src: @post.embedded_content.gsub(/http(s?):/, '')}
 
   %div.row-fluid{style: "margin-bottom: 20px"}

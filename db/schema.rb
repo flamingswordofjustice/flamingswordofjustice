@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107141543) do
+ActiveRecord::Schema.define(:version => 20140107164544) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -111,8 +111,9 @@ ActiveRecord::Schema.define(:version => 20140107141543) do
     t.string   "title"
     t.string   "slug"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "wufoo_form_id"
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
@@ -153,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20140107141543) do
     t.integer  "redirect_id"
     t.integer  "public_author_id"
     t.string   "state"
+    t.integer  "content_height"
   end
 
   add_index "posts", ["state"], :name => "index_posts_on_state"
