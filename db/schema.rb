@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140113140558) do
+ActiveRecord::Schema.define(:version => 20140113141638) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20140113140558) do
     t.integer  "host_id"
     t.string   "youtube_video_id"
     t.string   "image"
+    t.string   "social_image"
   end
 
   add_index "episodes", ["slug"], :name => "index_shows_on_slug", :unique => true
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20140113140558) do
     t.integer  "public_author_id"
     t.string   "state"
     t.integer  "content_height"
+    t.string   "social_image"
   end
 
   add_index "posts", ["state"], :name => "index_posts_on_state"

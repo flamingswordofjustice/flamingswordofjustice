@@ -47,6 +47,8 @@ ActiveAdmin.register Post do
         as: :text,
         hint: content_tag(:span, "", class: "charlimit") + t("admin.twitter_text").html_safe,
         input_html: { rows: 3, maxlength: 102 }
+
+      f.input :social_image, as: :image_upload, preview: :thumb, hint: "Social images will be automatically resized to 403px x 403px."
     end
 
     f.actions

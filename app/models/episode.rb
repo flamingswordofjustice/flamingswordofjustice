@@ -76,6 +76,7 @@ class Episode < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
 
   mount_uploader :image, EpisodeImageUploader
+  mount_uploader :social_image, ImageUploader
 
   POSSIBLE_STATES = [ :published, :unpublished, :live ]
 

@@ -27,6 +27,8 @@ class Post < ActiveRecord::Base
   belongs_to :redirect
   belongs_to :public_author, class_name: "Person"
 
+  mount_uploader :social_image, ImageUploader
+
   # Post state affects homepage visibility, but don't otherwise prevent viewing.
   POSSIBLE_STATES = [ :published, :unpublished ]
 
