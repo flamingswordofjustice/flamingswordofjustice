@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107164544) do
+ActiveRecord::Schema.define(:version => 20140113140558) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -71,8 +71,6 @@ ActiveRecord::Schema.define(:version => 20140107164544) do
     t.integer  "redirect_id"
     t.integer  "host_id"
     t.string   "youtube_video_id"
-    t.string   "facebook_image_url"
-    t.text     "filepicker_images"
     t.string   "image"
   end
 
@@ -147,7 +145,6 @@ ActiveRecord::Schema.define(:version => 20140107164544) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "embedded_content"
-    t.string   "facebook_image_url"
     t.string   "headline"
     t.text     "social_description"
     t.string   "twitter_text"

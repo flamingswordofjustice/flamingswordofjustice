@@ -27,7 +27,6 @@ gem 'honeybadger'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-gem 'filepicker-rails'
 
 # Assets
 

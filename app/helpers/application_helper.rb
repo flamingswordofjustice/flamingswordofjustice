@@ -331,11 +331,7 @@ module ApplicationHelper
   end
 
   def canonical_fb_image(object)
-    if object.facebook_image_url.present?
-      filepicker_image_tag(object.facebook_image_url, w: 403, h: 403)
-    else
-      object.image.url
-    end
+    object.image.url
   end
 
   def episode_filters

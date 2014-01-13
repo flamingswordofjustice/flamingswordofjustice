@@ -83,8 +83,6 @@ ActiveAdmin.register Episode do
       f.input :published_at, as: :date_select
       f.input :image, as: :image_upload#, preview: :thumb
       f.input :image_caption
-
-      f.input :filepicker_images, as: :file_picker, multiple: true
     end
 
     f.inputs "Social and Sharing" do
@@ -104,8 +102,6 @@ ActiveAdmin.register Episode do
         as: :text,
         hint: content_tag(:span, "", class: "charlimit") + t("admin.twitter_text").html_safe,
         input_html: { rows: 3, maxlength: 102 }
-
-      f.input :facebook_image_url, as: :file_picker, multiple: false, hint: "Facebook timeline images should be 403px by 403px."
     end
 
     f.inputs "Topics and Guests" do

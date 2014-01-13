@@ -2,7 +2,7 @@
                            title: if_blank(@post, :headline, :title),
                            page_title: @post.title,
                            description: if_blank(@post, :social_description, :content),
-                           image: @post.facebook_image_url.blank? ? nil : filepicker_image_url(@post.facebook_image_url, w: 403, h: 403),
+                           image: nil,
                            url: canonical_fb_url(@post)
 
 %h4.muted= comma_separated_list_of @post.topics
