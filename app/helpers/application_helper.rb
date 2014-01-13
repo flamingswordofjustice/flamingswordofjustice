@@ -331,7 +331,7 @@ module ApplicationHelper
   end
 
   def canonical_fb_image(object)
-    object.image.url
+    object.social_image.present? ? object.social_image.social.url : object.image.url
   end
 
   def episode_filters

@@ -2,7 +2,7 @@
                            title: if_blank(@post, :headline, :title),
                            page_title: @post.title,
                            description: if_blank(@post, :social_description, :content),
-                           image: nil,
+                           image: @post.social_image.present? ? @post.social_image.social : nil,
                            url: canonical_fb_url(@post)
 
 %h4.muted= comma_separated_list_of @post.topics
