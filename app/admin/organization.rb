@@ -18,7 +18,7 @@ ActiveAdmin.register Organization do
   end
 
   form html: { multipart: true } do |f|
-    f.inputs "Guest Details" do
+    f.inputs "Organization Details" do
       f.input :name
       f.input :website, hint: "Full URL, including http://"
       f.input :twitter, hint: "Just the username - no http, no @ symbol"
@@ -28,7 +28,7 @@ ActiveAdmin.register Organization do
         input_html: { maxlength: 100 }
       f.input :description, as: :html_editor
       f.input :image, as: :image_upload, preview: :logo
-      f.input :people
+      f.input :people, as: :select, multiple: true, collection: Person.all, selected: f.object.people.map(&:id)
     end
     f.actions
   end
