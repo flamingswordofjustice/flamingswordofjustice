@@ -3,7 +3,7 @@ ruby '2.0.0'
 
 # Infrastructure
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.17'
 gem 'pg'
 gem 'unicorn'
 gem 'strong_parameters'
@@ -14,7 +14,7 @@ gem 'rails_12factor'
 
 # Admin
 
-gem 'activeadmin'
+gem 'activeadmin', "~> 0.6.3"
 gem 'active_admin_editor'
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'devise'
