@@ -60,7 +60,13 @@ ActiveAdmin.register Episode do
     default_actions
   end
 
+  filter :title
+  filter :description
+  filter :topics
   filter :published_at
+  filter :published
+  filter :show_notes
+  filter :headline
 
   action_item only: [:edit, :show] do
     name = resource.class.model_name
