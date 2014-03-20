@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:HashNuke/mailgun.git
+  remote: https://github.com/HashNuke/mailgun
   revision: 37e4c2cd4195f225616ba6c96e5c14cf56da6dfd
   specs:
     mailgun (0.7)
