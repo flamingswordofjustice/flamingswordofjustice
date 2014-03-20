@@ -55,7 +55,8 @@ gem 'zclip-rails'
 
 # Email
 
-gem 'mailgun'
+# Moving to HEAD for https://github.com/HashNuke/mailgun/issues/25.
+gem 'mailgun', git: 'git@github.com:HashNuke/mailgun.git'
 gem 'active_attr'
 # We specifically need HEAD for UTF-8 encoding support. For some reason.
 gem 'premailer', git: "https://github.com/alexdunae/premailer"

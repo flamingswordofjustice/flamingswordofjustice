@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:HashNuke/mailgun.git
+  revision: 37e4c2cd4195f225616ba6c96e5c14cf56da6dfd
+  specs:
+    mailgun (0.7)
+      multimap
+      rest-client
+
+GIT
   remote: https://github.com/alexdunae/premailer
   revision: 470c2f312a66e18d79a272ecd715ba0987324b6b
   specs:
@@ -170,9 +178,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mailgun (0.7)
-      multimap
-      rest-client
     meta_search (1.1.2)
       actionpack (~> 3.1)
       activerecord (~> 3.1)
@@ -324,7 +329,7 @@ DEPENDENCIES
   honeybadger
   jquery-rails
   kaminari
-  mailgun
+  mailgun!
   meta_search (>= 1.1.0.pre)
   mini_magick
   mixpanel_client
