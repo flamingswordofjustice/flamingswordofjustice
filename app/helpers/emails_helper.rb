@@ -2,9 +2,13 @@ module EmailsHelper
 
   def public_image_tag(source, options)
     protocol = Rails.env.development? ? :http : :https
-    # image_tag asset_paths.compute_public_path(source, 'images', protocol: protocol), options
-    # image_tag source, options
-    image_tag asset_path(source, protocol: protocol), options
+    path = asset_path(source, protocol: protocol)
+
+    if path =~ /^\/\//
+      path = "#{protocol}:#{path}"
+    end
+
+    image_tag path.html_safe, options
   end
 
 end
